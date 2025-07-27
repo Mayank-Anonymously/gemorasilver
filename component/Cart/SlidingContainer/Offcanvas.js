@@ -1,0 +1,22 @@
+import Offcanvas from 'react-bootstrap/Offcanvas';
+
+function ResponsiveExample({ handleClose, show }) {
+	return (
+		<>
+			<Offcanvas
+				show={show}
+				onHide={handleClose}
+				placement='end'>
+				<Offcanvas.Header closeButton>
+					<Offcanvas.Title>Cart</Offcanvas.Title>
+				</Offcanvas.Header>
+				<Offcanvas.Body>
+					Some text as placeholder. In real life you can have the elements you
+					have chosen. Like, text, images, lists, etc.
+				</Offcanvas.Body>
+			</Offcanvas>
+		</>
+	);
+}
+
+export default ResponsiveExample;
