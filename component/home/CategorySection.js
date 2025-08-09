@@ -12,7 +12,7 @@ const CategorySection = () => {
 							className='text-center mt-5 category-section-card'>
 							<img
 								src='/assets/product/ring.png'
-								className='img-fluid  category-section-image'
+								className='img-fluid category-section-image'
 							/>
 							<h3>Ring</h3>
 						</Col>

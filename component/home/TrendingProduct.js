@@ -84,16 +84,16 @@ const products = [
 const TrendingProductSection = () => {
 	return (
 		<Container className='py-5'>
-			<h3 className='text-center fw-bold mb-4'>TRENDING PRODUCT</h3>
+			<h3 className='text-center fw-bold mb-4'>FEATURED PRODUCT</h3>
 			<Row>
 				{products.map((product) => (
 					<Col
 						key={product.id}
-						xs={12}
-						sm={6}
+						xs={6}
+						sm={8}
 						md={4}
 						lg={3}
-						className='mb-4'>
+						className='mb-4 product-cards'>
 						<Card className='h-100 shadow-sm position-relative'>
 							{product.discount && (
 								<span
@@ -107,13 +107,13 @@ const TrendingProductSection = () => {
 								src={product.img}
 								style={{
 									objectFit: 'contain',
-									height: '200px',
+									height: '150px',
 									padding: '1rem',
 								}}
 							/>
 							<Card.Body className='text-center'>
 								<div
-									className='mb-1'
+									className='mb-1 review-card'
 									style={{ fontSize: '14px', color: '#999' }}>
 									{'★'.repeat(product.rating) + '☆'.repeat(5 - product.rating)}{' '}
 									({product.reviews} Review)
@@ -121,7 +121,7 @@ const TrendingProductSection = () => {
 								<Card.Title style={{ fontSize: '15px' }}>
 									{product.name}
 								</Card.Title>
-								<div className='fw-bold text-danger'>
+								<div className='fw-bold text-danger price-line'>
 									${product.price.toFixed(2)}{' '}
 									<span className='text-muted text-decoration-line-through ms-1'>
 										${product.oldPrice.toFixed(2)}

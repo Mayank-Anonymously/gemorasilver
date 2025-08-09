@@ -16,8 +16,6 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  
-
 }
 
 a {
@@ -91,3 +89,48 @@ a {
     background-color: #a76048;
 }
 
+/* Mobile tweaks */
+@media (max-width: 576px) {
+  .product-cards {
+    height: 250px;
+  }
+  .review-card {
+    font-size : 10px !important
+  }
+ .card-title { 
+    font-size:  10px !important;
+  }
+  .price-line {
+    flex-direction:  row;
+    display: flex;
+   
+  }
+   .price-line span {
+    flex-direction:  row;
+    display: flex;
+    font-size: 10px;
+  }
+  .category-title {
+    font-size: 0.9rem;
+  }
+
+  .category-section-card {
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+   .category-section-card  h3 {
+    border-radius: 100px;
+    font-size  : 15px;
+    margin-left : 10px
+  }
+  .category-section-card  img {
+    border-radius: 100px;
+    max-width: 100px;
+    width : 120%;
+  }
+  .footer {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}

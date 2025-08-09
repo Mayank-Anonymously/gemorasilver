@@ -18,7 +18,7 @@ const Footer = () => {
 				color: 'white',
 			}}>
 			<Container>
-				<Row className='p-5'>
+				<Row className='p-2'>
 					<Col
 						md={4}
 						className='text-white'>
@@ -61,26 +61,10 @@ const Footer = () => {
 							<li>Checkout</li>
 						</ul>
 					</Col>
-
-					<Col md={3}>
-						<h6 className='fw-bold text-white'>QUICK LINKS</h6>
-						<ul className='list-unstyled text-white'>
-							<li>My Account</li>
-							<li>Shopping Cart</li>
-							<li>Login</li>
-							<li>Register</li>
-							<li>Checkout</li>
-						</ul>
-					</Col>
 				</Row>
 
 				<hr />
-
-				<div className='d-flex justify-content-between align-items-center pt-2'>
-					<small className='text-white'>
-						© 2025 Powered by <strong>Gemora Silver By M&A</strong>. All Rights
-						Reserved.
-					</small>
+				<Row>
 					<div
 						className='payment-logos'
 						style={{
@@ -112,6 +96,13 @@ const Footer = () => {
 							className='rounded'
 						/>
 					</div>
+				</Row>
+
+				<div className='d-flex justify-content-between align-items-center pt-2'>
+					<small className='text-white'>
+						© 2025 Powered by <strong>Gemora Silver By M&A</strong>. All Rights
+						Reserved.
+					</small>
 				</div>
 			</Container>
 		</div>
