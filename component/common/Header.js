@@ -12,6 +12,11 @@ const Header = () => {
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+
+	const cartItems = [
+		{ name: 'Product 1', qty: 1, price: 49.99, image: '/assets/product1.jpg' },
+		{ name: 'Product 2', qty: 2, price: 19.99, image: '/assets/product2.jpg' },
+	];
 	return (
 		<>
 			<Navbar
@@ -74,7 +79,8 @@ const Header = () => {
 			{show && (
 				<ResponsiveExample
 					show={show}
-					handleClose={handleClose}
+					handleClose={() => setShow(false)}
+					cartItems={cartItems}
 				/>
 			)}
 		</>
