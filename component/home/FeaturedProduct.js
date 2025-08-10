@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
@@ -10,6 +11,7 @@ const products = [
 		oldPrice: 362.0,
 		rating: 4,
 		reviews: 126,
+		link: '/products',
 		discount: '-14%',
 	},
 	{
@@ -20,6 +22,7 @@ const products = [
 		oldPrice: 320.0,
 		rating: 3,
 		reviews: 126,
+		link: '/products',
 		discount: null,
 	},
 	{
@@ -30,6 +33,7 @@ const products = [
 		oldPrice: 390.0,
 		rating: 3,
 		reviews: 126,
+		link: '/products',
 		discount: '-14%',
 	},
 	{
@@ -40,6 +44,7 @@ const products = [
 		oldPrice: 362.0,
 		rating: 4,
 		reviews: 126,
+		link: '/products',
 	},
 	{
 		id: 5,
@@ -49,6 +54,7 @@ const products = [
 		oldPrice: 250.0,
 		rating: 3,
 		reviews: 126,
+		link: '/products',
 	},
 	{
 		id: 6,
@@ -58,6 +64,7 @@ const products = [
 		oldPrice: 190.0,
 		rating: 3,
 		reviews: 126,
+		link: '/products',
 		discount: '-14%',
 	},
 	{
@@ -68,6 +75,7 @@ const products = [
 		oldPrice: 330.0,
 		rating: 3,
 		reviews: 126,
+		link: '/products',
 		discount: '-14%',
 	},
 	{
@@ -78,6 +86,7 @@ const products = [
 		oldPrice: 362.0,
 		rating: 4,
 		reviews: 126,
+		link: '/products',
 	},
 ];
 
@@ -94,41 +103,46 @@ const FeaturedProductSection = () => {
 						md={4}
 						lg={3}
 						className='mb-4 product-cards'>
-						<Card className='h-100 shadow-sm position-relative'>
-							{product.discount && (
-								<span
-									className='badge bg-danger position-absolute'
-									style={{ top: '10px', left: '10px' }}>
-									{product.discount}
-								</span>
-							)}
-							<Card.Img
-								variant='top'
-								src={product.img}
-								style={{
-									objectFit: 'contain',
-									height: '150px',
-									padding: '1rem',
-								}}
-							/>
-							<Card.Body className='text-center'>
-								<div
-									className='mb-1 review-card'
-									style={{ fontSize: '14px', color: '#999' }}>
-									{'★'.repeat(product.rating) + '☆'.repeat(5 - product.rating)}{' '}
-									({product.reviews} Review)
-								</div>
-								<Card.Title style={{ fontSize: '15px' }}>
-									{product.name}
-								</Card.Title>
-								<div className='fw-bold text-danger price-line'>
-									${product.price.toFixed(2)}{' '}
-									<span className='text-muted text-decoration-line-through ms-1'>
-										${product.oldPrice.toFixed(2)}
+						<Link
+							href={product.link}
+							className='text-decoration-none'>
+							<Card className='h-100 shadow-sm position-relative'>
+								{product.discount && (
+									<span
+										className='badge bg-danger position-absolute'
+										style={{ top: '10px', left: '10px' }}>
+										{product.discount}
 									</span>
-								</div>
-							</Card.Body>
-						</Card>
+								)}
+								<Card.Img
+									variant='top'
+									src={product.img}
+									style={{
+										objectFit: 'contain',
+										height: '150px',
+										padding: '1rem',
+									}}
+								/>
+								<Card.Body className='text-center'>
+									<div
+										className='mb-1 review-card'
+										style={{ fontSize: '14px', color: '#999' }}>
+										{'★'.repeat(product.rating) +
+											'☆'.repeat(5 - product.rating)}{' '}
+										({product.reviews} Review)
+									</div>
+									<Card.Title style={{ fontSize: '15px' }}>
+										{product.name}
+									</Card.Title>
+									<div className='fw-bold text-danger price-line'>
+										${product.price.toFixed(2)}{' '}
+										<span className='text-muted text-decoration-line-through ms-1'>
+											${product.oldPrice.toFixed(2)}
+										</span>
+									</div>
+								</Card.Body>
+							</Card>
+						</Link>
 					</Col>
 				))}
 			</Row>
