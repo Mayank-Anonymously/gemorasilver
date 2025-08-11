@@ -19,9 +19,10 @@ export default function Home() {
 			<section>
 				<FeaturedProductSection />
 			</section>
-			<section>
+			<section data-aos='fade-right'>
 				<CurationSection />
 			</section>
+
 			<section>
 				<FooterInfo />
 			</section>

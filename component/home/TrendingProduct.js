@@ -93,6 +93,7 @@ const TrendingProductSection = () => {
 						sm={8}
 						md={4}
 						lg={3}
+						data-aos='fade-down'
 						className='mb-4 product-cards'>
 						<Card className='h-100 shadow-sm position-relative'>
 							{product.discount && (
@@ -132,19 +133,6 @@ const TrendingProductSection = () => {
 					</Col>
 				))}
 			</Row>
-			<div className='text-center mt-4'>
-				<Button
-					variant='outline'
-					style={{
-						backgroundColor: '#c37b5e',
-						color: 'white',
-						border: 'none',
-						padding: '8px 20px',
-						borderRadius: '4px',
-					}}>
-					Load More
-				</Button>
-			</div>
 		</Container>
 	);
 };

@@ -31,6 +31,7 @@ const FooterInfo = () => {
 			<Row className='text-center'>
 				{infoItems.map((item, idx) => (
 					<Col
+						data-aos='fade-left'
 						key={idx}
 						md={3}
 						sm={6}

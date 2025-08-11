@@ -102,7 +102,8 @@ const FeaturedProductSection = () => {
 						sm={8}
 						md={4}
 						lg={3}
-						className='mb-4 product-cards'>
+						className='mb-4 product-cards'
+						data-aos='fade-down'>
 						<Link
 							href={product.link}
 							className='text-decoration-none'>
@@ -146,19 +147,6 @@ const FeaturedProductSection = () => {
 					</Col>
 				))}
 			</Row>
-			<div className='text-center mt-4'>
-				<Button
-					variant='outline'
-					style={{
-						backgroundColor: '#c37b5e',
-						color: 'white',
-						border: 'none',
-						padding: '8px 20px',
-						borderRadius: '4px',
-					}}>
-					Load More
-				</Button>
-			</div>
 		</Container>
 	);
 };

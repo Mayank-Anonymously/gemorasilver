@@ -8,6 +8,7 @@ const CategorySection = () => {
 				<Row>
 					{Array.from({ length: 4 }).map((_, index) => (
 						<Col
+							data-aos='fade-up'
 							key={index}
 							className='text-center mt-5 category-section-card'>
 							<img
