@@ -1,3 +1,4 @@
+import FooterInfo from '@/component/common/FooterInfo';
 import Screen from '@/component/common/Screen';
 import CategorySection from '@/component/home/CategorySection';
 import CurationSection from '@/component/home/CurationSection';
@@ -20,6 +21,9 @@ export default function Home() {
 			</section>
 			<section>
 				<CurationSection />
+			</section>
+			<section>
+				<FooterInfo />
 			</section>
 			<section>
 				<PromoBannerSection />

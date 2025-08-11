@@ -4,6 +4,7 @@ import Screen from '@/component/common/Screen';
 import FiltersSidebar from '@/component/Filterr/Sidebar';
 import { products } from '@/component/data/products';
 import ProductCard from '@/component/listingProductCard';
+import FooterInfo from '@/component/common/FooterInfo';
 
 const ProductsPage = () => {
 	const categories = [...new Set(products.map((p) => p.category))];
@@ -65,7 +66,7 @@ const ProductsPage = () => {
 				</Row>
 			</Container>
 
-			{/* <FooterInfo /> */}
+			<FooterInfo />
 		</Screen>
 	);
 };
