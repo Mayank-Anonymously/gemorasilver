@@ -4,6 +4,7 @@ import Screen from '@/component/common/Screen';
 import FiltersSidebar from '@/component/Filterr/Sidebar';
 import { products } from '@/component/data/products';
 import ProductCard from '@/component/listingProductCard';
+import { BsFilterLeft } from 'react-icons/bs';
 import FooterInfo from '@/component/common/FooterInfo';
 
 const ProductsPage = () => {
@@ -35,18 +36,22 @@ const ProductsPage = () => {
 				className='py-4'>
 				<Row>
 					{/* Sidebar */}
+
 					<Col md={3}>
-						<FiltersSidebar
-							categories={categories}
-							selectedCategories={selectedCategories}
-							setSelectedCategories={setSelectedCategories}
-							dietaryNeeds={dietaryNeeds}
-							selectedDietary={selectedDietary}
-							setSelectedDietary={setSelectedDietary}
-							priceRange={priceRange}
-							setPriceRange={setPriceRange}
-							topRated={topRated}
-						/>
+						<BsFilterLeft size={25} />
+						<div className='filter'>
+							<FiltersSidebar
+								categories={categories}
+								selectedCategories={selectedCategories}
+								setSelectedCategories={setSelectedCategories}
+								dietaryNeeds={dietaryNeeds}
+								selectedDietary={selectedDietary}
+								setSelectedDietary={setSelectedDietary}
+								priceRange={priceRange}
+								setPriceRange={setPriceRange}
+								topRated={topRated}
+							/>
+						</div>
 					</Col>
 
 					{/* Products */}

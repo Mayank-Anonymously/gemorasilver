@@ -44,10 +44,37 @@ const Footer = () => {
 						<h6 className='fw-bold text-white'>OUR OFFER</h6>
 						<ul className='list-unstyled text-white'>
 							<li>Contact Us</li>
-							<li>About Us</li>
-							<li>Wishlist</li>
-							<li>Privacy Policy</li>
-							<li>Frequently</li>
+							<li>
+								<a
+									href='/about'
+									className='text-decoration-none text-white'>
+									About Us
+								</a>
+							</li>
+							<li>
+								<a
+									href='/shipping-policy'
+									className='text-decoration-none text-white'>
+									{' '}
+									Shipping Policy
+								</a>
+							</li>
+							<li>
+								<a
+									href='/privacy'
+									className='text-decoration-none text-white'>
+									{' '}
+									Privacy Policy
+								</a>
+							</li>
+							<li>
+								<a
+									href='/refund-and-return'
+									className='text-decoration-none text-white'>
+									{' '}
+									Refund & Return Policy
+								</a>
+							</li>
 						</ul>
 					</Col>
 
