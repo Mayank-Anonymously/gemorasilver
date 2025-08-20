@@ -35,8 +35,6 @@ const ProductsPage = () => {
 				fluid
 				className='py-4'>
 				<Row>
-					{/* Sidebar */}
-
 					<Col md={3}>
 						<BsFilterLeft size={25} />
 						<div className='filter'>
@@ -63,7 +61,11 @@ const ProductsPage = () => {
 							className='g-4'>
 							{filteredProducts.map((p) => (
 								<Col key={p.id}>
-									<ProductCard product={p} />
+									<a
+										href='/product/[merahaisame].js'
+										className='text-decoration-none'>
+										<ProductCard product={p} />
+									</a>
 								</Col>
 							))}
 						</Row>

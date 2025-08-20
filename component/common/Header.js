@@ -21,28 +21,33 @@ const Header = () => {
 			<Navbar
 				expand='lg'
 				className='justify-content-center'
-				style={{ height: '100px' }}>
+				style={{ height: '80px' }}>
 				<Container>
-					<Navbar.Brand href='#home'>GEMORA Silver BY M&A</Navbar.Brand>
+					<Navbar.Brand href='/'>
+						<img
+							src='/assets/logo.png'
+							className='img-fluid logo'
+						/>
+					</Navbar.Brand>
 
 					<Navbar.Brand>
 						<a className='text-decoration-none mx-2'>
 							<CiSearch
 								size={25}
-								color='black'
+								color='white'
 							/>
 						</a>
 						<a className='text-decoration-none  mx-2'>
 							<CiShoppingCart
 								size={25}
-								color='black'
+								color='white'
 								onClick={handleShow}
 							/>
 						</a>
 						<a className='text-decoration-none  mx-2'>
 							<BsPersonCircle
 								size={25}
-								color='black'
+								color='white'
 							/>
 						</a>
 					</Navbar.Brand>

@@ -13,6 +13,9 @@ export default function Home() {
 			<section style={{ borderRadius: 100, marginLeft: 20, marginRight: 20 }}>
 				<BreadHomeBanner />
 			</section>
+			<section id={"searchbar"}>
+
+			</section>
 			<section>
 				<CategorySection />
 			</section>

@@ -69,10 +69,10 @@ const Footer = () => {
 							</li>
 							<li>
 								<a
-									href='/refund-and-return'
+									href='/return-and-refund'
 									className='text-decoration-none text-white'>
 									{' '}
-									Refund & Return Policy
+									Return & Refund Policy
 								</a>
 							</li>
 						</ul>

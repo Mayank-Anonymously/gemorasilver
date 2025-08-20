@@ -32,16 +32,21 @@ a {
   }
 }
 
+.navbar {
+    height: 80px;
+    box-shadow: 10px 10px 10px 10px whitesmoke;
+    z-index: 99;
+    margin-bottom: 30px;
+    background: purple;
+}
+
+
 .carousel-img {
   width: 100%;
   border-radius: 12px;
 }
 
-.slick-dots li.slick-active div {
-  background: #ff5722 !important;
-  border-color: #ff5722 !important;
-  transform: scale(1.2);
-}
+
 
 .category-section-card {
   margin : 10px
@@ -193,6 +198,24 @@ a {
         border-radius: 10px;
         color : white
     }
-  
+  .searchbar {
+    display: flex;
   }
 
+  }
+
+
+
+  .logo {
+    width : 25%
+  }
+
+  .searchbar {
+    display: none;
+  }
+
+
+  .details-button button {
+    width: 100%;
+    margin : 10px;
+  }

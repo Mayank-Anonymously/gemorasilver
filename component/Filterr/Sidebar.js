@@ -27,38 +27,6 @@ const FiltersSidebar = ({
 	return (
 		<>
 			{/* Categories */}
-			<Accordion
-				defaultActiveKey='0'
-				className='mb-3'>
-				<Accordion.Item eventKey='0'>
-					<Accordion.Header>Categories</Accordion.Header>
-					<Accordion.Body>
-						{categories.map((cat) => (
-							<Form.Check
-								key={cat}
-								type='checkbox'
-								label={cat}
-								checked={selectedCategories.includes(cat)}
-								onChange={() => handleCategoryChange(cat)}
-							/>
-						))}
-					</Accordion.Body>
-				</Accordion.Item>
-			</Accordion>
-
-			{/* Dietary Needs */}
-			<h6>Dietary Needs</h6>
-			{dietaryNeeds.map((item) => (
-				<Form.Check
-					key={item}
-					type='checkbox'
-					label={item}
-					checked={selectedDietary.includes(item)}
-					onChange={() => handleDietaryChange(item)}
-				/>
-			))}
-
-			<hr />
 
 			{/* Price Filter */}
 			<h6>Filter By Price</h6>
@@ -87,27 +55,6 @@ const FiltersSidebar = ({
 			</Button>
 
 			<hr />
-
-			{/* Top Rated Products */}
-			<h6>Top Rated Products</h6>
-			<ListGroup variant='flush'>
-				{topRated.map((p) => (
-					<ListGroup.Item key={p.id}>
-						<div className='d-flex align-items-center'>
-							<img
-								src={p.img}
-								width='40'
-								height='40'
-								className='me-2'
-							/>
-							<div>
-								<div style={{ fontSize: '0.85rem' }}>{p.name}</div>
-								<strong className='text-danger'>${p.price}</strong>
-							</div>
-						</div>
-					</ListGroup.Item>
-				))}
-			</ListGroup>
 		</>
 	);
 };
