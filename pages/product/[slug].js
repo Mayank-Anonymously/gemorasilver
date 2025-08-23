@@ -1,11 +1,32 @@
 // pages/product/[slug].js
 import FooterInfo from '@/component/common/FooterInfo';
 import Screen from '@/component/common/Screen';
+import Counter from '@/component/counter';
 import TrendingProductSection from '@/component/home/TrendingProduct';
 import ProductImagesGallery from '@/component/product/Product';
+import { addToCart } from '@/component/redux/slices/cartSlice';
 import Head from 'next/head';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+const sampleProduct = {
+	id: 1,
+	name: 'SuperCool Headphones',
+	price: 1999,
+};
 
 export default function ProductPage() {
+	const dispatch = useDispatch();
+	const [showCounter, setShowCounter] = useState(false);
+	const handleAddtoCart = () => {
+		setShowCounter(true);
+
+		dispatch(addToCart(sampleProduct));
+	};
+	const handleRemoveFromCart = () => {
+		setShowCounter(false);
+	};
+
 	return (
 		<Screen>
 			<div className='container mt-5'>
@@ -31,7 +52,16 @@ export default function ProductPage() {
 						<h4 className='text-primary mb-3'>$89.99</h4>
 
 						<div className='mb-3 details-button'>
-							<button className='btn btn-dark me-2'>Add to Cart</button>
+							{/* {showCounter ? (
+								<Counter handleRemoveFromCart={handleRemoveFromCart} />
+							) : ( */}
+							<button
+								className='btn btn-dark me-2'
+								onClick={() => handleAddtoCart()}>
+								Add to Cart
+							</button>
+							{/* )} */}
+
 							<button className='btn btn-outline-primary'>Buy Now</button>
 						</div>
 

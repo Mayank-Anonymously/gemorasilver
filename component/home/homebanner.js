@@ -25,18 +25,17 @@ const BreadHomeBanner = () => {
 				</ul>
 			</div>
 		),
-		customPaging: (i) => (
-			<div
-				style={{
-					width: '12px',
-					height: '12px',
-					borderRadius: '50%',
-					background: '#ccc',
-					border: '2px solid #888',
-					margin: '0 5px',
-					transition: 'all 0.3s ease',
-				}}></div>
-		),
+		// customPaging: (i) => (
+		// 	<div
+		// 		style={{
+		// 			width: '12px',
+		// 			height: '12px',
+		// 			background: '#ccc',
+		// 			border: '2px solid #888',
+		// 			margin: '0 5px',
+		// 			transition: 'all 0.3s ease',
+		// 		}}></div>
+		// ),
 	};
 
 	return (

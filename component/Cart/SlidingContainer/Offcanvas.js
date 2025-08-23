@@ -1,13 +1,28 @@
+'use client';
+
 import React from 'react';
 import { Offcanvas, Button, Image } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaTrashAlt } from 'react-icons/fa';
+import {
+	decrementQty,
+	incrementQty,
+	removeFromCart,
+} from '@/component/redux/slices/cartSlice';
 
-const CartOffcanvas = ({ show, handleClose, cartItems }) => {
+const CartOffcanvas = ({ show, handleClose }) => {
+	const dispatch = useDispatch();
+	const cartItems = useSelector((state) => state.cart.items);
+
 	const subtotal = cartItems.reduce(
-		(acc, item) => acc + item.price * item.qty,
+		(acc, item) => acc + item.price * (item.quantity || 1),
 		0
 	);
-	const total = subtotal; // add shipping/tax logic if needed
+	const total = subtotal;
+
+	const handleRemove = (id) => {
+		dispatch(removeFromCart(id));
+	};
 
 	return (
 		<Offcanvas
@@ -27,38 +42,58 @@ const CartOffcanvas = ({ show, handleClose, cartItems }) => {
 						{cartItems.map((item, idx) => (
 							<div
 								key={idx}
-								className='cart-item'>
+								className='d-flex align-items-center mb-3 border-bottom pb-2'>
 								<Image
 									src={item.image}
 									rounded
-									className='cart-image'
+									width={60}
+									height={60}
+									style={{ objectFit: 'cover' }}
 								/>
-								<div className='cart-details'>
-									<h6>{item.name}</h6>
-									<p>
-										{item.qty} × ${item.price.toFixed(2)}
-									</p>
+								<div className='flex-grow-1 ms-3'>
+									<h6 className='mb-1'>{item.name}</h6>
+									<div className='d-flex justify-content-between align-items-center'>
+										<div className='d-flex align-items-center gap-2'>
+											<button
+												className='btn btn-outline-dark btn-sm rounded-circle'
+												onClick={() => dispatch(decrementQty(item.id))}>
+												−
+											</button>
+											<span className='fw-bold'>{item.quantity}</span>
+											<button
+												className='btn btn-outline-dark btn-sm rounded-circle'
+												onClick={() => dispatch(incrementQty(item.id))}>
+												+
+											</button>
+										</div>
+										<small className='text-muted'>
+											₹{(item.price * item.quantity).toFixed(2)}
+										</small>
+									</div>
 								</div>
 								<Button
 									variant='link'
-									className='cart-remove'>
-									<FaTrashAlt />
+									className='text-danger p-0 ms-2'
+									onClick={() => dispatch(removeFromCart(item.id))}>
+									<FaTrashAlt size={16} />
 								</Button>
 							</div>
 						))}
 
-						<div className='cart-summary'>
+						<hr />
+
+						<div className='mb-3'>
 							<div className='d-flex justify-content-between'>
 								<span>Subtotal</span>
-								<strong>${subtotal.toFixed(2)}</strong>
+								<strong>₹{subtotal.toFixed(2)}</strong>
 							</div>
 							<div className='d-flex justify-content-between'>
 								<span>Total</span>
-								<strong>${total.toFixed(2)}</strong>
+								<strong>₹{total.toFixed(2)}</strong>
 							</div>
 						</div>
 
-						<div className='cart-buttons'>
+						<div>
 							<Button
 								variant='secondary'
 								className='w-100 mb-2'>
