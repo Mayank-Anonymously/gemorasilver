@@ -87,7 +87,8 @@ const ProductByCategory = () => {
 												<Card.Text>⭐ {p.rating}</Card.Text>
 												<Button
 													variant='dark'
-													size='sm'>
+													size='sm'
+													href='/product/3'>
 													View Details
 												</Button>
 											</Card.Body>
