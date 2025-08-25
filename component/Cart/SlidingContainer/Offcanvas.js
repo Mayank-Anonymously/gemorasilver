@@ -97,11 +97,12 @@ const CartOffcanvas = ({ show, handleClose }) => {
 							<Button
 								variant='secondary'
 								className='w-100 mb-2'>
-								View Cart
+								Continue Shopping
 							</Button>
 							<Button
 								variant='primary'
-								className='w-100'>
+								className='w-100'
+								href={'/product/checkout'}>
 								Checkout
 							</Button>
 						</div>

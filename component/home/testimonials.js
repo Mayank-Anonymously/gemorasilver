@@ -7,68 +7,99 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const testimonials = [
 	{
-		name: 'Ariana Gomez',
+		name: 'Sanya Arora',
 		title: 'Verified Buyer',
 		image: '/images/testimonials/user1.jpg',
 		quote:
-			'These headphones changed how I listen to music. Crystal-clear sound!',
+			'Gorgeous jewellery, amazing quality. Saatvik Silver makes any day special. Highly recommend it!',
+		rating: 5,
 	},
 	{
-		name: 'Leo K.',
-		title: 'Tech Reviewer',
+		name: 'Vanshika Sharma',
+		title: 'Happy Customer',
 		image: '/images/testimonials/user2.jpg',
 		quote:
-			'Super impressed with the build quality. Easily competes with top brands.',
+			'Beautiful jewellery, excellent quality. Saatvik Silver adds charm to any event. Highly recommended for everyone!',
+		rating: 5,
 	},
 	{
-		name: 'Samantha Ray',
-		title: 'Happy Customer',
+		name: 'Erum Hayat',
+		title: 'Fashion Enthusiast',
 		image: '/images/testimonials/user3.jpg',
 		quote:
-			'Battery life is INSANE. I can go days without charging. Totally worth it!',
+			'Amazing designs, top–notch quality. Saatvik Silver makes every moment shine. Highly recommended!',
+		rating: 5,
 	},
 ];
 
 export default function Testimonials() {
 	const settings = {
+		centerMode: true,
+		centerPadding: '0px',
 		dots: true,
 		infinite: true,
 		speed: 600,
-		slidesToShow: 1,
+		slidesToShow: 3,
 		slidesToScroll: 1,
 		autoplay: true,
 		autoplaySpeed: 5000,
 		lazyLoad: 'ondemand',
-		arrows: true,
+		arrows: false,
 		accessibility: true,
+		responsive: [
+			{
+				breakpoint: 992, // tablet
+				settings: { slidesToShow: 1 },
+			},
+			{
+				breakpoint: 1200, // small desktop
+				settings: { slidesToShow: 2 },
+			},
+		],
 	};
 
 	return (
-		<section className='py-5 bg-light position-relative'>
-			<div className='container'>
-				<h2 className='text-center mb-5 fw-bold'>What Our Customers Say</h2>
+		<section className='py-5 bg-white'>
+			<div className='container-fluid'>
+				<h2 className='text-center mb-5 fw-bold text-uppercase'>
+					Testimonials
+				</h2>
 				<Slider {...settings}>
 					{testimonials.map((t, idx) => (
 						<div
 							key={idx}
-							className='m-5'>
-							<div
-								className='card mx-auto shadow-lg border-0'
-								style={{ maxWidth: '600px' }}>
-								<div className='card-body text-center p-4'>
+							className='testimonial-slide px-3'>
+							<div className='card border-0 text-center'>
+								<div className='card-body p-4'>
+									{/* Star Rating */}
+									<div className='mb-3'>
+										{Array.from({ length: t.rating }).map((_, i) => (
+											<span
+												key={i}
+												style={{ color: '#000', fontSize: '18px' }}>
+												★
+											</span>
+										))}
+									</div>
+
+									{/* Quote */}
+									<p className='fst-italic text-muted mb-4'>"{t.quote}"</p>
+
+									{/* User Image */}
 									<img
 										src={t.image}
 										alt={t.name}
-										className='rounded-circle mb-4'
+										className='rounded-circle mb-3'
 										style={{
-											width: '80px',
-											height: '80px',
+											width: '60px',
+											height: '60px',
 											objectFit: 'cover',
 										}}
 									/>
-									<p className='fs-5 fst-italic text-muted'>“{t.quote}”</p>
-									<h5 className='mt-3 fw-bold'>{t.name}</h5>
-									<p className='text-secondary mb-0'>{t.title}</p>
+
+									{/* Name + Title */}
+									<h6 className='fw-bold mb-0'>{t.name}</h6>
+									<p className='text-secondary small'>{t.title}</p>
 								</div>
 							</div>
 						</div>

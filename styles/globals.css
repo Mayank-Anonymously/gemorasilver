@@ -37,6 +37,33 @@ a {
 	background: purple;
 }
 
+.nav-link {
+	color: white !important;
+}
+
+.nav-animate {
+	position: relative;
+	display: inline-block;
+	color: inherit;
+	text-decoration: none;
+	padding-bottom: 2px;
+}
+
+.nav-animate::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 0;
+	height: 2px;
+	background-color: white; /* orange/yellow line */
+	transition: width 0.3s ease;
+}
+
+.nav-animate:hover::after {
+	width: 100%;
+}
+
 .carousel-img {
 	width: 100%;
 }
@@ -217,7 +244,7 @@ a {
 }
 
 .logo {
-	width: 25%;
+	width: 55%;
 }
 
 #searchbar {
@@ -230,7 +257,7 @@ a {
 }
 
 .card:hover {
-	box-shadow: 0 0 25px rgba(0, 123, 255, 0.5);
+	box-shadow: 0 0 25px rgba(201, 201, 201, 0.5);
 	transition: 0.3s ease-in-out;
 }
 
@@ -255,4 +282,38 @@ a {
 
 .icon-btn:hover {
 	transform: scale(1.1);
+}
+
+.testimonial-slide {
+	transition: all 0.4s ease-in-out;
+	opacity: 0.5;
+	transform: scale(0.9);
+}
+
+.slick-center .testimonial-slide {
+	opacity: 1;
+	transform: scale(1.05);
+	z-index: 2;
+}
+
+.testimonial-slide .card {
+	transition: all 0.3s ease;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+	background: #fff;
+}
+
+.slick-center .testimonial-slide .card {
+	box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+	background: #ffffff;
+}
+
+.gallery-item {
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	cursor: pointer;
+}
+
+.gallery-item:hover {
+	transform: scale(1.05);
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }

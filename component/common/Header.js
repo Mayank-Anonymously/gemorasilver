@@ -16,6 +16,7 @@ const Header = () => {
 		{ name: 'Product 1', qty: 1, price: 49.99, image: '/assets/product1.jpg' },
 		{ name: 'Product 2', qty: 2, price: 19.99, image: '/assets/product2.jpg' },
 	];
+
 	return (
 		<>
 			<Navbar
@@ -29,6 +30,27 @@ const Header = () => {
 							className='img-fluid logo'
 						/>
 					</Navbar.Brand>
+
+					<Nav.Link
+						href='/'
+						className='nav-animate'>
+						Home
+					</Nav.Link>
+					<Nav.Link
+						href='/about'
+						className='nav-animate'>
+						About Us
+					</Nav.Link>
+					<Nav.Link
+						href='/contact-us'
+						className='nav-animate'>
+						Contact Us
+					</Nav.Link>
+					<Nav.Link
+						href='/track-my-order'
+						className='nav-animate'>
+						Track My Order
+					</Nav.Link>
 
 					<Navbar.Brand>
 						<a className='text-decoration-none mx-2'>

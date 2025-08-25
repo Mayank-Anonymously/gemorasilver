@@ -23,20 +23,27 @@ const Footer = () => {
 						md={4}
 						className='text-white'>
 						<p>
-							Corporate clients and leisure travelers has been relying on
-							Groundlink for dependable safe, and professional
+							Discover timeless elegance with our hand-crafted jewellery
+							collection. From everyday essentials to statement pieces, we bring
+							you designs that blend luxury, quality, and affordability —
+							perfect for every occasion.
 						</p>
+
 						<p>
 							<FaMapMarkerAlt className='me-2' />
 							Brooklyn, New York, United States
 						</p>
+
 						<p>
 							<FaPhone className='me-2' />
-							(+123) 456-7898
+							+91 97601-92171
+							<br />
+							<FaPhone className='me-2' />
+							+91 96679-62063
 						</p>
 						<p>
 							<FaEnvelope className='me-2' />
-							example@example.com
+							info@gemorasilver.com
 						</p>
 					</Col>
 
@@ -92,45 +99,48 @@ const Footer = () => {
 
 				<hr />
 				<Row>
-					<div
-						className='payment-logos'
-						style={{
-							zIndex: 999999999999,
-						}}>
-						<img
-							src='/assets/payments/visa.png'
-							alt='Visa'
-							height='50'
-							className='me-2 rounded'
-						/>
-						<img
-							src='/assets/payments/mastero.png'
-							alt='Mastercard'
-							height='40'
-							className='me-2 rounded'
-						/>
-						<img
-							src='/assets/payments/paypal.png'
-							alt='PayPal'
-							height='50'
-							className='me-2 rounded'
-						/>
+					<Col>
+						<div className='d-flex justify-content-between align-items-center pt-2'>
+							<small className='text-white'>
+								© 2025 Powered by <strong>Gemora Silver By M&A</strong>. All
+								Rights Reserved.
+							</small>
+						</div>
+					</Col>
+					<Col md={4}>
+						<div
+							className='payment-logos'
+							style={{
+								zIndex: 999999999999,
+							}}>
+							<img
+								src='/assets/payments/visa.png'
+								alt='Visa'
+								height='50'
+								className='me-2 rounded'
+							/>
+							<img
+								src='/assets/payments/mastero.png'
+								alt='Mastercard'
+								height='40'
+								className='me-2 rounded'
+							/>
+							<img
+								src='/assets/payments/paypal.png'
+								alt='PayPal'
+								height='50'
+								className='me-2 rounded'
+							/>
 
-						<img
-							src='/assets/payments/rupay.png'
-							alt='Visa Electron'
-							height='50'
-							className='rounded'
-						/>
-					</div>
+							<img
+								src='/assets/payments/rupay.png'
+								alt='Visa Electron'
+								height='50'
+								className='rounded'
+							/>
+						</div>
+					</Col>
 				</Row>
-
-				<div className='d-flex justify-content-between align-items-center pt-2'>
-					<small className='text-white'>
-						© 2025 Powered by <strong>Gemora Silver By M&A</strong>. All Rights
-						Reserved.
-					</small>
-				</div>
 			</Container>
 		</div>
 	);

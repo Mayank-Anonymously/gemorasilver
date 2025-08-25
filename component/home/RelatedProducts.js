@@ -11,8 +11,7 @@ const products = [
 		oldPrice: 362.0,
 		rating: 4,
 		reviews: 126,
-		link: '/product/1',
-
+		link: '/products',
 		discount: '-14%',
 	},
 	{
@@ -23,8 +22,7 @@ const products = [
 		oldPrice: 320.0,
 		rating: 3,
 		reviews: 126,
-		link: '/product/2',
-
+		link: '/products',
 		discount: null,
 	},
 	{
@@ -35,8 +33,7 @@ const products = [
 		oldPrice: 390.0,
 		rating: 3,
 		reviews: 126,
-		link: '/product/3',
-
+		link: '/products',
 		discount: '-14%',
 	},
 	{
@@ -47,7 +44,7 @@ const products = [
 		oldPrice: 362.0,
 		rating: 4,
 		reviews: 126,
-		link: '/product/4',
+		link: '/products',
 	},
 	{
 		id: 5,
@@ -57,7 +54,7 @@ const products = [
 		oldPrice: 250.0,
 		rating: 3,
 		reviews: 126,
-		link: '/product/5',
+		link: '/products',
 	},
 	{
 		id: 6,
@@ -67,8 +64,7 @@ const products = [
 		oldPrice: 190.0,
 		rating: 3,
 		reviews: 126,
-		link: '/product/6',
-
+		link: '/products',
 		discount: '-14%',
 	},
 	{
@@ -79,8 +75,7 @@ const products = [
 		oldPrice: 330.0,
 		rating: 3,
 		reviews: 126,
-		link: '/product/7',
-
+		link: '/products',
 		discount: '-14%',
 	},
 	{
@@ -91,14 +86,14 @@ const products = [
 		oldPrice: 362.0,
 		rating: 4,
 		reviews: 126,
-		link: '/product/8',
+		link: '/products',
 	},
 ];
 
-const FeaturedProductSection = () => {
+const RelatedProduct = () => {
 	return (
 		<Container className='py-5'>
-			<h3 className='text-center fw-bold mb-4'>FEATURED PRODUCT</h3>
+			<h3 className='text-center fw-bold mb-4'>RELATED PRODUCT</h3>
 			<Row>
 				{products.map((product) => (
 					<Col
@@ -156,4 +151,4 @@ const FeaturedProductSection = () => {
 	);
 };
 
-export default FeaturedProductSection;
+export default RelatedProduct;

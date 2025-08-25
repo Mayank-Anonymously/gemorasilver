@@ -1,10 +1,11 @@
-import { Provider } from 'react-redux';
 import '@/styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import { useEffect } from 'react';
-import { store } from '@/component/redux/store';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from '@/component/redux/store';
 
 export default function App({ Component, pageProps }) {
 	useEffect(
@@ -17,7 +18,11 @@ export default function App({ Component, pageProps }) {
 	);
 	return (
 		<Provider store={store}>
-			<Component {...pageProps} />;
+			<PersistGate
+				loading={null}
+				persistor={persistor}>
+				<Component {...pageProps} />
+			</PersistGate>
 		</Provider>
 	);
 }
