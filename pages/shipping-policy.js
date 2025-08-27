@@ -8,8 +8,9 @@ const html = `<ul>
 </ul> 
 <p>We proudly deliver our handcrafted 925 silver jewelry across India, reaching customers in every corner of the country.</p> 
 
+
 <ul> 
-  <li><b💰 Shipping Charges</b></li> 
+  <li><b>💰 Shipping Charges</b></li> 
 </ul> 
 <p>✨ Complimentary shipping is available on purchases over ₹999.</p> 
 <p>For orders below ₹999, a minimal shipping fee will be added, with the exact cost shown during checkout.</p> 
@@ -49,7 +50,7 @@ const html = `<ul>
 <p>We take utmost care in securely packaging your jewelry to ensure it reaches you in perfect condition. Your trust means everything to us, and we’re always here to support you with any questions or concerns.</p> 
 
 <p>📩 For any shipping-related inquiries, feel free to reach out:</p> 
-<p><b>Email:</b> ✉️</p> 
+<p><b>Email:</b> ✉️ info@gemorasilver.com</p> 
 <p><b>WhatsApp:</b> 💬 Chat with us</p> 
 `;
 const Shipping = () => {
