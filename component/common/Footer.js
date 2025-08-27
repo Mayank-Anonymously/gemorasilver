@@ -36,10 +36,10 @@ const Footer = () => {
 
 						<p>
 							<FaPhone className='me-2' />
-							+91 97601-92171
+							<strong>Phone:</strong> +91 70557 01906 (Muskan)
 							<br />
 							<FaPhone className='me-2' />
-							+91 96679-62063
+							<strong>Phone:</strong> +91 89232-50822 (Akanksha)
 						</p>
 						<p>
 							<FaEnvelope className='me-2' />
