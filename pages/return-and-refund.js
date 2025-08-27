@@ -2,28 +2,38 @@ import Screen from '@/component/common/Screen';
 import React from 'react';
 import { Container } from 'react-bootstrap';
 
-const html = `<p>At Gemora Silver by M &amp; A, we value your experience and strive to ensure you're completely satisfied with your purchase. Kindly review our return and refund terms below:&nbsp;</p>
+const html = `<p>At <strong>Gemora Silver by M &amp; A</strong>, we value your experience and strive to ensure you're completely satisfied with your purchase. Please review our return and refund policy below:</p>
+
 <ol>
-<li>You may initiate a return within <strong><em>3 days&nbsp;</em></strong>of receiving your order.</li>
-<li>If the return is due to a sizing issue, we will send a replacement once we receive the originally delivered item in its original, undamaged condition.</li>
-<li>If you're not happy with your purchase, we kindly ask for clear **photo or video proof** of concern. Once our team reviews and accepts the request, a return pickup will be arranged. After we receive the item, your refund will be processed within **7 to 10 business days** via your original payment method.</li>
+  <li>You may initiate a return within <strong>3 days</strong> of receiving your order.</li>
+  <li>If the return is due to a sizing issue, we will send a replacement once we receive the originally delivered item in its original, undamaged condition.</li>
+  <li>If you're not satisfied with your purchase, we request <strong>clear photo or video proof</strong> of the concern. Once our team reviews and accepts your request:
+    <ul>
+      <li>A return pickup will be arranged.</li>
+      <li>After we receive the item, your refund will be processed within <strong>7–10 business days</strong> via your original payment method.</li>
+    </ul>
+  </li>
+  <li>Returned items must be:
+    <ul>
+      <li>✅ Unused and unworn</li>
+      <li>✅ In their original state</li>
+      <li>✅ Complete with tags, certificates, and original packaging</li>
+    </ul>
+  </li>
+  <li>If you receive an incorrect item, please capture an <strong>unboxing video</strong> and share it with us for prompt resolution.</li>
 </ol>
-<ol start="4">
-<li>Returned items must be:</li>
-</ol>
-<p>* Unused and unworn*</p>
-<p>* In their original state*</p>
-<p>* Complete with tags, certificates, and original packaging*</p>
-<ol start="5">
-<li>If you receive the wrong or an incorrect item, please ensure to capture an **unboxing video** and send it to us as proof for prompt resolution&nbsp;</li>
-</ol>
+
+<div style="border:1px solid #ccc; padding:10px; border-radius:8px; background:#f9f9f9;">
+  <strong>⚠️ Important Note:</strong>  
+  Items that do not comply with the above return conditions—such as used, damaged, or missing tags/packaging—will not be accepted and may be returned back to you.
+</div>
+
+<p>📩 To request a return, please contact us within <strong>3 days of delivery</strong> via:</p>
 <ul>
-<li>Please Note: (in box )</li>
+  <li>Email: <a href="mailto:info@gemorasilver.com">info@gemorasilver.com</a></li>
+  <li>WhatsApp: Use the <strong>“Chat with Us”</strong> feature on our website</li>
 </ul>
-<p>&nbsp;</p>
-<p>Items that do not comply with the above return conditions&mdash;such as used, damaged, or missing tags/packaging&mdash;will not be accepted and may be sent back to you.</p>
-<p>&nbsp;</p>
-<p>To request a return, contact us within **3 days of delivery** either via email at [insert email address] (info Gemora silver) or by using the **&ldquo;Chat with Us&rdquo;(WhatsApp)** feature on our website.</p>`;
+`;
 const Refund = () => {
 	return (
 		<Screen>
