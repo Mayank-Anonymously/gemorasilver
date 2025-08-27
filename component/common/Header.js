@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { CiSearch, CiShoppingCart } from 'react-icons/ci';
 import { BsPersonCircle } from 'react-icons/bs';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { BsFilterLeft } from 'react-icons/bs';
 import { useState } from 'react';
 import ResponsiveExample from '../Cart/SlidingContainer/Offcanvas';
 
@@ -30,27 +30,28 @@ const Header = () => {
 							className='img-fluid logo'
 						/>
 					</Navbar.Brand>
-
-					<Nav.Link
-						href='/'
-						className='nav-animate'>
-						Home
-					</Nav.Link>
-					<Nav.Link
-						href='/about'
-						className='nav-animate'>
-						About Us
-					</Nav.Link>
-					<Nav.Link
-						href='/contact-us'
-						className='nav-animate'>
-						Contact Us
-					</Nav.Link>
-					<Nav.Link
-						href='/track-my-order'
-						className='nav-animate'>
-						Track My Order
-					</Nav.Link>
+					<div className='laptop-menu'>
+						<Nav.Link
+							href='/'
+							className='nav-animate'>
+							Home
+						</Nav.Link>
+						<Nav.Link
+							href='/about'
+							className='nav-animate'>
+							About Us
+						</Nav.Link>
+						<Nav.Link
+							href='/contact-us'
+							className='nav-animate'>
+							Contact Us
+						</Nav.Link>
+						<Nav.Link
+							href='/track-my-order'
+							className='nav-animate'>
+							Track My Order
+						</Nav.Link>
+					</div>
 
 					<Navbar.Brand>
 						<a className='text-decoration-none mx-2'>
@@ -75,6 +76,28 @@ const Header = () => {
 					</Navbar.Brand>
 				</Container>
 			</Navbar>
+			<div className='mobile-menu'>
+				<Nav.Link
+					href='/'
+					className='nav-animate'>
+					Home
+				</Nav.Link>
+				<Nav.Link
+					href='/about'
+					className='nav-animate'>
+					About Us
+				</Nav.Link>
+				<Nav.Link
+					href='/contact-us'
+					className='nav-animate'>
+					Contact Us
+				</Nav.Link>
+				<Nav.Link
+					href='/track-my-order'
+					className='nav-animate'>
+					Track My Order
+				</Nav.Link>
+			</div>
 			{show && (
 				<ResponsiveExample
 					show={show}

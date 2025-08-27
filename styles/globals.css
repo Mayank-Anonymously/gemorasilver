@@ -317,3 +317,28 @@ a {
 	transform: scale(1.05);
 	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
+
+.laptop-menu {
+	display: flex;
+}
+
+.laptop-menu .nav-link {
+	margin: 10px;
+}
+
+.mobile-menu .nav-link {
+	margin: 10px;
+}
+
+.mobile-menu {
+	display: none;
+}
+@media (max-width: 576px) {
+	.laptop-menu {
+		display: none;
+	}
+	.mobile-menu {
+		display: flex;
+		background: #a976ef;
+	}
+}
