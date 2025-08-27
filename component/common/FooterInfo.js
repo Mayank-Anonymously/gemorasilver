@@ -7,7 +7,7 @@ const FooterInfo = () => {
 		{
 			icon: <FaTruck />,
 			title: 'Free Shipping',
-			desc: 'Free shipping over $100',
+			desc: 'Free shipping over ₹200',
 		},
 		{
 			icon: <FaHeadset />,
@@ -17,7 +17,7 @@ const FooterInfo = () => {
 		{
 			icon: <FaUndo />,
 			title: '100% Money Back',
-			desc: 'You have 30 days to return',
+			desc: '',
 		},
 		{
 			icon: <FaLock />,

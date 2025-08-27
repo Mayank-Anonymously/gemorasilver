@@ -45,8 +45,9 @@ export default function Home() {
 				<CategorySection />
 			</section>
 			<section>
-				<FeaturedProductSection />
+				<TrendingProductSection />
 			</section>
+
 			<section data-aos='fade-right'>
 				<CurationSection />
 			</section>
@@ -58,8 +59,9 @@ export default function Home() {
 				<PromoBannerSection />
 			</section>
 			<section>
-				<TrendingProductSection />
+				<FeaturedProductSection />
 			</section>
+
 			<section>
 				<Testimonials />{' '}
 			</section>
