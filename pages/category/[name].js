@@ -47,33 +47,41 @@ const ProductByCategory = () => {
 				fluid
 				className='py-4'>
 				{/* Categories Nav Pills */}
-				<Nav
-					className='justify-content-center mb-4 '
-					variant='pills'
-					activeKey={activeCategory}>
-					{categories.map((cat) => (
-						<Nav.Item key={cat}>
-							<Nav.Link
-								eventKey={cat}
-								onClick={() => setActiveCategory(cat)}
-								className='bg-dark m-4'>
-								{cat}
-							</Nav.Link>
-						</Nav.Item>
-					))}
-				</Nav>
+				<div
+					style={{
+						overflowX: 'auto',
+						whiteSpace: 'nowrap',
+					}}>
+					<Nav
+						variant='pills'
+						activeKey={activeCategory}
+						className='flex-row mb-4'>
+						{categories.map((cat) => (
+							<Nav.Item
+								key={cat}
+								style={{ display: 'inline-block' }}>
+								<Nav.Link
+									eventKey={cat}
+									onClick={() => setActiveCategory(cat)}
+									className='bg-dark m-2'>
+									{cat}
+								</Nav.Link>
+							</Nav.Item>
+						))}
+					</Nav>
+				</div>
 
 				<Row>
 					<Col md={12}>
-						<Row
-							xs={6}
-							sm={8}
-							md={4}
-							lg={3}
-							className='g-4'>
+						<Row className='g-4'>
 							{filteredProducts.length > 0 ? (
 								filteredProducts.map((p) => (
-									<Col key={p.id}>
+									<Col
+										key={p.id}
+										xs={6}
+										sm={8}
+										md={4}
+										lg={3}>
 										<Card className='h-100 shadow-sm border-0'>
 											<Card.Img
 												variant='top'
