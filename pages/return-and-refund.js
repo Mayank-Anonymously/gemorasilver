@@ -30,7 +30,7 @@ const html = `<p>At <strong>Gemora Silver by M &amp; A</strong>, we value your e
 
 <p>📩 To request a return, please contact us within <strong>3 days of delivery</strong> via:</p>
 <ul>
-  <li>Email: <a href="mailto:info@gemorasilver.com">info@gemorasilver.com</a></li>
+  <li>Email: <a href="mailto:info@lunivajewels.com">info@lunivajewels.com</a></li>
   <li>WhatsApp: Use the <strong>“Chat with Us”</strong> feature on our website</li>
 </ul>
 `;

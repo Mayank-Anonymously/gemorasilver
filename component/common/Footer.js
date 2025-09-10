@@ -7,8 +7,12 @@ const Footer = () => {
 		<div
 			className='footer mt-5 pt-5 pb-3 text-muted'
 			style={{
-				background: `linear-gradient(to right, rgba(32, 0, 57, 0.95), rgba(32, 0, 57, 0.95)),
-							 url('/assets/background-jewellery/clipart-footer.png') no-repeat right bottom`,
+				background: `linear-gradient(
+                to right, 
+                rgba(73, 113, 109, 0.95), 
+                rgba(73, 113, 109, 0.95)
+              ),
+              url('/assets/background-jewellery/clipart-footer.png') no-repeat right bottom`,
 				backgroundSize: 'contain',
 				padding: 10,
 				marginLeft: 30,
@@ -22,28 +26,15 @@ const Footer = () => {
 					<Col
 						md={4}
 						className='text-white'>
+						<img
+							src='/assets/logo.png'
+							className='img-fluid logo'
+						/>
 						<p>
 							Discover timeless elegance with our hand-crafted jewellery
 							collection. From everyday essentials to statement pieces, we bring
 							you designs that blend luxury, quality, and affordability —
 							perfect for every occasion.
-						</p>
-
-						<p>
-							<FaMapMarkerAlt className='me-2' />
-							Brooklyn, New York, United States
-						</p>
-
-						<p>
-							<FaPhone className='me-2' />
-							<strong>Phone:</strong> +91 70557 01906 (Muskan)
-							<br />
-							<FaPhone className='me-2' />
-							<strong>Phone:</strong> +91 89232-50822 (Akanksha)
-						</p>
-						<p>
-							<FaEnvelope className='me-2' />
-							info@gemorasilver.com
 						</p>
 					</Col>
 
@@ -94,6 +85,25 @@ const Footer = () => {
 							<li>Register</li>
 							<li>Checkout</li>
 						</ul>
+					</Col>
+
+					<Col md={3}>
+						<p className='text-white'>
+							<FaMapMarkerAlt className='me-2' />
+							Brooklyn, New York, United States
+						</p>
+
+						<p className='text-white'>
+							<FaPhone className='me-2' />
+							<strong>Phone:</strong> +91 70557 01906
+							<br />
+							<FaPhone className='me-2' />
+							<strong>Phone:</strong> +91 89232-50822
+						</p>
+						<p className='text-white'>
+							<FaEnvelope className='me-2' />
+							info@lunivajewels.com
+						</p>
 					</Col>
 				</Row>
 

@@ -34,7 +34,7 @@ export default function ContactUs() {
 										<strong>Phone:</strong> +91 89232-50822 (Akanksha)
 									</p>
 									<p className='mb-4'>
-										<strong>Email:</strong> info@gemorasilver.com
+										<strong>Email:</strong> info@lunivajewels.com
 									</p>
 								</Card.Body>
 							</Card>
