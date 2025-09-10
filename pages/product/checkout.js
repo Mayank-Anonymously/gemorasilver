@@ -191,8 +191,6 @@ const CheckoutPage = () => {
 
 			{/* <Testimonials /> */}
 			<RelatedProducts />
-
-			<FooterInfo />
 		</Screen>
 	);
 };

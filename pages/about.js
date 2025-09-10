@@ -25,9 +25,6 @@ const about = () => {
 					built on the belief that elegance and affordability can go hand in
 					hand.
 				</p>
-				<section>
-					<FooterInfo />
-				</section>
 			</Container>
 		</Screen>
 	);

@@ -102,8 +102,6 @@ const ProductByCategory = () => {
 					</Col>
 				</Row>
 			</Container>
-
-			<FooterInfo />
 		</Screen>
 	);
 };

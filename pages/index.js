@@ -53,17 +53,10 @@ export default function Home() {
 			</section>
 
 			<section>
-				<FooterInfo />
-			</section>
-			<section>
 				<PromoBannerSection />
 			</section>
 			<section>
 				<FeaturedProductSection />
-			</section>
-
-			<section>
-				<Testimonials />{' '}
 			</section>
 		</Screen>
 	);

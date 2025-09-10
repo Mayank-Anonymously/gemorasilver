@@ -106,7 +106,7 @@ const TrendingProductSection = () => {
 						xs={6}
 						sm={8}
 						md={4}
-						lg={3}
+						lg={3}	
 						data-aos='fade-down'
 						className='mb-4 product-cards'>
 						<Link

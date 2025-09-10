@@ -65,7 +65,7 @@ const ProductsPage = () => {
 				</Row>
 			</Container>
 
-		{/* <FooterInfo /> */}
+			{/*  */}
 		</Screen>
 	);
 };

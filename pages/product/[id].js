@@ -174,9 +174,6 @@ export default function ProductPage() {
 				<section>
 					<TrendingProductSection />
 				</section>
-				<section>
-					<FooterInfo />
-				</section>
 			</div>
 		</Screen>
 	);
