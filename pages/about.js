@@ -11,20 +11,19 @@ const about = () => {
 			<Container className='p-5'>
 				<h1>About Us</h1>
 				<p>
-					Gemora Silver by M & A is a refined 925 sterling silver jewellery
-					brand that celebrates the strength, elegance, and individuality of
-					every woman. To us, jewellery is far more than a decorative piece—it’s
-					a powerful form of self-expression, confidence, and emotional
-					connection. Our vision is to make timeless beauty attainable for all.
-					With thoughtfully curated designs and accessible pricing, we aim to
-					inspire a sense of pride and empowerment in every woman who wears
-					Gemora. We recognize that every piece of jewellery carries a personal
-					story, and we’re honored to be a part of yours. Blending modern
-					sophistication with classic charm, Gemora Silver is crafted to reflect
-					the unique beauty of every woman—because no two stories are ever the
-					same. Rooted in the rich heritage of Agra, the iconic *City of the
-					Taj*, we bring together tradition, craftsmanship, and contemporary
-					aesthetics to deliver jewellery that speaks from the heart.
+					At Luniva, we believe jewellery is more than an accessory — it’s an
+					expression of your inner light. Inspired by the soft glow of moonlight
+					("Luna") and the brilliance of lord shiva, Luniva brings you 925
+					sterling silver jewellery designed for the modern, style-forward youth
+					who embraces elegance with confidence. Every piece is a blend of
+					timeless luxury and youthful flair, handcrafted to celebrate your bold
+					spirit, your beauty, and your story. Whether you're dressing up for a
+					moment or making everyday moments feel special, Luniva is your silver
+					signature. Our vision is to provide you quality, authenticity, and
+					effortless style, and Luniva is where desi hearts meet global shine.
+					Rooted in the heart of <b>Agra – the City of the Taj</b>, our brand is
+					built on the belief that elegance and affordability can go hand in
+					hand.
 				</p>
 				<section>
 					<FooterInfo />

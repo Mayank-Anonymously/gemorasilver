@@ -90,7 +90,7 @@ const Footer = () => {
 					<Col md={3}>
 						<p className='text-white'>
 							<FaMapMarkerAlt className='me-2' />
-							Brooklyn, New York, United States
+							F-780, kamla nagar, Agra-282005
 						</p>
 
 						<p className='text-white'>
