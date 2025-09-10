@@ -7,12 +7,7 @@ const Footer = () => {
 		<div
 			className='footer mt-5 pt-5 pb-3 text-muted'
 			style={{
-				background: `linear-gradient(
-                to right, 
-                rgba(73, 113, 109, 0.95), 
-                rgba(73, 113, 109, 0.95)
-              ),
-              url('/assets/background-jewellery/clipart-footer.png') no-repeat right bottom`,
+				background: `#550070`,
 				backgroundSize: 'contain',
 				padding: 10,
 				marginLeft: 30,
@@ -28,7 +23,7 @@ const Footer = () => {
 						className='text-white'>
 						<img
 							src='/assets/logo.png'
-							className='img-fluid logo'
+							className='img-fluid footer-logo'
 						/>
 						<p>
 							Discover timeless elegance with our hand-crafted jewellery

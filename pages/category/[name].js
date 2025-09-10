@@ -64,12 +64,12 @@ const ProductByCategory = () => {
 				</Nav>
 
 				<Row>
-					{/* Products Section */}
 					<Col md={12}>
 						<Row
-							xs={1}
-							sm={2}
-							md={3}
+							xs={6}
+							sm={8}
+							md={4}
+							lg={3}
 							className='g-4'>
 							{filteredProducts.length > 0 ? (
 								filteredProducts.map((p) => (

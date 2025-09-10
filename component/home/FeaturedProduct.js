@@ -98,7 +98,7 @@ const products = [
 const FeaturedProductSection = () => {
 	return (
 		<Container className='py-5'>
-			<h3 className='text-center fw-bold mb-4'>FEATURED PRODUCT</h3>
+			<h3 className='text-center fw-bold mb-4'>Recommended by M&A</h3>
 			<Row>
 				{products.map((product) => (
 					<Col

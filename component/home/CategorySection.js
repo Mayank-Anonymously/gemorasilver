@@ -9,10 +9,6 @@ const CategorySection = () => {
 				<Row>
 					{Array.from({ length: 4 }).map((_, index) => (
 						<Col
-							xs={6}
-							sm={8}
-							md={4}
-							lg={3}
 							data-aos='fade-up'
 							key={index}
 							className='text-center mt-5 category-section-card'>

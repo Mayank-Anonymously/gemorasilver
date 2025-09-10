@@ -341,4 +341,7 @@ a {
 		display: flex;
 		background: #550070;
 	}
+	.footer-logo {
+		width: 60%;
+	}
 }
