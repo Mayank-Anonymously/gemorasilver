@@ -1,4 +1,5 @@
 import Screen from '@/component/common/Screen';
+import BreadHomeBanner from '@/component/home/homebanner';
 import React from 'react';
 import { Container } from 'react-bootstrap';
 
@@ -37,8 +38,10 @@ const html = `<p>At <strong>Luniva by M &amp; A</strong>, we value your experien
 const Refund = () => {
 	return (
 		<Screen>
+			<BreadHomeBanner />
 			<Container>
 				<h1>Return and Refund</h1>
+
 				<div dangerouslySetInnerHTML={{ __html: html }} />
 			</Container>
 		</Screen>

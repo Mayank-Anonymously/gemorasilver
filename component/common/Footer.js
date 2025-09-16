@@ -36,7 +36,13 @@ const Footer = () => {
 					<Col md={2}>
 						<h6 className='fw-bold text-white'>OUR OFFER</h6>
 						<ul className='list-unstyled text-white'>
-							<li>Contact Us</li>
+							<li>
+								<a
+									href='/about'
+									className='text-decoration-none text-white'>
+									Contact Us
+								</a>
+							</li>
 							<li>
 								<a
 									href='/about'
@@ -48,7 +54,6 @@ const Footer = () => {
 								<a
 									href='/shipping-policy'
 									className='text-decoration-none text-white'>
-									{' '}
 									Shipping Policy
 								</a>
 							</li>
@@ -56,7 +61,6 @@ const Footer = () => {
 								<a
 									href='/privacy-policy'
 									className='text-decoration-none text-white'>
-									{' '}
 									Privacy Policy
 								</a>
 							</li>
@@ -64,7 +68,6 @@ const Footer = () => {
 								<a
 									href='/return-and-refund'
 									className='text-decoration-none text-white'>
-									{' '}
 									Return & Refund Policy
 								</a>
 							</li>
@@ -72,7 +75,6 @@ const Footer = () => {
 								<a
 									href='/terms-and-conditions'
 									className='text-decoration-none text-white'>
-									{' '}
 									Terms and Conditions
 								</a>
 							</li>
