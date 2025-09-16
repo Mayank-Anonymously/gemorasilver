@@ -107,8 +107,8 @@ const Footer = () => {
 					<Col>
 						<div className='d-flex justify-content-between align-items-center pt-2'>
 							<small className='text-white'>
-								© 2025 Powered by <strong>Luniva Jewels By M&A</strong>. All
-								Rights Reserved.
+								© 2025 Powered by <strong>Luniva By M&A</strong>. All Rights
+								Reserved.
 							</small>
 						</div>
 					</Col>
