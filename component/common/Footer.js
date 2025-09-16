@@ -38,7 +38,7 @@ const Footer = () => {
 						<ul className='list-unstyled text-white'>
 							<li>
 								<a
-									href='/about'
+									href='/contact-us'
 									className='text-decoration-none text-white'>
 									Contact Us
 								</a>
