@@ -406,14 +406,14 @@ a {
 		pointer-events: none; /* so it won’t block clicks */
 	}
 	.mobile-menu {
-		display: flex;
+		display: flex !important;
 		height: 50px;
 		color: white;
 		border-radius: 50px;
 	}
 
 	.nav-link {
-		font-size: 15px !important;
+		font-size: 13px !important;
 		color: #b66878 !important;
 	}
 	.footer-logo {
