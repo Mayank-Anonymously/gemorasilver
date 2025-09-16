@@ -68,6 +68,14 @@ const Footer = () => {
 									Return & Refund Policy
 								</a>
 							</li>
+							<li>
+								<a
+									href='/terms-and-conditions'
+									className='text-decoration-none text-white'>
+									{' '}
+									Terms and Conditions
+								</a>
+							</li>
 						</ul>
 					</Col>
 
