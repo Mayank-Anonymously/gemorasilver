@@ -89,7 +89,7 @@ const ProductByCategory = () => {
 									<Col
 										key={index}
 										xs={12}
-										sm={6}
+										sm={4}
 										md={4}
 										lg={3} // full width on mobile, 2-per-row on small, etc.
 										className='d-flex justify-content-center mb-4'>

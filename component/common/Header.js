@@ -13,7 +13,7 @@ const Header = () => {
 	const [show, setShow] = useState(false);
 	const cartItems = useSelector((state) => state.cart.items);
 	const handleShow = () => setShow(true);
-	console.log(cartItems);
+
 	return (
 		<>
 			<Navbar
@@ -35,7 +35,9 @@ const Header = () => {
 							About Us
 						</Nav.Link>
 					</div>
-					<Navbar.Brand href='/'>
+					<Navbar.Brand
+						href='/'
+						style={{ marginLeft: '103px' }}>
 						<img
 							src='/assets/logo.png'
 							className='img-fluid logo'

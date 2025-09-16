@@ -54,7 +54,7 @@ const Footer = () => {
 							</li>
 							<li>
 								<a
-									href='/privacy'
+									href='/privacy-policy'
 									className='text-decoration-none text-white'>
 									{' '}
 									Privacy Policy

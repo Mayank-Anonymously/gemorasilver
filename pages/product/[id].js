@@ -73,7 +73,7 @@ export default function ProductPage({ product }) {
 						<ul>
 							{product.variants.map((v) => (
 								<li key={v.variant_id}>
-									{v.title} - ${v.price} ({v.inventory_quantity} available)
+									{v.title} - ₹{v.price} ({v.inventory_quantity} available)
 								</li>
 							))}
 						</ul>

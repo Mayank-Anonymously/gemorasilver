@@ -2,20 +2,18 @@ import Link from 'next/link';
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
-	const CategorySection = () => {
+const CategorySection = () => {
 	return (
 		<div className='home-category'>
 			<div className='opening-heading'>
 				<h2>
-					NEW{' '}
+					Categories{' '}
 					<span
 						style={{
 							color: '#812d3e',
 							fontFamily: "'Great Vibes', cursive",
 							marginTop: 10,
-						}}>
-						Collection
-					</span>
+						}}></span>
 				</h2>
 			</div>
 			<Container fluid>
