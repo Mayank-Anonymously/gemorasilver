@@ -1,14 +1,16 @@
 import Screen from '@/component/common/Screen';
+import BreadHomeBanner from '@/component/home/homebanner';
 import React from 'react';
 
 const terms = () => {
 	return (
 		<Screen>
+            <BreadHomeBanner />
 			<div
 				dangerouslySetInnerHTML={{
 					__html: `<!DOCTYPE html>
 
-
+                    <div class="container p-3">
   <h1>Terms & Conditions – Luniva</h1>
 
   <p>Welcome to <strong>lunivajewels.com</strong>!</p>
@@ -24,15 +26,15 @@ const terms = () => {
   </ul>
 
   <h2>Cookies</h2>
-  <p>We use cookies to enhance your browsing experience. By accessing luniva.com, you consent to the use of cookies in line with Luniva’s Privacy Policy.</p>
+  <p>We use cookies to enhance your browsing experience. By accessing lunivajewels.com, you consent to the use of cookies in line with Luniva’s Privacy Policy.</p>
 
   <h2>License</h2>
-  <p>Unless otherwise stated, Luniva and/or its licensors own the intellectual property rights for all material on luniva.com. All rights are reserved. You may access this website for personal use, subject to the restrictions outlined in these Terms.</p>
+  <p>Unless otherwise stated, Luniva and/or its licensors own the intellectual property rights for all material on lunivajewels.com. All rights are reserved. You may access this website for personal use, subject to the restrictions outlined in these Terms.</p>
   <p>You must not:</p>
   <ul>
-    <li>Republish material from luniva.com</li>
-    <li>Sell, rent, or sub-license material from luniva.com</li>
-    <li>Reproduce, duplicate or copy content from luniva.com</li>
+    <li>Republish material from lunivajewels.com</li>
+    <li>Sell, rent, or sub-license material from lunivajewels.com</li>
+    <li>Reproduce, duplicate or copy content from lunivajewels.com</li>
     <li>Redistribute content without prior permission</li>
   </ul>
 
@@ -46,10 +48,10 @@ const terms = () => {
   <p>You may not create frames around our webpages that alter the appearance or functionality of the site without prior written consent.</p>
 
   <h2>Content Liability</h2>
-  <p>We are not responsible for content that appears on external websites linking to luniva.com. You agree to indemnify Luniva against any claims arising from your linking practices.</p>
+  <p>We are not responsible for content that appears on external websites linking to lunivajewels.com. You agree to indemnify Luniva against any claims arising from your linking practices.</p>
 
   <h2>Reservation of Rights</h2>
-  <p>We reserve the right to request removal of any links to our website. By continuing to link to luniva.com, you agree to comply with these Terms. We may amend these Terms and our linking policy at any time.</p>
+  <p>We reserve the right to request removal of any links to our website. By continuing to link to lunivajewels.com, you agree to comply with these Terms. We may amend these Terms and our linking policy at any time.</p>
 
   <h2>Disclaimer</h2>
   <p>To the fullest extent permitted by law, Luniva disclaims all warranties, representations, and conditions regarding the website and its use.</p>
@@ -62,7 +64,8 @@ const terms = () => {
 
   <h2>Governing Law</h2>
   <p>These Terms of Service and any related agreements shall be governed by and construed in accordance with the laws of India.</p>
-`,
+</div>
+  `,
 				}}
 			/>
 		</Screen>
