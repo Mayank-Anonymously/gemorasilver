@@ -447,7 +447,7 @@ a {
 	}
 
 	.mobile-desktop-menu {
-		display: flex;
+		display: flex !important;
 	}
 	.category-section-image {
 		width: 100%;
