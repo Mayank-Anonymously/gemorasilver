@@ -1,14 +1,7 @@
 // components/ProductImagesGallery.js
 import { useState } from 'react';
 
-const images = [
-	'/assets/product/ring.png',
-	'/assets/product/jewelry.png',
-	'/assets/product/necklace.png',
-	'/assets/product/ring.png',
-];
-
-export default function ProductImagesGallery() {
+export default function ProductImagesGallery({ images }) {
 	const [selectedImage, setSelectedImage] = useState(images[0]);
 
 	return (

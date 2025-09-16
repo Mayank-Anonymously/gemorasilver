@@ -7,7 +7,7 @@ const Footer = () => {
 		<div
 			className='footer mt-5 pt-5 pb-3 text-muted'
 			style={{
-				background: `#550070`,
+				background: `#812d3e`,
 				backgroundSize: 'contain',
 				padding: 10,
 				marginLeft: 30,
@@ -71,7 +71,7 @@ const Footer = () => {
 						</ul>
 					</Col>
 
-					<Col md={3}>
+					{/* <Col md={3}>
 						<h6 className='fw-bold text-white'>QUICK LINKS</h6>
 						<ul className='list-unstyled text-white'>
 							<li>My Account</li>
@@ -80,7 +80,7 @@ const Footer = () => {
 							<li>Register</li>
 							<li>Checkout</li>
 						</ul>
-					</Col>
+					</Col> */}
 
 					<Col md={3}>
 						<p className='text-white'>
@@ -107,7 +107,7 @@ const Footer = () => {
 					<Col>
 						<div className='d-flex justify-content-between align-items-center pt-2'>
 							<small className='text-white'>
-								© 2025 Powered by <strong>Gemora Silver By M&A</strong>. All
+								© 2025 Powered by <strong>Luniva Jewels By M&A</strong>. All
 								Rights Reserved.
 							</small>
 						</div>

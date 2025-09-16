@@ -11,7 +11,7 @@ const PromoBannerSection = () => {
 					md={6}
 					className='promo-left d-flex align-items-center px-5 text-center'>
 					<div className='promo-content text-dark'>
-						<small className='text-muted'>Store Beautlux</small>
+						<small className='text-muted'>Luniva</small>
 						<h2 className='fw-bold'>
 							Jewellery
 							<br />
@@ -36,7 +36,7 @@ const PromoBannerSection = () => {
 					md={6}
 					className='promo-right d-flex align-items-center justify-content-center text-center'>
 					<div className='promo-content text-dark'>
-						<small className='text-muted'>Store Beautlux</small>
+						<small className='text-muted'>Luniva</small>
 						<h2 className='fw-bold'>
 							Rings
 							<br />

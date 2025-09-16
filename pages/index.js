@@ -13,6 +13,12 @@ export default function Home() {
 	return (
 		<Screen>
 			<section>
+				<div className='opening-heading'>
+					<h1>Celebrate Love</h1>
+					<h2>With Agra's most loved</h2>
+					<h2>Engagement rings</h2>
+				</div>
+
 				<BreadHomeBanner />
 			</section>
 			<section
@@ -44,20 +50,21 @@ export default function Home() {
 			<section>
 				<CategorySection />
 			</section>
-			<section>
+			{/* <section>
 				<TrendingProductSection />
-			</section>
-
+			</section> */}
+			{/* 
 			<section data-aos='fade-right'>
 				<CurationSection />
-			</section>
+			</section> */}
 
 			<section>
 				<PromoBannerSection />
 			</section>
-			<section>
+
+			{/* <section>
 				<FeaturedProductSection />
-			</section>
+			</section> */}
 		</Screen>
 	);
 }

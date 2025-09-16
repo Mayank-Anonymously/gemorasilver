@@ -17,7 +17,6 @@ export const cartSlice = createSlice({
 				alert('Product is already in the cart!');
 			} else {
 				state.items.push({ ...action.payload, quantity: 1 });
-				alert('Product added to cart!');
 			}
 		},
 		removeFromCart: (state, action) => {

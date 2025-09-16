@@ -6,24 +6,35 @@ import { BsPersonCircle } from 'react-icons/bs';
 import { BsFilterLeft } from 'react-icons/bs';
 import { useState } from 'react';
 import ResponsiveExample from '../Cart/SlidingContainer/Offcanvas';
+import { useSelector } from 'react-redux';
+import CartIcon from './CartIcon';
 
 const Header = () => {
 	const [show, setShow] = useState(false);
-
+	const cartItems = useSelector((state) => state.cart.items);
 	const handleShow = () => setShow(true);
-
-	const cartItems = [
-		{ name: 'Product 1', qty: 1, price: 49.99, image: '/assets/product1.jpg' },
-		{ name: 'Product 2', qty: 2, price: 19.99, image: '/assets/product2.jpg' },
-	];
-
+	console.log(cartItems);
 	return (
 		<>
 			<Navbar
 				expand='lg'
-				className='justify-content-center'
-				style={{ height: '80px' }}>
-				<Container>
+				// className='justify-content-center'
+				style={{ height: '100px' }}>
+				<Container
+					fluid
+					className='desktop'>
+					<div className='laptop-menu'>
+						<Nav.Link
+							href='/'
+							className='nav-animate'>
+							Home
+						</Nav.Link>
+						<Nav.Link
+							href='/about'
+							className='nav-animate'>
+							About Us
+						</Nav.Link>
+					</div>
 					<Navbar.Brand href='/'>
 						<img
 							src='/assets/logo.png'
@@ -31,6 +42,49 @@ const Header = () => {
 						/>
 					</Navbar.Brand>
 					<div className='laptop-menu'>
+						<Navbar.Brand>
+							<a className='text-decoration-none mx-2'>
+								<CiSearch
+									size={25}
+									color={'#b66878'}
+								/>
+							</a>
+							<a className='text-decoration-none  mx-2'>
+								<CartIcon
+									count={cartItems.length}
+									handleShow={handleShow}
+								/>
+							</a>
+							<a className='text-decoration-none  mx-2'>
+								<BsPersonCircle
+									size={25}
+									color={'#b66878'}
+								/>
+							</a>
+						</Navbar.Brand>
+						<Nav.Link
+							href='/contact-us'
+							className='nav-animate'>
+							Contact Us
+						</Nav.Link>
+						<Nav.Link
+							href='/track-my-order'
+							className='nav-animate'>
+							Track My Order
+						</Nav.Link>
+					</div>
+				</Container>
+
+				<Container
+					fluid
+					className='mobile-desktop-menu'>
+					<Navbar.Brand href='/'>
+						<img
+							src='/assets/logo.png'
+							className='img-fluid logo'
+						/>
+					</Navbar.Brand>
+					<div className='mobile-menu'>
 						<Nav.Link
 							href='/'
 							className='nav-animate'>
@@ -52,52 +106,9 @@ const Header = () => {
 							Track My Order
 						</Nav.Link>
 					</div>
-
-					<Navbar.Brand>
-						<a className='text-decoration-none mx-2'>
-							<CiSearch
-								size={25}
-								color='white'
-							/>
-						</a>
-						<a className='text-decoration-none  mx-2'>
-							<CiShoppingCart
-								size={25}
-								color='white'
-								onClick={handleShow}
-							/>
-						</a>
-						<a className='text-decoration-none  mx-2'>
-							<BsPersonCircle
-								size={25}
-								color='white'
-							/>
-						</a>
-					</Navbar.Brand>
 				</Container>
 			</Navbar>
-			<div className='mobile-menu'>
-				<Nav.Link
-					href='/'
-					className='nav-animate'>
-					Home
-				</Nav.Link>
-				<Nav.Link
-					href='/about'
-					className='nav-animate'>
-					About Us
-				</Nav.Link>
-				<Nav.Link
-					href='/contact-us'
-					className='nav-animate'>
-					Contact Us
-				</Nav.Link>
-				<Nav.Link
-					href='/track-my-order'
-					className='nav-animate'>
-					Track My Order
-				</Nav.Link>
-			</div>
+
 			{show && (
 				<ResponsiveExample
 					show={show}

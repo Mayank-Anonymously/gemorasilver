@@ -5,26 +5,26 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const BreadHomeBanner = () => {
 	const settings = {
-		dots: true,
+		// dots: true,
 		infinite: true,
 		speed: 500,
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		autoplay: true,
-		appendDots: (dots) => (
-			<div
-				style={{
-					borderRadius: '10px',
-					padding: '10px',
-					bottom: '10px',
-				}}>
-				<ul
-					style={{ margin: '0px', display: 'flex', justifyContent: 'center' }}>
-					{' '}
-					{dots}{' '}
-				</ul>
-			</div>
-		),
+		// appendDots: (dots) => (
+		// 	<div
+		// 		style={{
+		// 			borderRadius: '10px',
+		// 			padding: '10px',
+		// 			bottom: '10px',
+		// 		}}>
+		// 		<ul
+		// 			style={{ margin: '0px', display: 'flex', justifyContent: 'center' }}>
+		// 			{' '}
+		// 			{dots}{' '}
+		// 		</ul>
+		// 	</div>
+		// ),
 		// customPaging: (i) => (
 		// 	<div
 		// 		style={{
@@ -39,31 +39,38 @@ const BreadHomeBanner = () => {
 	};
 
 	return (
-		<>
+		<div className='banner-section'>
 			<Slider {...settings}>
-				<div>
+				<div
+					className='d-flex justify-content-center align-items-center'
+					style={{ height: '400px' }}>
 					<img
-						src={'../../assets/banner/banner-one.png'}
+						src='../../assets/product/ring.png'
 						alt='slide 1'
 						className='carousel-img'
 					/>
 				</div>
-				<div>
+
+				<div
+					className='d-flex justify-content-center align-items-center'
+					style={{ height: '400px' }}>
 					<img
-						src={'/assets/banner/banner-one.png'}
-						alt='slide 2'
+						src='../../assets/product/ring.png'
+						alt='slide 1'
 						className='carousel-img'
 					/>
 				</div>
-				<div>
+				<div
+					className='d-flex justify-content-center align-items-center'
+					style={{ height: '400px' }}>
 					<img
-						src={'/assets/banner/banner-one.png'}
-						alt='slide 3'
+						src='../../assets/product/ring.png'
+						alt='slide 1'
 						className='carousel-img'
 					/>
 				</div>
 			</Slider>
-		</>
+		</div>
 	);
 };
 

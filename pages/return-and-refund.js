@@ -2,7 +2,7 @@ import Screen from '@/component/common/Screen';
 import React from 'react';
 import { Container } from 'react-bootstrap';
 
-const html = `<p>At <strong>Gemora Silver by M &amp; A</strong>, we value your experience and strive to ensure you're completely satisfied with your purchase. Please review our return and refund policy below:</p>
+const html = `<p>At <strong>Luniva Jewels by M &amp; A</strong>, we value your experience and strive to ensure you're completely satisfied with your purchase. Please review our return and refund policy below:</p>
 
 <ol>
   <li>You may initiate a return within <strong>3 days</strong> of receiving your order.</li>
