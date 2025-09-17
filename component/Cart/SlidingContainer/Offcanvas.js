@@ -44,14 +44,14 @@ const CartOffcanvas = ({ show, handleClose }) => {
 								key={idx}
 								className='d-flex align-items-center mb-3 border-bottom pb-2'>
 								<Image
-									src={item.image}
+									src={item.images}
 									rounded
 									width={60}
 									height={60}
 									style={{ objectFit: 'cover' }}
 								/>
 								<div className='flex-grow-1 ms-3'>
-									<h6 className='mb-1'>{item.name}</h6>
+									<h6 className='mb-1'>{item.title}</h6>
 									<div className='d-flex justify-content-between align-items-center'>
 										<div className='d-flex align-items-center gap-2'>
 											<button

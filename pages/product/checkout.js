@@ -4,14 +4,10 @@ import RelatedProducts from '@/component/home/RelatedProducts';
 import Testimonials from '@/component/home/testimonials';
 import React, { useState } from 'react';
 import { Button, Card, Form, Row, Col } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
 const CheckoutPage = () => {
-	const [cart, setCart] = useState([
-		{ id: 1, name: 'Fairness Cream', price: 130, quantity: 1 },
-		{ id: 2, name: 'Matte Walnut', price: 130, quantity: 1 },
-		{ id: 3, name: 'White Cream', price: 130, quantity: 1 },
-		{ id: 4, name: 'Fresho Button', price: 130, quantity: 1 },
-	]);
+	const cartItems = useSelector((state) => state.cart.items);
 
 	const [coupon, setCoupon] = useState('');
 	const [discount, setDiscount] = useState(0);
@@ -41,7 +37,7 @@ const CheckoutPage = () => {
 		}
 	};
 
-	const subtotal = cart.reduce(
+	const subtotal = cartItems.reduce(
 		(acc, item) => acc + item.price * item.quantity,
 		0
 	);
@@ -54,10 +50,10 @@ const CheckoutPage = () => {
 				<Row>
 					{/* Cart Items */}
 					<Col md={8}>
-						{cart.length === 0 ? (
+						{cartItems.length === 0 ? (
 							<p className='small'>Your cart is empty.</p>
 						) : (
-							cart.map((item) => (
+							cartItems.map((item) => (
 								<Card
 									className='mb-2'
 									key={item.id}>
@@ -65,7 +61,7 @@ const CheckoutPage = () => {
 										{/* Image + Details */}
 										<div className='d-flex align-items-center gap-2'>
 											<img
-												src={item.image || '/images/products/default.jpg'} // add image in your data
+												src={item.images || '/images/products/default.jpg'} // add image in your data
 												alt={item.name}
 												style={{
 													width: '50px',
@@ -77,7 +73,7 @@ const CheckoutPage = () => {
 											<div>
 												<h6 className='mb-1'>{item.name}</h6>
 												<small className='text-muted'>
-													${item.price.toFixed(2)}
+													₹{item.price.toFixed(2)}
 												</small>
 											</div>
 										</div>
@@ -101,7 +97,7 @@ const CheckoutPage = () => {
 
 										{/* Total */}
 										<small className='fw-bold'>
-											${(item.price * item.quantity).toFixed(2)}
+											₹{(item.price * item.quantity).toFixed(2)}
 										</small>
 
 										{/* Remove */}
@@ -115,7 +111,7 @@ const CheckoutPage = () => {
 								</Card>
 							))
 						)}
-						{cart.length > 0 && (
+						{cartItems.length > 0 && (
 							<div className='d-flex justify-content-between mt-2'>
 								<Button
 									variant='outline-danger'
@@ -155,7 +151,7 @@ const CheckoutPage = () => {
 								<div className='small'>
 									<p className='d-flex justify-content-between mb-1'>
 										<span>Subtotal:</span>
-										<span>${subtotal.toFixed(2)}</span>
+										<span>₹{subtotal.toFixed(2)}</span>
 									</p>
 									{discount > 0 && (
 										<p className='d-flex justify-content-between text-success mb-1'>
@@ -165,7 +161,7 @@ const CheckoutPage = () => {
 									)}
 									<p className='d-flex justify-content-between fw-bold mb-1'>
 										<span>Grand Total:</span>
-										<span>${grandTotal.toFixed(2)}</span>
+										<span>₹{grandTotal.toFixed(2)}</span>
 									</p>
 								</div>
 
@@ -190,7 +186,6 @@ const CheckoutPage = () => {
 			</div>
 
 			{/* <Testimonials /> */}
-			<RelatedProducts />
 		</Screen>
 	);
 };
