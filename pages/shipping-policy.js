@@ -19,7 +19,7 @@ const html = `<ul>
   <b>⏱️ Dispatch & Delivery Timelines</b> 
 </ul> 
 <p><b>🛠️ Order Processing & Dispatch:</b> All confirmed orders are processed and dispatched within 3–4 business days.</p> 
-<p><b>🚚 Estimated Delivery:</b> Orders typically arrive within 5–7 business days from the dispatch date, depending on your location.</p> 
+<p><b>🚚 Estimated Delivery:</b> Orders shipped and delivered arrive within 5–7 business days from the dispatch date, depending on your location.</p> 
 <p><b>📍 Please Note:</b> Deliveries to remote or hard-to-reach areas may require additional time.</p> 
 
 <ul> 

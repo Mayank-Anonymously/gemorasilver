@@ -58,9 +58,9 @@ export default function Home() {
 				<CurationSection />
 			</section> */}
 
-			<section>
+			{/* <section>
 				<PromoBannerSection />
-			</section>
+			</section> */}
 
 			{/* <section>
 				<FeaturedProductSection />

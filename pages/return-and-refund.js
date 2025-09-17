@@ -3,7 +3,7 @@ import BreadHomeBanner from '@/component/home/homebanner';
 import React from 'react';
 import { Container } from 'react-bootstrap';
 
-const html = `<p>At <strong>Luniva by M &amp; A</strong>, we value your experience and strive to ensure you're completely satisfied with your purchase. Please review our return and refund policy below:</p>
+const html = `<p>At <strong>Luniva </strong>, we value your experience and strive to ensure you're completely satisfied with your purchase. Please review our return and refund policy below:</p>
 
 <ol>
   <li>You may initiate a return within <strong>3 days</strong> of receiving your order.</li>
@@ -11,7 +11,7 @@ const html = `<p>At <strong>Luniva by M &amp; A</strong>, we value your experien
   <li>If you're not satisfied with your purchase, we request <strong>clear photo or video proof</strong> of the concern. Once our team reviews and accepts your request:
     <ul>
       <li>A return pickup will be arranged.</li>
-      <li>After we receive the item, your refund will be processed within <strong>7–10 business days</strong> via your original payment method.</li>
+      <li>After we receive the item, your refund will be processed and credited within <strong>7–10 business days</strong> via your original payment method.</li>
     </ul>
   </li>
   <li>Returned items must be:
