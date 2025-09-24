@@ -8,6 +8,8 @@ import BreadHomeBanner from '@/component/home/homebanner';
 import PromoBannerSection from '@/component/home/PromoBannerSection';
 import Testimonials from '@/component/home/testimonials';
 import TrendingProductSection from '@/component/home/TrendingProduct';
+import PreciouslyCrafted from '@/component/home/HandmadeCollection';
+import NewCollection from '@/component/home/NewCollection';
 
 export default function Home() {
 	return (
@@ -46,9 +48,16 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
+			<section>
+				<NewCollection />
+			</section>
+
+			<section id='category-section'>
+				<CategorySection />
+			</section>
 
 			<section>
-				<CategorySection />
+				<PreciouslyCrafted />
 			</section>
 			{/* <section>
 				<TrendingProductSection />
