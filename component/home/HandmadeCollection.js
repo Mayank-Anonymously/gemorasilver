@@ -9,7 +9,7 @@ const journalData = [
 		title: 'Pearl Jewellery: June',
 		author: 'By Luniva Sweetman',
 		date: 'Mon, Jun 21, 2024',
-		image: '/journal1.jpg',
+		image: '/assets/product/ring-tile.jpg',
 	},
 	{
 		id: 2,
@@ -17,7 +17,7 @@ const journalData = [
 		title: 'A Gorgeous Guide To Weddings',
 		author: 'By Luniva Sweetman',
 		date: 'Fri, Dec 11, 2024',
-		image: '/journal2.jpg',
+		image: '/assets/product/ring-tile.jpg',
 	},
 	{
 		id: 3,
@@ -25,7 +25,7 @@ const journalData = [
 		title: 'Designing A Luniva Piece',
 		author: 'By Luniva Sweetman',
 		date: 'Sat, Jul 14, 2025',
-		image: '/journal3.jpg',
+		image: '/assets/product/ring-tile.jpg',
 	},
 	{
 		id: 4,
@@ -33,7 +33,7 @@ const journalData = [
 		title: 'Five Ways To Find Your Partner’s Ring Size',
 		author: 'By Luniva Sweetman',
 		date: 'Fri, Sep 06, 2025',
-		image: '/journal4.jpg',
+		image: '/assets/product/ring-tile.jpg',
 	},
 ];
 
