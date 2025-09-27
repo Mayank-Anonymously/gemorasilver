@@ -16,9 +16,8 @@ export default function Home() {
 		<Screen>
 			<section>
 				<div className='opening-heading'>
-					<h1>Celebrate Love</h1>
-					<h2>With Agra's most loved</h2>
-					<h2>Engagement rings</h2>
+					<h1>Where desi hearts meets</h1>
+					<h2>global shine</h2>
 				</div>
 
 				<BreadHomeBanner />
@@ -62,14 +61,10 @@ export default function Home() {
 			{/* <section>
 				<TrendingProductSection />
 			</section> */}
-			{/* 
-			<section data-aos='fade-right'>
-				<CurationSection />
-			</section> */}
 
-			{/* <section>
+			<section>
 				<PromoBannerSection />
-			</section> */}
+			</section>
 
 			{/* <section>
 				<FeaturedProductSection />

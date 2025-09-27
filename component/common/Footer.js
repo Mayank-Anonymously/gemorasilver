@@ -1,6 +1,30 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
+import {
+	FiMail,
+	FiInfo,
+	FiTruck,
+	FiShield,
+	FiRefreshCcw,
+	FiFileText,
+} from 'react-icons/fi';
+const links = [
+	{ name: 'Contact Us', href: '/contact-us', icon: <FiMail /> },
+	{ name: 'About Us', href: '/about', icon: <FiInfo /> },
+	{ name: 'Shipping Policy', href: '/shipping-policy', icon: <FiTruck /> },
+	{ name: 'Privacy Policy', href: '/privacy-policy', icon: <FiShield /> },
+	{
+		name: 'Return & Refund Policy',
+		href: '/return-and-refund',
+		icon: <FiRefreshCcw />,
+	},
+	{
+		name: 'Terms and Conditions',
+		href: '/terms-and-conditions',
+		icon: <FiFileText />,
+	},
+];
 
 const Footer = () => {
 	return (
@@ -33,54 +57,22 @@ const Footer = () => {
 						</p>
 					</Col>
 
-					<Col md={2}>
-						<h6 className='fw-bold text-white'>OUR OFFER</h6>
-						<ul className='list-unstyled text-white'>
-							<li>
-								<a
-									href='/contact-us'
-									className='text-decoration-none text-white'>
-									Contact Us
-								</a>
-							</li>
-							<li>
-								<a
-									href='/about'
-									className='text-decoration-none text-white'>
-									About Us
-								</a>
-							</li>
-							<li>
-								<a
-									href='/shipping-policy'
-									className='text-decoration-none text-white'>
-									Shipping Policy
-								</a>
-							</li>
-							<li>
-								<a
-									href='/privacy-policy'
-									className='text-decoration-none text-white'>
-									Privacy Policy
-								</a>
-							</li>
-							<li>
-								<a
-									href='/return-and-refund'
-									className='text-decoration-none text-white'>
-									Return & Refund Policy
-								</a>
-							</li>
-							<li>
-								<a
-									href='/terms-and-conditions'
-									className='text-decoration-none text-white'>
-									Terms and Conditions
-								</a>
-							</li>
+					<Col md={4}>
+						<h6 className='fw-bold text-white mb-3'>Explore Luniva</h6>
+						<ul className='list-unstyled'>
+							{links.map((link) => (
+								<li
+									key={link.name}
+									className='footer-link'>
+									<a
+										href={link.href}
+										className='text-decoration-none text-white d-flex align-items-center'>
+										<span className='icon me-2'>{link.icon}</span> {link.name}
+									</a>
+								</li>
+							))}
 						</ul>
 					</Col>
-
 					{/* <Col md={3}>
 						<h6 className='fw-bold text-white'>QUICK LINKS</h6>
 						<ul className='list-unstyled text-white'>
@@ -100,10 +92,10 @@ const Footer = () => {
 
 						<p className='text-white'>
 							<FaPhone className='me-2' />
-							<strong>Phone:</strong> +91 70557 01906
+							+91 70557 01906
 							<br />
 							<FaPhone className='me-2' />
-							<strong>Phone:</strong> +91 89232-50822
+							+91 89232 50822
 						</p>
 						<p className='text-white'>
 							<FaEnvelope className='me-2' />

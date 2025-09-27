@@ -6,23 +6,23 @@ const journalData = [
 	{
 		id: 1,
 		category: 'EDUCATION',
-		title: 'Pearl Jewellery: June',
+		title: 'Ring Size Scale',
 		author: 'By Luniva Sweetman',
-		date: 'Mon, Jun 21, 2024',
+		date: 'Mon, Apr 21, 2025',
 		image: '/assets/product/ring-tile.jpg',
 	},
 	{
 		id: 2,
 		category: 'WEDDING',
-		title: 'A Gorgeous Guide To Weddings',
+		title: 'Cocktail design',
 		author: 'By Luniva Sweetman',
-		date: 'Fri, Dec 11, 2024',
+		date: 'Fri, Ju 11, 2025',
 		image: '/assets/product/ring-tile.jpg',
 	},
 	{
 		id: 3,
 		category: 'NEW',
-		title: 'Designing A Luniva Piece',
+		title: 'Working professions',
 		author: 'By Luniva Sweetman',
 		date: 'Sat, Jul 14, 2025',
 		image: '/assets/product/ring-tile.jpg',
@@ -30,7 +30,7 @@ const journalData = [
 	{
 		id: 4,
 		category: 'EDUCATION',
-		title: 'Five Ways To Find Your Partner’s Ring Size',
+		title: 'Party collection',
 		author: 'By Luniva Sweetman',
 		date: 'Fri, Sep 06, 2025',
 		image: '/assets/product/ring-tile.jpg',
@@ -62,9 +62,6 @@ export default function ChupiJournal() {
 									}`}
 									onClick={() => setActiveId(item.id)}>
 									<div className='d-flex justify-content-between align-items-center'>
-										<small className='text-uppercase fw-bold text-muted'>
-											{item.category}
-										</small>
 										<small className='text-muted'>{item.date}</small>
 									</div>
 

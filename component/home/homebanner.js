@@ -45,7 +45,7 @@ const BreadHomeBanner = () => {
 					className='d-flex justify-content-center align-items-center'
 					style={{ height: '400px' }}>
 					<img
-						src='../../assets/product/ring.png'
+						src='../../assets/banner/banner-one.png'
 						alt='slide 1'
 						className='carousel-img'
 					/>
@@ -55,8 +55,8 @@ const BreadHomeBanner = () => {
 					className='d-flex justify-content-center align-items-center'
 					style={{ height: '400px' }}>
 					<img
-						src='../../assets/product/ring.png'
-						alt='slide 1'
+						src='../../assets/banner/banner-two.png'
+						alt='slide 2'
 						className='carousel-img'
 					/>
 				</div>
@@ -64,8 +64,8 @@ const BreadHomeBanner = () => {
 					className='d-flex justify-content-center align-items-center'
 					style={{ height: '400px' }}>
 					<img
-						src='../../assets/product/ring.png'
-						alt='slide 1'
+						src='../../assets/banner/banner-three.png'
+						alt='slide 3'
 						className='carousel-img'
 					/>
 				</div>

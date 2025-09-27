@@ -8,9 +8,12 @@ import { useState } from 'react';
 import ResponsiveExample from '../Cart/SlidingContainer/Offcanvas';
 import { useSelector } from 'react-redux';
 import CartIcon from './CartIcon';
+import { Offcanvas } from 'react-bootstrap';
+import MobileMenu from '../menu/MobileMenu';
 
 const Header = () => {
 	const [show, setShow] = useState(false);
+	const [showSideMenu, setShowSideMenu] = useState(false);
 	const cartItems = useSelector((state) => state.cart.items);
 	const handleShow = () => setShow(true);
 
@@ -80,12 +83,32 @@ const Header = () => {
 				<Container
 					fluid
 					className='mobile-desktop-menu'>
-					<Navbar.Brand href='/'>
-						<img
-							src='/assets/logo.png'
-							className='img-fluid logo'
+					<div className='mt-3 p-1'>
+						<BsFilterLeft
+							size={40}
+							onClick={() => setShowSideMenu(true)}
 						/>
-					</Navbar.Brand>
+						<Navbar.Brand href='/'>
+							<img
+								src='/assets/logo.png'
+								className='logo'
+							/>
+						</Navbar.Brand>
+
+						<a className='text-decoration-none  mx-2'>
+							<CartIcon
+								count={cartItems.length}
+								handleShow={handleShow}
+							/>
+						</a>
+						<a className='text-decoration-none  mx-2'>
+							<BsPersonCircle
+								size={25}
+								color={'#b66878'}
+							/>
+						</a>
+					</div>
+
 					<div className='mobile-menu'>
 						<Nav.Link
 							href='/'
@@ -116,6 +139,13 @@ const Header = () => {
 					show={show}
 					handleClose={() => setShow(false)}
 					cartItems={cartItems}
+				/>
+			)}
+
+			{showSideMenu && (
+				<MobileMenu
+					show={showSideMenu}
+					handleClose={() => setShowSideMenu(false)}
 				/>
 			)}
 		</>

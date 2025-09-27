@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { Collapse } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 const categories = [
 	{
 		name: 'Bracelets',
@@ -10,32 +9,53 @@ const categories = [
 		description: 'Explore our handcrafted bracelets made with love.',
 		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
 	},
+
+	// New categories with default values
 	{
-		name: 'Engagement Rings',
-		count: 82,
-		description:
-			"Explore Luniva Jewellery's Beautiful Engagement Ring Collections, Handcrafted In Ireland Using Certified Sustainable Diamonds And Gold.",
+		name: 'Rings',
+		count: 10,
+		description: 'Explore our beautiful rings collection.',
 		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
 	},
 	{
-		name: 'Wedding Rings',
-		count: 67,
-		description: 'Beautiful wedding rings for your special day.',
+		name: 'Earrings',
+		count: 10,
+		description: 'Find earrings to match every style.',
+		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
+	},
+	{
+		name: 'Pendants',
+		count: 10,
+		description: 'Elegant pendants for every occasion.',
+		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
+	},
+	{
+		name: 'Mangalsutra',
+		count: 10,
+		description: 'Traditional and modern Mangalsutra designs.',
+		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
+	},
+	{
+		name: 'Set (Pendants + Earrings)',
+		count: 10,
+		description: 'Beautiful matching sets of pendants and earrings.',
+		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
+	},
+	{
+		name: 'Toe Rings',
+		count: 10,
+		description: 'Stylish toe rings for every occasion.',
 		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
 	},
 ];
 
 export default function Categories() {
-	const [active, setActive] = useState('Engagement Rings');
+	const [active, setActive] = useState('Rings');
 
 	return (
 		<div className='container py-5 category-section'>
 			<p className='text-center text-muted text-uppercase mb-5'>Categories</p>
-			<div
-				style={{
-					maxHeight: '400px',
-					overflowY: 'auto',
-				}}>
+			<div>
 				{categories.map((cat, idx) => {
 					const isActive = active === cat.name;
 
@@ -46,7 +66,9 @@ export default function Categories() {
 							{/* Title */}
 							<h3
 								className={`category-title text-center${
-									isActive ? 'active text-center cursive-fot' : ''
+									isActive
+										? 'category-title active text-center cursive-fot'
+										: ''
 								}`}
 								onClick={() => setActive(cat.name)}>
 								{cat.name}{' '}
