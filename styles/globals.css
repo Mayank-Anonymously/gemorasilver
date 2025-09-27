@@ -842,3 +842,127 @@ a {
 	transition: all 0.3s ease;
 	font-size: 14px;
 }
+/* ================================
+   founder-section (testimonial carousel)
+   ================================ */
+
+.founder-wrapper {
+	background: #fdf8f7;
+	border-radius: 20px;
+	padding: 60px 20px;
+	position: relative;
+}
+
+.founder-card {
+	max-width: 800px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.founder-stars {
+	color: #f4c542;
+	font-size: 1.8rem;
+	margin-bottom: 25px;
+}
+
+.founder-text {
+	font-size: 1.6rem;
+	color: #4c1d1d;
+	line-height: 1.8;
+	font-family: 'Georgia', serif;
+}
+
+.founder-text em {
+	font-style: italic;
+}
+
+.founder-userSection {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 30px 0 20px;
+}
+
+.founder-avatars {
+	display: flex;
+	margin-right: 15px;
+}
+
+.founder-avatar {
+	border: 2px solid #fff;
+	border-radius: 50%;
+	margin-right: -10px;
+	overflow: hidden;
+}
+
+.founder-userInfo h5 {
+	margin: 0;
+	font-weight: bold;
+	color: #4c1d1d;
+}
+
+.founder-userInfo p {
+	margin: 0;
+	font-size: 0.9rem;
+	color: #7a5d5d;
+}
+
+.founder-readMore {
+	background: #5a1f2e;
+	color: #fff;
+	border-radius: 25px;
+	padding: 10px 40px;
+	margin-top: 15px;
+	border: none;
+}
+
+.founder-readMore:hover {
+	background: #401622;
+}
+
+/* === Arrows === */
+.founder-arrow {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: transparent;
+	border: 1px solid #4c1d1d;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: 0.3s ease;
+	z-index: 10;
+}
+
+.founder-arrow:hover {
+	background: #4c1d1d;
+	color: #fff;
+}
+
+.founder-left {
+	left: -70px;
+}
+
+.founder-right {
+	right: -70px;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+	.founder-arrow {
+		width: 40px;
+		height: 40px;
+	}
+	.founder-left {
+		left: -30px;
+	}
+	.founder-right {
+		right: -30px;
+	}
+}
+
+

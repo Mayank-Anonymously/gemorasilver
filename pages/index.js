@@ -10,6 +10,7 @@ import Testimonials from '@/component/home/testimonials';
 import TrendingProductSection from '@/component/home/TrendingProduct';
 import PreciouslyCrafted from '@/component/home/HandmadeCollection';
 import NewCollection from '@/component/home/NewCollection';
+import TestimonialCarousel from '@/component/home/FoundersSection';
 
 export default function Home() {
 	return (
@@ -58,17 +59,14 @@ export default function Home() {
 			<section>
 				<PreciouslyCrafted />
 			</section>
-			{/* <section>
-				<TrendingProductSection />
-			</section> */}
 
 			<section>
 				<PromoBannerSection />
 			</section>
 
-			{/* <section>
-				<FeaturedProductSection />
-			</section> */}
+			<section>
+				<TestimonialCarousel />
+			</section>
 		</Screen>
 	);
 }
