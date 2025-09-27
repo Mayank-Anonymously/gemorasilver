@@ -22,7 +22,7 @@ const BreadHomeBanner = () => {
 		// 			style={{ margin: '0px', display: 'flex', justifyContent: 'center' }}>
 		// 			{' '}
 		// 			{dots}{' '}
-		// 		</ul>
+		// 		</ul>s
 		// 	</div>
 		// ),
 		// customPaging: (i) => (

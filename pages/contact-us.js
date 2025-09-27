@@ -29,9 +29,9 @@ export default function ContactUs() {
 									<h5 className='fw-bold mb-3'>Our Office</h5>
 
 									<p className='mb-2'>
-										<strong>Phone:</strong> +91 70557 01906 
+										<strong>Phone:</strong> +91 70557 01906
 										<br />
-										<strong>Phone:</strong> +91 89232-50822 
+										<strong>Phone:</strong> +91 89232-50822
 									</p>
 									<p className='mb-4'>
 										<strong>Email:</strong> info@lunivajewels.com

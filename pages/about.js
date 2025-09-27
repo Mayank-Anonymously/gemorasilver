@@ -7,7 +7,6 @@ import { Container } from 'react-bootstrap';
 const about = () => {
 	return (
 		<Screen>
-			<BreadHomeBanner />
 			<Container className='p-5'>
 				<h1>About Us</h1>
 				<p>
