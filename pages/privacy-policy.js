@@ -5,7 +5,6 @@ import React from 'react';
 const privacy = () => {
 	return (
 		<Screen>
-			<BreadHomeBanner />
 			<div
 				dangerouslySetInnerHTML={{
 					__html: `<div class="container">

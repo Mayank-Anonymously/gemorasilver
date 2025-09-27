@@ -38,7 +38,6 @@ const html = `<p>At <strong>Luniva </strong>, we value your experience and striv
 const Refund = () => {
 	return (
 		<Screen>
-			<BreadHomeBanner />
 			<Container>
 				<h1>Return and Refund</h1>
 

@@ -5,7 +5,6 @@ import React from 'react';
 const terms = () => {
 	return (
 		<Screen>
-            <BreadHomeBanner />
 			<div
 				dangerouslySetInnerHTML={{
 					__html: `<!DOCTYPE html>

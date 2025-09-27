@@ -56,7 +56,6 @@ const html = `<ul>
 const Shipping = () => {
 	return (
 		<Screen>
-			<BreadHomeBanner />
 			<Container className='p-5'>
 				<h1>Shipping Policy</h1>
 				<div dangerouslySetInnerHTML={{ __html: html }} />
