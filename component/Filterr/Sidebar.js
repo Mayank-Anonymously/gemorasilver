@@ -1,16 +1,13 @@
 import React from 'react';
-import { Accordion, Form, Button, ListGroup } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import PriceSlider from './atoms/PriceSlider';
 
-const FiltersSidebar = ({
+const FiltersResponsive = ({
 	categories,
 	selectedCategories,
 	setSelectedCategories,
-	dietaryNeeds,
-	selectedDietary,
-	setSelectedDietary,
 	priceRange,
 	setPriceRange,
-	topRated,
 }) => {
 	const handleCategoryChange = (cat) => {
 		setSelectedCategories((prev) =>
@@ -18,45 +15,156 @@ const FiltersSidebar = ({
 		);
 	};
 
-	const handleDietaryChange = (item) => {
-		setSelectedDietary((prev) =>
-			prev.includes(item) ? prev.filter((d) => d !== item) : [...prev, item]
-		);
-	};
+	// Reusable Checkbox Group
+	const CheckboxGroup = ({ title, items, selected, onChange }) => (
+		<div className='mb-3'>
+			<h6 className='small fw-bold mb-2'>{title}</h6>
+			{items.map((item, i) => (
+				<Form.Check
+					key={i}
+					type='checkbox'
+					label={item}
+					checked={selected?.includes(item)}
+					onChange={() => onChange(item)}
+					className='mb-1'
+				/>
+			))}
+		</div>
+	);
 
 	return (
 		<>
-			{/* Categories */}
+			{/* Desktop Sidebar View */}
+			<div
+				className='d-none d-lg-block p-3 border rounded'
+				style={{ minWidth: '220px' }}>
+				<h6 className='mb-3'>Filters</h6>
 
-			{/* Price Filter */}
-			<h6>Filter By Price</h6>
-			<div className='d-flex'>
-				<Form.Control
-					type='number'
-					placeholder='From'
-					value={priceRange.from}
-					onChange={(e) =>
-						setPriceRange({ ...priceRange, from: e.target.value })
-					}
+				<CheckboxGroup
+					title='Product type'
+					items={categories}
+					selected={selectedCategories}
+					onChange={handleCategoryChange}
 				/>
-				<Form.Control
-					type='number'
-					placeholder='To'
-					className='ms-2'
-					value={priceRange.to}
-					onChange={(e) => setPriceRange({ ...priceRange, to: e.target.value })}
+
+				{/* Price */}
+				<div className='mb-3'>
+					<h6 className='small fw-bold'>Price</h6>
+					<Form.Control
+						type='number'
+						placeholder='From'
+						value={priceRange.from}
+						onChange={(e) =>
+							setPriceRange({ ...priceRange, from: e.target.value })
+						}
+						className='mb-2'
+					/>
+					<Form.Control
+						type='number'
+						placeholder='To'
+						value={priceRange.to}
+						onChange={(e) =>
+							setPriceRange({ ...priceRange, to: e.target.value })
+						}
+					/>
+				</div>
+
+				<CheckboxGroup
+					title='Shop For'
+					items={['Men', 'Women', 'Kids']}
+					selected={[]}
+					onChange={() => {}}
+				/>
+				<CheckboxGroup
+					title='Color'
+					items={['Red', 'Blue', 'Green']}
+					selected={[]}
+					onChange={() => {}}
+				/>
+				<CheckboxGroup
+					title='Metal'
+					items={['Gold', 'Silver', 'Platinum']}
+					selected={[]}
+					onChange={() => {}}
+				/>
+				<CheckboxGroup
+					title='Stone'
+					items={['Diamond', 'Ruby', 'Sapphire']}
+					selected={[]}
+					onChange={() => {}}
+				/>
+				<CheckboxGroup
+					title='Style'
+					items={['Classic', 'Modern', 'Traditional']}
+					selected={[]}
+					onChange={() => {}}
+				/>
+				<CheckboxGroup
+					title='Sub Category'
+					items={['Rings', 'Earrings', 'Bracelets']}
+					selected={[]}
+					onChange={() => {}}
 				/>
 			</div>
-			<Button
-				variant='primary'
-				size='sm'
-				className='mt-2 w-100'>
-				Filter
-			</Button>
 
-			<hr />
+			{/* Mobile / Tablet Horizontal View */}
+			<div
+				className=' d-lg-none flex-nowrap overflow-auto border-bottom py-2'
+				style={{
+					gap: '20px',
+					minHeight: '120px',
+					padding: '0 10px',
+					scrollBehavior: 'smooth', // optional smooth scrolling
+				}}>
+				<CheckboxGroup
+					title='Product type'
+					items={categories}
+					selected={selectedCategories}
+					onChange={handleCategoryChange}
+				/>
+				<CheckboxGroup
+					title='Shop For'
+					items={['Men', 'Women', 'Kids']}
+					selected={[]}
+					onChange={() => {}}
+				/>
+				<CheckboxGroup
+					title='Color'
+					items={['Red', 'Blue', 'Green']}
+					selected={[]}
+					onChange={() => {}}
+				/>
+				<PriceSlider
+					priceRange={priceRange}
+					setPriceRange={setPriceRange}
+				/>
+				<CheckboxGroup
+					title='Metal'
+					items={['Gold', 'Silver', 'Platinum']}
+					selected={[]}
+					onChange={() => {}}
+				/>
+				<CheckboxGroup
+					title='Stone'
+					items={['Diamond', 'Ruby', 'Sapphire']}
+					selected={[]}
+					onChange={() => {}}
+				/>
+				<CheckboxGroup
+					title='Style'
+					items={['Classic', 'Modern', 'Traditional']}
+					selected={[]}
+					onChange={() => {}}
+				/>
+				<CheckboxGroup
+					title='Sub Category'
+					items={['Rings', 'Earrings', 'Bracelets']}
+					selected={[]}
+					onChange={() => {}}
+				/>
+			</div>
 		</>
 	);
 };
 
-export default FiltersSidebar;
+export default FiltersResponsive;

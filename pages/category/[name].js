@@ -7,7 +7,24 @@ import Link from 'next/link';
 import { IoIosStar } from 'react-icons/io';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '@/component/redux/slices/cartSlice';
+import { FaRegEye } from 'react-icons/fa6';
+import FiltersSidebar from '@/component/Filterr/Sidebar';
+import { CiHeart, CiSquarePlus } from 'react-icons/ci';
+import FilterOffCanvas from '@/component/Filterr/Offcanvasfilter';
+import { FaFilter } from 'react-icons/fa';
 
+function useIsMobile(breakpoint = 768) {
+	const [isMobile, setIsMobile] = useState(false);
+
+	useEffect(() => {
+		const update = () => setIsMobile(window.innerWidth < breakpoint);
+		update();
+		window.addEventListener('resize', update);
+		return () => window.removeEventListener('resize', update);
+	}, [breakpoint]);
+
+	return isMobile;
+}
 const ProductByCategory = () => {
 	// Extract unique values
 	const categories = ['All', ...new Set(products.map((p) => p.category))];
@@ -50,73 +67,72 @@ const ProductByCategory = () => {
 		);
 	};
 
+	const [show, setShow] = useState(false);
+
 	return (
 		<Screen>
-			<Container
-				fluid
-				className='py-4'
-				style={{ background: 'rgb(255 250 250)' }}>
+			<Container className='py-5'>
 				{/* Categories Nav Pills */}
-				<div
-					style={{
-						overflowX: 'auto',
-						whiteSpace: 'nowrap',
-					}}>
-					<Nav
-						variant='pills'
-						activeKey={activeCategory}
-						className='flex-row mb-4'>
-						{categories.map((cat) => (
-							<Nav.Item
-								key={cat}
-								style={{ display: 'inline-block' }}>
-								<Nav.Link
-									eventKey={cat}
-									onClick={() => setActiveCategory(cat)}
-									className='bg-white m-2'>
-									{cat}
-								</Nav.Link>
-							</Nav.Item>
-						))}
-					</Nav>
-				</div>
 
 				<Row>
-					<Col md={12}>
+					<Col
+						md={3}
+						xs={12}
+						sm={4}>
+						<div className='filter-mobile-menu'>
+							<FiltersSidebar
+								categories={categories}
+								priceRange={priceRange}
+								setPriceRange={setPriceRange}
+							/>
+						</div>
+						{useIsMobile && (
+							<>
+								<div className='filters-placement'>
+									<button className='btn bg-white text-black'>Sort </button>
+									<button
+										className='btn bg-white text-black'
+										onClick={() => setShow(true)}>
+										Filter <FaFilter />{' '}
+									</button>
+								</div>{' '}
+							</>
+						)}
+					</Col>
+
+					<Col
+						xs={12}
+						sm={4}
+						md={9}
+						lg={4}>
 						<Row className='g-4'>
 							{filteredProducts.length > 0 ? (
 								filteredProducts.map((p, index) => (
 									<Col
 										key={index}
-										xs={12}
+										xs={6}
 										sm={4}
-										md={4}
-										lg={3} // full width on mobile, 2-per-row on small, etc.
+										md={6}
+										lg={4} // full width on mobile, 2-per-row on small, etc.
 										className='d-flex justify-content-center mb-4'>
-										<div
-											className='product-card bg-white shadow-sm border-0 p-3 rounded-3'
-											style={{ width: '80%' }}>
-											{' '}
-											{/* maxWidth keeps card neat on large screens */}
-											{/* Wishlist Icon */}
-											<button
-												className='position-absolute top-0 end-0 m-2 border-0 bg-transparent'
-												aria-label='Add to wishlist'>
-												<i className='bi bi-heart fs-4 text-muted'></i>
-											</button>
+										<div className='product-card bg-white shadow-sm border-0 p-2 rounded-3'>
 											{/* Product Image */}
 											<div
-												className='d-flex justify-content-center align-items-center'
-												style={{ height: 300, overflow: 'hidden' }}>
+												className='justify-content-center align-items-center'
+												style={{
+													height: 140,
+													width: 140,
+													objectFit: 'contain',
+												}}>
 												<img
 													src={p.images[0]}
 													alt={p.title}
 													className='img-fluid'
-													style={{ objectFit: 'contain', maxHeight: '100%' }}
+													// style={{ objectFit: 'contain', maxHeight: '100%' }}
 												/>
 											</div>
 											{/* Rating */}
-											<div className='d-flex align-items-between justify-content-start mt-3'>
+											<div className='d-flex align-items-between justify-content-start mt-3 review'>
 												<span className='fw-bold me-1'>5.0</span>
 												<IoIosStar color={'gold'} />
 
@@ -124,38 +140,29 @@ const ProductByCategory = () => {
 											</div>
 											{/* Price */}
 											<div className='d-flex justify-content-start mt-2 flex-wrap'>
-												<h5 className='mb-0 fw-bold text-dark me-2'>
+												<h5 className='mb-0 fw-bold text-dark me-2 product-price'>
 													₹{p.price.toLocaleString()}
 												</h5>
-												<p className='mb-0 text-muted text-decoration-line-through'>
+												<p className='mb-0 text-muted text-decoration-line-through product-price-compare'>
 													₹{p.compare_at_price.toLocaleString()}
 												</p>
 											</div>
 											{/* Title */}
-											<h6 className='mt-2 px-2'>{p.title}</h6>
-											{/* Offer Text */}
-											{/* Add to Cart */}
-											<button
-												className='btn w-100 fw-semibold cursor-pointer'
-												style={{
-													backgroundColor: '#ffd6e1',
-													color: '#000',
-													borderRadius: 8,
-												}}
-												onClick={() => handleAddtoCart(p)}>
-												Add to Cart
-											</button>
-											<Link
-												className='btn w-100 fw-semibold'
-												style={{
-													backgroundColor: '#ffd6e1',
-													color: '#000',
-													borderRadius: 8,
-													marginTop: 10,
-												}}
-												href={`/product/${p.id}`}>
-												View Product
-											</Link>
+											<h6 className=' product-tile-title'>{p.title}</h6>
+											<div className='d-flex product-all-tiles justify-content-between'>
+												<Link
+													href={''}
+													className='btn  fw-semibold cursor-pointer'
+													style={{
+														backgroundColor: '#ffd6e1',
+														color: '#000',
+														borderRadius: 8,
+														marginTop: 10,
+													}}
+													onClick={() => handleAddtoCart(p)}>
+													<CiSquarePlus size={20} />
+												</Link>
+											</div>
 										</div>
 									</Col>
 								))
@@ -166,6 +173,15 @@ const ProductByCategory = () => {
 					</Col>
 				</Row>
 			</Container>
+			{show && (
+				<FilterOffCanvas
+					show={show}
+					handleClose={() => setShow(false)}
+					categories={categories}
+					priceRange={priceRange}
+					setPriceRange={setPriceRange}
+				/>
+			)}
 		</Screen>
 	);
 };

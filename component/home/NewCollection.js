@@ -4,6 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { products } from '../data/products';
 import { CiSquarePlus } from 'react-icons/ci';
 import { CiHeart } from 'react-icons/ci';
+import { IoIosStar } from 'react-icons/io';
 const NewColllection = () => {
 	return (
 		<div className='home-category'>
@@ -14,97 +15,89 @@ const NewColllection = () => {
 						fontFamily: "'Great Vibes', cursive",
 						marginTop: 10,
 					}}>
-					Recommended by{' '}
+					Suggested by{' '}
 					<span
 						style={{
 							color: '#812d3e',
 							fontFamily: 'none',
 							marginTop: 10,
 						}}>
-						M&A{' '}
+						Founders{' '}
 					</span>
 				</h2>
 			</div>
 			<Container fluid>
-				<Row className='home-category-container'>
-					{products.map((rex, index) => (
-						<Col
-							data-aos='fade-up'
-							key={index}
-							className='mt-5 category-section-card'
-							xs={5}
-							sm={6}
-							md={4}
-							lg={2}>
-							<Link
-								href='/category/ring'
-								className='text-decoration-none'>
-								<img
-									src={rex.images[0]}
-									className='img-fluid'
-								/>
-								<div className='product-showcase-text'>
-									<h6
-										className='title'
-										style={{
-											color: '#812d3e',
-											fontSize: 19,
-											marginTop: 10,
-										}}>
-										{rex.title}
-									</h6>
-									<div className='price'>
-										<span className='d-flex'>
-											<p
-												className='original'
-												style={{
-													color: '#812d3e',
-													fontSize: 20,
-													fontStyle: 'italic',
-												}}>
-												₹{rex.price}
-											</p>
-											<p
-												className='regular'
-												style={{
-													color: '#812d3e',
-													fontSize: 20,
-													fontStyle: 'italic',
-												}}>
-												₹{rex.compare_at_price}
-											</p>
-										</span>
-									</div>
-									<div className='home-category-button'>
-										<button
-											className='btn fw-semibold cursor-pointer'
+				<Col
+					xs={12}
+					sm={4}
+					md={9}
+					lg={4}>
+					<Row className='g-4'>
+						{products.length > 0 ? (
+							products.map((p, index) => (
+								<Col
+									key={index}
+									xs={6}
+									sm={4}
+									md={6}
+									lg={4} // full width on mobile, 2-per-row on small, etc.
+									className='d-flex justify-content-center mb-4'>
+									<div className='product-card bg-white shadow-sm border-0 p-2 rounded-3'>
+										{/* Product Image */}
+										<div
+											className='justify-content-center align-items-center'
 											style={{
-												backgroundColor: '#ffd6e1',
-												color: '#000',
-												borderRadius: 8,
-											}}
-											onClick={() => handleAddtoCart(rex)}>
-											<CiSquarePlus size={20} />
-										</button>
-										<button
-											className='btn  fw-semibold cursor-pointer'
-											style={{
-												backgroundColor: '#ffd6e1',
-												color: '#000',
-												borderRadius: 8,
-											}}
-											onClick={() => console(rex)}>
-											<CiHeart
-												size={20}
-												style={{ fontWeight: 'bold' }}
+												height: 140,
+												width: 140,
+												objectFit: 'contain',
+											}}>
+											<img
+												src={p.images[0]}
+												alt={p.title}
+												className='img-fluid'
+												// style={{ objectFit: 'contain', maxHeight: '100%' }}
 											/>
-										</button>
+										</div>
+										{/* Rating */}
+										<div className='d-flex align-items-between justify-content-start mt-3 review'>
+											<span className='fw-bold me-1'>5.0</span>
+											<IoIosStar color={'gold'} />
+
+											<span className='ms-1 text-muted'>| 15</span>
+										</div>
+										{/* Price */}
+										<div className='d-flex justify-content-start mt-2 flex-wrap'>
+											<h5 className='mb-0 fw-bold text-dark me-2 product-price'>
+												₹{p.price.toLocaleString()}
+											</h5>
+											<p className='mb-0 text-muted text-decoration-line-through product-price-compare'>
+												₹{p.compare_at_price.toLocaleString()}
+											</p>
+										</div>
+										{/* Title */}
+										<h6 className=' product-tile-title'>{p.title}</h6>
+										<div className='d-flex product-all-tiles justify-content-between'>
+											<Link
+												href={`/product/${p.id}`}
+												className='btn  fw-semibold cursor-pointer'
+												style={{
+													backgroundColor: '#ffd6e1',
+													color: '#000',
+													borderRadius: 8,
+													marginTop: 10,
+												}}
+												onClick={() => handleAddtoCart(p)}>
+												<CiSquarePlus size={20} />
+											</Link>
+										</div>
 									</div>
-								</div>
-							</Link>
-						</Col>
-					))}
-				</Row>
+								</Col>
+							))
+						) : (
+							<p className='text-center text-muted'>No products found.</p>
+						)}
+					</Row>
+				</Col>
 			</Container>
 		</div>
 	);

@@ -43,7 +43,7 @@ const BreadHomeBanner = () => {
 			<Slider {...settings}>
 				<div
 					className='d-flex justify-content-center align-items-center'
-					style={{ height: '400px' }}>
+					style={{ height: '300px' }}>
 					<img
 						src='../../assets/banner/banner-one.png'
 						alt='slide 1'

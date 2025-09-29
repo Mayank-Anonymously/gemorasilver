@@ -10,7 +10,7 @@ export const products = [
 		compare_at_price: 2999.0,
 		currency: 'INR',
 		status: 'active',
-		images: ['/assets/product/rings/DSC02144.png'],
+		images: ['/assets/product/rings/2144.png'],
 		description:
 			'Timeless solitaire design with a brilliant-cut stone. Available in multiple metals and stones.',
 		variants: [
@@ -39,7 +39,7 @@ export const products = [
 		compare_at_price: 1999.0,
 		currency: 'INR',
 		status: 'active',
-		images: ['/assets/product/rings/DSC02147.png'],
+		images: ['/assets/product/rings/2147.png'],
 		description:
 			'A dazzling halo setting surrounds the center stone with smaller accent stones for extra sparkle.',
 		variants: [
@@ -66,7 +66,7 @@ export const products = [
 		compare_at_price: 1999.0,
 		currency: 'INR',
 		status: 'active',
-		images: ['/assets/product/rings/DSC02156.png'],
+		images: ['/assets/product/rings/2156.png'],
 		description:
 			'Symbol of eternal love — polished infinity knot design, perfect as a promise ring.',
 		variants: [
@@ -93,7 +93,7 @@ export const products = [
 		compare_at_price: 3999.0,
 		currency: 'INR',
 		status: 'active',
-		images: ['/assets/product/rings/DSC02166.png'],
+		images: ['/assets/product/rings/2166.png'],
 		description:
 			'Vintage-inspired emerald centerpiece with intricate band detailing.',
 		variants: [
@@ -120,7 +120,7 @@ export const products = [
 		compare_at_price: 2999.0,
 		currency: 'INR',
 		status: 'active',
-		images: ['/assets/product/rings/DSC02130.png'],
+		images: ['/assets/product/rings/2130.png'],
 		description:
 			'Sleek and modern plain band design, perfect for daily wear or stacking.',
 		variants: [

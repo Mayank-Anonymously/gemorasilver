@@ -70,9 +70,9 @@ a {
 }
 
 .carousel-img {
-	width: 25%;
-	height: auto;
-	object-fit: contain;
+	width: 100%;
+	height: 800px;
+	object-fit: cover;
 }
 
 .category-section-card {
@@ -131,49 +131,7 @@ a {
 }
 
 /* Mobile tweaks */
-@media (max-width: 576px) {
-	.product-cards {
-		height: 250px;
-	}
-	.review-card {
-		font-size: 10px !important;
-	}
-	.card-title {
-		font-size: 10px !important;
-	}
-	.price-line {
-		flex-direction: row;
-		display: flex;
-	}
-	.price-line span {
-		flex-direction: row;
-		display: flex;
-		font-size: 10px;
-	}
-	.category-title {
-		font-size: 0.9rem;
-	}
 
-	.category-section-card {
-		border-radius: 10px;
-		justify-items: center;
-		align-items: center;
-		width: 40% !important;
-	}
-	.category-section-card h3 {
-		border-radius: 100px;
-		font-size: 15px;
-		margin-left: 10px;
-	}
-
-	.home-category-container {
-		width: 120% !important;
-	}
-	.footer {
-		padding: 0 !important;
-		margin: 0 !important;
-	}
-}
 .listingcard .cart-item {
 	display: flex;
 	align-items: center;
@@ -351,25 +309,6 @@ a {
 	display: none;
 }
 
-.banner-section {
-	position: relative;
-	width: 100%;
-	height: 600px; /* adjust as needed */
-	padding: 0 50px; /* spacing from left & right */
-	box-sizing: border-box;
-	background: white; /* base background */
-	overflow: hidden;
-}
-
-.banner-section::before {
-	content: '';
-	position: absolute;
-	inset: 0; /* shorthand for top:0; right:0; bottom:0; left:0 */
-	background: url(/assets/logo.png) no-repeat center center;
-	background-size: contain;
-	opacity: 0.2; /* adjust transparency */
-	pointer-events: none; /* so it won’t block clicks */
-}
 .opening-heading {
 	display: flex;
 	flex-direction: column;
@@ -402,21 +341,11 @@ a {
 		position: relative;
 		width: 100%;
 		height: 300px; /* adjust as needed */
-		padding: 0 50px; /* spacing from left & right */
 		box-sizing: border-box;
 		background: white; /* base background */
 		overflow: hidden;
 	}
 
-	.banner-section::before {
-		content: '';
-		position: absolute;
-		inset: 0; /* shorthand for top:0; right:0; bottom:0; left:0 */
-		background: url(/assets/logo.png) no-repeat center center;
-		background-size: contain;
-		opacity: 0.2; /* adjust transparency */
-		pointer-events: none; /* so it won’t block clicks */
-	}
 	.mobile-menu {
 		display: flex !important;
 		height: 50px;
@@ -449,9 +378,8 @@ a {
 		color: #b66878;
 	}
 	.carousel-img {
-		width: 50%;
+		width: 100%;
 		height: auto;
-		margin-top: 50px;
 	}
 
 	.desktop {
@@ -700,77 +628,7 @@ a {
 .category-section-card img {
 	border-radius: 10px;
 }
-@media (max-width: 576px) {
-	.product-cards {
-		height: 250px;
-	}
-	.review-card {
-		font-size: 10px !important;
-	}
-	.card-title {
-		font-size: 10px !important;
-	}
-	.price-line {
-		flex-direction: row;
-		display: flex;
-	}
-	.price-line span {
-		flex-direction: row;
-		display: flex;
-		font-size: 10px;
-	}
 
-	.category-title .active {
-		font-size: 3rem;
-	}
-	.category-section-card {
-		border-radius: 10px;
-		justify-items: center;
-		align-items: center;
-	}
-	.category-section-card h3 {
-		border-radius: 100px;
-		font-size: 15px;
-		margin-left: 10px;
-	}
-	.category-section-card img {
-		width: 200px !important;
-		border-radius: 20px;
-		height: 202px;
-	}
-	.footer {
-		padding: 0 !important;
-		margin: 0 !important;
-	}
-	.product-showcase-text h6 {
-		font-size: 15px !important;
-	}
-
-	.product-showcase-text .price span {
-		flex-direction: row;
-		align-items: end;
-	}
-
-	.product-showcase-text h6 {
-		width: 150px;
-	}
-	.price .regular {
-		text-decoration: line-through;
-		font-size: 1rem !important;
-		margin-left: 10px;
-	}
-	.price .original {
-		font-size: 1.5rem !important;
-	}
-	.home-category-button {
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.home-category-button button {
-		width: 80px;
-	}
-}
 .mobile-menu-category {
 	padding: 0;
 	margin: 0;
@@ -965,4 +823,142 @@ a {
 	}
 }
 
+.side-panel-left {
+	position: absolute;
+	left: 8rem;
+	width: 8rem;
+	object-fit: contain;
+	height: 11rem;
+	margin-top: -20%;
+}
 
+.side-panel-right {
+	position: absolute;
+	width: 8rem;
+	height: 11rem;
+	right: 8rem;
+	object-fit: contain;
+	margin-top: -7%;
+}
+
+.product-all-tiles a {
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.filters-placement {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 15px;
+	background: #fff;
+	border-top: 1px solid #ddd;
+	box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+	z-index: 1050; /* stays above content */
+}
+
+.filters-placement button {
+	flex: 1;
+	margin: 0 5px;
+	font-weight: 500;
+}
+
+@media (max-width: 576px) {
+	.product-cards {
+		height: 250px;
+	}
+	.review-card {
+		font-size: 10px !important;
+	}
+	.card-title {
+		font-size: 10px !important;
+	}
+	.price-line {
+		flex-direction: row;
+		display: flex;
+	}
+	.price-line span {
+		flex-direction: row;
+		display: flex;
+		font-size: 10px;
+	}
+	.category-title .active {
+		font-size: 3rem;
+	}
+	.category-section-card {
+		border-radius: 10px;
+		justify-items: center;
+		align-items: center;
+	}
+	.category-section-card h3 {
+		border-radius: 100px;
+		font-size: 15px;
+		margin-left: 10px;
+	}
+	.category-section-card img {
+		width: 200px !important;
+		border-radius: 20px;
+		height: 202px;
+	}
+	.footer {
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+	.product-showcase-text h6 {
+		font-size: 15px !important;
+	}
+
+	.product-showcase-text .price span {
+		flex-direction: row;
+		align-items: end;
+	}
+
+	.product-showcase-text h6 {
+		width: 150px;
+	}
+	.price .regular {
+		text-decoration: line-through;
+		font-size: 1rem !important;
+		margin-left: 10px;
+	}
+	.price .original {
+		font-size: 1.5rem !important;
+	}
+	.home-category-button {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.home-category-button button {
+		width: 80px;
+	}
+	.side-panel-left {
+		display: none;
+	}
+	.side-panel-right {
+		display: none;
+	}
+	.filter-mobile-menu {
+		display: none !important;
+	}
+
+	.product-tile-title {
+		font-size: 13px;
+	}
+
+	.product-price {
+		font-size: 13px;
+	}
+	.product-price-compare {
+		font-size: 13px;
+	}
+	.review span,
+	i {
+		font-size: 12px;
+	}
+}

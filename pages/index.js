@@ -16,11 +16,6 @@ export default function Home() {
 	return (
 		<Screen>
 			<section>
-				<div className='opening-heading'>
-					<h1>Where desi hearts meets</h1>
-					<h2>global shine</h2>
-				</div>
-
 				<BreadHomeBanner />
 			</section>
 			<section
@@ -48,12 +43,13 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-			<section>
-				<NewCollection />
-			</section>
 
 			<section id='category-section'>
 				<CategorySection />
+			</section>
+
+			<section>
+				<NewCollection />
 			</section>
 
 			<section>
