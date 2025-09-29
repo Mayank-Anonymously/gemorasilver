@@ -6,53 +6,56 @@ import { useEffect } from 'react';
 const categories = [
 	{
 		name: 'Bracelets',
-		count: 35,
+		count: 28,
 		description: 'Explore our handcrafted bracelets made with love.',
-		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
+		images: ['/assets/category/bracelet.png', '/assets/product/bracelet.png'],
 	},
 
 	// New categories with default values
 	{
 		name: 'Rings',
-		count: 10,
+		count: 48,
 		description: 'Explore our beautiful rings collection.',
-		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
+		images: ['/assets/category/rings.png', '/assets/category/rings.png'],
 	},
 	{
 		name: 'Earrings',
-		count: 10,
+		count: 18,
 		description: 'Find earrings to match every style.',
-		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
+		images: ['/assets/category/earrings.png', '/assets/category/earrings.png'],
 	},
 	{
 		name: 'Pendants',
-		count: 10,
+		count: 14,
 		description: 'Elegant pendants for every occasion.',
-		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
+		images: ['/assets/category/pendant.png', '/assets/category/pendant.png'],
 	},
 	{
 		name: 'Mangalsutra',
-		count: 10,
+		count: 0,
 		description: 'Traditional and modern Mangalsutra designs.',
 		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
 	},
 	{
 		name: 'Set',
-		count: 10,
+		count: 13,
 		description: 'Beautiful matching sets of pendants and earrings.',
-		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
+		images: ['/assets/category/set.png', '/assets/category/set.png'],
 	},
 	{
 		name: 'Toe Rings',
-		count: 10,
+		count: 13,
 		description: 'Stylish toe rings for every occasion.',
-		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
+		images: [
+			'/assets/category/toe-rings.png',
+			'/assets/category/toe-rings.png',
+		],
 	},
 	{
 		name: 'Anklets',
 		count: 3,
 		description: 'Stylish toe rings for every occasion.',
-		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
+		images: ['/assets/category/anklet.png', '/assets/category/anklet.png'],
 	},
 ];
 

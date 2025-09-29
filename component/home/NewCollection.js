@@ -80,13 +80,14 @@ const NewColllection = () => {
 													href={`/product/${p.id}`}
 													className='btn  fw-semibold cursor-pointer'
 													style={{
-														backgroundColor: '#ffd6e1',
+														background:
+															'linear-gradient(135deg, #ffd6e1 0%, #ff9ac6 100%)',
 														color: '#000',
 														borderRadius: 8,
 														marginTop: 10,
 													}}
 													onClick={() => handleAddtoCart(p)}>
-													<CiSquarePlus size={20} />
+													Add to cart
 												</Link>
 											</div>
 										</div>
