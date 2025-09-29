@@ -847,27 +847,6 @@ a {
 	align-items: center;
 }
 
-.filters-placement {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 15px;
-	background: #fff;
-	border-top: 1px solid #ddd;
-	box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
-	z-index: 1050; /* stays above content */
-}
-
-.filters-placement button {
-	flex: 1;
-	margin: 0 5px;
-	font-weight: 500;
-}
-
 @media (max-width: 576px) {
 	.product-cards {
 		height: 250px;
@@ -960,5 +939,25 @@ a {
 	.review span,
 	i {
 		font-size: 12px;
+	}
+	.filters-placement {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 10px 15px;
+		background: #fff;
+		border-top: 1px solid #ddd;
+		box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+		z-index: 1050; /* stays above content */
+	}
+
+	.filters-placement button {
+		flex: 1;
+		margin: 0 5px;
+		font-weight: 500;
 	}
 }
