@@ -11,7 +11,6 @@ const categories = [
 		images: ['/assets/category/bracelet.png', '/assets/product/bracelet.png'],
 	},
 
-	// New categories with default values
 	{
 		name: 'Rings',
 		count: 48,
@@ -44,7 +43,10 @@ const categories = [
 		name: 'Necklace Set',
 		count: 13,
 		description: 'Beautiful matching sets of pendants and earrings.',
-		images: ['/assets/category/set.png', '/assets/category/set.png'],
+		images: [
+			'/assets/category/necklace-set.png',
+			'/assets/category/necklace-set.png',
+		],
 	},
 	{
 		name: 'Toe Rings',
