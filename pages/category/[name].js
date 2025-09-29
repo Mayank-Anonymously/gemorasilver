@@ -100,12 +100,8 @@ const ProductByCategory = () => {
 						)}
 					</Col>
 
-					<Col
-						xs={12}
-						sm={4}
-						md={9}
-						lg={4}>
-						<Row className='g-4'>
+					<Col>
+						<Row>
 							{filteredProducts.length > 0 ? (
 								filteredProducts.map((p, index) => (
 									<Col
@@ -114,54 +110,58 @@ const ProductByCategory = () => {
 										sm={4}
 										md={6}
 										lg={4} // full width on mobile, 2-per-row on small, etc.
-										className='d-flex justify-content-center mb-4'>
-										<div className='product-card bg-white shadow-sm border-0 p-2 rounded-3'>
+										className='justify-content-center mb-2'>
+										<div
+											className='product-card bg-white shadow-sm border-0 p-2 rounded-3'
+											style={{
+												display: 'flex',
+												width: '100%',
+												height: '100%',
+												justifyContent: 'space-between',
+												alignItems: 'center',
+												flexDirection: 'column',
+											}}>
 											{/* Product Image */}
-											<div
-												className='justify-content-center align-items-center'
-												style={{
-													height: 140,
-													width: 140,
-													objectFit: 'contain',
-												}}>
-												<img
-													src={p.images[0]}
-													alt={p.title}
-													className='img-fluid'
-													// style={{ objectFit: 'contain', maxHeight: '100%' }}
-												/>
-											</div>
-											{/* Rating */}
-											<div className='d-flex align-items-between justify-content-start mt-3 review'>
-												<span className='fw-bold me-1'>5.0</span>
-												<IoIosStar color={'gold'} />
 
-												<span className='ms-1 text-muted'>| 15</span>
-											</div>
-											{/* Price */}
-											<div className='d-flex justify-content-start mt-2 flex-wrap'>
-												<h5 className='mb-0 fw-bold text-dark me-2 product-price'>
-													₹{p.price.toLocaleString()}
-												</h5>
-												<p className='mb-0 text-muted text-decoration-line-through product-price-compare'>
-													₹{p.compare_at_price.toLocaleString()}
-												</p>
-											</div>
-											{/* Title */}
-											<h6 className=' product-tile-title'>{p.title}</h6>
-											<div className='d-flex product-all-tiles justify-content-between'>
-												<Link
-													href={''}
-													className='btn  fw-semibold cursor-pointer'
-													style={{
-														backgroundColor: '#ffd6e1',
-														color: '#000',
-														borderRadius: 8,
-														marginTop: 10,
-													}}
-													onClick={() => handleAddtoCart(p)}>
-													<CiSquarePlus size={20} />
-												</Link>
+											<img
+												src={p.images[0]}
+												alt={p.title}
+												className='img-fluid'
+											/>
+
+											<div className='w-100'>
+												{/* Rating */}
+												<div className='d-flex align-items-between justify-content-start mt-3 review'>
+													<span className='fw-bold me-1'>5.0</span>
+													<IoIosStar color={'gold'} />
+
+													<span className='ms-1 text-muted'>| 15</span>
+												</div>
+												{/* Price */}
+												<div className='d-flex justify-content-start mt-2 flex-wrap'>
+													<h5 className='mb-0 fw-bold text-dark me-2 product-price'>
+														₹{p.price.toLocaleString()}
+													</h5>
+													<p className='mb-0 text-muted text-decoration-line-through product-price-compare'>
+														₹{p.compare_at_price.toLocaleString()}
+													</p>
+												</div>
+												{/* Title */}
+												<h6 className=' product-tile-title'>{p.title}</h6>
+												<div className='d-flex product-all-tiles justify-content-between'>
+													<Link
+														href={`/product/${p.id}`}
+														className='btn  fw-semibold cursor-pointer'
+														style={{
+															backgroundColor: '#ffd6e1',
+															color: '#000',
+															borderRadius: 8,
+															marginTop: 10,
+														}}
+														onClick={() => handleAddtoCart(p)}>
+														<CiSquarePlus size={20} />
+													</Link>
+												</div>
 											</div>
 										</div>
 									</Col>
