@@ -30,14 +30,18 @@ const categories = [
 		description: 'Elegant pendants for every occasion.',
 		images: ['/assets/category/pendant.png', '/assets/category/pendant.png'],
 	},
+
 	{
-		name: 'Mangalsutra',
-		count: 0,
-		description: 'Traditional and modern Mangalsutra designs.',
-		images: ['/assets/product/ring-tile.jpg', '/assets/product/ring-tile.jpg'],
+		name: 'Jewellery Set',
+		count: 13,
+		description: 'Beautiful matching sets of pendants and earrings.',
+		images: [
+			'/assets/category/jewellery-set.png',
+			'/assets/category/jewellery-set.png',
+		],
 	},
 	{
-		name: 'Set',
+		name: 'Necklace Set',
 		count: 13,
 		description: 'Beautiful matching sets of pendants and earrings.',
 		images: ['/assets/category/set.png', '/assets/category/set.png'],
