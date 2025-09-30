@@ -5,6 +5,7 @@ import { products } from '../data/products';
 import { CiSquarePlus } from 'react-icons/ci';
 import { CiHeart } from 'react-icons/ci';
 import { IoIosStar } from 'react-icons/io';
+
 const NewColllection = () => {
 	return (
 		<div className='home-category'>
@@ -85,8 +86,7 @@ const NewColllection = () => {
 														color: '#000',
 														borderRadius: 8,
 														marginTop: 10,
-													}}
-													onClick={() => handleAddtoCart(p)}>
+													}}>
 													Add to cart
 												</Link>
 											</div>

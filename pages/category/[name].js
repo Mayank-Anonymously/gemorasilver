@@ -15,7 +15,6 @@ import { FaFilter } from 'react-icons/fa';
 
 function useIsMobile(breakpoint = 768) {
 	const [isMobile, setIsMobile] = useState(false);
-
 	useEffect(() => {
 		const update = () => setIsMobile(window.innerWidth < breakpoint);
 		update();
@@ -28,7 +27,6 @@ function useIsMobile(breakpoint = 768) {
 const ProductByCategory = () => {
 	// Extract unique values
 	const categories = ['All', ...new Set(products.map((p) => p.category))];
-	const dietaryNeeds = [...new Set(products.flatMap((p) => p.dietary))];
 
 	// State
 	const [activeCategory, setActiveCategory] = useState('All');
@@ -37,11 +35,7 @@ const ProductByCategory = () => {
 	const [onlyTopRated, setOnlyTopRated] = useState(false);
 	const dispatch = useDispatch();
 	const [showCounter, setShowCounter] = useState(false);
-	const handleAddtoCart = (sampleProduct) => {
-		setShowCounter(true);
 
-		dispatch(addToCart(sampleProduct));
-	};
 	// Filtering logic
 	const filteredProducts = products.filter((p) => {
 		const categoryMatch =
@@ -158,7 +152,7 @@ const ProductByCategory = () => {
 															borderRadius: 8,
 															marginTop: 10,
 														}}
-														onClick={() => handleAddtoCart(p)}>
+														onClick={() => dispatch(addToCart(p))}>
 														<CiSquarePlus size={20} />
 													</Link>
 												</div>

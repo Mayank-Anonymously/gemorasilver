@@ -24,6 +24,7 @@ export const cartSlice = createSlice({
 		},
 		incrementQty: (state, action) => {
 			const item = state.items.find((i) => i.id === action.payload);
+			console.log(item);
 			if (item) item.quantity += 1;
 		},
 		decrementQty: (state, action) => {
@@ -38,6 +39,20 @@ export const cartSlice = createSlice({
 		clearCart: (state) => {
 			state.items = [];
 		},
+		buyNow: (state, action) => {
+			// Save product as single checkout item
+			const { product, quantity, size } = action.payload;
+			state.items = [
+				{
+					...product,
+					quantity: quantity || 1,
+					size: size || '',
+				},
+			];
+		},
+		clearBuyNow: (state) => {
+			state.buyNowItem = null;
+		},
 	},
 });
 
@@ -47,6 +62,8 @@ export const {
 	incrementQty,
 	decrementQty,
 	clearCart,
+	buyNow,
+	clearBuyNow,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

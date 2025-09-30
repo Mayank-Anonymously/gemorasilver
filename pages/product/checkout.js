@@ -2,13 +2,14 @@ import FooterInfo from '@/component/common/FooterInfo';
 import Screen from '@/component/common/Screen';
 import RelatedProducts from '@/component/home/RelatedProducts';
 import Testimonials from '@/component/home/testimonials';
+import { decrementQty, incrementQty } from '@/component/redux/slices/cartSlice';
 import React, { useState } from 'react';
 import { Button, Card, Form, Row, Col } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const CheckoutPage = () => {
 	const cartItems = useSelector((state) => state.cart.items);
-
+	const dispatch = useDispatch();
 	const [coupon, setCoupon] = useState('');
 	const [discount, setDiscount] = useState(0);
 
@@ -43,6 +44,8 @@ const CheckoutPage = () => {
 	);
 	const grandTotal = subtotal - subtotal * discount;
 
+	console.log(cartItems);
+
 	return (
 		<Screen>
 			<div className='container py-4'>
@@ -53,63 +56,66 @@ const CheckoutPage = () => {
 						{cartItems.length === 0 ? (
 							<p className='small'>Your cart is empty.</p>
 						) : (
-							cartItems.map((item) => (
-								<Card
-									className='mb-2'
-									key={item.id}>
-									<Card.Body className='d-flex justify-content-between align-items-center py-2'>
-										{/* Image + Details */}
-										<div className='d-flex align-items-center gap-2'>
-											<img
-												src={item.images || '/images/products/default.jpg'} // add image in your data
-												alt={item.name}
-												style={{
-													width: '50px',
-													height: '50px',
-													objectFit: 'cover',
-													borderRadius: '4px',
-												}}
-											/>
-											<div>
-												<h6 className='mb-1'>{item.name}</h6>
-												<small className='text-muted'>
-													₹{item.price.toFixed(2)}
-												</small>
+							cartItems.map((item) => {
+								console.log(item.id);
+								return (
+									<Card
+										className='mb-2'
+										key={item.id}>
+										<Card.Body className='d-flex justify-content-between align-items-center py-2'>
+											{/* Image + Details */}
+											<div className='d-flex align-items-center gap-2'>
+												<img
+													src={item.images || '/images/products/default.jpg'} // add image in your data
+													alt={item.name}
+													style={{
+														width: '50px',
+														height: '50px',
+														objectFit: 'cover',
+														borderRadius: '4px',
+													}}
+												/>
+												<div>
+													<h6 className='mb-1'>{item.name}</h6>
+													<small className='text-muted'>
+														₹{item.price.toFixed(2)}
+													</small>
+												</div>
 											</div>
-										</div>
 
-										{/* Quantity Controls */}
-										<div className='d-flex align-items-center gap-1'>
+											{/* Quantity Controls */}
+											<div className='d-flex align-items-center gap-1'>
+												<Button
+													variant='bg-none'
+													size='sm'
+													onClick={() => dispatch(decrementQty(item.id))}>
+													-
+												</Button>
+												<small>{item.quantity}</small>
+												<Button
+													variant='bg-none'
+													size='sm'
+													onClick={() => dispatch(incrementQty(item.id))}>
+													+
+												</Button>
+											</div>
+
+											{/* Total */}
+											<small className='fw-bold'>
+												₹{(item.price * item.quantity).toFixed(2)}
+											</small>
+
+											{/* Remove */}
 											<Button
-												variant='outline-secondary'
+												variant='danger'
 												size='sm'
-												onClick={() => updateQuantity(item.id, -1)}>
-												-
+												onClick={() => removeItem(item.id)}>
+												✕
 											</Button>
-											<small>{item.quantity}</small>
-											<Button
-												variant='outline-secondary'
-												size='sm'
-												onClick={() => updateQuantity(item.id, 1)}>
-												+
-											</Button>
-										</div>
-
-										{/* Total */}
-										<small className='fw-bold'>
-											₹{(item.price * item.quantity).toFixed(2)}
-										</small>
-
-										{/* Remove */}
-										<Button
-											variant='danger'
-											size='sm'
-											onClick={() => removeItem(item.id)}>
-											✕
-										</Button>
-									</Card.Body>
-								</Card>
-							))
+										</Card.Body>
+									</Card>
+								);
+							})
 						)}
 						{cartItems.length > 0 && (
 							<div className='d-flex justify-content-between mt-2'>

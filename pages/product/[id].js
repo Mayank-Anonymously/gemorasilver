@@ -1,33 +1,16 @@
 import ProductImagesGallery from '@/component/product/Product';
-import { Row, Col, Accordion, Card } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import Screen from '@/component/common/Screen';
-import TrendingProductSection from '@/component/home/TrendingProduct';
 import Head from 'next/head';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 import { products } from '@/component/data/products';
-
-const renderStars = (rating) => {
-	const stars = [];
-	for (let i = 1; i <= 5; i++) {
-		stars.push(
-			i <= rating ? (
-				<FaStar
-					key={i}
-					style={{ color: '#FFD700', marginRight: '2px' }}
-				/>
-			) : (
-				<FaRegStar
-					key={i}
-					style={{ color: '#FFD700', marginRight: '2px' }}
-				/>
-			)
-		);
-	}
-	return stars;
-};
+import { addToCart, buyNow } from '@/component/redux/slices/cartSlice';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/navigation';
 
 export default function ProductPage({ product }) {
-	console.log(product);
+	const dispatch = useDispatch();
+	const router = useRouter();
 	if (!product) return <p>Product not found</p>;
 
 	return (
@@ -69,20 +52,42 @@ export default function ProductPage({ product }) {
 						<h5 className='mt-4'>Description</h5>
 						<p>{product.description}</p>
 
-						<h5 className='mb-3'>Variants</h5>
+						{/* ✅ Specifications Section */}
+						<h5 className='mt-4'>Specifications</h5>
 						<ul>
-							{product.variants.map((v) => (
+							<li>Material: {product.material || 'Cotton Blend'}</li>
+							<li>Color: {product.color || 'Black'}</li>
+							<li>Fit: {product.fit || 'Regular Fit'}</li>
+							<li>Care: {product.care || 'Machine Wash'}</li>
+							<li>Country of Origin: {product.origin || 'India'}</li>
+						</ul>
+
+						<ul>
+							{/* If you want to display variants dynamically */}
+							{/* {product.variants.map((v) => (
 								<li key={v.variant_id}>
 									{v.title} - ₹{v.price} ({v.inventory_quantity} available)
 								</li>
-							))}
+							))} */}
 						</ul>
+
+						<div className='product-detail-page-button'>
+							<button
+								className='btn add-to-cart'
+								onClick={() => dispatch(addToCart(product))}>
+								Add to Cart
+							</button>
+							<button
+								className='btn buy-now'
+								onClick={() => {
+									router.push('/product/checkout');
+									dispatch(buyNow({ product }));
+								}}>
+								Buy Now
+							</button>
+						</div>
 					</Col>
 				</Row>
-
-				{/* <section className='mt-5'>
-					<TrendingProductSection />
-				</section> */}
 			</div>
 		</Screen>
 	);
