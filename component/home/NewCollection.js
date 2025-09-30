@@ -49,8 +49,7 @@ const NewColllection = () => {
 											alignItems: 'center',
 											flexDirection: 'column',
 										}}>
-										{/* Product Image */}
-
+										
 										<img
 											src={p.images[0]}
 											alt={p.title}
@@ -58,14 +57,13 @@ const NewColllection = () => {
 										/>
 
 										<div className='w-100'>
-											{/* Rating */}
 											<div className='d-flex align-items-between justify-content-start mt-3 review'>
 												<span className='fw-bold me-1'>5.0</span>
 												<IoIosStar color={'gold'} />
 
 												<span className='ms-1 text-muted'>| 15</span>
 											</div>
-											{/* Price */}
+
 											<div className='d-flex justify-content-start mt-2 flex-wrap'>
 												<h5 className='mb-0 fw-bold text-dark me-2 product-price'>
 													₹{p.price.toLocaleString()}
@@ -74,8 +72,8 @@ const NewColllection = () => {
 													₹{p.compare_at_price.toLocaleString()}
 												</p>
 											</div>
-											{/* Title */}
-											<h6 className=' product-tile-title'>{p.title}</h6>
+
+											<h6 className='product-tile-title'>{p.title}</h6>
 											<div className='d-flex product-all-tiles justify-content-between'>
 												<Link
 													href={`/product/${p.id}`}

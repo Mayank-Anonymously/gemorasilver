@@ -40,7 +40,7 @@ const PromoBannerSection = () => {
 						<h2 className='fw-bold'>
 							Rings
 							<br />
-							Collections
+							Online
 						</h2>
 						<div className='text-center mt-4'>
 							<Button

@@ -7,33 +7,33 @@ const journalData = [
 		id: 1,
 		category: 'EDUCATION',
 		title: 'Ring Size Scale',
-		author: 'By Luniva Sweetman',
-		date: 'Mon, Apr 21, 2025',
-		image: '/assets/product/ring-tile.jpg',
+		author: '-By Luniva',
+		date: '',
+		image: '/assets/journal/journal.png',
 	},
 	{
 		id: 2,
 		category: 'WEDDING',
 		title: 'Cocktail design',
-		author: 'By Luniva Sweetman',
-		date: 'Fri, Ju 11, 2025',
-		image: '/assets/product/ring-tile.jpg',
+		author: '-By Luniva',
+		date: '',
+		image: '/assets/journal/journal.png',
 	},
 	{
 		id: 3,
 		category: 'NEW',
 		title: 'Working professions',
-		author: 'By Luniva Sweetman',
-		date: 'Sat, Jul 14, 2025',
-		image: '/assets/product/ring-tile.jpg',
+		author: '-By Luniva',
+		date: '',
+		image: '/assets/journal/journal.png',
 	},
 	{
 		id: 4,
 		category: 'EDUCATION',
 		title: 'Party collection',
-		author: 'By Luniva Sweetman',
-		date: 'Fri, Sep 06, 2025',
-		image: '/assets/product/ring-tile.jpg',
+		author: '-By Luniva',
+		date: '',
+		image: '/assets/journal/journal.png',
 	},
 ];
 
@@ -65,7 +65,11 @@ export default function ChupiJournal() {
 										<small className='text-muted'>{item.date}</small>
 									</div>
 
-									<h5 className='mt-2 mb-1 journal-title'>{item.title}</h5>
+									<h5
+										style={{ fontFamily: 'serif;' }}
+										className='mt-2 mb-1 journal-title'>
+										{item.title}
+									</h5>
 
 									{isActive && (
 										<div className='mt-2'>
