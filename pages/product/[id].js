@@ -7,10 +7,12 @@ import { products } from '@/component/data/products';
 import { addToCart, buyNow } from '@/component/redux/slices/cartSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
+import { addToCartApi } from '@/component/redux/thunk/cartThunkApi';
 
 export default function ProductPage({ product }) {
 	const dispatch = useDispatch();
 	const router = useRouter();
+
 	if (!product) return <p>Product not found</p>;
 
 	return (
@@ -74,7 +76,7 @@ export default function ProductPage({ product }) {
 						<div className='product-detail-page-button'>
 							<button
 								className='btn add-to-cart'
-								onClick={() => dispatch(addToCart(product))}>
+								onClick={() => dispatch(addToCartApi(product, userId))}>
 								Add to Cart
 							</button>
 							<button

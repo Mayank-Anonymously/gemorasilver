@@ -6,6 +6,8 @@ const privacy = () => {
 	return (
 		<Screen>
 			<div
+				className='privacy-text'
+				style={{ background: '#fff4f4', padding: 44 }}
 				dangerouslySetInnerHTML={{
 					__html: `<div class="container mt-5">
     <div>
@@ -18,10 +20,10 @@ const privacy = () => {
         <p>This Privacy Policy explains how we collect, use, and disclose information when you use our services, and it describes your privacy rights. By using our Service you agree to the collection and use of your information in accordance with this policy.</p>
       </section>
 
-      <h2>Interpretation &amp; Definitions</h2>
+      <b>Interpretation &amp; Definitions</b>
       <p><strong>Interpretation:</strong> Words with initial capital letters have specific meanings defined below. These definitions apply whether the terms appear in singular or plural form.</p>
 
-      <h2>Definitions</h2>
+      <b>Definitions</b>
       <p>For the purposes of this policy:</p>
       <ul>
         <li><strong>Account</strong>: a unique profile created for you to access our Service.</li>
@@ -39,7 +41,7 @@ const privacy = () => {
         <li><strong>You</strong>: the individual or entity using the Service.</li>
       </ul>
 
-      <h2>Collection &amp; Use of Data</h2>
+      <b>Collection &amp; Use of Data</b>
       <h3>Types of Data Collected</h3>
       <p><strong>Personal Data:</strong> We may request information such as your name, email address, phone number, and postal address when you use our Service.</p>
 
@@ -56,7 +58,7 @@ const privacy = () => {
       </ul>
       <p>See our Cookies Policy for more details.</p>
 
-      <h2>How We Use Personal Data</h2>
+      <b>How We Use Personal Data</b>
       <p>We may use your information to:</p>
       <ul>
         <li>Provide, operate, and monitor the Service.</li>
@@ -69,7 +71,7 @@ const privacy = () => {
         <li>Perform analytics and improve our offerings.</li>
       </ul>
 
-      <h2>When We Share Your Data</h2>
+      <b>When We Share Your Data</b>
       <p>We may share your information with:</p>
       <ul>
         <li><strong>Service Providers</strong> for analytics, communications, or operational needs.</li>
@@ -79,31 +81,31 @@ const privacy = () => {
         <li>With your consent for other specific purposes.</li>
       </ul>
 
-      <h2>Retention</h2>
+      <b>Retention</b>
       <p>We retain Personal Data only as long as necessary for the purposes described here, to comply with legal obligations, to resolve disputes, and to enforce agreements. Usage Data is kept for shorter periods unless needed for security or legal reasons.</p>
 
-      <h2>Data Transfers</h2>
+      <b>Data Transfers</b>
       <p>Your information may be processed and stored outside your jurisdiction. When transfers occur, we will take reasonable steps to ensure appropriate protections are in place and that data is handled securely and lawfully.</p>
 
-      <h2>Data Deletion</h2>
+      <b>Data Deletion</b>
       <p>You may delete or request deletion of Personal Data by editing your account settings (if available) or contacting us. Certain information may remain if retention is required by law.</p>
 
-      <h2>Disclosure</h2>
+      <b>Disclosure</b>
       <p>We may disclose Personal Data in connection with business transactions (merger, acquisition, sale), to comply with legal requests, to protect rights or safety, or to defend legal claims.</p>
 
-      <h2>Security</h2>
+      <b>Security</b>
       <p>We implement commercially reasonable measures to protect your information, but no online transmission or storage method is completely secure. We cannot guarantee absolute security.</p>
 
-      <h2>Children’s Privacy</h2>
+      <b>Children’s Privacy</b>
       <p>Our Service is not intended for children under 13. We do not knowingly collect personal data from children under 13. If we learn that we have collected information from a child under 13, we will delete it promptly.</p>
 
-      <h2>Links to Other Sites</h2>
+      <b>Links to Other Sites</b>
       <p>Our Service may contain links to third-party websites. We are not responsible for their content or privacy practices; please review their privacy policies when leaving our site.</p>
 
-      <h2>Changes to This Policy</h2>
+      <b>Changes to This Policy</b>
       <p>We may update this Privacy Policy occasionally. We will post the updated policy here and notify you via email and/or a prominent notice before changes take effect. Review this page periodically for updates.</p>
 
-      <h2>Contact Us</h2>
+      <b>Contact Us</b>
       <p>If you have questions about this Privacy Policy, please contact us at:</p>
       <p><strong>Luniva</strong><br>
          F-780, kamla nagar, Agra, Uttar Pradesh, India.</p>
