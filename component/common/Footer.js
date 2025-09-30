@@ -49,7 +49,7 @@ const Footer = () => {
 							src='/assets/logo.png'
 							className='img-fluid footer-logo'
 						/>
-						<p>
+						<p style={{ fontSize: '15px' }}>
 							Discover timeless elegance with our hand-crafted jewellery
 							collection. From everyday essentials to statement pieces, we bring
 							you designs that blend luxury, quality, and affordability —
