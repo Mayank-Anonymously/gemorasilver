@@ -7,7 +7,7 @@ import { Container } from 'react-bootstrap';
 const about = () => {
 	return (
 		<Screen>
-			<Container className='p-5'>
+			<Container className='p-5 mt-5'>
 				<h1>About Us</h1>
 				<p>
 					At Luniva, we believe jewellery is more than an accessory — it’s an

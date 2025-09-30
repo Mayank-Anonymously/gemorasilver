@@ -58,7 +58,10 @@ const Shipping = () => {
 		<Screen>
 			<Container className='p-5'>
 				<h1>Shipping Policy</h1>
-				<div dangerouslySetInnerHTML={{ __html: html }} />
+				<div
+					dangerouslySetInnerHTML={{ __html: html }}
+					className='mt-5'
+				/>
 			</Container>
 		</Screen>
 	);

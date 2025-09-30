@@ -6,6 +6,7 @@ const terms = () => {
 	return (
 		<Screen>
 			<div
+				className='mt-5'
 				dangerouslySetInnerHTML={{
 					__html: `<!DOCTYPE html>
 

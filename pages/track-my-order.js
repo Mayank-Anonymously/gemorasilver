@@ -42,7 +42,7 @@ export default function TrackOrder() {
 
 	return (
 		<Screen>
-			<section className='py-5 bg-light'>
+			<section className='py-5 '>
 				<Container>
 					{/* Page Heading */}
 					<Row className='mb-4'>

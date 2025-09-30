@@ -41,7 +41,10 @@ const Refund = () => {
 			<Container>
 				<h1>Return and Refund</h1>
 
-				<div dangerouslySetInnerHTML={{ __html: html }} />
+				<div
+					dangerouslySetInnerHTML={{ __html: html }}
+					className='mt-5'
+				/>
 			</Container>
 		</Screen>
 	);

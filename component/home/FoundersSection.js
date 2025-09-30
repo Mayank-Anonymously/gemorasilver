@@ -6,19 +6,8 @@ import Image from 'next/image';
 
 const testimonials = [
 	{
-		text: `Delighted with my <em>Chupi engagement ring</em> so went back today to select my wedding ring. Nancy was <em>lovely to deal with</em>, <em>very friendly and patient</em> while I tried on lots of different styles before picking my <em>dream ring</em>.`,
-		name: 'Peter R.',
-		role: 'Customers',
-		images: ['/user1.jpg', '/user2.jpg', '/user3.jpg'], // replace with actual image paths
-	},
-	{
-		text: `Delighted with my <em>Chupi engagement ring</em> so went back today to select my wedding ring. Nancy was <em>lovely to deal with</em>, <em>very friendly and patient</em> while I tried on lots of different styles before picking my <em>dream ring</em>.`,
-		name: 'Peter R.',
-		role: 'Customers',
-		images: ['/user1.jpg', '/user2.jpg', '/user3.jpg'], // replace with actual image paths
-	},
-	{
-		text: `Delighted with my <em>Chupi engagement ring</em> so went back today to select my wedding ring. Nancy was <em>lovely to deal with</em>, <em>very friendly and patient</em> while I tried on lots of different styles before picking my <em>dream ring</em>.`,
+		text: `We started Luniva Jewels because we wanted everyday jewelry that felt meaningful — simple, light, and made with real 925 silver. The name comes from Luna and Shiva, blending beauty with tradition. For us, it’s all about creating affordable pieces that feel personal and true. Now you know where to shop next..`,
+		// text: `Delighted with my <em>Chupi engagement ring</em> so went back today to select my wedding ring. Nancy was <em>lovely to deal with</em>, <em>very friendly and patient</em> while I tried on lots of different styles before picking my <em>dream ring</em>.`,
 		name: 'Peter R.',
 		role: 'Customers',
 		images: ['/user1.jpg', '/user2.jpg', '/user3.jpg'], // replace with actual image paths
@@ -55,8 +44,6 @@ export default function TestimonialCarousel() {
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		arrows: true,
-		prevArrow: <PrevArrow />,
-		nextArrow: <NextArrow />,
 	};
 
 	return (
@@ -71,7 +58,7 @@ export default function TestimonialCarousel() {
 								<div
 									key={i}
 									className='founder-card'>
-									<div className='founder-stars'>★★★★★</div>
+									{/* <div className='founder-stars'>★★★★★</div> */}
 									<p
 										className='founder-text'
 										dangerouslySetInnerHTML={{ __html: t.text }}></p>
@@ -92,15 +79,15 @@ export default function TestimonialCarousel() {
 												</div>
 											))}
 										</div>
-										<div className='founder-userInfo'>
+										{/* <div className='founder-userInfo'>
 											<h5>{t.name}</h5>
 											<p>{t.role}</p>
-										</div>
+										</div> */}
 									</div>
 
-									<button className='btn btn-dark rounded-pill px-4 py-1'>
+									{/* <button className='btn btn-dark rounded-pill px-4 py-1'>
 										See More
-									</button>
+									</button> */}
 								</div>
 							))}
 						</Slider>

@@ -7,7 +7,7 @@ const privacy = () => {
 		<Screen>
 			<div
 				dangerouslySetInnerHTML={{
-					__html: `<div class="container">
+					__html: `<div class="container mt-5">
     <div>
       <header>
         <h1 id="policy-title">Privacy Policy</h1>

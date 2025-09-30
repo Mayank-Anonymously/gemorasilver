@@ -7,7 +7,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 export default function ContactUs() {
 	return (
 		<Screen>
-			<section className='py-5 bg-light'>
+			<section className='py-5 mt-5'>
 				<Container>
 					{/* Page Heading */}
 					<Row className='mb-5'>
