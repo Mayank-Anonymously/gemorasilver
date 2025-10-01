@@ -59,7 +59,7 @@ const Shipping = () => {
 			<Container
 				fluid
 				className='mt-5'
-				style={{ background: '#fff4f4', padding: 44 }}>
+				style={{ background: '#fff4f4', padding: 44, marginTop: 50 }}>
 				<h1>Shipping Policy</h1>
 				<div dangerouslySetInnerHTML={{ __html: html }} />
 			</Container>

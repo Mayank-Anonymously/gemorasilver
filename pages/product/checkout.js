@@ -3,6 +3,10 @@ import Screen from '@/component/common/Screen';
 import RelatedProducts from '@/component/home/RelatedProducts';
 import Testimonials from '@/component/home/testimonials';
 import { decrementQty, incrementQty } from '@/component/redux/slices/cartSlice';
+import {
+	updateGrandTotal,
+	updateUserId,
+} from '@/component/redux/slices/orderSlice';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { Button, Card, Form, Row, Col } from 'react-bootstrap';
@@ -10,10 +14,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const CheckoutPage = () => {
 	const cartItems = useSelector((state) => state.cart.items);
+
 	const dispatch = useDispatch();
 	const [coupon, setCoupon] = useState('');
 	const [discount, setDiscount] = useState(0);
 	const router = useRouter();
+
 	const updateQuantity = (id, amount) => {
 		setCart((prev) =>
 			prev.map((item) =>
@@ -44,8 +50,6 @@ const CheckoutPage = () => {
 		0
 	);
 	const grandTotal = subtotal - subtotal * discount;
-
-	console.log(cartItems);
 
 	return (
 		<Screen>
@@ -126,6 +130,7 @@ const CheckoutPage = () => {
 									onClick={clearCart}>
 									Clear Cart
 								</Button>
+
 								<Button
 									variant='outline-primary'
 									size='sm'>
@@ -180,7 +185,11 @@ const CheckoutPage = () => {
 										Update Cart
 									</Button>
 									<Button
-										onClick={() => router.push('/product/proceed-to-payment')}
+										onClick={() => {
+											dispatch(updateUserId(grandTotal.toFixed(2)));
+											dispatch(updateGrandTotal(grandTotal.toFixed(2)));
+											router.push('/product/proceed-to-payment');
+										}}
 										variant='warning'
 										className='w-50'
 										size='sm'>

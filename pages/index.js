@@ -11,8 +11,10 @@ import TrendingProductSection from '@/component/home/TrendingProduct';
 import PreciouslyCrafted from '@/component/home/HandmadeCollection';
 import NewCollection from '@/component/home/NewCollection';
 import TestimonialCarousel from '@/component/home/FoundersSection';
+import axios from 'axios';
+import { HOST } from '@/component/apibaseurl';
 
-export default function Home() {
+export default function Home({ products }) {
 	return (
 		<Screen>
 			<section>
@@ -49,7 +51,7 @@ export default function Home() {
 			</section>
 
 			<section>
-				<NewCollection />
+				<NewCollection products={products} />
 			</section>
 
 			<section>
@@ -65,4 +67,21 @@ export default function Home() {
 			</section>
 		</Screen>
 	);
+}
+export async function getServerSideProps() {
+	try {
+		const res = await axios.get(`${HOST}product/getAllProducts`);
+		return {
+			props: {
+				products: res.data.response || [], // adjust according to your API response
+			},
+		};
+	} catch (error) {
+		console.error('Error fetching products:', error.message);
+		return {
+			props: {
+				products: [],
+			},
+		};
+	}
 }

@@ -2,6 +2,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import counterReducer from './slices/counterSlice';
 import cartReducer from './slices/cartSlice';
+import authReducer from './slices/authSlices';
 
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage
 import { persistReducer, persistStore } from 'redux-persist';
@@ -11,6 +12,7 @@ import thunk from 'redux-thunk';
 const rootReducer = combineReducers({
 	counter: counterReducer,
 	cart: cartReducer,
+	auth: authReducer,
 });
 
 // Redux Persist config

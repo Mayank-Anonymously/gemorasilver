@@ -7,7 +7,7 @@ const privacy = () => {
 		<Screen>
 			<div
 				className='privacy-text'
-				style={{ background: '#fff4f4', padding: 44 }}
+				style={{ background: '#fff4f4', padding: 44, marginTop: 50 }}
 				dangerouslySetInnerHTML={{
 					__html: `<div class="container mt-5">
     <div>

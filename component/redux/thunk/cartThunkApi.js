@@ -1,24 +1,34 @@
 import axios from 'axios';
+import { addToCart } from '../slices/cartSlice';
+import { HOST } from '@/component/apibaseurl';
 
-export const addToCartApi =
-	(dispatch) =>
-	async (userId, product, quantity = 1) => {
-		try {
-			const response = await axios.post('/cart/getAllCartItems', {
-				userId,
-				product,
-				quantity,
-			});
-			console.log(response.data);
-			// return response.data; // e.g., updated cart
-		} catch (error) {
-			console.error(
-				'Error adding to cart:',
-				error.response?.data || error.message
-			);
-			throw error;
-		}
-	};
+export const addToCartApi = async (userId, product, dispatch) => {
+	try {
+		const response = await axios.post(`${HOST}cart/addItemsToCart`, {
+			userId,
+			quantity: product.quantity,
+			title: product.title,
+			description: product.description,
+			price: product.price,
+			priceSale: product.priceSale,
+			image: product.image,
+			categoryId: product.categoryId,
+			categoryName: product.categoryName,
+			productSku: product.productSku,
+			productCode: product.productCode,
+			inStock: product.inStock,
+			_id: product._id,
+		});
+		dispatch(addToCart(response.data.response));
+		return response.data;
+	} catch (error) {
+		console.error(
+			'Error adding to cart:',
+			error.response?.data || error.message
+		);
+		throw error;
+	}
+};
 // export const removeFromCart = async (userId, productId) => {
 // 	try {
 // 		const response = await axios.post('/api/cart/remove', {
@@ -57,6 +67,22 @@ export const fetchCart = async (userId) => {
 	} catch (error) {
 		console.error(
 			'Error fetching cart:',
+			error.response?.data || error.message
+		);
+		throw error;
+	}
+};
+
+export const removeFromCartApi = async (id, userId) => {
+	try {
+		const response = await axios.put(
+			`${HOST}cart/removeItemFromCart/${userId}/${id}`
+		);
+		console.log('Removed:', response.data);
+		return response.data;
+	} catch (error) {
+		console.error(
+			'Error removing from cart:',
 			error.response?.data || error.message
 		);
 		throw error;

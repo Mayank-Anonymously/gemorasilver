@@ -16,6 +16,7 @@ const Header = () => {
 	const [showSideMenu, setShowSideMenu] = useState(false);
 	const cartItems = useSelector((state) => state.cart.items);
 	const handleShow = () => setShow(true);
+	const auth = useSelector((state) => state.auth);
 
 	return (
 		<>

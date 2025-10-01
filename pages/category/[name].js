@@ -2,16 +2,18 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card, Nav } from 'react-bootstrap';
 import Screen from '@/component/common/Screen';
-import { products } from '@/component/data/products';
 import Link from 'next/link';
 import { IoIosStar } from 'react-icons/io';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '@/component/redux/slices/cartSlice';
 import { FaRegEye } from 'react-icons/fa6';
 import FiltersSidebar from '@/component/Filterr/Sidebar';
 import { CiHeart, CiSquarePlus } from 'react-icons/ci';
 import FilterOffCanvas from '@/component/Filterr/Offcanvasfilter';
 import { FaFilter } from 'react-icons/fa';
+import { addToCartApi } from '@/component/redux/thunk/cartThunkApi';
+import axios from 'axios';
+import { HOST } from '@/component/apibaseurl';
 
 function useIsMobile(breakpoint = 768) {
 	const [isMobile, setIsMobile] = useState(false);
@@ -24,10 +26,11 @@ function useIsMobile(breakpoint = 768) {
 
 	return isMobile;
 }
-const ProductByCategory = () => {
-	// Extract unique values
-	const categories = ['All', ...new Set(products.map((p) => p.category))];
-
+const ProductByCategory = ({ products }) => {
+	console.log('products::::', products);
+	const categories = ['All', ...new Set(products.map((p) => p.categoryName))];
+	const { user } = useSelector((state) => state.auth);
+	const userId = user._id;
 	// State
 	const [activeCategory, setActiveCategory] = useState('All');
 	const [selectedDietary, setSelectedDietary] = useState([]);
@@ -118,7 +121,7 @@ const ProductByCategory = () => {
 											{/* Product Image */}
 
 											<img
-												src={p.images[0]}
+												src={`${HOST}resources/${p.image}`}
 												alt={p.title}
 												className='img-fluid'
 											/>
@@ -134,10 +137,10 @@ const ProductByCategory = () => {
 												{/* Price */}
 												<div className='d-flex justify-content-start mt-2 flex-wrap'>
 													<h5 className='mb-0 fw-bold text-dark me-2 product-price'>
-														₹{p.price.toLocaleString()}
+														₹{p.priceSale}
 													</h5>
 													<p className='mb-0 text-muted text-decoration-line-through product-price-compare'>
-														₹{p.compare_at_price.toLocaleString()}
+														₹{p.price}
 													</p>
 												</div>
 												{/* Title */}
@@ -152,8 +155,11 @@ const ProductByCategory = () => {
 															borderRadius: 8,
 															marginTop: 10,
 														}}
-														onClick={() => dispatch(addToCart(p))}>
-														<CiSquarePlus size={20} />
+														onClick={() => {
+															dispatch(addToCart(p));
+															addToCartApi(userId, p, dispatch);
+														}}>
+														Add to Cart
 													</Link>
 												</div>
 											</div>
@@ -181,3 +187,21 @@ const ProductByCategory = () => {
 };
 
 export default ProductByCategory;
+
+export async function getServerSideProps() {
+	try {
+		const res = await axios.get(`${HOST}product/getAllProducts`);
+		return {
+			props: {
+				products: res.data.response || [], // adjust according to your API response
+			},
+		};
+	} catch (error) {
+		console.error('Error fetching products:', error.message);
+		return {
+			props: {
+				products: [],
+			},
+		};
+	}
+}

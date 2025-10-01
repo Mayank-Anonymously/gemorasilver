@@ -42,7 +42,7 @@ const Refund = () => {
 				<h1 className='mt-5'>Return and Refund</h1>
 				<div
 					dangerouslySetInnerHTML={{ __html: html }}
-					style={{ background: '#fff4f4', padding: 44 }}
+					style={{ background: '#fff4f4', padding: 44, marginTop: 50 }}
 				/>
 			</Container>
 		</Screen>

@@ -7,12 +7,12 @@ const terms = () => {
 		<Screen>
 			<div
 				className='mt-5'
-				style={{ background: '#fff4f4', padding: 44 }}
+				style={{ background: '#fff4f4', padding: 44, marginTop: 50 }}
 				dangerouslySetInnerHTML={{
 					__html: `<!DOCTYPE html>
 
                     <div class="container p-3">
-  <h1>Terms & Conditions – Luniva</h1>
+  <h5>Terms & Conditions – Luniva</h5>
 
   <p>Welcome to <strong>lunivajewels.com</strong>!</p>
   <p>These Terms and Conditions outline the rules and regulations for the use of Luniva’s website, located at <a href="https://lunivajewels.com">https://lunivajewels.com</a>.</p>

@@ -9,11 +9,13 @@ import {
 	incrementQty,
 	removeFromCart,
 } from '@/component/redux/slices/cartSlice';
+import { removeFromCartApi } from '@/component/redux/thunk/cartThunkApi';
+import { HOST } from '@/component/apibaseurl';
 
 const CartOffcanvas = ({ show, handleClose }) => {
 	const dispatch = useDispatch();
 	const cartItems = useSelector((state) => state.cart.items);
-
+	const { user } = useSelector((state) => state.auth);
 	const subtotal = cartItems.reduce(
 		(acc, item) => acc + item.price * (item.quantity || 1),
 		0
@@ -44,7 +46,7 @@ const CartOffcanvas = ({ show, handleClose }) => {
 								key={idx}
 								className='d-flex align-items-center mb-3 border-bottom pb-2'>
 								<Image
-									src={item.images}
+									src={`${HOST}resources/${item.image}`}
 									rounded
 									width={60}
 									height={60}
@@ -55,13 +57,13 @@ const CartOffcanvas = ({ show, handleClose }) => {
 									<div className='d-flex justify-content-between align-items-center'>
 										<div className='d-flex align-items-center gap-2'>
 											<button
-												className='btn btn-outline-dark btn-sm rounded-circle'
+												className='btn  btn-sm rounded-circle'
 												onClick={() => dispatch(decrementQty(item.id))}>
 												−
 											</button>
 											<span className='fw-bold'>{item.quantity}</span>
 											<button
-												className='btn btn-outline-dark btn-sm rounded-circle'
+												className='btn  btn-sm rounded-circle'
 												onClick={() => dispatch(incrementQty(item.id))}>
 												+
 											</button>
@@ -74,7 +76,10 @@ const CartOffcanvas = ({ show, handleClose }) => {
 								<Button
 									variant='link'
 									className='text-danger p-0 ms-2'
-									onClick={() => dispatch(removeFromCart(item.id))}>
+									onClick={() => {
+										dispatch(removeFromCart(item.id));
+										removeFromCartApi(item.id, user._id);
+									}}>
 									<FaTrashAlt size={16} />
 								</Button>
 							</div>

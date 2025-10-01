@@ -6,10 +6,10 @@ const PromoBannerSection = () => {
 		<Container
 			fluid
 			className='px-0 promo-banner-section'>
-			<Row className='g-0'>
+			<Row className='g-1'>
 				<Col
 					md={6}
-					className='promo-left d-flex align-items-center px-5 text-center'>
+					className='promo-left d-flex justify-content-center   px-5 text-center'>
 					<div className='promo-content text-dark'>
 						<small className='text-muted'>Luniva</small>
 						<h2 className='fw-bold'>
@@ -21,7 +21,7 @@ const PromoBannerSection = () => {
 							<Button
 								variant='outline'
 								style={{
-									backgroundColor: '#c37b5e',
+									backgroundColor: '#4c1d1d',
 									color: 'white',
 									border: 'none',
 									padding: '8px 20px',
@@ -34,7 +34,7 @@ const PromoBannerSection = () => {
 				</Col>
 				<Col
 					md={6}
-					className='promo-right d-flex align-items-center justify-content-center text-center'>
+					className='promo-right d-flex  justify-content-center text-center rounded-sm'>
 					<div className='promo-content text-dark'>
 						<small className='text-muted'>Luniva</small>
 						<h2 className='fw-bold'>
@@ -46,7 +46,7 @@ const PromoBannerSection = () => {
 							<Button
 								variant='outline'
 								style={{
-									backgroundColor: '#c37b5e',
+									backgroundColor: '#4c1d1d',
 									color: 'white',
 									border: 'none',
 									padding: '8px 20px',

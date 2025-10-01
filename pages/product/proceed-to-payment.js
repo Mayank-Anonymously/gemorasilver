@@ -1,51 +1,61 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
-import axios from 'axios';
 import Screen from '@/component/common/Screen';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import { placeOrder } from '@/component/redux/thunk/orderThunkApi';
 
 const CheckoutPage = ({ userId, cartTotal }) => {
 	const cartItems = useSelector((state) => state.cart.items);
-
+	const router = useRouter();
+	const dispatch = useDispatch();
+	const { user } = useSelector((state) => state.auth);
+	// Shipping & billing same
 	const [shippingAddress, setShippingAddress] = useState({
 		name: '',
 		street: '',
 		city: '',
 		state: '',
 		zip: '',
+		phone: '',
 		country: '',
 	});
 
 	const [paymentMethod, setPaymentMethod] = useState('cod');
+	const [loading, setLoading] = useState(false);
 
-	const handleChange = (e, type) => {
+	const handleChange = (e) => {
 		const { name, value } = e.target;
-		if (type === 'billing') {
-			setBillingAddress((prev) => ({ ...prev, [name]: value }));
-		} else {
-			setShippingAddress((prev) => ({ ...prev, [name]: value }));
-		}
+		setShippingAddress((prev) => ({ ...prev, [name]: value }));
 	};
+	console.log(user._id);
 
 	const handlePlaceOrder = async () => {
-		try {
-			const { data } = await axios.post('/api/orders/place', {
+		if (!shippingAddress.name || !shippingAddress.street) {
+			alert('Please fill shipping address completely.');
+			return;
+		}
+		const cartTotal = grandTotal.toFixed(2);
+		const userId = user._id;
+		dispatch(
+			placeOrder({
 				userId,
-				billingAddress,
+				cartTotal,
+				cartItems,
 				shippingAddress,
 				paymentMethod,
-			});
-
-			alert(data.message);
-		} catch (error) {
-			alert(error.response?.data?.error || 'Something went wrong');
-		}
+				router,
+			})
+		);
 	};
+
 	const subtotal = cartItems.reduce(
 		(acc, item) => acc + item.price * item.quantity,
 		0
 	);
-	const grandTotal = subtotal - subtotal * discount;
+	const grandTotal = subtotal;
+
+	console.log(userId, cartTotal, cartItems, shippingAddress, paymentMethod);
 
 	return (
 		<Screen>
@@ -66,7 +76,7 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 											type='text'
 											name={field}
 											value={shippingAddress[field]}
-											onChange={(e) => handleChange(e, 'shipping')}
+											onChange={handleChange}
 											required
 										/>
 									</Form.Group>
@@ -74,6 +84,8 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 							</Form>
 						</Card>
 					</Col>
+
+					{/* Payment & Summary */}
 					<Col md={6}>
 						<Card className='p-3 mb-3 shadow-sm'>
 							<h4>Payment Method</h4>
@@ -112,23 +124,21 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 								/>
 							</Form>
 						</Card>
+
 						<Card className='p-3 shadow-sm'>
 							<h5>Order Summary</h5>
 							<p>
-								Total Amount: <strong>₹{grandTotal}</strong>
+								Total Amount: <strong>₹{grandTotal.toFixed(2)}</strong>
 							</p>
 							<Button
 								variant='success'
-								onClick={handlePlaceOrder}>
-								Place Order
+								onClick={handlePlaceOrder}
+								disabled={loading}>
+								{loading ? 'Processing...' : 'Place Order'}
 							</Button>
 						</Card>
 					</Col>
 				</Row>
-
-				{/* Payment Method */}
-
-				{/* Summary & Place Order */}
 			</Container>
 		</Screen>
 	);

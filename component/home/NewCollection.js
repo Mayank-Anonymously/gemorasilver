@@ -1,12 +1,11 @@
 import Link from 'next/link';
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { products } from '../data/products';
-import { CiSquarePlus } from 'react-icons/ci';
-import { CiHeart } from 'react-icons/ci';
-import { IoIosStar } from 'react-icons/io';
 
-const NewColllection = () => {
+import { IoIosStar } from 'react-icons/io';
+import { HOST } from '../apibaseurl';
+
+const NewColllection = ({ products }) => {
 	return (
 		<div className='home-category'>
 			<div className='opening-heading'>
@@ -27,6 +26,7 @@ const NewColllection = () => {
 					</span>
 				</h2>
 			</div>
+
 			<Container fluid>
 				<>
 					<Row>
@@ -49,9 +49,8 @@ const NewColllection = () => {
 											alignItems: 'center',
 											flexDirection: 'column',
 										}}>
-										
 										<img
-											src={p.images[0]}
+											src={`${HOST}resources/${p.image}`}
 											alt={p.title}
 											className='img-fluid'
 										/>
@@ -66,17 +65,17 @@ const NewColllection = () => {
 
 											<div className='d-flex justify-content-start mt-2 flex-wrap'>
 												<h5 className='mb-0 fw-bold text-dark me-2 product-price'>
-													₹{p.price.toLocaleString()}
+													₹{p.priceSale}
 												</h5>
 												<p className='mb-0 text-muted text-decoration-line-through product-price-compare'>
-													₹{p.compare_at_price.toLocaleString()}
+													₹{p.price}
 												</p>
 											</div>
 
 											<h6 className='product-tile-title'>{p.title}</h6>
 											<div className='d-flex product-all-tiles justify-content-between'>
 												<Link
-													href={`/product/${p.id}`}
+													href={`/product/${p._id}`}
 													className='btn  fw-semibold cursor-pointer'
 													style={{
 														background:
@@ -85,7 +84,7 @@ const NewColllection = () => {
 														borderRadius: 8,
 														marginTop: 10,
 													}}>
-													Add to cart
+													View Product
 												</Link>
 											</div>
 										</div>

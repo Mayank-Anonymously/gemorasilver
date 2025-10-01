@@ -1,18 +1,24 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API_BASE = '/auth'; // Replace with your backend endpoint
+const API_BASE = 'http://localhost:9000/auth'; // Replace with your backend endpoint
 
 // ------------------- Thunks -------------------
 
 // Register User
 export const registerUser = createAsyncThunk(
-	'auth/registerUser',
-	async (userData, { rejectWithValue }) => {
+	'auth/register',
+	async (userData, { dispatch, rejectWithValue }) => {
 		try {
-			const response = await axios.post(`${API_BASE}/register`, userData);
+			const response = await axios.post(
+				`${API_BASE}/register`,
+				userData.formData
+			);
+			userData.router.push('/auth/verify-otp');
+
 			return response.data;
 		} catch (error) {
+			alert(error.response?.data || error.message);
 			return rejectWithValue(error.response?.data || error.message);
 		}
 	}
@@ -20,14 +26,32 @@ export const registerUser = createAsyncThunk(
 
 // Login User
 export const loginUser = createAsyncThunk(
-	'auth/loginUser',
-	async (credentials, { rejectWithValue }) => {
+	'auth/login',
+	async (credentials, { dispatch, rejectWithValue }) => {
 		try {
-			const response = await axios.post(`${API_BASE}/login`, credentials);
-			// Optionally save token in localStorage
-			if (response.data.token) {
-				localStorage.setItem('token', response.data.token);
-			}
+			const response = await axios.post(
+				`${API_BASE}/login`,
+				credentials.credentials
+			);
+			userData.router.push('/');
+
+			return response.data;
+		} catch (error) {
+			return rejectWithValue(error.response?.data || error.message);
+		}
+	}
+);
+export const verifyOtp = createAsyncThunk(
+	'auth/verify-otp',
+	async (credentials, { dispatch, rejectWithValue }) => {
+		try {
+			const response = await axios.post(
+				`${API_BASE}/verify-otp`,
+				credentials.formData
+			);
+
+			credentials.router.push('/auth/login');
+
 			return response.data;
 		} catch (error) {
 			return rejectWithValue(error.response?.data || error.message);
@@ -47,6 +71,8 @@ const initialState = {
 	token: typeof window !== 'undefined' ? localStorage.getItem('token') : null,
 	loading: false,
 	error: null,
+	message: '',
+	loggedIn: false,
 };
 
 const authSlice = createSlice({
@@ -73,6 +99,8 @@ const authSlice = createSlice({
 				state.loading = false;
 				state.user = action.payload.user;
 				state.token = action.payload.token;
+				state.message = action.payload.message;
+				// localStorage.setItem('authToken', action.payload.token); // optional
 			})
 			.addCase(registerUser.rejected, (state, action) => {
 				state.loading = false;
@@ -88,6 +116,7 @@ const authSlice = createSlice({
 				state.loading = false;
 				state.user = action.payload.user;
 				state.token = action.payload.token;
+				state.loggedIn = true;
 			})
 			.addCase(loginUser.rejected, (state, action) => {
 				state.loading = false;
@@ -99,6 +128,21 @@ const authSlice = createSlice({
 				state.user = null;
 				state.token = null;
 				state.error = null;
+				state.loggedIn = false;
+			})
+
+			// VerifyOTp
+			.addCase(verifyOtp.pending, (state) => {
+				state.loading = true;
+				state.error = null;
+			})
+			.addCase(verifyOtp.fulfilled, (state, action) => {
+				state.loading = false;
+				state.message = action.payload.message;
+			})
+			.addCase(verifyOtp.rejected, (state, action) => {
+				state.loading = false;
+				state.error = action.payload;
 			});
 	},
 });

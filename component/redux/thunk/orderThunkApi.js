@@ -1,5 +1,7 @@
 import axios from 'axios';
-
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { clearCart } from '../slices/cartSlice';
+import { HOST } from '@/component/apibaseurl';
 export const addToCartApi =
 	(dispatch) =>
 	async (userId, product, quantity = 1) => {
@@ -19,6 +21,55 @@ export const addToCartApi =
 			throw error;
 		}
 	};
+
+// Place Order Thunk
+export const placeOrder = createAsyncThunk(
+	'product/proceed-to-payment',
+	async (
+		{ userId, cartTotal, cartItems, shippingAddress, paymentMethod, router },
+		{ dispatch, rejectWithValue }
+	) => {
+		try {
+			if (paymentMethod === 'cod') {
+				// COD Flow
+				const { data } = await axios.post(`${HOST}order/place`, {
+					userId,
+					shippingAddress,
+					billingAddress: shippingAddress,
+					paymentMethod: 'cod',
+					amount: cartTotal,
+					items: cartItems,
+				});
+
+				dispatch(clearCart()); // clear cart after success
+				router.push(`/order/success?orderId=${data.orderId}`);
+				return data;
+			} else {
+				// Online Payment Flow
+				const { data } = await axios.post(`${HOST}payment/pay`, {
+					userId,
+					shippingAddress,
+					billingAddress: shippingAddress,
+					paymentMethod,
+					amount: cartTotal,
+					items: cartItems,
+				});
+				console.log(data);
+
+				if (data?.checkoutUrl) {
+					window.location.href = data.checkoutUrl; // redirect to PG
+				} else {
+					return rejectWithValue('Payment initiation failed');
+				}
+			}
+		} catch (error) {
+			return rejectWithValue(
+				error.response?.data?.error || 'Something went wrong'
+			);
+		}
+	}
+);
+
 // export const removeFromCart = async (userId, productId) => {
 // 	try {
 // 		const response = await axios.post('/api/cart/remove', {
