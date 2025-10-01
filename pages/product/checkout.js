@@ -3,6 +3,7 @@ import Screen from '@/component/common/Screen';
 import RelatedProducts from '@/component/home/RelatedProducts';
 import Testimonials from '@/component/home/testimonials';
 import { decrementQty, incrementQty } from '@/component/redux/slices/cartSlice';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { Button, Card, Form, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +13,7 @@ const CheckoutPage = () => {
 	const dispatch = useDispatch();
 	const [coupon, setCoupon] = useState('');
 	const [discount, setDiscount] = useState(0);
-
+	const router = useRouter();
 	const updateQuantity = (id, amount) => {
 		setCart((prev) =>
 			prev.map((item) =>
@@ -179,6 +180,7 @@ const CheckoutPage = () => {
 										Update Cart
 									</Button>
 									<Button
+										onClick={() => router.push('/product/proceed-to-payment')}
 										variant='warning'
 										className='w-50'
 										size='sm'>

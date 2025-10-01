@@ -43,7 +43,7 @@ export default function TrackOrder() {
 	return (
 		<Screen>
 			<section className='py-5 '>
-				<Container>
+				<Container style={{ background: '#fff4f4', padding: 44 }}>
 					{/* Page Heading */}
 					<Row className='mb-4'>
 						<Col className='text-center'>

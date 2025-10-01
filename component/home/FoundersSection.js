@@ -71,7 +71,7 @@ export default function TestimonialCarousel() {
 										))}
 									</div>
 									<div className='founder-userInfo'>
-										<h5 style={{ fontStyle: 'italic' }}>{t.name}</h5>
+										<h5 style={{ fontStyle: 'italic' }}>-{t.name}</h5>
 									</div>
 								</div>
 
