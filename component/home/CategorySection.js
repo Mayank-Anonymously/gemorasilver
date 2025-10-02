@@ -21,7 +21,7 @@ const categories = [
 	},
 	{
 		name: 'Earrings',
-		link: 'earring',
+		link: 'earrings',
 		count: 18,
 		description: 'Find earrings to match every style.',
 		images: ['/assets/category/earrings.png', '/assets/category/earrings.png'],
