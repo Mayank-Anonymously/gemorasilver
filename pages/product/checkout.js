@@ -1,3 +1,4 @@
+import { HOST } from '@/component/apibaseurl';
 import FooterInfo from '@/component/common/FooterInfo';
 import Screen from '@/component/common/Screen';
 import RelatedProducts from '@/component/home/RelatedProducts';
@@ -62,7 +63,6 @@ const CheckoutPage = () => {
 							<p className='small'>Your cart is empty.</p>
 						) : (
 							cartItems.map((item) => {
-								console.log(item.id);
 								return (
 									<Card
 										className='mb-2'
@@ -71,7 +71,7 @@ const CheckoutPage = () => {
 											{/* Image + Details */}
 											<div className='d-flex align-items-center gap-2'>
 												<img
-													src={item.images || '/images/products/default.jpg'} // add image in your data
+													src={`${HOST}resources/${item.image}`} // add image in your data
 													alt={item.name}
 													style={{
 														width: '50px',

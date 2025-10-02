@@ -54,8 +54,6 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 	);
 	const grandTotal = subtotal;
 
-	console.log(userId, cartTotal, cartItems, shippingAddress, paymentMethod);
-
 	return (
 		<Screen>
 			<Container className='py-4'>

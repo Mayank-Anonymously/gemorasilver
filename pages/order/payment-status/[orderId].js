@@ -3,12 +3,13 @@ import React from 'react';
 import { Container, Card, Alert, Spinner } from 'react-bootstrap';
 
 const PaymentStatusPage = ({ status, orderId, message, paymentMethod }) => {
+	console.log('paymentMethod::', paymentMethod);
 	return (
 		<Container className='d-flex flex-column align-items-center justify-content-center min-vh-100'>
 			<Card
 				className='text-center p-4'
 				style={{ maxWidth: '500px', width: '100%' }}>
-				{paymentMethod === 'COD' && (
+				{paymentMethod === 'cod' && (
 					<Alert variant='info'>
 						<h2>Order Placed Successfully!</h2>
 						<p>
@@ -41,7 +42,7 @@ const PaymentStatusPage = ({ status, orderId, message, paymentMethod }) => {
 					</Alert>
 				)}
 
-				{paymentMethod !== 'COD' && status === 'PENDING' && (
+				{paymentMethod != 'COD' && status === 'PENDING' && (
 					<Alert variant='warning'>
 						<h2>Payment Pending!</h2>
 						<p>
@@ -69,9 +70,9 @@ export async function getServerSideProps(context) {
 	try {
 		// Call your backend to get order details (including paymentMethod)
 
-		const res = await fetch(`${HOST}order/status/${orderId}`);
+		const res = await fetch(`${HOST}order/${orderId}`);
 		const order = await res.json();
-
+		console.log(order);
 		if (!order) {
 			return {
 				props: {
@@ -85,8 +86,8 @@ export async function getServerSideProps(context) {
 
 		let status = 'PENDING';
 		let message = 'Payment is being processed.';
-
-		if (order.paymentMethod === 'COD') {
+		console.log(order);
+		if (order.paymentMethod === 'cod') {
 			status = 'COD';
 			message = 'Your order has been generated for Cash on Delivery.';
 		} else {
