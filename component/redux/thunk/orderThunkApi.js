@@ -32,7 +32,7 @@ export const placeOrder = createAsyncThunk(
 		try {
 			if (paymentMethod === 'cod') {
 				// COD Flow
-				const { data } = await axios.post(`${HOST}order/place`, {
+				const data = await axios.post(`${HOST}order/place`, {
 					userId,
 					shippingAddress,
 					billingAddress: shippingAddress,
@@ -40,10 +40,10 @@ export const placeOrder = createAsyncThunk(
 					amount: cartTotal,
 					items: cartItems,
 				});
+				const { orderId } = data.data.order;
 
-				dispatch(clearCart()); // clear cart after success
-				router.push(`/order/payment-status/${data.orderId}`);
-				
+				router.push(`/order/payment-status/${orderId}`);
+
 				return data;
 			} else {
 				// Online Payment Flow

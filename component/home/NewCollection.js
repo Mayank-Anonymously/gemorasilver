@@ -4,8 +4,10 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 import { IoIosStar } from 'react-icons/io';
 import { HOST } from '../apibaseurl';
+import { useRouter } from 'next/navigation';
 
 const NewColllection = ({ products, heading }) => {
+	const router = useRouter();
 	return (
 		<div className='home-category'>
 			<div className='opening-heading'>{heading}</div>

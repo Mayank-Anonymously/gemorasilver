@@ -3,7 +3,6 @@ import React from 'react';
 import { Container, Card, Alert, Spinner } from 'react-bootstrap';
 
 const PaymentStatusPage = ({ status, orderId, message, paymentMethod }) => {
-	console.log('paymentMethod::', paymentMethod);
 	return (
 		<Container className='d-flex flex-column align-items-center justify-content-center min-vh-100'>
 			<Card
