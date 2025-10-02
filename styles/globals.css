@@ -817,11 +817,13 @@ a {
 }
 .product-detail-page-button .add-to-cart {
 	width: 45%;
-	background: linear-gradient(135deg, #ffd6e1 0%, #ff9ac6 100%);
+	background: #4c1d1d;
+	color: white;
 }
 .product-detail-page-button .buy-now {
 	width: 45%;
-	background: linear-gradient(135deg, #ffd6e1 0%, #ff9ac6 100%);
+	background: #4c1d1d;
+	color: white;
 }
 
 .side-panel-left {

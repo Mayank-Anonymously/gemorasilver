@@ -1,28 +1,39 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { FaTruck, FaHeadset, FaUndo, FaLock } from 'react-icons/fa';
+import { FaTools, FaHeadset, FaGem, FaShieldAlt } from 'react-icons/fa';
+import { GiNecklaceDisplay } from 'react-icons/gi';
+import { TbShieldStar } from 'react-icons/tb';
+import { GiBigDiamondRing } from 'react-icons/gi';
 
 const FooterInfo = () => {
 	const infoItems = [
 		{
-			icon: <FaTruck />,
-			title: 'Free Shipping',
-			desc: 'Free shipping over ₹200',
+			icon: (
+				<img
+					width='35'
+					height='35'
+					src='https://img.icons8.com/hands/100/diamond-care.png'
+					alt='diamond-care'
+				/>
+			), // 🛠 Easy Maintenance
+			title: 'Easy Maintenance',
 		},
 		{
-			icon: <FaHeadset />,
-			title: 'Support 24/7',
-			desc: 'Contact us 24 hours a day',
+			icon: (
+				<TbShieldStar
+					size='24'
+					className='mt-2'
+				/>
+			), // 🎧 Warranty / Support
+			title: '6 Month Warranty',
 		},
 		{
-			icon: <FaUndo />,
-			title: '100% Money Back',
-			desc: '',
+			icon: <GiBigDiamondRing size='25' />, // 💍 Jewelry/Silver
+			title: 'Fine 925 Silver',
 		},
 		{
-			icon: <FaLock />,
-			title: 'Payment Secure',
-			desc: 'We ensure secure payment',
+			icon: <GiNecklaceDisplay size='25' />, // 🛡 Skin-safe / Protection
+			title: 'Skin Safe Jewellery',
 		},
 	];
 
@@ -35,11 +46,10 @@ const FooterInfo = () => {
 						key={idx}
 						md={3}
 						sm={6}
-						xs={12}
+						xs={6}
 						className='mb-3'>
-						<div style={{ fontSize: '1.5rem', color: '#333' }}>{item.icon}</div>
-						<h6 className='mt-2'>{item.title}</h6>
-						<small className='text-muted'>{item.desc}</small>
+						<div>{item.icon}</div>
+						<p>{item.title}</p>
 					</Col>
 				))}
 			</Row>
