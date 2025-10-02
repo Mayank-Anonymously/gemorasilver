@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 const testimonials = [
 	{
-		text: `"We started Luniva Jewels because we wanted everyday jewelry that felt meaningful — simple, light, and made with real 925 silver. The name comes from Luna and Shiva, blending beauty with tradition. For us, it’s all about creating affordable pieces that feel personal and true. Now you know where to shop next."`,
+		text: `"We started Luniva Jewels because we wanted everyday jewellery that felt meaningful — simple, light, and made with real 925 silver. The name comes from Luna and Shiva, blending beauty with tradition. For us, it’s all about creating affordable pieces that feel personal and true. Now you know where to shop next."`,
 		// text: `Delighted with my <em>Chupi engagement ring</em> so went back today to select my wedding ring. Nancy was <em>lovely to deal with</em>, <em>very friendly and patient</em> while I tried on lots of different styles before picking my <em>dream ring</em>.`,
 		name: 'By founders',
 		role: 'Customers',
