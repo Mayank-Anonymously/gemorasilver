@@ -116,13 +116,6 @@ const FiltersResponsive = ({
 				/>
 
 				<CheckboxGroup
-					title='Stone'
-					items={['Diamond', 'Ruby', 'Sapphire']}
-					selected={selectedStones}
-					onChange={(val) => toggleItem(val, selectedStones, setSelectedStones)}
-				/>
-
-				<CheckboxGroup
 					title='Stone Color'
 					items={['Red', 'Blue', 'Green', 'White', 'Pink', 'Purple']}
 					selected={selectedStoneColors}
