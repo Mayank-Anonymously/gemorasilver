@@ -32,28 +32,13 @@ const ProductByCategory = ({ products }) => {
 	const userId = user?._id;
 	// State
 	const [activeCategory, setActiveCategory] = useState('All');
-	const [selectedDietary, setSelectedDietary] = useState([]);
+
 	const [priceRange, setPriceRange] = useState({ from: '', to: '' });
 	const [onlyTopRated, setOnlyTopRated] = useState(false);
 	const dispatch = useDispatch();
 
 	// Filtering logic
-	const filteredProducts = products.filter((p) => {
-		const categoryMatch =
-			activeCategory === 'All' || p.category === activeCategory;
-
-		const dietaryMatch =
-			selectedDietary.length === 0 ||
-			p.dietary?.some((d) => selectedDietary.includes(d));
-
-		const priceMatch =
-			(!priceRange.from || p.price >= parseFloat(priceRange.from)) &&
-			(!priceRange.to || p.price <= parseFloat(priceRange.to));
-
-		const ratingMatch = !onlyTopRated || p.rating >= 4;
-
-		return categoryMatch && dietaryMatch && priceMatch && ratingMatch;
-	});
+	const filteredProducts = products.filter((p) => {});
 
 	const [show, setShow] = useState(false);
 
@@ -100,15 +85,7 @@ const ProductByCategory = ({ products }) => {
 										lg={4} // full width on mobile, 2-per-row on small, etc.
 										className='justify-content-center mb-2'>
 										<div
-											onClick={() => {
-												if (loggedIn === true) {
-													alert('Please Loggin Before Add Product to cart.');
-													router.push('/auth/login');
-												} else {
-													dispatch(addToCart(p));
-													addToCartApi(userId, p, dispatch);
-												}
-											}}
+											onClick={() => router.push(`/product/${p._id}`)}
 											className='product-card bg-white shadow-sm border-0 p-2 rounded-3'
 											style={{
 												display: 'flex',
@@ -145,6 +122,7 @@ const ProductByCategory = ({ products }) => {
 												</div>
 												{/* Title */}
 												<h6 className=' product-tile-title'>{p.title}</h6>
+
 												<div className='d-flex product-all-tiles justify-content-between'>
 													<Link
 														href={`/product/${p._id}`}

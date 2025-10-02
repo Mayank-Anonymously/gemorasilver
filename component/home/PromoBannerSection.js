@@ -19,6 +19,7 @@ const PromoBannerSection = () => {
 						</h2>
 						<div className='text-center mt-4'>
 							<Button
+								onClick={() => router.push(`/category/jewellery-online`)}
 								variant='outline'
 								style={{
 									backgroundColor: '#4c1d1d',
@@ -44,6 +45,7 @@ const PromoBannerSection = () => {
 						</h2>
 						<div className='text-center mt-4'>
 							<Button
+								onClick={() => router.push(`/category/ring-online`)}
 								variant='outline'
 								style={{
 									backgroundColor: '#4c1d1d',

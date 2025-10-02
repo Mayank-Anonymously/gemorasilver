@@ -7,6 +7,8 @@ const PriceSlider = ({ priceRange, setPriceRange }) => {
 			<h6 className='small fw-bold mb-2'>Price</h6>
 
 			{/* Min Price */}
+
+			<p className='mb-1 small'>From: ₹{priceRange.from}</p>
 			<Form.Range
 				min={0}
 				max={10000}
@@ -15,18 +17,18 @@ const PriceSlider = ({ priceRange, setPriceRange }) => {
 					setPriceRange({ ...priceRange, from: Number(e.target.value) })
 				}
 			/>
-			<p className='mb-1 small'>From: ₹{priceRange.from}</p>
 
 			{/* Max Price */}
+			<p className='mb-0 small'>To: ₹{priceRange.to}</p>
+
 			<Form.Range
 				min={0}
-				max={10000}
+				max={16000}
 				value={priceRange.to}
 				onChange={(e) =>
 					setPriceRange({ ...priceRange, to: Number(e.target.value) })
 				}
 			/>
-			<p className='mb-0 small'>To: ₹{priceRange.to}</p>
 		</div>
 	);
 };
