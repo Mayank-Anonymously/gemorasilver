@@ -100,6 +100,15 @@ const ProductByCategory = ({ products }) => {
 										lg={4} // full width on mobile, 2-per-row on small, etc.
 										className='justify-content-center mb-2'>
 										<div
+											onClick={() => {
+												if (loggedIn === true) {
+													alert('Please Loggin Before Add Product to cart.');
+													router.push('/auth/login');
+												} else {
+													dispatch(addToCart(p));
+													addToCartApi(userId, p, dispatch);
+												}
+											}}
 											className='product-card bg-white shadow-sm border-0 p-2 rounded-3'
 											style={{
 												display: 'flex',

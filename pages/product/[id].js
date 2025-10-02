@@ -119,7 +119,19 @@ export default function ProductPage({ product, products }) {
 					</Col>
 				</Row>
 			</div>
-			<NewColllection products={products} />
+			<NewColllection
+				products={products}
+				heading={
+					<h2
+						style={{
+							color: '#812d3e',
+							fontFamily: "'Great Vibes', cursive",
+							marginTop: 10,
+						}}>
+						Recently Updated
+					</h2>
+				}
+			/>
 		</Screen>
 	);
 }

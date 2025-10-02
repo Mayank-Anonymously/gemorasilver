@@ -5,27 +5,10 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { IoIosStar } from 'react-icons/io';
 import { HOST } from '../apibaseurl';
 
-const NewColllection = ({ products }) => {
+const NewColllection = ({ products, heading }) => {
 	return (
 		<div className='home-category'>
-			<div className='opening-heading'>
-				<h2
-					style={{
-						color: '#812d3e',
-						fontFamily: "'Great Vibes', cursive",
-						marginTop: 10,
-					}}>
-					Suggested by{' '}
-					<span
-						style={{
-							color: '#812d3e',
-							fontFamily: 'none',
-							marginTop: 10,
-						}}>
-						Founders{' '}
-					</span>
-				</h2>
-			</div>
+			<div className='opening-heading'>{heading}</div>
 
 			<Container fluid>
 				<>

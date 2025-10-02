@@ -51,7 +51,27 @@ export default function Home({ products }) {
 			</section>
 
 			<section>
-				<NewCollection products={products} />
+				<NewCollection
+					products={products}
+					heading={
+						<h2
+							style={{
+								color: '#812d3e',
+								fontFamily: "'Great Vibes', cursive",
+								marginTop: 10,
+							}}>
+							Suggested by{' '}
+							<span
+								style={{
+									color: '#812d3e',
+									fontFamily: 'none',
+									marginTop: 10,
+								}}>
+								Founders{' '}
+							</span>
+						</h2>
+					}
+				/>
 			</section>
 
 			<section>
