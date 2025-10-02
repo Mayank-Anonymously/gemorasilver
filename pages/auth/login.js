@@ -30,7 +30,7 @@ const LoginScreen = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const credentials = formData;
-		dispatch(loginUser({ credentials }));
+		dispatch(loginUser({ credentials, router }));
 
 		// router.push('/login'); // After register → go to login
 	};

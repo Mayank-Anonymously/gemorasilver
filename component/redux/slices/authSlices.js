@@ -34,7 +34,7 @@ export const loginUser = createAsyncThunk(
 				`${HOST}auth/login`,
 				credentials.credentials
 			);
-			userData.router.push('/');
+			credentials.router.push('/');
 
 			return response.data;
 		} catch (error) {
