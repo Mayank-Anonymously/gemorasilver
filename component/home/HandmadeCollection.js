@@ -43,13 +43,11 @@ export default function ChupiJournal() {
 
 	return (
 		<div className='container py-5'>
-			{/* Heading */}
 			<h2 className='text-center mb-5'>
-				THE <span className='journal-highlight'>Luniva Journal</span>
+				<span className='journal-highlight'>THE Luniva Journal</span>
 			</h2>
 
 			<div className='row g-4'>
-				{/* Left Cards */}
 				<div className='col-md-6'>
 					<div className='journal-stack'>
 						{journalData.map((item) => {

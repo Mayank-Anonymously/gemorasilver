@@ -1,7 +1,10 @@
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 
 const PromoBannerSection = () => {
+	const router = useRouter();
+
 	return (
 		<Container
 			fluid

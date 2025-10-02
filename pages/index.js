@@ -13,8 +13,10 @@ import NewCollection from '@/component/home/NewCollection';
 import TestimonialCarousel from '@/component/home/FoundersSection';
 import axios from 'axios';
 import { HOST } from '@/component/apibaseurl';
+import { useRouter } from 'next/navigation';
 
 export default function Home({ products }) {
+	const router = useRouter();
 	return (
 		<Screen>
 			<section>

@@ -60,11 +60,10 @@ const NewColllection = ({ products, heading }) => {
 											<div className='d-flex product-all-tiles justify-content-between'>
 												<Link
 													href={`/product/${p._id}`}
-													className='btn  fw-semibold cursor-pointer'
+													className='btn cursor-pointer'
 													style={{
-														background:
-															'linear-gradient(135deg, #ffd6e1 0%, #ff9ac6 100%)',
-														color: '#000',
+														background: '#4c1d1d',
+														color: 'white',
 														borderRadius: 8,
 														marginTop: 10,
 													}}>
