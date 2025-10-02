@@ -11,7 +11,10 @@ export const registerUser = createAsyncThunk(
 	'auth/register',
 	async (userData, { dispatch, rejectWithValue }) => {
 		try {
-			const response = await axios.post(`${HOST}register`, userData.formData);
+			const response = await axios.post(
+				`${HOST}auth/register`,
+				userData.formData
+			);
 			userData.router.push('/auth/verify-otp');
 
 			return response.data;
@@ -28,7 +31,7 @@ export const loginUser = createAsyncThunk(
 	async (credentials, { dispatch, rejectWithValue }) => {
 		try {
 			const response = await axios.post(
-				`${HOST}login`,
+				`${HOST}auth/login`,
 				credentials.credentials
 			);
 			userData.router.push('/');
@@ -44,7 +47,7 @@ export const verifyOtp = createAsyncThunk(
 	async (credentials, { dispatch, rejectWithValue }) => {
 		try {
 			const response = await axios.post(
-				`${HOST}verify-otp`,
+				`${HOST}auth/verify-otp`,
 				credentials.formData
 			);
 
