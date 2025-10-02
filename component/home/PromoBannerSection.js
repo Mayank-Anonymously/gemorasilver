@@ -21,7 +21,7 @@ const PromoBannerSection = () => {
 							Online
 						</h2>
 						<div className='text-center mt-4'>
-							<Button
+							<a
 								onClick={() => router.push(`/category/jewellery-set`)}
 								variant='outline'
 								style={{
@@ -32,7 +32,7 @@ const PromoBannerSection = () => {
 									borderRadius: '4px',
 								}}>
 								Explore
-							</Button>
+							</a>
 						</div>
 					</div>
 				</Col>

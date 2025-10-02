@@ -93,7 +93,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 										className='justify-content-center mb-2'>
 										<div
 											onClick={() => {
-												router.push('/auth/login');
+												router.push(`/product/${p._id}`);
 											}}
 											className='product-card bg-white shadow-sm border-0 p-2 rounded-3'
 											style={{

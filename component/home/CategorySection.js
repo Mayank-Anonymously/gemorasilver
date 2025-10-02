@@ -9,12 +9,12 @@ const categories = [
 		link: 'bracelet',
 		count: 28,
 		description: 'Explore our handcrafted bracelets made with love.',
-		images: ['/assets/category/bracelet.png', '/assets/product/bracelet.png'],
+		images: ['/assets/product/bracelet.png', '/assets/product/bracelet.png'],
 	},
 
 	{
 		name: 'Rings',
-		link: 'ring',
+		link: 'rings',
 		count: 48,
 		description: 'Explore our beautiful rings collection.',
 		images: ['/assets/category/rings.png', '/assets/category/rings.png'],
@@ -56,7 +56,7 @@ const categories = [
 	},
 	{
 		name: 'Toe Rings',
-		link: 'toe-rings',
+		link: 'toe-ring',
 		count: 13,
 		description: 'Stylish toe rings for every occasion.',
 		images: [
@@ -66,7 +66,7 @@ const categories = [
 	},
 	{
 		name: 'Anklets',
-		link: 'anklets',
+		link: 'anklet',
 		count: 3,
 		description: 'Stylish toe rings for every occasion.',
 		images: ['/assets/category/anklet.png', '/assets/category/anklet.png'],
