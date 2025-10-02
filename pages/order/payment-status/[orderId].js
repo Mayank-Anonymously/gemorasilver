@@ -1,3 +1,4 @@
+import { HOST } from '@/component/apibaseurl';
 import React from 'react';
 import { Container, Card, Alert, Spinner } from 'react-bootstrap';
 
@@ -20,7 +21,7 @@ const PaymentStatusPage = ({ status, orderId, message, paymentMethod }) => {
 					</Alert>
 				)}
 
-				{paymentMethod !== 'COD' && status === 'SUCCESS' && (
+				{paymentMethod !== 'COD' && status === 'COMPLETED' && (
 					<Alert variant='success'>
 						<h2>Payment Successful!</h2>
 						<p>
@@ -67,7 +68,8 @@ export async function getServerSideProps(context) {
 
 	try {
 		// Call your backend to get order details (including paymentMethod)
-		const res = await fetch(`${process.env.BASE_URL}/api/order/${orderId}`);
+
+		const res = await fetch(`${HOST}order/status/${orderId}`);
 		const order = await res.json();
 
 		if (!order) {
@@ -89,14 +91,11 @@ export async function getServerSideProps(context) {
 			message = 'Your order has been generated for Cash on Delivery.';
 		} else {
 			// Online payment → call PhonePe status API
-			const paymentRes = await fetch(
-				`${process.env.BASE_URL}/api/payment/status`,
-				{
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ merchantOrderId: orderId }),
-				}
-			);
+			const paymentRes = await fetch(`${HOST}/payment/status/${orderId}`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+			});
+
 			const paymentData = await paymentRes.json();
 			status = paymentData.status || 'PENDING';
 			message = paymentData.message || 'Payment is being processed.';

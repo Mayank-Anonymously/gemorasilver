@@ -34,7 +34,7 @@ const FiltersResponsive = ({
 
 	return (
 		<>
-			{/* Desktop Sidebar View */}
+		{/* Desktop Sidebar View */}
 			<div
 				className='d-none d-lg-block p-3 border rounded'
 				style={{ minWidth: '220px' }}>
@@ -109,7 +109,7 @@ const FiltersResponsive = ({
 
 			{/* Mobile / Tablet Horizontal View */}
 			<div
-				className=' d-lg-none flex-nowrap overflow-auto border-bottom py-2'
+				className='d-lg-none flex-nowrap overflow-auto border-bottom py-2'
 				style={{
 					gap: '20px',
 					minHeight: '120px',
@@ -122,18 +122,7 @@ const FiltersResponsive = ({
 					selected={selectedCategories}
 					onChange={handleCategoryChange}
 				/>
-				<CheckboxGroup
-					title='Shop For'
-					items={['Men', 'Women', 'Kids']}
-					selected={[]}
-					onChange={() => {}}
-				/>
-				<CheckboxGroup
-					title='Color'
-					items={['Red', 'Blue', 'Green']}
-					selected={[]}
-					onChange={() => {}}
-				/>
+
 				<PriceSlider
 					priceRange={priceRange}
 					setPriceRange={setPriceRange}

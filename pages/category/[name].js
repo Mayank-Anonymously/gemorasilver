@@ -30,7 +30,7 @@ function useIsMobile(breakpoint = 768) {
 const ProductByCategory = ({ products }) => {
 	const categories = ['All', ...new Set(products.map((p) => p.categoryName))];
 	const { user, loggedIn } = useSelector((state) => state.auth);
-	const userId = user._id;
+	const userId = user?._id;
 	// State
 	const [activeCategory, setActiveCategory] = useState('All');
 	const [selectedDietary, setSelectedDietary] = useState([]);
