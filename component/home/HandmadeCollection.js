@@ -31,6 +31,7 @@ const journalData = [
 		id: 4,
 		category: 'EDUCATION',
 		title: 'Party collection',
+		
 		author: '-By Luniva',
 		date: '',
 		image: '/assets/journal/journal.png',

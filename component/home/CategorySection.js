@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 const categories = [
 	{
 		name: 'Bracelets',
+		link: 'bracelet',
 		count: 28,
 		description: 'Explore our handcrafted bracelets made with love.',
 		images: ['/assets/category/bracelet.png', '/assets/product/bracelet.png'],
@@ -13,18 +14,21 @@ const categories = [
 
 	{
 		name: 'Rings',
+		link: 'ring',
 		count: 48,
 		description: 'Explore our beautiful rings collection.',
 		images: ['/assets/category/rings.png', '/assets/category/rings.png'],
 	},
 	{
 		name: 'Earrings',
+		link: 'earring',
 		count: 18,
 		description: 'Find earrings to match every style.',
 		images: ['/assets/category/earrings.png', '/assets/category/earrings.png'],
 	},
 	{
 		name: 'Pendants',
+		link: 'pendant',
 		count: 14,
 		description: 'Elegant pendants for every occasion.',
 		images: ['/assets/category/pendant.png', '/assets/category/pendant.png'],
@@ -32,6 +36,7 @@ const categories = [
 
 	{
 		name: 'Jewellery Set',
+		link: 'jewellery-set',
 		count: 13,
 		description: 'Beautiful matching sets of pendants and earrings.',
 		images: [
@@ -41,6 +46,7 @@ const categories = [
 	},
 	{
 		name: 'Necklace Set',
+		link: 'necklace-set',
 		count: 13,
 		description: 'Beautiful matching sets of pendants and earrings.',
 		images: [
@@ -50,6 +56,7 @@ const categories = [
 	},
 	{
 		name: 'Toe Rings',
+		link: 'toe-rings',
 		count: 13,
 		description: 'Stylish toe rings for every occasion.',
 		images: [
@@ -59,6 +66,7 @@ const categories = [
 	},
 	{
 		name: 'Anklets',
+		link: 'anklets',
 		count: 3,
 		description: 'Stylish toe rings for every occasion.',
 		images: ['/assets/category/anklet.png', '/assets/category/anklet.png'],
@@ -117,7 +125,7 @@ export default function Categories() {
 
 										<button className='btn btn-dark rounded-pill px-4'>
 											<a
-												href={`/category/${cat.name.toLocaleLowerCase()}`}
+												href={`/category/${cat.link}`}
 												className='text-decoration-none text-white'>
 												See Product
 											</a>

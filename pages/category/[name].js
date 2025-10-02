@@ -1,5 +1,5 @@
 // pages/ProductByCategory.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Form, Button, Card, Nav } from 'react-bootstrap';
 import Screen from '@/component/common/Screen';
 import Link from 'next/link';
@@ -13,6 +13,7 @@ import { FaFilter } from 'react-icons/fa';
 import { addToCartApi } from '@/component/redux/thunk/cartThunkApi';
 import axios from 'axios';
 import { HOST } from '@/component/apibaseurl';
+import { useRouter } from 'next/navigation';
 
 function useIsMobile(breakpoint = 568) {
 	const [isMobile, setIsMobile] = useState(false);
@@ -26,9 +27,10 @@ function useIsMobile(breakpoint = 568) {
 	return isMobile;
 }
 
-const ProductByCategory = ({ products }) => {
+const ProductByCategory = ({ products, filterproduct }) => {
 	const categories = ['All', ...new Set(products.map((p) => p.categoryName))];
 	const { user, loggedIn } = useSelector((state) => state.auth);
+	const router = useRouter();
 	const userId = user?._id;
 	// State
 	const [activeCategory, setActiveCategory] = useState('All');
@@ -40,24 +42,17 @@ const ProductByCategory = ({ products }) => {
 	// Filtering logic
 	const filteredProducts = products.filter((p) => {
 		const categoryMatch =
-			activeCategory === 'All' || p.category === activeCategory;
-
-		const priceMatch =
-			(!priceRange.from || p.price >= parseFloat(priceRange.from)) &&
-			(!priceRange.to || p.price <= parseFloat(priceRange.to));
-
-		const ratingMatch = !onlyTopRated || p.rating >= 4;
+			activeCategory === 'All' || p.categoryName === activeCategory;
 
 		return categoryMatch;
 	});
 
 	const [show, setShow] = useState(false);
+	const final = filterproduct ? filterproduct : filteredProducts;
 
 	return (
 		<Screen>
 			<Container className='py-5'>
-				{/* Categories Nav Pills */}
-
 				<Row>
 					<Col
 						md={3}
@@ -68,6 +63,7 @@ const ProductByCategory = ({ products }) => {
 								categories={categories}
 								priceRange={priceRange}
 								setPriceRange={setPriceRange}
+								setActiveCategory={setActiveCategory}
 							/>
 						</div>
 						{useIsMobile && (
@@ -86,8 +82,8 @@ const ProductByCategory = ({ products }) => {
 
 					<Col>
 						<Row>
-							{filteredProducts.length > 0 ? (
-								filteredProducts.map((p, index) => (
+							{final.length > 0 ? (
+								final.map((p, index) => (
 									<Col
 										key={index}
 										xs={6}
@@ -186,12 +182,32 @@ const ProductByCategory = ({ products }) => {
 
 export default ProductByCategory;
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+	const { name } = context.query;
+
 	try {
 		const res = await axios.get(`${HOST}product/getAllProducts`);
+
+		if (Array.isArray(res.data.response)) {
+			// Normalize both categoryName and query to match
+			const filterproduct = res.data.response.filter(
+				(p) => p.categoryName.replaceAll(' ', '-').toLowerCase() === name
+			);
+			//  var filtercat = filterproduct.filter
+			console.log(filterproduct);
+			// var filtercat = filterproduct.filter((item) => item === name);
+			return {
+				props: {
+					products: res.data.response || [],
+					filterproduct: filterproduct,
+				},
+			};
+		}
+
 		return {
 			props: {
-				products: res.data.response || [], // adjust according to your API response
+				products: res.data.response || [],
+				filterproduct: [],
 			},
 		};
 	} catch (error) {
@@ -199,6 +215,7 @@ export async function getServerSideProps() {
 		return {
 			props: {
 				products: [],
+				filterproduct: [],
 			},
 		};
 	}

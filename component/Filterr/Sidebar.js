@@ -10,6 +10,7 @@ const FiltersResponsive = ({
 	setSelectedCategories,
 	priceRange,
 	setPriceRange,
+	setActiveCategory,
 }) => {
 	// Local states for all other filters
 	const [selectedStoneColors, setSelectedStoneColors] = useState([]);
@@ -46,9 +47,7 @@ const FiltersResponsive = ({
 
 	// Product type (coming from props)
 	const handleCategoryChange = (cat) => {
-		setSelectedCategories((prev) =>
-			prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
-		);
+		setActiveCategory(cat);
 	};
 
 	return (
