@@ -10,10 +10,12 @@ import { useSelector } from 'react-redux';
 import CartIcon from './CartIcon';
 import { Offcanvas } from 'react-bootstrap';
 import MobileMenu from '../menu/MobileMenu';
+import { useRouter } from 'next/navigation';
 
 const Header = () => {
 	const [show, setShow] = useState(false);
 	const [showSideMenu, setShowSideMenu] = useState(false);
+	const router = useRouter();
 	const cartItems = useSelector((state) => state.cart.items);
 	const handleShow = () => setShow(true);
 	const auth = useSelector((state) => state.auth);
@@ -61,12 +63,17 @@ const Header = () => {
 									handleShow={handleShow}
 								/>
 							</a>
-							<a className='text-decoration-none  mx-2'>
-								<BsPersonCircle
-									size={25}
-									color={'#b66878'}
-								/>
-							</a>
+							{auth.loggedIn === false && (
+								<a
+									onClick={() => router.push('/auth/login')}
+									className='text-decoration-none  mx-2 '>
+									<BsPersonCircle
+										size={25}
+										color={'#b66878'}
+										className='cursor-pointer'
+									/>
+								</a>
+							)}
 						</Navbar.Brand>
 						<Nav.Link
 							href='/contact-us'
@@ -100,12 +107,6 @@ const Header = () => {
 							<CartIcon
 								count={cartItems.length}
 								handleShow={handleShow}
-							/>
-						</a>
-						<a className='text-decoration-none  mx-2'>
-							<BsPersonCircle
-								size={25}
-								color={'#b66878'}
 							/>
 						</a>
 					</div>

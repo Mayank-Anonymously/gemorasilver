@@ -19,8 +19,8 @@ import axios from 'axios';
 export default function ProductPage({ product }) {
 	const dispatch = useDispatch();
 	const router = useRouter();
-	const { user } = useSelector((state) => state.auth);
-	const userId = user._id;
+	const { user, loggedIn } = useSelector((state) => state.auth);
+	const userId = user?._id;
 	const cartItems = useSelector((state) => state.cart.items);
 	const cartChecked = cartItems.find((item) => item._id === product._id);
 	if (!product) return <p>Product not found</p>;
@@ -94,7 +94,14 @@ export default function ProductPage({ product }) {
 						<div className='product-detail-page-button'>
 							<button
 								className='btn add-to-cart'
-								onClick={() => addToCartApi(userId, product, dispatch)}>
+								onClick={() => {
+									if (loggedIn === false) {
+										alert('Please login to add product to cart.');
+										router.push('/auth/login');
+									} else {
+										addToCartApi(userId, product, dispatch);
+									}
+								}}>
 								Add to Cart
 							</button>
 							<button

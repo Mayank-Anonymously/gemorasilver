@@ -26,10 +26,10 @@ function useIsMobile(breakpoint = 768) {
 
 	return isMobile;
 }
+
 const ProductByCategory = ({ products }) => {
-	console.log('products::::', products);
 	const categories = ['All', ...new Set(products.map((p) => p.categoryName))];
-	const { user } = useSelector((state) => state.auth);
+	const { user, loggedIn } = useSelector((state) => state.auth);
 	const userId = user._id;
 	// State
 	const [activeCategory, setActiveCategory] = useState('All');
@@ -56,13 +56,6 @@ const ProductByCategory = ({ products }) => {
 
 		return categoryMatch && dietaryMatch && priceMatch && ratingMatch;
 	});
-
-	// Handlers
-	const handleDietaryChange = (diet) => {
-		setSelectedDietary((prev) =>
-			prev.includes(diet) ? prev.filter((d) => d !== diet) : [...prev, diet]
-		);
-	};
 
 	const [show, setShow] = useState(false);
 
@@ -156,8 +149,15 @@ const ProductByCategory = ({ products }) => {
 															marginTop: 10,
 														}}
 														onClick={() => {
-															dispatch(addToCart(p));
-															addToCartApi(userId, p, dispatch);
+															if (loggedIn === true) {
+																alert(
+																	'Please Loggin Before Add Product to cart.'
+																);
+																router.push('/auth/login');
+															} else {
+																dispatch(addToCart(p));
+																addToCartApi(userId, p, dispatch);
+															}
 														}}>
 														Add to Cart
 													</Link>
