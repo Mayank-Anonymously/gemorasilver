@@ -78,7 +78,7 @@ const CartOffcanvas = ({ show, handleClose }) => {
 									className='text-danger p-0 ms-2'
 									onClick={() => {
 										dispatch(removeFromCart(item.id));
-										removeFromCartApi(item.id, user._id);
+										removeFromCartApi(item.id, user?._id);
 									}}>
 									<FaTrashAlt size={16} />
 								</Button>

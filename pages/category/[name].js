@@ -6,9 +6,8 @@ import Link from 'next/link';
 import { IoIosStar } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '@/component/redux/slices/cartSlice';
-import { FaRegEye } from 'react-icons/fa6';
 import FiltersSidebar from '@/component/Filterr/Sidebar';
-import { CiHeart, CiSquarePlus } from 'react-icons/ci';
+
 import FilterOffCanvas from '@/component/Filterr/Offcanvasfilter';
 import { FaFilter } from 'react-icons/fa';
 import { addToCartApi } from '@/component/redux/thunk/cartThunkApi';
@@ -37,7 +36,6 @@ const ProductByCategory = ({ products }) => {
 	const [priceRange, setPriceRange] = useState({ from: '', to: '' });
 	const [onlyTopRated, setOnlyTopRated] = useState(false);
 	const dispatch = useDispatch();
-	const [showCounter, setShowCounter] = useState(false);
 
 	// Filtering logic
 	const filteredProducts = products.filter((p) => {
@@ -140,7 +138,7 @@ const ProductByCategory = ({ products }) => {
 												<h6 className=' product-tile-title'>{p.title}</h6>
 												<div className='d-flex product-all-tiles justify-content-between'>
 													<Link
-														href={`/product/${p.id}`}
+														href={`/product/${p._id}`}
 														className='btn  fw-semibold cursor-pointer'
 														style={{
 															backgroundColor: '#ffd6e1',

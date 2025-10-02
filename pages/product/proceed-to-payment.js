@@ -28,7 +28,6 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 		const { name, value } = e.target;
 		setShippingAddress((prev) => ({ ...prev, [name]: value }));
 	};
-	console.log(user._id);
 
 	const handlePlaceOrder = async () => {
 		if (!shippingAddress.name || !shippingAddress.street) {
@@ -36,7 +35,7 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 			return;
 		}
 		const cartTotal = grandTotal.toFixed(2);
-		const userId = user._id;
+		const userId = user?._id;
 		dispatch(
 			placeOrder({
 				userId,
