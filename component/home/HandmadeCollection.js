@@ -72,7 +72,12 @@ export default function ChupiJournal() {
 									{isActive && (
 										<div className='mt-2'>
 											<p className='text-muted small'>{item.author}</p>
-											<button className='btn btn-dark rounded-pill px-4 py-1'>
+											<button
+												className='btn btn-dark rounded-pill px-4 py-1'
+												onClick={() =>
+													router.push(`/category/${item.title.toLowerCase()}`)
+												}
+												style={{ backgroundColor: '#4c1d1d' }}>
 												See More
 											</button>
 										</div>

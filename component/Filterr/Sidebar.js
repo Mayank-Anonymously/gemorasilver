@@ -95,7 +95,7 @@ const FiltersResponsive = ({
 
 			{/* Mobile / Tablet Horizontal View */}
 			<div
-				className='d-lg-none d-flex flex-nowrap overflow-auto border-bottom py-3'
+				className='d-lg-none flex-nowrap overflow-auto border-bottom py-3'
 				style={{
 					gap: '20px',
 					padding: '0 10px',
