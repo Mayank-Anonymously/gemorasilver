@@ -31,7 +31,7 @@ const NewColllection = ({ products }) => {
 				<>
 					<Row>
 						{products.length > 0 ? (
-							products.map((p, index) => (
+							products.slice(0, 6).map((p, index) => (
 								<Col
 									key={index}
 									xs={6}

@@ -42,7 +42,7 @@ export const placeOrder = createAsyncThunk(
 				});
 
 				dispatch(clearCart()); // clear cart after success
-				router.push(`/order/success?orderId=${data.orderId}`);
+				router.push(`/order/payment-status/${data.orderId}`);
 				return data;
 			} else {
 				// Online Payment Flow
