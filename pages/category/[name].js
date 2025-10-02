@@ -38,7 +38,18 @@ const ProductByCategory = ({ products }) => {
 	const dispatch = useDispatch();
 
 	// Filtering logic
-	const filteredProducts = products.filter((p) => {});
+	const filteredProducts = products.filter((p) => {
+		const categoryMatch =
+			activeCategory === 'All' || p.category === activeCategory;
+
+		const priceMatch =
+			(!priceRange.from || p.price >= parseFloat(priceRange.from)) &&
+			(!priceRange.to || p.price <= parseFloat(priceRange.to));
+
+		const ratingMatch = !onlyTopRated || p.rating >= 4;
+
+		return categoryMatch;
+	});
 
 	const [show, setShow] = useState(false);
 
