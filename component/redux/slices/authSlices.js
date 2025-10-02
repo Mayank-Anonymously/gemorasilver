@@ -2,7 +2,7 @@ import { HOST } from '@/component/apibaseurl';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API_BASE = HOST; // Replace with your backend endpoint
+// const HOST = HOST; // Replace with your backend endpoint
 
 // ------------------- Thunks -------------------
 
@@ -11,10 +11,7 @@ export const registerUser = createAsyncThunk(
 	'auth/register',
 	async (userData, { dispatch, rejectWithValue }) => {
 		try {
-			const response = await axios.post(
-				`${API_BASE}register`,
-				userData.formData
-			);
+			const response = await axios.post(`${HOST}register`, userData.formData);
 			userData.router.push('/auth/verify-otp');
 
 			return response.data;
@@ -31,7 +28,7 @@ export const loginUser = createAsyncThunk(
 	async (credentials, { dispatch, rejectWithValue }) => {
 		try {
 			const response = await axios.post(
-				`${API_BASE}login`,
+				`${HOST}login`,
 				credentials.credentials
 			);
 			userData.router.push('/');
@@ -47,7 +44,7 @@ export const verifyOtp = createAsyncThunk(
 	async (credentials, { dispatch, rejectWithValue }) => {
 		try {
 			const response = await axios.post(
-				`${API_BASE}verify-otp`,
+				`${HOST}verify-otp`,
 				credentials.formData
 			);
 
