@@ -30,8 +30,9 @@ const CartOffcanvas = ({ show, handleClose }) => {
 		<Offcanvas
 			show={show}
 			onHide={handleClose}
+			style={{ zIndex: 99999 }}
 			placement='end'
-			className='listingcard'>
+			className='listingcard listingcard-cart'>
 			<Offcanvas.Header closeButton>
 				<Offcanvas.Title>Shopping Cart</Offcanvas.Title>
 			</Offcanvas.Header>
