@@ -21,6 +21,7 @@ import { IoIosStar } from 'react-icons/io';
 import ShareButton from '@/component/Share/shareButton';
 import { useState } from 'react';
 import SizeChartModal from '@/component/Size/Sizechart';
+import ReviewSection from '@/component/ReviewSection';
 
 export default function ProductPage({ product, products }) {
 	const dispatch = useDispatch();
@@ -180,10 +181,12 @@ export default function ProductPage({ product, products }) {
 							fontFamily: "'Great Vibes', cursive",
 							marginTop: 10,
 						}}>
-						Recently Updated
+						More Suggestions
 					</h2>
 				}
 			/>
+			<ReviewSection />
+
 			{showSizeChart && <SizeChartModal setShowSizeChart={setShowSizeChart} />}
 		</Screen>
 	);

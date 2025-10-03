@@ -1,6 +1,7 @@
 import { Offcanvas } from 'react-bootstrap';
 import { Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Link from 'next/link';
 
 function MobileMenu({ show, handleClose }) {
 	const categories = [
@@ -131,12 +132,12 @@ function MobileMenu({ show, handleClose }) {
 									<li
 										key={idx}
 										className='mobile-menu-category-item'>
-										<a
+										<Link
 											href={`/category/${category.link}`}
 											className='text-decoration-none'
 											style={{ color: '#6a2a42' }}>
 											{category.name}
-										</a>
+										</Link>
 									</li>
 								))}
 							</ul>
@@ -149,12 +150,12 @@ function MobileMenu({ show, handleClose }) {
 						<li
 							key={idx}
 							className='mobile-menu-category-item'>
-							<a
+							<Link
 								href={menu.link}
 								className='text-decoration-none'
 								style={{ color: '#6a2a42' }}>
 								{menu.name}
-							</a>
+							</Link>
 						</li>
 					))}
 				</ul>

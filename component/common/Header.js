@@ -11,6 +11,7 @@ import CartIcon from './CartIcon';
 import { Offcanvas } from 'react-bootstrap';
 import MobileMenu from '../menu/MobileMenu';
 import { useRouter } from 'next/navigation';
+import { FaHeart } from 'react-icons/fa';
 
 const Header = () => {
 	const [show, setShow] = useState(false);
@@ -108,6 +109,9 @@ const Header = () => {
 								count={cartItems.length}
 								handleShow={handleShow}
 							/>
+						</a>
+						<a className='text-decoration-none  mx-2'>
+							<FaHeart color='#4c1d1d' />
 						</a>
 					</div>
 

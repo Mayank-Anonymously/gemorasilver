@@ -11,6 +11,7 @@ import {
 } from '@/component/redux/slices/cartSlice';
 import { removeFromCartApi } from '@/component/redux/thunk/cartThunkApi';
 import { HOST } from '@/component/apibaseurl';
+import Link from 'next/link';
 
 const CartOffcanvas = ({ show, handleClose }) => {
 	const dispatch = useDispatch();
@@ -93,24 +94,35 @@ const CartOffcanvas = ({ show, handleClose }) => {
 								<span>Subtotal</span>
 								<strong>₹{subtotal.toFixed(2)}</strong>
 							</div>
+							<b className='text-center'>
+								Inclusive All Charges (GST & Shipping)
+							</b>
 							<div className='d-flex justify-content-between'>
 								<span>Total</span>
 								<strong>₹{total.toFixed(2)}</strong>
 							</div>
 						</div>
 
-						<div>
-							<Button
-								variant='secondary'
-								className='w-100 mb-2'>
-								Continue Shopping
-							</Button>
-							<Button
-								variant='primary'
-								className='w-100'
+						<div className='d-flex justify-content-around'>
+							{/* <span
+								className='btn mb-2'
+								style={{
+									background: '#4c1d1d',
+									color: 'white',
+									height: '40px',
+								}}>
+								<p>Continue Shop</p>
+							</span> */}
+							<Link
+								style={{
+									background: '#4c1d1d',
+									color: 'white',
+									height: '40px',
+								}}
+								className='btn w-100'
 								href={'/product/checkout'}>
 								Checkout
-							</Button>
+							</Link>
 						</div>
 					</>
 				)}

@@ -14,6 +14,7 @@ import TestimonialCarousel from '@/component/home/FoundersSection';
 import axios from 'axios';
 import { HOST } from '@/component/apibaseurl';
 import { useRouter } from 'next/navigation';
+import SocialMediaSection from './SocialMediahandle';
 
 export default function Home({ products }) {
 	const router = useRouter();
@@ -86,6 +87,9 @@ export default function Home({ products }) {
 
 			<section>
 				<TestimonialCarousel />
+			</section>
+			<section>
+				<SocialMediaSection />
 			</section>
 		</Screen>
 	);

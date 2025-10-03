@@ -1,13 +1,20 @@
 import { HOST } from '@/component/apibaseurl';
 import FooterInfo from '@/component/common/FooterInfo';
 import Screen from '@/component/common/Screen';
+import { FaTrashAlt } from 'react-icons/fa';
 import RelatedProducts from '@/component/home/RelatedProducts';
 import Testimonials from '@/component/home/testimonials';
-import { decrementQty, incrementQty } from '@/component/redux/slices/cartSlice';
+import {
+	clearCart,
+	decrementQty,
+	incrementQty,
+	removeFromCart,
+} from '@/component/redux/slices/cartSlice';
 import {
 	updateGrandTotal,
 	updateUserId,
 } from '@/component/redux/slices/orderSlice';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { Button, Card, Form, Row, Col } from 'react-bootstrap';
@@ -30,12 +37,6 @@ const CheckoutPage = () => {
 			)
 		);
 	};
-
-	const removeItem = (id) => {
-		setCart((prev) => prev.filter((item) => item.id !== id));
-	};
-
-	const clearCart = () => setCart([]);
 
 	const applyCoupon = () => {
 		if (coupon === 'DISCOUNT10') {
@@ -72,7 +73,7 @@ const CheckoutPage = () => {
 											<div className='d-flex align-items-center gap-2'>
 												<img
 													src={`${HOST}resources/${item.image}`} // add image in your data
-													alt={item.name}
+													alt={item.title}
 													style={{
 														width: '50px',
 														height: '50px',
@@ -81,7 +82,7 @@ const CheckoutPage = () => {
 													}}
 												/>
 												<div>
-													<h6 className='mb-1'>{item.name}</h6>
+													<h6 className='mb-1'>{item.title}</h6>
 													<small className='text-muted'>
 														₹{item.priceSale.toFixed(2)}
 													</small>
@@ -112,10 +113,10 @@ const CheckoutPage = () => {
 
 											{/* Remove */}
 											<Button
-												variant='danger'
+												style={{ background: '#4c1d1d' }}
 												size='sm'
-												onClick={() => removeItem(item.id)}>
-												✕
+												onClick={() => dispatch(removeFromCart(item.id))}>
+												<FaTrashAlt />
 											</Button>
 										</Card.Body>
 									</Card>
@@ -124,18 +125,18 @@ const CheckoutPage = () => {
 						)}
 						{cartItems.length > 0 && (
 							<div className='d-flex justify-content-between mt-2'>
-								<Button
+								{/* <Button
 									variant='outline-danger'
 									size='sm'
-									onClick={clearCart}>
+									onClick={dispatch(clearCart())}>
 									Clear Cart
-								</Button>
+								</Button> */}
 
-								<Button
+								{/* <Button
 									variant='outline-primary'
 									size='sm'>
 									Continue Shopping
-								</Button>
+								</Button> */}
 							</div>
 						)}
 					</Col>
@@ -145,19 +146,21 @@ const CheckoutPage = () => {
 						<Card>
 							<Card.Body className='py-3'>
 								<h6 className='mb-2'>Coupon</h6>
-								<Form.Control
-									type='text'
-									placeholder='Enter coupon code'
-									value={coupon}
-									size='sm'
-									onChange={(e) => setCoupon(e.target.value)}
-								/>
-								<Button
-									className='mt-2 w-100'
-									size='sm'
-									onClick={applyCoupon}>
-									Apply Coupon
-								</Button>
+								<div className='d-flex justify-content-between'>
+									<Form.Control
+										type='text'
+										placeholder='Enter coupon code'
+										value={coupon}
+										onChange={(e) => setCoupon(e.target.value)}
+										style={{ width: '60%' }}
+									/>
+									<Button
+										className='bg-dark '
+										onClick={applyCoupon}
+										style={{ width: '30%', border: 'none', marginLeft: '10' }}>
+										Apply
+									</Button>
+								</div>
 
 								<hr className='my-2' />
 								<div className='small'>
@@ -171,6 +174,9 @@ const CheckoutPage = () => {
 											<span>-{(discount * 100).toFixed(0)}%</span>
 										</p>
 									)}
+									<b className='text-center'>
+										Inclusive All Charges (GST & Shipping)
+									</b>
 									<p className='d-flex justify-content-between fw-bold mb-1'>
 										<span>Grand Total:</span>
 										<span>₹{grandTotal.toFixed(2)}</span>
@@ -184,17 +190,21 @@ const CheckoutPage = () => {
 										size='sm'>
 										Update Cart
 									</Button>
-									<Button
+									<Link
+										href={'/product/proceed-to-payment'}
 										onClick={() => {
 											dispatch(updateUserId(grandTotal.toFixed(2)));
 											dispatch(updateGrandTotal(grandTotal.toFixed(2)));
-											router.push('/product/proceed-to-payment');
 										}}
-										variant='warning'
-										className='w-50'
+										style={{
+											background: '#4c1d1d',
+											color: 'white',
+											height: '40px',
+										}}
+										className='btn w-50'
 										size='sm'>
 										Checkout
-									</Button>
+									</Link>
 								</div>
 							</Card.Body>
 						</Card>
