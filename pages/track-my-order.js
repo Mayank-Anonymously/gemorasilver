@@ -104,7 +104,7 @@ export default function TrackOrder() {
 												<li
 													key={idx}
 													className='mb-2'>
-													{item.qty} × {item.name} – ${item.price}
+													{item.qty} × {item.name} – ${item.priceSale}
 												</li>
 											))}
 										</ul>

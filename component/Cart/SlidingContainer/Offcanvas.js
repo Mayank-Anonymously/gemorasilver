@@ -17,7 +17,7 @@ const CartOffcanvas = ({ show, handleClose }) => {
 	const cartItems = useSelector((state) => state.cart.items);
 	const { user } = useSelector((state) => state.auth);
 	const subtotal = cartItems.reduce(
-		(acc, item) => acc + item.price * (item.quantity || 1),
+		(acc, item) => acc + item.priceSale * (item.quantity || 1),
 		0
 	);
 	const total = subtotal;
@@ -70,7 +70,7 @@ const CartOffcanvas = ({ show, handleClose }) => {
 											</button>
 										</div>
 										<small className='text-muted'>
-											₹{(item.price * item.quantity).toFixed(2)}
+											₹{(item.priceSale * item.quantity).toFixed(2)}
 										</small>
 									</div>
 								</div>

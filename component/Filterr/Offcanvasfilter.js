@@ -23,7 +23,7 @@ const FilterOffCanvas = ({
 	const cartItems = useSelector((state) => state.cart.items);
 
 	const subtotal = cartItems.reduce(
-		(acc, item) => acc + item.price * (item.quantity || 1),
+		(acc, item) => acc + item.priceSale * (item.quantity || 1),
 		0
 	);
 	const total = subtotal;

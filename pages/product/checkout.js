@@ -47,7 +47,7 @@ const CheckoutPage = () => {
 	};
 
 	const subtotal = cartItems.reduce(
-		(acc, item) => acc + item.price * item.quantity,
+		(acc, item) => acc + item.priceSale * item.quantity,
 		0
 	);
 	const grandTotal = subtotal - subtotal * discount;
@@ -83,7 +83,7 @@ const CheckoutPage = () => {
 												<div>
 													<h6 className='mb-1'>{item.name}</h6>
 													<small className='text-muted'>
-														₹{item.price.toFixed(2)}
+														₹{item.priceSale.toFixed(2)}
 													</small>
 												</div>
 											</div>
@@ -107,7 +107,7 @@ const CheckoutPage = () => {
 
 											{/* Total */}
 											<small className='fw-bold'>
-												₹{(item.price * item.quantity).toFixed(2)}
+												₹{(item.priceSale * item.quantity).toFixed(2)}
 											</small>
 
 											{/* Remove */}

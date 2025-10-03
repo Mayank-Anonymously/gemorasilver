@@ -1,4 +1,5 @@
 import { Offcanvas } from 'react-bootstrap';
+import { Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function MobileMenu({ show, handleClose }) {
@@ -74,6 +75,33 @@ function MobileMenu({ show, handleClose }) {
 			images: ['/assets/category/anklet.png', '/assets/category/anklet.png'],
 		},
 	];
+	const mobileMenuLoggedInOptions = [
+		{
+			id: 3,
+			name: 'Contact Us',
+			link: '/contact-us',
+		},
+		{
+			id: 3,
+			name: 'About Us',
+			link: '/about',
+		},
+		{
+			id: 3,
+			name: 'My Orders',
+			link: '#',
+		},
+		{
+			id: 3,
+			name: 'My Saved Address',
+			link: '#',
+		},
+		{
+			id: 3,
+			name: 'Logout',
+			link: '#',
+		},
+	];
 
 	return (
 		<Offcanvas
@@ -81,19 +109,52 @@ function MobileMenu({ show, handleClose }) {
 			onHide={handleClose}
 			placement='start'>
 			<Offcanvas.Header closeButton>
-				<Offcanvas.Title
+				{/* <Offcanvas.Title
 					className='fw-bold'
 					style={{ color: '#6a2a42' }}>
-					Shop by Category
-				</Offcanvas.Title>
+					Luniva
+				</Offcanvas.Title> */}
 			</Offcanvas.Header>
 			<Offcanvas.Body>
+				<Accordion alwaysOpen>
+					<Accordion.Item eventKey='0'>
+						<Accordion.Header>
+							<h6
+								className='fw-bold m-0'
+								style={{ color: '#6a2a42' }}>
+								Shop by Category
+							</h6>
+						</Accordion.Header>
+						<Accordion.Body>
+							<ul className='list-unstyled m-0 p-0'>
+								{categories.map((category, idx) => (
+									<li
+										key={idx}
+										className='mobile-menu-category-item'>
+										<a
+											href={`/category/${category.link}`}
+											className='text-decoration-none'
+											style={{ color: '#6a2a42' }}>
+											{category.name}
+										</a>
+									</li>
+								))}
+							</ul>
+						</Accordion.Body>
+					</Accordion.Item>
+				</Accordion>
+				<ul className='mobile-menu-category list-unstyled m-0 p-0'></ul>
 				<ul className='mobile-menu-category list-unstyled m-0 p-0'>
-					{categories.map((category, idx) => (
+					{mobileMenuLoggedInOptions.map((menu, idx) => (
 						<li
 							key={idx}
 							className='mobile-menu-category-item'>
-							<a href={`/category/${category.link}`}>{category.name}</a>
+							<a
+								href={menu.link}
+								className='text-decoration-none'
+								style={{ color: '#6a2a42' }}>
+								{menu.name}
+							</a>
 						</li>
 					))}
 				</ul>

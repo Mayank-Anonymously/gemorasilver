@@ -2,8 +2,8 @@ import ProductImagesGallery from '@/component/product/Product';
 import { Row, Col } from 'react-bootstrap';
 import Screen from '@/component/common/Screen';
 import Head from 'next/head';
-import { FaStar, FaRegStar } from 'react-icons/fa';
-import { products } from '@/component/data/products';
+import { FaHeart } from 'react-icons/fa';
+import { PiRulerBold } from 'react-icons/pi';
 import {
 	addToCart,
 	buyNow,
@@ -18,14 +18,19 @@ import axios from 'axios';
 import NewColllection from '@/component/home/NewCollection';
 import FooterInfo from '@/component/common/FooterInfo';
 import { IoIosStar } from 'react-icons/io';
+import ShareButton from '@/component/Share/shareButton';
+import { useState } from 'react';
+import SizeChartModal from '@/component/Size/Sizechart';
 
 export default function ProductPage({ product, products }) {
 	const dispatch = useDispatch();
 	const router = useRouter();
 	const { user, loggedIn } = useSelector((state) => state.auth);
+	const [showSizeChart, setShowSizeChart] = useState(false);
 	const userId = user?._id;
 	const cartItems = useSelector((state) => state.cart.items);
-	const cartChecked = cartItems.find((item) => item._id === product._id);
+	const cartChecked = cartItems.some((item) => item._id === product._id);
+	console.log(cartChecked);
 	if (!product) return <p>Product not found</p>;
 
 	return (
@@ -42,7 +47,7 @@ export default function ProductPage({ product, products }) {
 				<div>
 					<a
 						href='/'
-						className='text-decoration-none'>
+						className='text-decoration-none text-black fw-bold'>
 						<span>Home / </span>
 					</a>
 					<span>{product.categoryName} / </span>
@@ -52,27 +57,82 @@ export default function ProductPage({ product, products }) {
 				<Row className='mt-4'>
 					<Col md={6}>
 						<ProductImagesGallery images={product.image} />
+						<div className='size-scale mt-3 d-flex justify-content-end align-items-end'>
+							{product.categoryName === 'RINGS' && (
+								<h6 onClick={() => setShowSizeChart(true)}>
+									<PiRulerBold color={'#812d3e'} /> Size
+								</h6>
+							)}
+						</div>
 					</Col>
 
 					<Col md={6}>
 						<h2 className='mb-3'>{product.title}</h2>
 						{/* <p className='text-muted'>SKU: {product.productSku}</p> */}
 						<h4 className='text-black mb-3'>
-							₹{product.priceSale}{' '}
+							₹{product.priceSale}
 							<small className='text-muted'>
 								<small
-									style={{ textDecoration: 'line-through', fontWeight: '400' }}>
+									style={{
+										textDecoration: 'line-through',
+										fontWeight: '400',
+										marginLeft: 10,
+									}}>
 									₹{product.price}
 								</small>
 							</small>
 						</h4>
-						<div className='d-flex align-items-between justify-content-start mt-3 review'>
-							<span className='fw-bold me-1'>5.0</span>
-							<IoIosStar color={'gold'} />
+						<div className='d-flex align-items-center justify-content-between mt-3 review'>
+							<div>
+								<span className='fw-bold me-1'>5.0</span>
+								<IoIosStar color={'gold'} />
+								<span className='ms-1 text-muted'>| 15</span>
+							</div>
 
-							<span className='ms-1 text-muted'>| 15</span>
+							<div className='d-flex align-items-center justify-content-between'>
+								<div className='d-none d-xs-none d-flex'>
+									{product.categoryName === 'RINGS' && (
+										<h6 onClick={() => setShowSizeChart(true)}>
+											<PiRulerBold color={'#812d3e'} /> Size
+										</h6>
+									)}
+								</div>
+								<button
+									className='btn'
+
+									// onClick={}
+								>
+									<FaHeart color='#4c1d1d' />
+								</button>
+
+								<ShareButton
+									title='Awesome Article'
+									text='Check out this article I found!'
+									url={window.location.href}
+								/>
+							</div>
 						</div>
 						<FooterInfo />
+						{cartItems
+							.filter((itx) => itx.id === product._id)
+							.map((item) => (
+								<div className='d-flex justify-content-between align-items-center mb-2'>
+									<div className='d-flex align-items-center gap-2'>
+										<button
+											className='btn btn-lg rounded-circle'
+											onClick={() => dispatch(decrementQty(item.id))}>
+											−
+										</button>
+										<span className='fw-bold'>{item.quantity}</span>
+										<button
+											className='btn btn-lg rounded-circle'
+											onClick={() => dispatch(incrementQty(item.id))}>
+											+
+										</button>
+									</div>
+								</div>
+							))}
+
 						<div className='product-detail-page-button'>
 							<button
 								className='btn add-to-cart'
@@ -86,6 +146,7 @@ export default function ProductPage({ product, products }) {
 								}}>
 								Add to Cart
 							</button>
+
 							<button
 								className='btn buy-now'
 								onClick={() => {
@@ -97,25 +158,6 @@ export default function ProductPage({ product, products }) {
 						</div>
 						<h5 className='mt-4'>Description</h5>
 						<p>{product.description}</p>
-						{cartItems
-							.filter((itx) => itx.id === product._id)
-							.map((item) => (
-								<div className='d-flex justify-content-between align-items-center'>
-									<div className='d-flex align-items-center gap-2'>
-										<button
-											className='btn btn-outline-dark btn-sm rounded-circle'
-											onClick={() => dispatch(decrementQty(item.id))}>
-											−
-										</button>
-										<span className='fw-bold'>{item.quantity}</span>
-										<button
-											className='btn btn-outline-dark btn-sm rounded-circle'
-											onClick={() => dispatch(incrementQty(item.id))}>
-											+
-										</button>
-									</div>
-								</div>
-							))}
 					</Col>
 				</Row>
 			</div>
@@ -132,6 +174,7 @@ export default function ProductPage({ product, products }) {
 					</h2>
 				}
 			/>
+			{showSizeChart && <SizeChartModal setShowSizeChart={setShowSizeChart} />}
 		</Screen>
 	);
 }
