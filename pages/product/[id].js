@@ -1,5 +1,5 @@
 import ProductImagesGallery from '@/component/product/Product';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Accordion } from 'react-bootstrap';
 import Screen from '@/component/common/Screen';
 import Head from 'next/head';
 import { FaHeart } from 'react-icons/fa';
@@ -97,11 +97,7 @@ export default function ProductPage({ product, products }) {
 										</h6>
 									)}
 								</div>
-								<button
-									className='btn'
-
-									// onClick={}
-								>
+								<button className='btn'>
 									<FaHeart color='#4c1d1d' />
 								</button>
 
@@ -156,8 +152,22 @@ export default function ProductPage({ product, products }) {
 								Buy Now
 							</button>
 						</div>
-						<h5 className='mt-4'>Description</h5>
-						<p>{product.description}</p>
+						<Accordion
+							alwaysOpen
+							className='mt-3'>
+							<Accordion.Item eventKey='0'>
+								<Accordion.Header>
+									<h6
+										className='fw-bold m-0'
+										style={{ color: '#6a2a42' }}>
+										Product Description
+									</h6>
+								</Accordion.Header>
+								<Accordion.Body>
+									<p>{product.description}</p>
+								</Accordion.Body>
+							</Accordion.Item>
+						</Accordion>
 					</Col>
 				</Row>
 			</div>

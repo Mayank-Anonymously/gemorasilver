@@ -38,7 +38,13 @@ const FooterInfo = () => {
 	];
 
 	return (
-		<Container className='py-4 border-top mt-4'>
+		<Container
+			className='py-4 border-top mt-4'
+			style={{
+				background: '#fff1f1',
+				marginTop: '10px !important',
+				borderRadius: '20px',
+			}}>
 			<Row className='text-center'>
 				{infoItems.map((item, idx) => (
 					<Col

@@ -143,7 +143,7 @@ function MobileMenu({ show, handleClose }) {
 						</Accordion.Body>
 					</Accordion.Item>
 				</Accordion>
-				<ul className='mobile-menu-category list-unstyled m-0 p-0'></ul>
+
 				<ul className='mobile-menu-category list-unstyled m-0 p-0'>
 					{mobileMenuLoggedInOptions.map((menu, idx) => (
 						<li
