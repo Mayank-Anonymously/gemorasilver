@@ -3,9 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import { useEffect } from 'react';
-import { Provider, useSelector } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from '@/component/redux/store';
+import { logoutUser } from '@/component/redux/slices/authSlices';
+import { ToastContainer } from 'react-toastify';
 
 function AppContent({ Component, pageProps }) {
 	useEffect(() => {
@@ -17,8 +19,12 @@ function AppContent({ Component, pageProps }) {
 
 	// 👇 get loggedIn from redux
 	const auth = useSelector((state) => state.auth);
-
+	const dispatch = useDispatch();
+	const handleLogout = () => {
+		dispatch(logoutUser());
+	};
 	useEffect(() => {
+		// handleLogout();
 		console.log('User logged in:', auth);
 	}, []);
 
@@ -34,6 +40,11 @@ export default function App({ Component, pageProps }) {
 				<AppContent
 					Component={Component}
 					pageProps={pageProps}
+				/>
+				<ToastContainer
+					position='top-right'
+					theme='dark'
+					autoClose={3000}
 				/>
 			</PersistGate>
 		</Provider>

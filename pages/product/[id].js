@@ -22,6 +22,7 @@ import ShareButton from '@/component/Share/shareButton';
 import { useState } from 'react';
 import SizeChartModal from '@/component/Size/Sizechart';
 import ReviewSection from '@/component/ReviewSection';
+import { addTowishlistApi } from '@/component/redux/thunk/wishlistThunkApi';
 
 export default function ProductPage({ product, products }) {
 	const dispatch = useDispatch();
@@ -29,9 +30,9 @@ export default function ProductPage({ product, products }) {
 	const { user, loggedIn } = useSelector((state) => state.auth);
 	const [showSizeChart, setShowSizeChart] = useState(false);
 	const userId = user?._id;
+
 	const cartItems = useSelector((state) => state.cart.items);
-	const cartChecked = cartItems.some((item) => item._id === product._id);
-	console.log(cartChecked);
+
 	if (!product) return <p>Product not found</p>;
 
 	return (
@@ -98,7 +99,9 @@ export default function ProductPage({ product, products }) {
 										</h6>
 									)}
 								</div>
-								<button className='btn'>
+								<button
+									className='btn'
+									onClick={() => addTowishlistApi(userId, product, dispatch)}>
 									<FaHeart color='#4c1d1d' />
 								</button>
 

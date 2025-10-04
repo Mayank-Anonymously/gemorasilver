@@ -12,6 +12,7 @@ import { Offcanvas } from 'react-bootstrap';
 import MobileMenu from '../menu/MobileMenu';
 import { useRouter } from 'next/navigation';
 import { FaHeart } from 'react-icons/fa';
+import Link from 'next/link';
 
 const Header = () => {
 	const [show, setShow] = useState(false);
@@ -52,28 +53,37 @@ const Header = () => {
 					</Navbar.Brand>
 					<div className='laptop-menu'>
 						<Navbar.Brand>
-							<a className='text-decoration-none mx-2'>
+							<Link
+								href=''
+								className='text-decoration-none mx-2'>
 								<CiSearch
 									size={25}
 									color={'#b66878'}
 								/>
-							</a>
-							<a className='text-decoration-none  mx-2'>
+							</Link>
+							<Link
+								href=''
+								className='text-decoration-none  mx-2'>
 								<CartIcon
 									count={cartItems.length}
 									handleShow={handleShow}
 								/>
-							</a>
+							</Link>
+							<Link
+								className='text-decoration-none mx-2'
+								href='/user/wishlist'>
+								<FaHeart color='#4c1d1d' />
+							</Link>
 							{auth.loggedIn === false && (
-								<a
-									onClick={() => router.push('/auth/login')}
+								<Link
+									href={'/auth/login'}
 									className='text-decoration-none  mx-2 '>
 									<BsPersonCircle
 										size={25}
 										color={'#b66878'}
 										className='cursor-pointer'
 									/>
-								</a>
+								</Link>
 							)}
 						</Navbar.Brand>
 						<Nav.Link
@@ -104,15 +114,19 @@ const Header = () => {
 							/>
 						</Navbar.Brand>
 
-						<a className='text-decoration-none  mx-2'>
+						<Link
+							href=''
+							className='text-decoration-none  mx-2'>
 							<CartIcon
 								count={cartItems.length}
 								handleShow={handleShow}
 							/>
-						</a>
-						<a className='text-decoration-none  mx-2'>
+						</Link>
+						<Link
+							className='text-decoration-none  mx-2'
+							href='/user/wishlist'>
 							<FaHeart color='#4c1d1d' />
-						</a>
+						</Link>
 					</div>
 
 					<div className='mobile-menu'>
