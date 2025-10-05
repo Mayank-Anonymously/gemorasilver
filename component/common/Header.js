@@ -74,6 +74,11 @@ const Header = () => {
 									handleShow={handleShow}
 								/>
 							</Link>
+							<Nav.Link
+								href='/listing/shop'
+								className='nav-animate'>
+								SHOP
+							</Nav.Link>
 							<Link
 								className='text-decoration-none mx-2'
 								href='/user/wishlist'>

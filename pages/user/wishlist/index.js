@@ -26,7 +26,6 @@ const Wishlist = () => {
 	useEffect(() => {
 		fetchwishlist({ userId, dispatch });
 	}, []);
-	console.log(wishlistData);
 
 	return (
 		<Screen>

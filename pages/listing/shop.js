@@ -49,8 +49,8 @@ const AllProduct = ({ products, filterproduct }) => {
 			activeCategory === 'All' || p.categoryName === activeCategory;
 
 		const priceMatch =
-			(!priceRange.from || p.price >= priceRange.from) &&
-			(!priceRange.to || p.price <= priceRange.to);
+			(!priceRange.from || p.priceSale >= priceRange.from) &&
+			(!priceRange.to || p.priceSale <= priceRange.to);
 
 		const colorMatch =
 			selectedStoneColors.length === 0 || selectedStoneColors.includes(p.color);
@@ -62,7 +62,7 @@ const AllProduct = ({ products, filterproduct }) => {
 	});
 
 	const final = filteredProducts;
-	console.log(final);
+
 	// const final = filterproduct?.length > 0 ? filterproduct : filteredProducts;
 	return (
 		<Screen>
