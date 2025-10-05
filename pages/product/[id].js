@@ -84,6 +84,7 @@ export default function ProductPage({ product, products }) {
 								</small>
 							</small>
 						</h4>
+
 						<div className='d-flex align-items-center justify-content-between mt-3 review'>
 							<div>
 								<span className='fw-bold me-1'>5.0</span>
@@ -112,7 +113,9 @@ export default function ProductPage({ product, products }) {
 								/>
 							</div>
 						</div>
-						<FooterInfo />
+						<div classname='mt-4'>
+							<FooterInfo />
+						</div>
 						{cartItems
 							.filter((itx) => itx.id === product._id)
 							.map((item) => (
@@ -133,7 +136,7 @@ export default function ProductPage({ product, products }) {
 								</div>
 							))}
 
-						<div className='product-detail-page-button'>
+						<div className='product-detail-page-button mt-5'>
 							<button
 								className='btn add-to-cart'
 								onClick={() => {
@@ -158,7 +161,7 @@ export default function ProductPage({ product, products }) {
 						</div>
 						<Accordion
 							alwaysOpen
-							className='mt-3'>
+							className='mt-5 mb-5'>
 							<Accordion.Item eventKey='0'>
 								<Accordion.Header>
 									<h6

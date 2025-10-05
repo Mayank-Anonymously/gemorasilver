@@ -107,61 +107,64 @@ const AllProduct = ({ products, filterproduct }) => {
 										md={6}
 										lg={4}
 										className='justify-content-center mb-2'>
-										<div
-											onClick={() => router.push(`/product/${p._id}`)}
-											className='product-card bg-white shadow-sm border-0 p-2 rounded-3'
-											style={{
-												display: 'flex',
-												width: '100%',
-												height: '100%',
-												justifyContent: 'space-between',
-												alignItems: 'center',
-												flexDirection: 'column',
-											}}>
-											<img
-												src={`${HOST}resources/${p.image}`}
-												alt={p.title}
-												className='img-fluid'
-											/>
-											<div className='w-100'>
-												<div className='d-flex align-items-between justify-content-start mt-3 review'>
-													<span className='fw-bold me-1'>5.0</span>
-													<IoIosStar color={'gold'} />
-													<span className='ms-1 text-muted'>| 15</span>
-												</div>
-												<div className='d-flex justify-content-start mt-2 flex-wrap'>
-													<h5 className='mb-0 fw-bold text-dark me-2 product-price'>
-														₹{p.priceSale}
-													</h5>
-													<p className='mb-0 text-muted text-decoration-line-through product-price-compare'>
-														₹{p.price}
-													</p>
-												</div>
-												<h6 className='product-tile-title'>{p.title}</h6>
-												<div className='d-flex product-all-tiles justify-content-between'>
-													<Link
-														href={`/product/${p._id}`}
-														className='btn fw-semibold cursor-pointer'
-														style={{
-															backgroundColor: '#4c1d1d',
-															color: 'white',
-															borderRadius: 8,
-															marginTop: 10,
-														}}
-														onClick={(e) => {
-															e.preventDefault();
-															if (!loggedIn) {
-																alert('Please login before adding to cart.');
-																router.push('/auth/login');
-															} else {
-																addToCartApi(userId, p, dispatch);
-															}
-														}}>
-														Add to Cart
-													</Link>
+										<Link
+											href={`/product/${p._id}`}
+											className='text-decoration-none'>
+											<div
+												className='product-card bg-white shadow-sm border-0 p-2 rounded-3'
+												style={{
+													display: 'flex',
+													width: '100%',
+													height: '100%',
+													justifyContent: 'space-between',
+													alignItems: 'center',
+													flexDirection: 'column',
+												}}>
+												<img
+													src={`${HOST}resources/${p.image}`}
+													alt={p.title}
+													className='img-fluid'
+												/>
+												<div className='w-100'>
+													<div className='d-flex align-items-between justify-content-start mt-3 review'>
+														<span className='fw-bold me-1'>5.0</span>
+														<IoIosStar color={'gold'} />
+														<span className='ms-1 text-muted'>| 15</span>
+													</div>
+													<div className='d-flex justify-content-start mt-2 flex-wrap'>
+														<h5 className='mb-0 fw-bold text-dark me-2 product-price'>
+															₹{p.priceSale}
+														</h5>
+														<p className='mb-0 text-muted text-decoration-line-through product-price-compare'>
+															₹{p.price}
+														</p>
+													</div>
+													<h6 className='product-tile-title'>{p.title}</h6>
+													<div className='d-flex product-all-tiles justify-content-between'>
+														<Link
+															href={`/product/${p._id}`}
+															className='btn fw-semibold cursor-pointer'
+															style={{
+																backgroundColor: '#4c1d1d',
+																color: 'white',
+																borderRadius: 8,
+																marginTop: 10,
+															}}
+															onClick={(e) => {
+																e.preventDefault();
+																if (!loggedIn) {
+																	alert('Please login before adding to cart.');
+																	router.push('/auth/login');
+																} else {
+																	addToCartApi(userId, p, dispatch);
+																}
+															}}>
+															Add to Cart
+														</Link>
+													</div>
 												</div>
 											</div>
-										</div>
+										</Link>
 									</Col>
 								))
 							) : (
