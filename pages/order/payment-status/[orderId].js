@@ -91,12 +91,13 @@ export async function getServerSideProps(context) {
 			message = 'Your order has been generated for Cash on Delivery.';
 		} else {
 			// Online payment → call PhonePe status API
-			const paymentRes = await fetch(`${HOST}/payment/status/${orderId}`, {
-				method: 'POST',
+			const paymentRes = await fetch(`${HOST}payment/status/${orderId}`, {
+				method: 'GET',
 				headers: { 'Content-Type': 'application/json' },
 			});
 
 			const paymentData = await paymentRes.json();
+			console.log('paymentData:', paymentData);
 			status = paymentData.status || 'PENDING';
 			message = paymentData.message || 'Payment is being processed.';
 		}
