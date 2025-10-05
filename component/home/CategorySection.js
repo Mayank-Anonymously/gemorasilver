@@ -7,7 +7,7 @@ const categories = [
 	{
 		name: 'Bracelets',
 		link: 'bracelet',
-		count: 28,
+		count: 23,
 		description: 'Explore our handcrafted bracelets made with love.',
 		images: ['/assets/product/bracelet.png', '/assets/product/bracelet.png'],
 	},
@@ -29,7 +29,7 @@ const categories = [
 	{
 		name: 'Pendants',
 		link: 'pendant',
-		count: 14,
+		count: 22,
 		description: 'Elegant pendants for every occasion.',
 		images: ['/assets/category/pendant.png', '/assets/category/pendant.png'],
 	},
