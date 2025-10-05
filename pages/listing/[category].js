@@ -28,7 +28,7 @@ function useIsMobile(breakpoint = 568) {
 	return isMobile;
 }
 
-const AllProduct = ({ products, filterproduct }) => {
+const ProductByCategory = ({ products, filterproduct }) => {
 	const categories = ['All', ...new Set(products.map((p) => p.categoryName))];
 	const { user, loggedIn } = useSelector((state) => state.auth);
 	const router = useRouter();
