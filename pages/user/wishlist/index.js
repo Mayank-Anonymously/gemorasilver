@@ -9,6 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import Screen from '@/component/common/Screen';
 import { HOST } from '@/component/apibaseurl';
+import Link from 'next/link';
 
 const Wishlist = () => {
 	const wishlistData = useSelector((state) => state.wishlist.wishlistitems);
@@ -45,63 +46,65 @@ const Wishlist = () => {
 								sm={6}
 								md={4}
 								lg={3}>
-								<Card
-									className='h-100 shadow-sm'
-									style={{
-										border: '1px solid #f3f3f3',
-										borderRadius: '12px',
-									}}>
-									<div className='position-relative'>
-										<img
-											src={`${HOST}resources/${product.image}`}
-											alt={product.title}
-											width={300}
-											height={300}
-											className='card-img-top p-3'
-											style={{
-												objectFit: 'contain',
-												borderRadius: '12px',
-											}}
-										/>
-									</div>
-									<Card.Body>
-										<Card.Title
-											className='fw-semibold'
-											style={{ color: '#800000' }}>
-											{product.title}
-										</Card.Title>
-										<Card.Text style={{ fontSize: '0.9rem' }}>
-											{product.description.substring(0, 80)}...
-										</Card.Text>
-
-										<div className='d-flex justify-content-between align-items-center mt-3'>
-											<div>
-												<span
-													className='fw-bold'
-													style={{ color: '#800000' }}>
-													₹{product.priceSale.toLocaleString()}
-												</span>
-												{product.price && (
-													<small className='text-muted ms-2 text-decoration-line-through'>
-														₹{product.price.toLocaleString()}
-													</small>
-												)}
-											</div>
-											<Button
-												variant='outline'
-												onClick={() =>
-													removeFromwishlistApi(userId, product._id, dispatch)
-												}
+								<Link className='text-decortion-none text-none'>
+									<Card
+										className='h-100 shadow-sm'
+										style={{
+											border: '1px solid #f3f3f3',
+											borderRadius: '12px',
+										}}>
+										<div className='position-relative'>
+											<img
+												src={`${HOST}resources/${product.image}`}
+												alt={product.title}
+												width={300}
+												height={300}
+												className='card-img-top p-3'
 												style={{
-													backgroundColor: '#800000',
-													color: '#fff',
-													borderRadius: '8px',
-												}}>
-												Remove
-											</Button>
+													objectFit: 'contain',
+													borderRadius: '12px',
+												}}
+											/>
 										</div>
-									</Card.Body>
-								</Card>
+										<Card.Body>
+											<Card.Title
+												className='fw-semibold'
+												style={{ color: '#800000' }}>
+												{product.title}
+											</Card.Title>
+											<Card.Text style={{ fontSize: '0.9rem' }}>
+												{product.description.substring(0, 80)}...
+											</Card.Text>
+
+											<div className='d-flex justify-content-between align-items-center mt-3'>
+												<div>
+													<span
+														className='fw-bold'
+														style={{ color: '#800000' }}>
+														₹{product.priceSale.toLocaleString()}
+													</span>
+													{product.price && (
+														<small className='text-muted ms-2 text-decoration-line-through'>
+															₹{product.price.toLocaleString()}
+														</small>
+													)}
+												</div>
+												<Button
+													variant='outline'
+													onClick={() =>
+														removeFromwishlistApi(userId, product._id, dispatch)
+													}
+													style={{
+														backgroundColor: '#800000',
+														color: '#fff',
+														borderRadius: '8px',
+													}}>
+													Remove
+												</Button>
+											</div>
+										</Card.Body>
+									</Card>
+								</Link>
 							</Col>
 						))
 					) : (
