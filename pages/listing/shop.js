@@ -28,7 +28,7 @@ function useIsMobile(breakpoint = 568) {
 	return isMobile;
 }
 
-const ProductByCategory = ({ products, filterproduct }) => {
+const AllProduct = ({ products, filterproduct }) => {
 	const categories = ['All', ...new Set(products.map((p) => p.categoryName))];
 	const { user, loggedIn } = useSelector((state) => state.auth);
 	const router = useRouter();
@@ -61,8 +61,9 @@ const ProductByCategory = ({ products, filterproduct }) => {
 		return categoryMatch && priceMatch && colorMatch && styleMatch;
 	});
 
-	const final = filterproduct?.length > 0 ? filterproduct : filteredProducts;
-
+	const final = filteredProducts;
+	console.log(final);
+	// const final = filterproduct?.length > 0 ? filterproduct : filteredProducts;
 	return (
 		<Screen>
 			<Container className='py-5'>
@@ -176,29 +177,11 @@ const ProductByCategory = ({ products, filterproduct }) => {
 	);
 };
 
-export default ProductByCategory;
+export default AllProduct;
 
 export async function getServerSideProps(context) {
-	const { name } = context.query;
-
 	try {
 		const res = await axios.get(`${HOST}product/getAllProducts`);
-
-		if (Array.isArray(res.data.response)) {
-			// Normalize both categoryName and query to match
-			const filterproduct = res.data.response.filter(
-				(p) => p.categoryName.replaceAll(' ', '-').toLowerCase() === name
-			);
-			//  var filtercat = filterproduct.filter
-			console.log(filterproduct);
-			// var filtercat = filterproduct.filter((item) => item === name);
-			return {
-				props: {
-					products: res.data.response || [],
-					filterproduct: filterproduct,
-				},
-			};
-		}
 
 		return {
 			props: {

@@ -42,6 +42,11 @@ const Header = () => {
 							className='nav-animate'>
 							About Us
 						</Nav.Link>
+						<Nav.Link
+							href='/listing/shop'
+							className='nav-animate'>
+							SHOP
+						</Nav.Link>
 					</div>
 					<Navbar.Brand
 						href='/'

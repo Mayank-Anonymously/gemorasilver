@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Form } from 'react-bootstrap';
 import PriceSlider from './atoms/PriceSlider';
 
@@ -10,15 +10,13 @@ const FiltersResponsive = ({
 	setSelectedCategories,
 	priceRange,
 	setPriceRange,
+	activeCategory,
 	setActiveCategory,
+	selectedStoneColors,
+	setSelectedStoneColors,
+	selectedStyles,
+	setSelectedStyles,
 }) => {
-	// Local states for all other filters
-	const [selectedStoneColors, setSelectedStoneColors] = useState([]);
-	const [selectedStyles, setSelectedStyles] = useState([]);
-	const [selectedShopFor, setSelectedShopFor] = useState([]);
-	const [selectedMetals, setSelectedMetals] = useState([]);
-	const [selectedStones, setSelectedStones] = useState([]);
-
 	// Reusable Checkbox Group
 	const CheckboxGroup = ({ title, items, selected, onChange }) => (
 		<div
@@ -45,9 +43,14 @@ const FiltersResponsive = ({
 		);
 	};
 
-	// Product type (coming from props)
+	// Handle product type selection
 	const handleCategoryChange = (cat) => {
 		setActiveCategory(cat);
+		if (cat === 'All') {
+			setSelectedCategories([]);
+		} else {
+			setSelectedCategories([cat]);
+		}
 	};
 
 	return (
@@ -77,15 +80,14 @@ const FiltersResponsive = ({
 						toggleItem(val, selectedStoneColors, setSelectedStoneColors)
 					}
 				/>
-
 				<CheckboxGroup
 					title='Style'
 					items={[
 						'Classic',
-						'⁠cocktail',
+						'Cocktail',
 						'Traditional',
-						'⁠Party wear',
-						'⁠Office wear',
+						'Party wear',
+						'Office wear',
 					]}
 					selected={selectedStyles}
 					onChange={(val) => toggleItem(val, selectedStyles, setSelectedStyles)}
@@ -95,25 +97,19 @@ const FiltersResponsive = ({
 			{/* Mobile / Tablet Horizontal View */}
 			<div
 				className='d-lg-none flex-nowrap overflow-auto border-bottom py-3'
-				style={{
-					gap: '20px',
-					padding: '0 10px',
-					scrollBehavior: 'smooth',
-				}}>
+				style={{ gap: '20px', padding: '0 10px', scrollBehavior: 'smooth' }}>
 				<div style={{ minWidth: '160px' }}>
 					<PriceSlider
 						priceRange={priceRange}
 						setPriceRange={setPriceRange}
 					/>
 				</div>
-
 				<CheckboxGroup
 					title='Product type'
 					items={categories}
 					selected={selectedCategories}
 					onChange={handleCategoryChange}
 				/>
-
 				<CheckboxGroup
 					title='Stone Color'
 					items={['Red', 'Blue', 'Green', 'White', 'Pink', 'Purple']}
@@ -122,15 +118,14 @@ const FiltersResponsive = ({
 						toggleItem(val, selectedStoneColors, setSelectedStoneColors)
 					}
 				/>
-
 				<CheckboxGroup
 					title='Style'
 					items={[
 						'Classic',
-						'⁠cocktail',
+						'Cocktail',
 						'Traditional',
-						'⁠Party wear',
-						'⁠Office wear',
+						'Party wear',
+						'Office wear',
 					]}
 					selected={selectedStyles}
 					onChange={(val) => toggleItem(val, selectedStyles, setSelectedStyles)}
