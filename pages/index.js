@@ -15,6 +15,7 @@ import axios from 'axios';
 import { HOST } from '@/component/apibaseurl';
 import { useRouter } from 'next/navigation';
 import SocialMediaSection from './SocialMediahandle';
+import FloatingWhatsAppButton from '@/component/common/FloatingButton';
 
 export default function Home({ products }) {
 	const router = useRouter();
@@ -52,7 +53,7 @@ export default function Home({ products }) {
 			<section id='category-section'>
 				<CategorySection />
 			</section>
-
+			<FloatingWhatsAppButton />
 			<section>
 				<NewCollection
 					products={products}
