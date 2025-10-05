@@ -1,8 +1,15 @@
 import { HOST } from '@/component/apibaseurl';
-import React from 'react';
+import { emptyCart } from '@/component/redux/thunk/cartThunkApi';
+import React, { useEffect } from 'react';
 import { Container, Card, Alert, Spinner } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
 const PaymentStatusPage = ({ status, orderId, message, paymentMethod }) => {
+	const { user } = useSelector((state) => state.auth);
+	const userId = user._id;
+	useEffect(() => {
+		emptyCart(userId);
+	}, []);
 	return (
 		<Container className='d-flex flex-column align-items-center justify-content-center min-vh-100'>
 			<Card
@@ -67,11 +74,9 @@ export async function getServerSideProps(context) {
 	const { orderId } = context.query;
 
 	try {
-		// Call your backend to get order details (including paymentMethod)
-
 		const res = await fetch(`${HOST}order/${orderId}`);
 		const order = await res.json();
-		console.log(order);
+
 		if (!order) {
 			return {
 				props: {
@@ -85,7 +90,7 @@ export async function getServerSideProps(context) {
 
 		let status = 'PENDING';
 		let message = 'Payment is being processed.';
-		console.log(order);
+
 		if (order.paymentMethod === 'cod') {
 			status = 'COD';
 			message = 'Your order has been generated for Cash on Delivery.';
@@ -97,7 +102,7 @@ export async function getServerSideProps(context) {
 			});
 
 			const paymentData = await paymentRes.json();
-			console.log('paymentData:', paymentData);
+
 			status = paymentData.status || 'PENDING';
 			message = paymentData.message || 'Payment is being processed.';
 		}

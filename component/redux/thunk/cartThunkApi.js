@@ -29,21 +29,18 @@ export const addToCartApi = async (userId, product, dispatch) => {
 		throw error;
 	}
 };
-// export const removeFromCart = async (userId, productId) => {
-// 	try {
-// 		const response = await axios.post('/api/cart/remove', {
-// 			userId,
-// 			productId,
-// 		});
-// 		return response.data;
-// 	} catch (error) {
-// 		console.error(
-// 			'Error removing from cart:',
-// 			error.response?.data || error.message
-// 		);
-// 		throw error;
-// 	}
-// };
+export const emptyCart = async (userId, productId) => {
+	try {
+		const response = await axios.get(`${HOST}cart/empty-cart/${userId}`);
+		return response.data;
+	} catch (error) {
+		console.error(
+			'Error removing from cart:',
+			error.response?.data || error.message
+		);
+		throw error;
+	}
+};
 // export const updateCartQuantity = async (userId, productId, actionType) => {
 // 	try {
 // 		const response = await axios.post('/api/cart/update-quantity', {
