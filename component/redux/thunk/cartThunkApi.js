@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { addToCart } from '../slices/cartSlice';
+import { addToCart, getcart } from '../slices/cartSlice';
 import { HOST } from '@/component/apibaseurl';
 
 export const addToCartApi = async (userId, product, dispatch) => {
@@ -60,9 +60,11 @@ export const addToCartApi = async (userId, product, dispatch) => {
 // 		throw error;
 // 	}
 // };
-export const fetchCart = async (userId) => {
+export const fetchCart = async (userId, dispatch) => {
 	try {
-		const response = await axios.get(`/api/cart/${userId}`);
+		console.log(`${HOST}cart/getAllCartItems/${userId}`);
+		const response = await axios.get(`${HOST}cart/getAllCartItems/${userId}`);
+		dispatch(getcart(response.data.response));
 		return response.data;
 	} catch (error) {
 		console.error(

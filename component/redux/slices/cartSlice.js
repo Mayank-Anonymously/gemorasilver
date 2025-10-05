@@ -27,6 +27,9 @@ export const cartSlice = createSlice({
 
 			if (item) item.quantity += 1;
 		},
+		getcart: (state, action) => {
+			state.items = action.payload;
+		},
 		decrementQty: (state, action) => {
 			const item = state.items.find((i) => i.id === action.payload);
 			if (item && item.quantity > 1) {
@@ -63,6 +66,7 @@ export const {
 	decrementQty,
 	clearCart,
 	buyNow,
+	getcart,
 	clearBuyNow,
 } = cartSlice.actions;
 

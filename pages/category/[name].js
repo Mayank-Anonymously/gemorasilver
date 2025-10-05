@@ -149,7 +149,6 @@ const ProductByCategory = ({ products, filterproduct }) => {
 																);
 																router.push('/auth/login');
 															} else {
-																dispatch(addToCart(p));
 																addToCartApi(userId, p, dispatch);
 															}
 														}}>

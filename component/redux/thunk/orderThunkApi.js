@@ -102,15 +102,3 @@ export const placeOrder = createAsyncThunk(
 // 		throw error;
 // 	}
 // };
-export const fetchCart = async (userId) => {
-	try {
-		const response = await axios.get(`/api/cart/${userId}`);
-		return response.data;
-	} catch (error) {
-		console.error(
-			'Error fetching cart:',
-			error.response?.data || error.message
-		);
-		throw error;
-	}
-};

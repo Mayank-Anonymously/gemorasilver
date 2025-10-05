@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Offcanvas, Button, Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaTrashAlt } from 'react-icons/fa';
@@ -9,7 +9,10 @@ import {
 	incrementQty,
 	removeFromCart,
 } from '@/component/redux/slices/cartSlice';
-import { removeFromCartApi } from '@/component/redux/thunk/cartThunkApi';
+import {
+	fetchCart,
+	removeFromCartApi,
+} from '@/component/redux/thunk/cartThunkApi';
 import { HOST } from '@/component/apibaseurl';
 import Link from 'next/link';
 
@@ -26,7 +29,12 @@ const CartOffcanvas = ({ show, handleClose }) => {
 	const handleRemove = (id) => {
 		dispatch(removeFromCart(id));
 	};
+	const userId = user._id;
 
+	useEffect(() => {
+		fetchCart(userId, dispatch);
+	}, []);
+	console.log(cartItems);
 	return (
 		<Offcanvas
 			show={show}
