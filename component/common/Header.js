@@ -74,11 +74,7 @@ const Header = () => {
 									handleShow={handleShow}
 								/>
 							</Link>
-							<Nav.Link
-								href='/listing/shop'
-								className='nav-animate'>
-								SHOP
-							</Nav.Link>
+
 							<Link
 								className='text-decoration-none mx-2'
 								href='/user/wishlist'>
@@ -159,6 +155,11 @@ const Header = () => {
 							href='/track-my-order'
 							className='nav-animate'>
 							Track My Order
+						</Nav.Link>
+						<Nav.Link
+							href='/listing/shop'
+							className='nav-animate'>
+							SHOP
 						</Nav.Link>
 					</div>
 				</Container>
