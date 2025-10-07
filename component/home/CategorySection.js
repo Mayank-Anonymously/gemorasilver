@@ -9,7 +9,10 @@ const categories = [
 		link: 'bracelet',
 		count: 23,
 		description: 'Explore our handcrafted bracelets made with love.',
-		images: ['/assets/product/bracelet.png', '/assets/product/bracelet.png'],
+		images: [
+			'/assets/product/bracelet.png',
+			'/assets/product/bracelet-two.png',
+		],
 	},
 
 	{
@@ -17,21 +20,27 @@ const categories = [
 		link: 'rings',
 		count: 48,
 		description: 'Explore our beautiful rings collection.',
-		images: ['/assets/category/rings.png', '/assets/category/rings.png'],
+		images: ['/assets/category/rings.png', '/assets/category/ring-two.png'],
 	},
 	{
 		name: 'Earrings',
 		link: 'earrings',
 		count: 18,
 		description: 'Find earrings to match every style.',
-		images: ['/assets/category/earrings.png', '/assets/category/earrings.png'],
+		images: [
+			'/assets/category/earrings.png',
+			'/assets/category/earrings-two.png',
+		],
 	},
 	{
 		name: 'Pendants',
 		link: 'pendant',
 		count: 22,
 		description: 'Elegant pendants for every occasion.',
-		images: ['/assets/category/pendant.png', '/assets/category/pendant.png'],
+		images: [
+			'/assets/category/pendant.png',
+			'/assets/category/pendanent-two.png',
+		],
 	},
 
 	{
@@ -41,7 +50,7 @@ const categories = [
 		description: 'Beautiful matching sets of pendants and earrings.',
 		images: [
 			'/assets/category/jewellery-set.png',
-			'/assets/category/jewellery-set.png',
+			'/assets/category/jewellery-set-two.png',
 		],
 	},
 	{
@@ -51,7 +60,7 @@ const categories = [
 		description: 'Beautiful matching sets of pendants and earrings.',
 		images: [
 			'/assets/category/necklace-set.png',
-			'/assets/category/necklace-set.png',
+			'/assets/category/necklace-set-two.png',
 		],
 	},
 	{
@@ -61,7 +70,7 @@ const categories = [
 		description: 'Stylish toe rings for every occasion.',
 		images: [
 			'/assets/category/toe-rings.png',
-			'/assets/category/toe-rings.png',
+			'/assets/category/toe-rings-two.png',
 		],
 	},
 	{
@@ -69,7 +78,7 @@ const categories = [
 		link: 'anklet',
 		count: 3,
 		description: 'Stylish toe rings for every occasion.',
-		images: ['/assets/category/anklet.png', '/assets/category/anklet.png'],
+		images: ['/assets/category/anklet.png', '/assets/category/anklets-two.png'],
 	},
 ];
 

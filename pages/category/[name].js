@@ -38,7 +38,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 	// Filter states (lifted to parent)
 	const [activeCategory, setActiveCategory] = useState('All');
 	const [selectedCategories, setSelectedCategories] = useState([]);
-	const [priceRange, setPriceRange] = useState({ from: 0, to: 5000 });
+	const [priceRange, setPriceRange] = useState({ from: 0, to: 160000 });
 	const [selectedStoneColors, setSelectedStoneColors] = useState([]);
 	const [selectedStyles, setSelectedStyles] = useState([]);
 

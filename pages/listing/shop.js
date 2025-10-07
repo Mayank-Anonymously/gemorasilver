@@ -37,7 +37,7 @@ const AllProduct = ({ products, filterproduct }) => {
 	// Filter states
 	const [activeCategory, setActiveCategory] = useState('All');
 	const [selectedCategories, setSelectedCategories] = useState([]);
-	const [priceRange, setPriceRange] = useState({ from: 0, to: 5000 });
+	const [priceRange, setPriceRange] = useState({ from: 0, to: 160000 });
 	const [selectedStoneColors, setSelectedStoneColors] = useState([]);
 	const [selectedStyles, setSelectedStyles] = useState([]);
 	const [show, setShow] = useState(false);
@@ -62,7 +62,7 @@ const AllProduct = ({ products, filterproduct }) => {
 
 	const final = filteredProducts;
 
-// Pagination logic
+	// Pagination logic
 	const indexOfLastProduct = currentPage * productsPerPage;
 	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 	const currentProducts = final.slice(indexOfFirstProduct, indexOfLastProduct);

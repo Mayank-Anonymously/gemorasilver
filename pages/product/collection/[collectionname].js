@@ -33,18 +33,17 @@ const AllProduct = ({ products, filterproduct }) => {
 	const router = useRouter();
 	const dispatch = useDispatch();
 	const userId = user?._id;
-
 	// Filter states
 	const [activeCategory, setActiveCategory] = useState('All');
 	const [selectedCategories, setSelectedCategories] = useState([]);
-	const [priceRange, setPriceRange] = useState({ from: 0, to: 5000 });
+	const [priceRange, setPriceRange] = useState({ from: 0, to: 160000 });
 	const [selectedStoneColors, setSelectedStoneColors] = useState([]);
 	const [selectedStyles, setSelectedStyles] = useState([]);
 	const [show, setShow] = useState(false);
 
 	// Pagination states
 	const [currentPage, setCurrentPage] = useState(1);
-	const productsPerPage = 9; // Number of products per page
+	const productsPerPage = 12; // Number of products per page
 
 	// Filtering
 	const filteredProducts = products.filter((p) => {
@@ -61,7 +60,7 @@ const AllProduct = ({ products, filterproduct }) => {
 	});
 
 	const final = filteredProducts;
-
+	console.log(filteredProducts.length);
 	// Pagination logic
 	const indexOfLastProduct = currentPage * productsPerPage;
 	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -74,6 +73,13 @@ const AllProduct = ({ products, filterproduct }) => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
 
+	console.log({
+		currentPage,
+		indexOfFirstProduct,
+		indexOfLastProduct,
+		totalProducts: final.length,
+		currentProducts: currentProducts.length,
+	});
 	return (
 		<Screen>
 			<Container className='py-5'>
@@ -231,7 +237,7 @@ export async function getServerSideProps(context) {
 		);
 
 		const combined = [...filtertstyle, ...filtertstyleTwo];
-
+		console.log('combined:', combined);
 		return {
 			props: {
 				products: combined,
