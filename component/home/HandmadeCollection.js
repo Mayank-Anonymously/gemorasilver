@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Link from 'next/link';
 
 const journalData = [
 	{
@@ -14,6 +15,7 @@ const journalData = [
 	{
 		id: 2,
 		category: 'WEDDING',
+		style: 'cocktails',
 		title: 'Cocktail design',
 		author: '-By Luniva',
 		date: '',
@@ -22,6 +24,7 @@ const journalData = [
 	{
 		id: 3,
 		category: 'NEW',
+		style: 'working-professions',
 		title: 'Working professions',
 		author: '-By Luniva',
 		date: '',
@@ -30,8 +33,8 @@ const journalData = [
 	{
 		id: 4,
 		category: 'EDUCATION',
+		style: 'party-collection',
 		title: 'Party collection',
-
 		author: '-By Luniva',
 		date: '',
 		image: '/assets/journal/journal.png',
@@ -73,14 +76,12 @@ export default function ChupiJournal() {
 									{isActive && (
 										<div className='mt-2'>
 											<p className='text-muted small'>{item.author}</p>
-											<button
+											<Link
+												href={`/product/collection/${item.style.toLowerCase()}`}
 												className='btn btn-dark rounded-pill px-4 py-1'
-												onClick={() =>
-													router.push(`/category/${item.title.toLowerCase()}`)
-												}
 												style={{ backgroundColor: '#4c1d1d' }}>
 												See More
-											</button>
+											</Link>
 										</div>
 									)}
 								</div>
