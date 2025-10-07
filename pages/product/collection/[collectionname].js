@@ -219,6 +219,7 @@ export async function getServerSideProps(context) {
 	try {
 		const res = await axios.get(`${HOST}product/getAllProducts`);
 		console.log('collectionname::', collectionname);
+
 		const filtertstyle = res.data.response.filter(
 			(item) => item.style == collectionname
 		);
