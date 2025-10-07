@@ -31,6 +31,7 @@ function useIsMobile(breakpoint = 568) {
 const ProductByCategory = ({ products, filterproduct }) => {
 	const categories = ['All', ...new Set(products.map((p) => p.categoryName))];
 	const { user, loggedIn } = useSelector((state) => state.auth);
+	const dispatch = useDispatch();
 	const router = useRouter();
 	const userId = user?._id;
 
@@ -168,8 +169,16 @@ const ProductByCategory = ({ products, filterproduct }) => {
 					show={show}
 					handleClose={() => setShow(false)}
 					categories={categories}
+					selectedCategories={selectedCategories}
+					setSelectedCategories={setSelectedCategories}
 					priceRange={priceRange}
 					setPriceRange={setPriceRange}
+					activeCategory={activeCategory}
+					setActiveCategory={setActiveCategory}
+					selectedStoneColors={selectedStoneColors}
+					setSelectedStoneColors={setSelectedStoneColors}
+					selectedStyles={selectedStyles}
+					setSelectedStyles={setSelectedStyles}
 				/>
 			)}
 		</Screen>

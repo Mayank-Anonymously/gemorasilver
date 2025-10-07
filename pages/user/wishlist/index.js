@@ -45,7 +45,9 @@ const Wishlist = () => {
 								sm={6}
 								md={4}
 								lg={3}>
-								<Link className='text-decortion-none text-none'>
+								<Link
+									href={`/product/${product._id}`}
+									className='text-decoration-none'>
 									<Card
 										className='h-100 shadow-sm'
 										style={{
@@ -72,7 +74,10 @@ const Wishlist = () => {
 												{product.title}
 											</Card.Title>
 											<Card.Text style={{ fontSize: '0.9rem' }}>
-												{product.description.substring(0, 80)}...
+												{product.description
+													.substring(0, 80)
+													.replaceAll('<p>', '')}
+												...
 											</Card.Text>
 
 											<div className='d-flex justify-content-between align-items-center mt-3'>

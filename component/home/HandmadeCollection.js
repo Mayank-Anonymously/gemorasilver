@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from 'next/link';
+import SizeChartModal from '../Size/Sizechart';
+import { Button } from 'react-bootstrap';
 
 const journalData = [
 	{
@@ -44,7 +46,8 @@ const journalData = [
 export default function ChupiJournal() {
 	const [activeId, setActiveId] = useState(4); // default expanded card
 	const activeItem = journalData.find((item) => item.id === activeId);
-
+	const [showSizeChart, setShowSizeChart] = useState(false);
+	console.log('showSizeChart::', showSizeChart);
 	return (
 		<div className='container py-5'>
 			<h2 className='text-center mb-5'>
@@ -72,17 +75,34 @@ export default function ChupiJournal() {
 										className='mt-2 mb-1 journal-title'>
 										{item.title}
 									</h5>
+									{showSizeChart && (
+										<SizeChartModal setShowSizeChart={setShowSizeChart} />
+									)}
 
-									{isActive && (
+									{isActive && item.title !== 'Ring Size Scale' ? (
 										<div className='mt-2'>
 											<p className='text-muted small'>{item.author}</p>
 											<Link
+												// href={`/`}
 												href={`/product/collection/${item.style.toLowerCase()}`}
 												className='btn btn-dark rounded-pill px-4 py-1'
 												style={{ backgroundColor: '#4c1d1d' }}>
 												See More
 											</Link>
 										</div>
+									) : (
+										isActive &&
+										item.title === 'Ring Size Scale' && (
+											<div className='mt-2'>
+												<p className='text-muted small'>{item.author}</p>
+												<Button
+													onClick={() => setShowSizeChart(true)}
+													className='btn btn-dark rounded-pill px-4 py-1'
+													style={{ backgroundColor: '#4c1d1d' }}>
+													See More
+												</Button>
+											</div>
+										)
 									)}
 								</div>
 							);
@@ -101,6 +121,7 @@ export default function ChupiJournal() {
 					)}
 				</div>
 			</div>
+			{showSizeChart && <SizeChartModal setShowSizeChart={setShowSizeChart} />}
 		</div>
 	);
 }

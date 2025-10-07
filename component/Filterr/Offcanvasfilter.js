@@ -18,6 +18,12 @@ const FilterOffCanvas = ({
 	setSelectedCategories,
 	priceRange,
 	setPriceRange,
+	activeCategory,
+	setActiveCategory,
+	selectedStoneColors,
+	setSelectedStoneColors,
+	selectedStyles,
+	setSelectedStyles,
 }) => {
 	const dispatch = useDispatch();
 	const cartItems = useSelector((state) => state.cart.items);
@@ -46,8 +52,16 @@ const FilterOffCanvas = ({
 			<Offcanvas.Body className='p-4'>
 				<FiltersSidebar
 					categories={categories}
+					selectedCategories={selectedCategories}
+					setSelectedCategories={setSelectedCategories}
 					priceRange={priceRange}
 					setPriceRange={setPriceRange}
+					activeCategory={activeCategory}
+					setActiveCategory={setActiveCategory}
+					selectedStoneColors={selectedStoneColors}
+					setSelectedStoneColors={setSelectedStoneColors}
+					selectedStyles={selectedStyles}
+					setSelectedStyles={setSelectedStyles}
 				/>
 			</Offcanvas.Body>
 		</Offcanvas>
