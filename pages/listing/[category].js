@@ -15,6 +15,7 @@ import axios from 'axios';
 import { HOST } from '@/component/apibaseurl';
 import { useRouter } from 'next/navigation';
 import FiltersResponsive from '@/component/Filterr/Sidebar';
+import FilterSortSection from '@/component/common/FilterIcon';
 
 function useIsMobile(breakpoint = 568) {
 	const [isMobile, setIsMobile] = useState(false);
@@ -162,7 +163,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 					</Col>
 				</Row>
 			</Container>
-
+			<FilterSortSection setShow={setShow} />
 			{show && (
 				<FilterOffCanvas
 					show={show}

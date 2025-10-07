@@ -7,7 +7,6 @@ import { IoIosStar } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '@/component/redux/slices/cartSlice';
 import FiltersSidebar from '@/component/Filterr/Sidebar';
-
 import FilterOffCanvas from '@/component/Filterr/Offcanvasfilter';
 import { FaFilter } from 'react-icons/fa';
 import { addToCartApi } from '@/component/redux/thunk/cartThunkApi';
@@ -15,6 +14,7 @@ import axios from 'axios';
 import { HOST } from '@/component/apibaseurl';
 import { useRouter } from 'next/navigation';
 import FiltersResponsive from '@/component/Filterr/Sidebar';
+import FilterSortSection from '@/component/common/FilterIcon';
 
 function useIsMobile(breakpoint = 568) {
 	const [isMobile, setIsMobile] = useState(false);
@@ -69,7 +69,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 			<Container className='py-5'>
 				<Row>
 					<Col
-						className='d-lg-block'
+						className='d-none d-md-block d-lg-block'
 						md={3}
 						xs={12}
 						sm={4}>
@@ -164,7 +164,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 					</Col>
 				</Row>
 			</Container>
-
+			<FilterSortSection setShow={setShow} />
 			{show && (
 				<FilterOffCanvas
 					show={show}
