@@ -1,5 +1,5 @@
 import ProductImagesGallery from '@/component/product/Product';
-import { Row, Col, Accordion } from 'react-bootstrap';
+import { Row, Col, Accordion, Button } from 'react-bootstrap';
 import Screen from '@/component/common/Screen';
 import Head from 'next/head';
 import { FaHeart } from 'react-icons/fa';
@@ -23,6 +23,7 @@ import { useState } from 'react';
 import SizeChartModal from '@/component/Size/Sizechart';
 import ReviewSection from '@/component/ReviewSection';
 import { addTowishlistApi } from '@/component/redux/thunk/wishlistThunkApi';
+import Link from 'next/link';
 
 export default function ProductPage({ product, products }) {
 	const dispatch = useDispatch();
@@ -35,6 +36,14 @@ export default function ProductPage({ product, products }) {
 
 	if (!product) return <p>Product not found</p>;
 
+	const add = (product) => {
+		if (loggedIn === false) {
+			alert('Please login to add product to cart.');
+			router.push('/auth/login');
+		} else {
+			addToCartApi(userId, product, dispatch);
+		}
+	};
 	return (
 		<Screen>
 			<div className='container mt-5'>
@@ -137,18 +146,11 @@ export default function ProductPage({ product, products }) {
 							))}
 
 						<div className='product-detail-page-button mt-5'>
-							<button
+							<Button
 								className='btn add-to-cart'
-								onClick={() => {
-									if (loggedIn === false) {
-										alert('Please login to add product to cart.');
-										router.push('/auth/login');
-									} else {
-										addToCartApi(userId, product, dispatch);
-									}
-								}}>
+								onClick={() => add(product)}>
 								Add to Cart
-							</button>
+							</Button>
 
 							<button
 								className='btn buy-now'

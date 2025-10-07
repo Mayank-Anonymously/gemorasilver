@@ -4,6 +4,7 @@ import Screen from '@/component/common/Screen';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { placeOrder } from '@/component/redux/thunk/orderThunkApi';
+import axios from 'axios';
 
 const CheckoutPage = ({ userId, cartTotal }) => {
 	const cartItems = useSelector((state) => state.cart.items);
@@ -14,9 +15,10 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 	const [shippingAddress, setShippingAddress] = useState({
 		name: '',
 		street: '',
+		zip: '',
+
 		city: '',
 		state: '',
-		zip: '',
 		phone: '',
 		country: '',
 	});
@@ -26,7 +28,42 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-		setShippingAddress((prev) => ({ ...prev, [name]: value }));
+		if (name === 'zip') {
+			setShippingAddress((prev) => ({ ...prev, [name]: value }));
+
+			const options = {
+				method: 'GET',
+				url: `https://api.postalpincode.in/pincode/${value}`,
+				headers: { 'User-Agent': 'insomnia/11.5.0' },
+			};
+
+			axios
+				.request(options)
+				.then(function (response) {
+					if (
+						response.data &&
+						response.data[0] &&
+						response.data[0].PostOffice &&
+						response.data[0].PostOffice.length > 0
+					) {
+						const detailsFound = response.data[0].PostOffice[0];
+						// Update city and state in your shipping address
+						setShippingAddress((prev) => ({
+							...prev,
+							city: detailsFound.District || '',
+							state: detailsFound.State || '',
+						}));
+					} else {
+						console.error('❌ Invalid pincode or details not found');
+					}
+				})
+
+				.catch(function (error) {
+					console.error(error);
+				});
+		} else {
+			setShippingAddress((prev) => ({ ...prev, [name]: value }));
+		}
 	};
 
 	const handlePlaceOrder = async () => {
@@ -75,6 +112,7 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 											value={shippingAddress[field]}
 											onChange={handleChange}
 											required
+											disabled={field === 'city' && field === 'state'}
 										/>
 									</Form.Group>
 								))}
