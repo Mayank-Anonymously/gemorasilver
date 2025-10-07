@@ -17,7 +17,7 @@ const journalData = [
 	{
 		id: 2,
 		category: 'WEDDING',
-		style: 'cocktails',
+		style: 'cocktail-designs',
 		title: 'Cocktail design',
 		author: '-By Luniva',
 		date: '',
@@ -26,7 +26,7 @@ const journalData = [
 	{
 		id: 3,
 		category: 'NEW',
-		style: 'working-professions',
+		style: 'working-professionals',
 		title: 'Working professions',
 		author: '-By Luniva',
 		date: '',

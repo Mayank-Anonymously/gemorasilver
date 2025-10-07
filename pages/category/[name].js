@@ -69,6 +69,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 			<Container className='py-5'>
 				<Row>
 					<Col
+						className='d-lg-block'
 						md={3}
 						xs={12}
 						sm={4}>

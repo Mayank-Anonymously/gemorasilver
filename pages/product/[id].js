@@ -173,7 +173,11 @@ export default function ProductPage({ product, products }) {
 									</h6>
 								</Accordion.Header>
 								<Accordion.Body>
-									<p>{product.description}</p>
+									<div
+										dangerouslySetInnerHTML={{
+											__html: product.description,
+										}}
+									/>
 								</Accordion.Body>
 							</Accordion.Item>
 						</Accordion>

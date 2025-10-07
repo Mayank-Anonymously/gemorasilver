@@ -98,9 +98,12 @@ export default function Home({ products }) {
 export async function getServerSideProps() {
 	try {
 		const res = await axios.get(`${HOST}product/getAllProducts`);
+		const filtertstyle = res.data.response.filter(
+			(item) => item.styleOne == 'sugessted-by-founders'
+		);
 		return {
 			props: {
-				products: res.data.response || [], // adjust according to your API response
+				products: filtertstyle || [], // adjust according to your API response
 			},
 		};
 	} catch (error) {

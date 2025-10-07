@@ -109,7 +109,7 @@ const AllProduct = ({ products, filterproduct }) => {
 										className='justify-content-center mb-2'>
 										<Link
 											href={`/product/${p._id}`}
-											className='text-decoration-none'>
+											className='text-decoration-none text-black'>
 											<div
 												className='product-card bg-white shadow-sm border-0 p-2 rounded-3'
 												style={{
@@ -218,14 +218,20 @@ export async function getServerSideProps(context) {
 	const { collectionname } = context.query;
 	try {
 		const res = await axios.get(`${HOST}product/getAllProducts`);
-		console.log('collectionname::', collectionname);
 
 		const filtertstyle = res.data.response.filter(
-			(item) => item.style == collectionname
+			(item) => item.styleOne == collectionname
 		);
+
+		const filtertstyleTwo = res.data.response.filter(
+			(item) => item.styleTwo == collectionname
+		);
+
+		const combined = [...filtertstyle, ...filtertstyleTwo];
+
 		return {
 			props: {
-				products: filtertstyle,
+				products: combined,
 				filterproduct: [],
 			},
 		};
