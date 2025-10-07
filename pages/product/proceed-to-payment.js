@@ -127,14 +127,6 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 							<Form>
 								<Form.Check
 									type='radio'
-									label='Cash on Delivery'
-									name='payment'
-									value='cod'
-									checked={paymentMethod === 'cod'}
-									onChange={(e) => setPaymentMethod(e.target.value)}
-								/>
-								<Form.Check
-									type='radio'
 									label='Credit/Debit Card'
 									name='payment'
 									value='card'
