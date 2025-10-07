@@ -39,7 +39,7 @@ const categories = [
 		description: 'Elegant pendants for every occasion.',
 		images: [
 			'/assets/category/pendant.png',
-			'/assets/category/pendanent-two.png',
+			'/assets/category/pendenant-two.png',
 		],
 	},
 
