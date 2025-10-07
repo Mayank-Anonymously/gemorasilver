@@ -111,7 +111,7 @@ const AllProduct = ({ products, filterproduct }) => {
 										className='justify-content-center mb-2'>
 										<Link
 											href={`/product/${p._id}`}
-											className='text-decoration-none'>
+											className='text-decoration-none text-black'>
 											<div
 												className='product-card bg-white shadow-sm border-0 p-2 rounded-3'
 												style={{
