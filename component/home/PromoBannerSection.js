@@ -14,7 +14,7 @@ const PromoBannerSection = () => {
 					md={6}
 					className='promo-left d-flex   px-5 text-center'>
 					<div className='promo-content text-white'>
-						<small className='text-muted'>Luniva</small>
+						<small className='text-muted text-white'>Luniva</small>
 						<h2 className='fw-bold'>
 							Jewellery
 							<br />
@@ -40,7 +40,7 @@ const PromoBannerSection = () => {
 					md={6}
 					className='promo-right d-flex  text-center rounded-sm'>
 					<div className='promo-content text-white'>
-						<small className='text-muted'>Luniva</small>
+						<small className='text-muted text-white'>Luniva</small>
 						<h2 className='fw-bold'>
 							Rings
 							<br />
