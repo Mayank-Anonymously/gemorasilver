@@ -195,12 +195,15 @@ export async function getServerSideProps(context) {
 		const res = await axios.get(`${HOST}product/getAllProducts`);
 
 		if (Array.isArray(res.data.response)) {
+
 			// Normalize both categoryName and query to match
 			const filterproduct = res.data.response.filter(
-				(p) => p.categoryName.replaceAll(' ', '-').toLowerCase() === name
+				(p) => p.categoryName.replaceAll(' ', '-') === name
 			);
+
 			//  var filtercat = filterproduct.filter
-			console.log(filterproduct);
+			console.log(filterproduct.length);
+			
 			// var filtercat = filterproduct.filter((item) => item === name);
 			return {
 				props: {
