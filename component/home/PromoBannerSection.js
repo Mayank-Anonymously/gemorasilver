@@ -12,9 +12,9 @@ const PromoBannerSection = () => {
 			<Row className='g-1'>
 				<Col
 					md={6}
-					className='promo-left d-flex   px-5 text-center'>
+					className='promo-left d-flex text-center'>
 					<div className='promo-content text-white'>
-						<small className='text-muted text-white'>Luniva</small>
+						<small className=' text-white'>Luniva</small>
 						<h2 className='fw-bold'>
 							Jewellery
 							<br />
@@ -28,7 +28,7 @@ const PromoBannerSection = () => {
 									backgroundColor: 'rgb(29 52 76)',
 									color: 'white',
 									border: 'none',
-									padding: '8px 20px',
+									padding: '4px 19px;',
 									borderRadius: '4px',
 								}}>
 								Explore
@@ -38,9 +38,9 @@ const PromoBannerSection = () => {
 				</Col>
 				<Col
 					md={6}
-					className='promo-right d-flex  text-center rounded-sm'>
+					className='promo-right d-flex  text-center'>
 					<div className='promo-content text-white'>
-						<small className='text-muted text-white'>Luniva</small>
+						<small className=' text-white'>Luniva</small>
 						<h2 className='fw-bold'>
 							Rings
 							<br />
@@ -54,7 +54,7 @@ const PromoBannerSection = () => {
 									backgroundColor: '#4c1d1d',
 									color: 'white',
 									border: 'none',
-									padding: '8px 20px',
+									padding: '4px 19px;',
 									borderRadius: '4px',
 								}}>
 								Explore
