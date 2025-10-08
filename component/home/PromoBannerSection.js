@@ -28,7 +28,7 @@ const PromoBannerSection = () => {
 									backgroundColor: 'rgb(29 52 76)',
 									color: 'white',
 									border: 'none',
-									padding: '4px 19px;',
+									padding: '8px',
 									borderRadius: '4px',
 								}}>
 								Explore
@@ -54,7 +54,8 @@ const PromoBannerSection = () => {
 									backgroundColor: '#4c1d1d',
 									color: 'white',
 									border: 'none',
-									padding: '4px 19px;',
+									padding: '8px',
+
 									borderRadius: '4px',
 								}}>
 								Explore
