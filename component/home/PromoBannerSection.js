@@ -22,7 +22,7 @@ const PromoBannerSection = () => {
 						</h2>
 						<div className='text-center mt-4'>
 							<a
-								onClick={() => router.push(`/category/jewellery-set`)}
+								onClick={() => router.push(`/category/earrings`)}
 								variant='outline'
 								style={{
 									backgroundColor: 'rgb(29 52 76)',
