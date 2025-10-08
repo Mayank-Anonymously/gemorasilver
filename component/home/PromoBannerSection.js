@@ -16,7 +16,7 @@ const PromoBannerSection = () => {
 					<div className='promo-content text-white'>
 						<small className=' text-white'>Luniva</small>
 						<h2 className='fw-bold'>
-							Jewellery
+							Earrings
 							<br />
 							Online
 						</h2>
