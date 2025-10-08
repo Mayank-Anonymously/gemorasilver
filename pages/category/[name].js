@@ -34,7 +34,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 	const dispatch = useDispatch();
 	const router = useRouter();
 	const userId = user?._id;
-
+	console.log('filterproduct:', filterproduct);
 	// Filter states (lifted to parent)
 	const [activeCategory, setActiveCategory] = useState('All');
 	const [selectedCategories, setSelectedCategories] = useState([]);
@@ -50,8 +50,8 @@ const ProductByCategory = ({ products, filterproduct }) => {
 			activeCategory === 'All' || p.categoryName === activeCategory;
 
 		const priceMatch =
-			(!priceRange.from || p.price >= priceRange.from) &&
-			(!priceRange.to || p.price <= priceRange.to);
+			(!priceRange.from || p.priceSale >= priceRange.from) &&
+			(!priceRange.to || p.priceSale <= priceRange.to);
 
 		const colorMatch =
 			selectedStoneColors.length === 0 || selectedStoneColors.includes(p.color);
@@ -190,20 +190,18 @@ export default ProductByCategory;
 
 export async function getServerSideProps(context) {
 	const { name } = context.query;
-
 	try {
 		const res = await axios.get(`${HOST}product/getAllProducts`);
 
 		if (Array.isArray(res.data.response)) {
-
 			// Normalize both categoryName and query to match
 			const filterproduct = res.data.response.filter(
-				(p) => p.categoryName.replaceAll(' ', '-') === name
+				(p) => p.categoryName.toLowerCase().replaceAll(' ', '-') == name
 			);
 
 			//  var filtercat = filterproduct.filter
-			console.log(filterproduct.length);
-			
+			//  var filtercat = filterproduct.filter
+
 			// var filtercat = filterproduct.filter((item) => item === name);
 			return {
 				props: {

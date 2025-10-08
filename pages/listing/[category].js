@@ -50,8 +50,8 @@ const ProductByCategory = ({ products, filterproduct }) => {
 			activeCategory === 'All' || p.categoryName === activeCategory;
 
 		const priceMatch =
-			(!priceRange.from || p.price >= priceRange.from) &&
-			(!priceRange.to || p.price <= priceRange.to);
+			(!priceRange.from || p.priceSale >= priceRange.from) &&
+			(!priceRange.to || p.priceSale <= priceRange.to);
 
 		const colorMatch =
 			selectedStoneColors.length === 0 || selectedStoneColors.includes(p.color);
