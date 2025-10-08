@@ -12,8 +12,8 @@ const PromoBannerSection = () => {
 			<Row className='g-1'>
 				<Col
 					md={6}
-					className='promo-left d-flex justify-content-center   px-5 text-center'>
-					<div className='promo-content text-dark'>
+					className='promo-left d-flex   px-5 text-center'>
+					<div className='promo-content text-white'>
 						<small className='text-muted'>Luniva</small>
 						<h2 className='fw-bold'>
 							Jewellery
@@ -38,8 +38,8 @@ const PromoBannerSection = () => {
 				</Col>
 				<Col
 					md={6}
-					className='promo-right d-flex  justify-content-center text-center rounded-sm'>
-					<div className='promo-content text-dark'>
+					className='promo-right d-flex  text-center rounded-sm'>
+					<div className='promo-content text-white'>
 						<small className='text-muted'>Luniva</small>
 						<h2 className='fw-bold'>
 							Rings
