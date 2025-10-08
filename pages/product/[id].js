@@ -81,7 +81,6 @@ export default function ProductPage({ product, products }) {
 
 					<Col md={6}>
 						<h2 className='mb-3'>{product.title}</h2>
-						{/* <p className='text-muted'>SKU: {product.productSku}</p> */}
 						<h4 className='text-black mb-3'>
 							₹{product.priceSale}
 							<small className='text-muted'>
