@@ -213,7 +213,7 @@ export async function getServerSideProps(context) {
 
 		return {
 			props: {
-				products: res.data.response || [],
+				products: [],
 				filterproduct: [],
 			},
 		};

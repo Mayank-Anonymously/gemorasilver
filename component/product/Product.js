@@ -1,30 +1,63 @@
-// components/ProductImagesGallery.js
-import { useState } from 'react';
-import { HOST } from '../apibaseurl';
+// component/product/Product.js
+import React, { useState } from 'react';
+import Image from 'next/image';
 
-export default function ProductImagesGallery({ images }) {
-	const [selectedImage, setSelectedImage] = useState(images);
+const ProductImagesGallery = ({ images = [] }) => {
+	const [mainImage, setMainImage] = useState(images[0]);
+	const [zoomVisible, setZoomVisible] = useState(false);
+	const [backgroundPosition, setBackgroundPosition] = useState('center');
+
+	const handleMouseMove = (e) => {
+		const { left, top, width, height } =
+			e.currentTarget.getBoundingClientRect();
+		const x = ((e.pageX - left) / width) * 100;
+		const y = ((e.pageY - top) / height) * 100;
+		setBackgroundPosition(`${x}% ${y}%`);
+	};
 
 	return (
-		<div>
-			<img
-				src={`${HOST}resources/${selectedImage}`}
-				alt='Main Product'
-				className='img-fluid mb-3 rounded border'
-			/>
+		<div className='gallery-container'>
+			<div className='gallery-left'>
+				<div
+					className='main-image'
+					onMouseEnter={() => setZoomVisible(true)}
+					onMouseLeave={() => setZoomVisible(false)}
+					onMouseMove={handleMouseMove}>
+					<img
+						src={mainImage}
+						alt='Product'
+						width={600}
+						height={600}
+						className='gallery-img'
+					/>
+				</div>
 
-			<div className='d-flex gap-2'>
-				{/* {images.map((img, idx) => ( */}
-				<img
-					// key={idx}
-					src={`${HOST}resources/${images}`}
-					// alt={`View ${idx + 1}`}
-					className='img-thumbnail'
-					style={{ width: '80px', cursor: 'pointer' }}
-					onClick={() => setSelectedImage(img)}
-				/>
-				{/* ))} */}
+				<div className='thumbnail-row'>
+					{images.map((img, index) => (
+						<div
+							key={index}
+							className={`thumbnail ${mainImage === img ? 'active' : ''}`}
+							onClick={() => setMainImage(img)}>
+							<img
+								src={img}
+								alt='thumb'
+								width={80}
+								height={80}
+							/>
+						</div>
+					))}
+				</div>
 			</div>
+			{zoomVisible && (
+				<div
+					className='zoom-box'
+					style={{
+						backgroundImage: `url(${mainImage})`,
+						backgroundPosition,
+					}}></div>
+			)}
 		</div>
 	);
-}
+};
+
+export default ProductImagesGallery;

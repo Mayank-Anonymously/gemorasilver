@@ -67,7 +67,9 @@ export default function ProductPage({ product, products }) {
 
 				<Row className='mt-4'>
 					<Col md={6}>
-						<ProductImagesGallery images={product.image} />
+						<ProductImagesGallery
+							images={[`${HOST}resources/${product.image}`]}
+						/>
 						<div className='size-scale mt-3 d-flex justify-content-end align-items-end'>
 							{product.categoryName === 'RINGS' && (
 								<h6 onClick={() => setShowSizeChart(true)}>
