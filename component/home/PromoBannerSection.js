@@ -25,7 +25,7 @@ const PromoBannerSection = () => {
 								onClick={() => router.push(`/category/jewellery-set`)}
 								variant='outline'
 								style={{
-									backgroundColor: '#4c1d1d',
+									backgroundColor: 'rgb(29 52 76)',
 									color: 'white',
 									border: 'none',
 									padding: '8px 20px',
