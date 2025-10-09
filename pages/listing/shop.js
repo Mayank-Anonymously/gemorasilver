@@ -79,7 +79,6 @@ const AllProduct = ({ products, filterproduct }) => {
 		setCurrentPage(pageNumber);
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
-	console.log('products:', products);
 	return (
 		<Screen>
 			<Container className='py-5'>

@@ -57,6 +57,15 @@ const FiltersResponsive = ({
 	return (
 		<>
 			{/* Desktop Sidebar View */}
+			<div className='d-flex gap-3 mt-3'>
+				<button
+					className='btn apple-btn'
+					onClick={handleApplyFilter}>
+					Apply
+				</button>
+
+				<button className='btn reset-btn'>Reset</button>
+			</div>
 			<div
 				className='d-none d-lg-block p-3 border rounded'
 				style={{ minWidth: '220px' }}>
@@ -131,15 +140,6 @@ const FiltersResponsive = ({
 					selected={selectedStyles}
 					onChange={(val) => toggleItem(val, selectedStyles, setSelectedStyles)}
 				/>
-			</div>
-			<div className='d-flex gap-3 mt-3'>
-				<button
-					className='btn apple-btn'
-					onClick={handleApplyFilter}>
-					Apply
-				</button>
-
-				<button className='btn reset-btn'>Reset</button>
 			</div>
 		</>
 	);
