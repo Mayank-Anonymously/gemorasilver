@@ -1111,3 +1111,40 @@ a {
 	right: 25%;
 	z-index: 99999;
 }
+
+.apple-btn {
+	background-color: #000;
+	color: #fff;
+	border-radius: 50px;
+	font-weight: 600;
+	padding: 10px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	border: none;
+	transition: all 0.3s ease;
+}
+
+.apple-btn:hover {
+	background-color: #333;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.reset-btn {
+	background-color: transparent;
+	color: #812d3e;
+	border: 2px solid #812d3e;
+	border-radius: 50px;
+	font-weight: 600;
+	padding: 10px 20px;
+	transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+	background-color: #812d3e;
+	color: #fff;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 10px rgba(129, 45, 62, 0.3);
+}

@@ -63,6 +63,11 @@ const FilterOffCanvas = ({
 					selectedStyles={selectedStyles}
 					setSelectedStyles={setSelectedStyles}
 				/>
+				<div className='d-flex gap-3 mt-3'>
+					<button className='btn apple-btn'>🍏 Continue with Apple</button>
+
+					<button className='btn reset-btn'>Reset</button>
+				</div>
 			</Offcanvas.Body>
 		</Offcanvas>
 	);
