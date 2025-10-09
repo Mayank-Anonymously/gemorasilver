@@ -34,7 +34,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 	const dispatch = useDispatch();
 	const router = useRouter();
 	const userId = user?._id;
-	console.log('filterproduct:', filterproduct);
+
 	// Filter states (lifted to parent)
 	const [activeCategory, setActiveCategory] = useState('All');
 	const [selectedCategories, setSelectedCategories] = useState([]);

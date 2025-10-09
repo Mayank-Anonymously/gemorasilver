@@ -206,8 +206,16 @@ const AllProduct = ({ products, filterproduct }) => {
 					show={show}
 					handleClose={() => setShow(false)}
 					categories={categories}
+					selectedCategories={selectedCategories}
+					setSelectedCategories={setSelectedCategories}
 					priceRange={priceRange}
 					setPriceRange={setPriceRange}
+					activeCategory={activeCategory}
+					setActiveCategory={setActiveCategory}
+					selectedStoneColors={selectedStoneColors}
+					setSelectedStoneColors={setSelectedStoneColors}
+					selectedStyles={selectedStyles}
+					setSelectedStyles={setSelectedStyles}
 				/>
 			)}
 		</Screen>

@@ -96,7 +96,7 @@ export default function ProductPage({ product, products }) {
 						</h4>
 
 						<div className='d-flex align-items-center justify-content-between mt-3 review'>
-							<div>
+							<div>“
 								<span className='fw-bold me-1'>5.0</span>
 								<IoIosStar color={'gold'} />
 								<span className='ms-1 text-muted'>| 15</span>
