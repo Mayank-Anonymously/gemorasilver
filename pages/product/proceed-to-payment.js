@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { placeOrder } from '@/component/redux/thunk/orderThunkApi';
 import axios from 'axios';
+import { HOST } from '@/component/apibaseurl';
 
 const CheckoutPage = ({ userId, cartTotal }) => {
 	const cartItems = useSelector((state) => state.cart.items);
@@ -26,46 +27,39 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 	const [paymentMethod, setPaymentMethod] = useState('cod');
 	const [loading, setLoading] = useState(false);
 
-	const handleChange = (e) => {
+	const handleChange = async (e) => {
 		const { name, value } = e.target;
 		if (name === 'zip') {
 			setShippingAddress((prev) => ({ ...prev, [name]: value }));
 
-			const options = {
-				method: 'GET',
-				url: `https://api.postalpincode.in/pincode/${value}`,
-				headers: {},
-			};
+			try {
+				// ✅ Call your own Node.js API
+				const response = await axios.get(`${HOST}api/pincode/${value}`);
 
-			axios
-				.request(options)
-				.then(function (response) {
-					alert(JSON.stringify(response));
-					if (
-						response.data &&
-						response.data[0] &&
-						response.data[0].PostOffice &&
-						response.data[0].PostOffice.length > 0
-					) {
-						const detailsFound = response.data[0].PostOffice[0];
-						// Update city and state in your shipping address
-						setShippingAddress((prev) => ({
-							...prev,
-							city: detailsFound.District || '',
-							state: detailsFound.State || '',
-						}));
-					} else {
-						alert(JSON.stringify(error));
+				if (response.data.success) {
+					const { city, state } = response.data.data;
 
-						console.error('❌ Invalid pincode or details not found');
-					}
-				})
-
-				.catch(function (error) {
-					alert(JSON.stringify(error));
-
-					console.error(error);
-				});
+					setShippingAddress((prev) => ({
+						...prev,
+						city: city || '',
+						state: state || '',
+					}));
+				} else {
+					console.warn('❌ Invalid pincode or details not found');
+					setShippingAddress((prev) => ({
+						...prev,
+						city: '',
+						state: '',
+					}));
+				}
+			} catch (error) {
+				console.error('Error fetching pincode details:', error.message);
+				setShippingAddress((prev) => ({
+					...prev,
+					city: '',
+					state: '',
+				}));
+			}
 		} else {
 			setShippingAddress((prev) => ({ ...prev, [name]: value }));
 		}
