@@ -59,8 +59,12 @@ const AllProduct = ({ products, filterproduct }) => {
 				selectedStoneColors.length === 0 ||
 				selectedStoneColors.includes(p.color);
 			const styleMatch =
-				selectedStyles.length === 0 || selectedStyles.includes(p.style);
-			return categoryMatch && priceMatch && colorMatch && styleMatch;
+				selectedStyles.length === 0 || selectedStyles.includes(p.styleOne);
+			const styleMatchTwo =
+				selectedStyles.length === 0 || selectedStyles.includes(p.styleTwo);
+			return (
+				categoryMatch && priceMatch && colorMatch && styleMatch && styleMatchTwo
+			);
 		});
 		setShow(false);
 		setFilteredProducts(filteredProducts);
