@@ -15,6 +15,7 @@ const FiltersResponsive = ({
 	selectedStoneColors,
 	setSelectedStoneColors,
 	selectedStyles,
+	handleApplyFilter,
 	setSelectedStyles,
 }) => {
 	// Reusable Checkbox Group
@@ -130,6 +131,15 @@ const FiltersResponsive = ({
 					selected={selectedStyles}
 					onChange={(val) => toggleItem(val, selectedStyles, setSelectedStyles)}
 				/>
+			</div>
+			<div className='d-flex gap-3 mt-3'>
+				<button
+					className='btn apple-btn'
+					onClick={handleApplyFilter}>
+					Apply
+				</button>
+
+				<button className='btn reset-btn'>Reset</button>
 			</div>
 		</>
 	);

@@ -34,12 +34,13 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 			const options = {
 				method: 'GET',
 				url: `https://api.postalpincode.in/pincode/${value}`,
-				headers: { 'User-Agent': 'insomnia/11.5.0' },
+				headers: {},
 			};
 
 			axios
 				.request(options)
 				.then(function (response) {
+					alert(JSON.stringify(response));
 					if (
 						response.data &&
 						response.data[0] &&
@@ -54,11 +55,15 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 							state: detailsFound.State || '',
 						}));
 					} else {
+						alert(JSON.stringify(error));
+
 						console.error('❌ Invalid pincode or details not found');
 					}
 				})
 
 				.catch(function (error) {
+					alert(JSON.stringify(error));
+
 					console.error(error);
 				});
 		} else {

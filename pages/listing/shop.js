@@ -33,6 +33,7 @@ const AllProduct = ({ products, filterproduct }) => {
 	const router = useRouter();
 	const dispatch = useDispatch();
 	const userId = user?._id;
+	const [filteredProducts, setFilteredProducts] = useState([]);
 
 	// Filter states
 	const [activeCategory, setActiveCategory] = useState('All');
@@ -47,20 +48,25 @@ const AllProduct = ({ products, filterproduct }) => {
 	const productsPerPage = 9; // Number of products per page
 
 	// Filtering
-	const filteredProducts = products.filter((p) => {
-		const categoryMatch =
-			activeCategory === 'All' || p.categoryName === activeCategory;
-		const priceMatch =
-			(!priceRange.from || p.priceSale >= priceRange.from) &&
-			(!priceRange.to || p.priceSale <= priceRange.to);
-		const colorMatch =
-			selectedStoneColors.length === 0 || selectedStoneColors.includes(p.color);
-		const styleMatch =
-			selectedStyles.length === 0 || selectedStyles.includes(p.style);
-		return categoryMatch && priceMatch && colorMatch && styleMatch;
-	});
-
-	const final = filteredProducts;
+	const handleApplyFilter = () => {
+		const filteredProducts = products.filter((p) => {
+			const categoryMatch =
+				activeCategory === 'All' || p.categoryName === activeCategory;
+			const priceMatch =
+				(!priceRange.from || p.priceSale >= priceRange.from) &&
+				(!priceRange.to || p.priceSale <= priceRange.to);
+			const colorMatch =
+				selectedStoneColors.length === 0 ||
+				selectedStoneColors.includes(p.color);
+			const styleMatch =
+				selectedStyles.length === 0 || selectedStyles.includes(p.style);
+			return categoryMatch && priceMatch && colorMatch && styleMatch;
+		});
+		setShow(false);
+		setFilteredProducts(filteredProducts);
+	};
+	console.log(filteredProducts);
+	const final = filteredProducts.length > 0 ? filteredProducts : products;
 
 	// Pagination logic
 	const indexOfLastProduct = currentPage * productsPerPage;
@@ -73,7 +79,7 @@ const AllProduct = ({ products, filterproduct }) => {
 		setCurrentPage(pageNumber);
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
-
+	console.log('products:', products);
 	return (
 		<Screen>
 			<Container className='py-5'>
@@ -95,13 +101,14 @@ const AllProduct = ({ products, filterproduct }) => {
 							setSelectedStoneColors={setSelectedStoneColors}
 							selectedStyles={selectedStyles}
 							setSelectedStyles={setSelectedStyles}
+							handleApplyFilter={handleApplyFilter}
 						/>
 					</Col>
 
 					<Col>
 						<Row>
-							{currentProducts.length > 0 ? (
-								currentProducts.map((p, index) => (
+							{final.length > 0 ? (
+								final.map((p, index) => (
 									<Col
 										key={index}
 										xs={6}
