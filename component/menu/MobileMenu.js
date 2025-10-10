@@ -116,13 +116,7 @@ function MobileMenu({ show, handleClose }) {
 			show={show}
 			onHide={handleClose}
 			placement='start'>
-			<Offcanvas.Header closeButton>
-				{/* <Offcanvas.Title
-					className='fw-bold'
-					style={{ color: '#6a2a42' }}>
-					Luniva
-				</Offcanvas.Title> */}
-			</Offcanvas.Header>
+			<Offcanvas.Header closeButton></Offcanvas.Header>
 			<Offcanvas.Body>
 				<Accordion alwaysOpen>
 					<Accordion.Item eventKey='0'>
