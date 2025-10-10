@@ -14,7 +14,7 @@ const PromoBannerSection = () => {
 					md={6}
 					className='promo-left d-flex text-center'>
 					<div className='promo-content text-white'>
-						<small className=' text-white'>Luniva</small>
+						<small className='text-white'>Luniva</small>
 						<h2 className='fw-bold'>
 							Earrings
 							<br />

@@ -30,21 +30,22 @@ export default function Home({ products }) {
 				<div className='container'>
 					<div className='row justify-content-center'>
 						<div className='col-md-8'>
-							<form
-								className='d-flex search-form overflow-hidden'
-								role='search'>
-								<button
-									className='btn'
-									type='submit'>
-									<CiSearch size={25} />
-								</button>
-								<input
-									type='text'
-									className='form-control form-control-lg border-0'
-									placeholder='Search products'
-									aria-label='Search'
-								/>
-							</form>
+							<a
+								href='/search-product'
+								className='text-decoration-none text-black'>
+								<form className='d-flex search-form overflow-hidden'>
+									<button className='btn'>
+										<CiSearch size={25} />
+									</button>
+									<input
+										type='text'
+										className='form-control form-control-lg border-0'
+										placeholder='Search products'
+										aria-label='Search'
+										disabled
+									/>
+								</form>
+							</a>
 						</div>
 					</div>
 				</div>

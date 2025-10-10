@@ -41,7 +41,7 @@ const Wishlist = () => {
 						wishlistData.map((product) => (
 							<Col
 								key={product.id}
-								xs={12}
+								xs={6}
 								sm={6}
 								md={4}
 								lg={3}>
@@ -80,7 +80,7 @@ const Wishlist = () => {
 												...
 											</Card.Text>
 
-											<div className='d-flex justify-content-between align-items-center mt-3'>
+											<div className='d-flex justify-content-between align-items-center mt-3 wishlist-card-btn'>
 												<div>
 													<span
 														className='fw-bold'
