@@ -23,7 +23,18 @@ import { useState } from 'react';
 import SizeChartModal from '@/component/Size/Sizechart';
 import ReviewSection from '@/component/ReviewSection';
 import { addTowishlistApi } from '@/component/redux/thunk/wishlistThunkApi';
-import Link from 'next/link';
+
+function useIsMobile(breakpoint = 568) {
+	const [isMobile, setIsMobile] = useState(false);
+	useEffect(() => {
+		const update = () => setIsMobile(window.innerWidth < breakpoint);
+		update();
+		window.addEventListener('resize', update);
+		return () => window.removeEventListener('resize', update);
+	}, [breakpoint]);
+
+	return isMobile;
+}
 
 export default function ProductPage({ product, products }) {
 	const dispatch = useDispatch();
@@ -67,8 +78,8 @@ export default function ProductPage({ product, products }) {
 
 				<Row className='mt-4'>
 					<Col md={6}>
-					
 						<ProductImagesGallery
+							useIsMobile={useIsMobile}
 							images={[`${HOST}resources/${product.image}`]}
 						/>
 						<div className='size-scale mt-3 d-flex justify-content-end align-items-end'>

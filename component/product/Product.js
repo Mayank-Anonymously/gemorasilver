@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-const ProductImagesGallery = ({ images = [] }) => {
+const ProductImagesGallery = ({ images = [], useIsMobile }) => {
 	const [mainImage, setMainImage] = useState(images[0]);
 	const [zoomVisible, setZoomVisible] = useState(false);
 	const [backgroundPosition, setBackgroundPosition] = useState('center');
@@ -18,19 +18,31 @@ const ProductImagesGallery = ({ images = [] }) => {
 	return (
 		<div className='gallery-container'>
 			<div className='gallery-left'>
-				<div
-					className='main-image'
-					onMouseEnter={() => setZoomVisible(true)}
-					onMouseLeave={() => setZoomVisible(false)}
-					onMouseMove={handleMouseMove}>
-					<img
-						src={mainImage}
-						alt='Product'
-						width={600}
-						height={600}
-						className='gallery-img'
-					/>
-				</div>
+				{useIsMobile ? (
+					<div className='main-image'>
+						<img
+							src={mainImage}
+							alt='Product'
+							width={600}
+							height={600}
+							className='gallery-img'
+						/>
+					</div>
+				) : (
+					<div
+						className='main-image'
+						onMouseEnter={() => setZoomVisible(true)}
+						onMouseLeave={() => setZoomVisible(false)}
+						onMouseMove={handleMouseMove}>
+						<img
+							src={mainImage}
+							alt='Product'
+							width={600}
+							height={600}
+							className='gallery-img'
+						/>
+					</div>
+				)}
 
 				<div className='thumbnail-row'>
 					{images.map((img, index) => (
