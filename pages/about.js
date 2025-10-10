@@ -7,7 +7,7 @@ import { Container } from 'react-bootstrap';
 const about = () => {
 	return (
 		<Screen>
-			<Container style={{ background: '#fff4f4', padding: 44, marginTop: 50 }}>
+			<Container style={{ background: 'white', padding: 44, marginTop: 50 }}>
 				<h1>About Us</h1>
 				<p>
 					At Luniva, we believe jewellery is more than an accessory — it’s an
@@ -25,6 +25,31 @@ const about = () => {
 					hand.
 				</p>
 			</Container>
+			<section
+				className='opening-heading'
+				style={{
+					background: '#fff4f4',
+					padding: 44,
+					borderRadius: '10px',
+					margin: 20,
+				}}>
+				<h1>Meet Our Founders</h1>
+				<h4>The Story Begins with Friendship</h4>
+				<p>
+					The Story Begins with Friendship ( black) Muskan Garg and Akansha
+					Bhardwaj were best friends long before they became business partners.
+					With a shared passion for meaningful design and a vision to empower
+					women, they co-founded Luniva—a jewellery brand that blends elegance
+					with intention. Muskan brings thoughtful leadership and a structured
+					approach to the brand’s growth, while Akansha leads with creativity
+					and a deep understanding of what resonates with modern women.
+					Together,
+				</p>
+				<p>
+					Together, they have built Luniva not just as a brand, but as a
+					celebration of strength, individuality, and friendship.
+				</p>
+			</section>
 		</Screen>
 	);
 };
