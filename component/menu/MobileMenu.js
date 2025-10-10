@@ -2,8 +2,12 @@ import { Offcanvas } from 'react-bootstrap';
 import { Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../redux/slices/authSlices';
 
 function MobileMenu({ show, handleClose }) {
+	const dispatch = useDispatch();
+
 	const categories = [
 		{
 			name: 'Bracelets',
@@ -90,12 +94,12 @@ function MobileMenu({ show, handleClose }) {
 		{
 			id: 3,
 			name: 'My Orders',
-			link: '#',
+			link: '/user/my-orders',
 		},
 		{
 			id: 3,
 			name: 'My Saved Address',
-			link: '#',
+			link: '/user/my-saved-address',
 		},
 		{
 			id: 3,
@@ -104,6 +108,9 @@ function MobileMenu({ show, handleClose }) {
 		},
 	];
 
+	const handleLogout = () => {
+		dispatch(logoutUser());
+	};
 	return (
 		<Offcanvas
 			show={show}
@@ -151,6 +158,7 @@ function MobileMenu({ show, handleClose }) {
 							key={idx}
 							className='mobile-menu-category-item'>
 							<Link
+								onClick={() => menu.name === 'Logout' && handleLogout()}
 								href={menu.link}
 								className='text-decoration-none'
 								style={{ color: '#6a2a42' }}>

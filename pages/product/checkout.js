@@ -118,7 +118,6 @@ const CheckoutPage = () => {
 															₹{(item.priceSale * item.quantity).toFixed(2)}
 														</small>
 														<div>
-															{/* Remove */}
 															<Button
 																style={{ background: '#4c1d1d' }}
 																size='sm'
