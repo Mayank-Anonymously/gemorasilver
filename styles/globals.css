@@ -1059,7 +1059,6 @@ a {
 	position: relative;
 	width: 100%;
 	max-width: 500px;
-	height: 500px;
 	border: 1px solid #ddd;
 	border-radius: 10px;
 	overflow: hidden;
@@ -1108,7 +1107,7 @@ a {
 	border-radius: 10px;
 	transition: opacity 0.2s ease;
 	position: absolute;
-	right: 25%;
+	right: 20%;
 	z-index: 99999;
 }
 

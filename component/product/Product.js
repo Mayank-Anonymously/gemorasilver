@@ -1,11 +1,24 @@
 // component/product/Product.js
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React, { useState, useEffect } from 'react';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
-const ProductImagesGallery = ({ images = [], useIsMobile }) => {
+const ProductImagesGallery = ({ images = [] }) => {
 	const [mainImage, setMainImage] = useState(images[0]);
 	const [zoomVisible, setZoomVisible] = useState(false);
 	const [backgroundPosition, setBackgroundPosition] = useState('center');
+	const [isMobile, setIsMobile] = useState(false);
+
+	useEffect(() => {
+		// Detect screen size
+		const handleResize = () => {
+			setIsMobile(window.innerWidth <= 568);
+		};
+
+		handleResize(); // Run on mount
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
 
 	const handleMouseMove = (e) => {
 		const { left, top, width, height } =
@@ -15,18 +28,24 @@ const ProductImagesGallery = ({ images = [], useIsMobile }) => {
 		setBackgroundPosition(`${x}% ${y}%`);
 	};
 
+	console.log('isMobile:', isMobile === true ? 'Yes' : 'No');
+
 	return (
 		<div className='gallery-container'>
 			<div className='gallery-left'>
-				{useIsMobile ? (
+				{/* Desktop version with zoom */}
+				{isMobile === true ? (
 					<div className='main-image'>
-						<img
-							src={mainImage}
-							alt='Product'
-							width={600}
-							height={600}
-							className='gallery-img'
-						/>
+						<Zoom>
+							<img
+								src={mainImage}
+								alt='Product'
+								width={400}
+								height={400}
+								className='gallery-img'
+								style={{ borderRadius: '10px', cursor: 'zoom-in' }}
+							/>
+						</Zoom>
 					</div>
 				) : (
 					<div
@@ -43,7 +62,16 @@ const ProductImagesGallery = ({ images = [], useIsMobile }) => {
 						/>
 					</div>
 				)}
-
+				{isMobile === false && zoomVisible && (
+					<div
+						className='zoom-box'
+						style={{
+							backgroundImage: `url(${mainImage})`,
+							backgroundPosition,
+						}}
+					/>
+				)}
+				{/* Thumbnails */}
 				<div className='thumbnail-row'>
 					{images.map((img, index) => (
 						<div
@@ -60,14 +88,6 @@ const ProductImagesGallery = ({ images = [], useIsMobile }) => {
 					))}
 				</div>
 			</div>
-			{zoomVisible && (
-				<div
-					className='zoom-box'
-					style={{
-						backgroundImage: `url(${mainImage})`,
-						backgroundPosition,
-					}}></div>
-			)}
 		</div>
 	);
 };
