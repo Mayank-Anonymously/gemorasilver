@@ -42,7 +42,7 @@ const about = () => {
 					brand that blends elegance with intention. Muskan brings thoughtful
 					leadership and a structured approach to the brand’s growth, while
 					Akanksha leads with creativity and a deep understanding of what
-					resonates with modern women. Together,
+					resonates with modern women.
 				</p>
 				<p>
 					Together, they have built Luniva not just as a brand, but as a
