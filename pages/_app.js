@@ -24,8 +24,15 @@ function AppContent({ Component, pageProps }) {
 		dispatch(logoutUser());
 	};
 	useEffect(() => {
-		// handleLogout();
-		console.log('User logged in:', auth);
+		const disableZoom = (e) => {
+			if (e.touches.length > 1) e.preventDefault();
+		};
+		document.addEventListener('touchmove', disableZoom, { passive: false });
+		document.addEventListener('gesturestart', (e) => e.preventDefault());
+		return () => {
+			document.removeEventListener('touchmove', disableZoom);
+			document.removeEventListener('gesturestart', (e) => e.preventDefault());
+		};
 	}, []);
 
 	return <Component {...pageProps} />;
