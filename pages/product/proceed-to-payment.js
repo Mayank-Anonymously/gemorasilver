@@ -17,7 +17,6 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 		name: '',
 		street: '',
 		zip: '',
-
 		city: '',
 		state: '',
 		phone: '',

@@ -1,3 +1,4 @@
+import Screen from '@/component/common/Screen';
 import React from 'react';
 import { Container, Table, Badge } from 'react-bootstrap';
 
@@ -20,40 +21,44 @@ const MyOrders = () => {
 	};
 
 	return (
-		<Container className='mt-5'>
-			<h3
-				className='mb-4 text-center'
-				style={{ color: '#800000', fontWeight: 'bold' }}>
-				🛒 My Orders
-			</h3>
+		<Screen>
+			<Container className='mt-5'>
+				<h3
+					className='mb-4 text-center'
+					style={{ color: '#800000', fontWeight: 'bold' }}>
+					🛒 My Orders
+				</h3>
 
-			<Table
-				bordered
-				hover
-				responsive
-				className='shadow-sm'>
-				<thead style={{ backgroundColor: '#800000', color: 'white' }}>
-					<tr>
-						<th>Order ID</th>
-						<th>Date</th>
-						<th>Total</th>
-						<th>Status</th>
-					</tr>
-				</thead>
-				<tbody>
-					{orders.map((order) => (
-						<tr key={order.id}>
-							<td>{order.id}</td>
-							<td>{order.date}</td>
-							<td>{order.total}</td>
-							<td>
-								<Badge bg={getStatusColor(order.status)}>{order.status}</Badge>
-							</td>
+				<Table
+					bordered
+					hover
+					responsive
+					className='shadow-sm'>
+					<thead style={{ backgroundColor: '#800000', color: 'white' }}>
+						<tr>
+							<th>Order ID</th>
+							<th>Date</th>
+							<th>Total</th>
+							<th>Status</th>
 						</tr>
-					))}
-				</tbody>
-			</Table>
-		</Container>
+					</thead>
+					<tbody>
+						{orders.map((order) => (
+							<tr key={order.id}>
+								<td>{order.id}</td>
+								<td>{order.date}</td>
+								<td>{order.total}</td>
+								<td>
+									<Badge bg={getStatusColor(order.status)}>
+										{order.status}
+									</Badge>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</Table>
+			</Container>
+		</Screen>
 	);
 };
 
