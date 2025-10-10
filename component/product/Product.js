@@ -43,7 +43,11 @@ const ProductImagesGallery = ({ images = [] }) => {
 								width={400}
 								height={400}
 								className='gallery-img'
-								style={{ borderRadius: '10px', cursor: 'zoom-in' }}
+								style={{
+									borderRadius: '10px',
+									cursor: 'zoom-in',
+									touchAction: 'auto',
+								}}
 							/>
 						</Zoom>
 					</div>
