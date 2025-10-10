@@ -7,7 +7,7 @@ import { Container } from 'react-bootstrap';
 const about = () => {
 	return (
 		<Screen>
-			<Container style={{ background: 'white', padding: 44, marginTop: 50 }}>
+			<Container style={{ background: '#fff4f4', padding: 44, marginTop: 50 }}>
 				<h1>About Us</h1>
 				<p>
 					At Luniva, we believe jewellery is more than an accessory — it’s an
