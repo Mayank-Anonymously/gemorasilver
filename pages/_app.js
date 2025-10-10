@@ -24,6 +24,7 @@ function AppContent({ Component, pageProps }) {
 		dispatch(logoutUser());
 	};
 	useEffect(() => {
+		// dispatch(logoutUser());
 		const disableZoom = (e) => {
 			if (e.touches.length > 1) e.preventDefault();
 		};

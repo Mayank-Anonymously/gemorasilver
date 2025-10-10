@@ -10,10 +10,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import Screen from '@/component/common/Screen';
 import { HOST } from '@/component/apibaseurl';
 import Link from 'next/link';
+import { addToCartApi } from '@/component/redux/thunk/cartThunkApi';
 
 const Wishlist = () => {
 	const wishlistData = useSelector((state) => state.wishlist.wishlistitems);
-	const { user } = useSelector((state) => state.auth);
+	const { user, loggedIn } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
 	// Calculate total from priceSale
 	const total = wishlistData.reduce(
@@ -27,6 +28,14 @@ const Wishlist = () => {
 		fetchwishlist({ userId, dispatch });
 	}, []);
 
+	const add = (product) => {
+		if (loggedIn === false) {
+			alert('Please login to add product to cart.');
+			router.push('/auth/login');
+		} else {
+			addToCartApi(userId, product, dispatch);
+		}
+	};
 	return (
 		<Screen>
 			<Container className='my-5'>
@@ -93,18 +102,34 @@ const Wishlist = () => {
 														</small>
 													)}
 												</div>
-												<Button
-													variant='outline'
-													onClick={() =>
-														removeFromwishlistApi(userId, product._id, dispatch)
-													}
-													style={{
-														backgroundColor: '#800000',
-														color: '#fff',
-														borderRadius: '8px',
-													}}>
-													Remove
-												</Button>
+												<div className='d-flex justify-content-between align-items-center mt-3'>
+													<Button
+														variant='outline'
+														onClick={() => add(product)}
+														style={{
+															backgroundColor: '#800000',
+															color: '#fff',
+															borderRadius: '8px',
+														}}>
+														Add
+													</Button>
+													<Button
+														variant='outline'
+														onClick={() =>
+															removeFromwishlistApi(
+																userId,
+																product._id,
+																dispatch
+															)
+														}
+														style={{
+															backgroundColor: '#800000',
+															color: '#fff',
+															borderRadius: '8px',
+														}}>
+														Remove
+													</Button>
+												</div>
 											</div>
 										</Card.Body>
 									</Card>

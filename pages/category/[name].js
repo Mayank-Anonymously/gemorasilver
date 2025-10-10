@@ -74,7 +74,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 						xs={12}
 						sm={4}>
 						<FiltersResponsive
-							categories={categories}
+							categories={[]}
 							selectedCategories={selectedCategories}
 							setSelectedCategories={setSelectedCategories}
 							priceRange={priceRange}

@@ -75,6 +75,7 @@ const AllProduct = ({ products, filterproduct }) => {
 	// Pagination logic
 	const indexOfLastProduct = currentPage * productsPerPage;
 	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+	
 	const currentProducts = final.slice(indexOfFirstProduct, indexOfLastProduct);
 
 	const totalPages = Math.ceil(final.length / productsPerPage);
@@ -187,24 +188,24 @@ const AllProduct = ({ products, filterproduct }) => {
 						{/* Pagination Controls */}
 						{totalPages > 1 && (
 							<div className='d-flex justify-content-center mt-4 custom-pagination'>
-							  <Pagination>
-    <Pagination.Prev
-      disabled={currentPage === 1}
-      onClick={() => handlePageChange(currentPage - 1)}
-    />
-    {[...Array(totalPages)].map((_, index) => (
-      <Pagination.Item
-        key={index + 1}
-        active={index + 1 === currentPage}
-        onClick={() => handlePageChange(index + 1)}>
-        {index + 1}
-      </Pagination.Item>
-    ))}
-    <Pagination.Next
-      disabled={currentPage === totalPages}
-      onClick={() => handlePageChange(currentPage + 1)}
-    />
-  </Pagination>
+								<Pagination>
+									<Pagination.Prev
+										disabled={currentPage === 1}
+										onClick={() => handlePageChange(currentPage - 1)}
+									/>
+									{[...Array(totalPages)].map((_, index) => (
+										<Pagination.Item
+											key={index + 1}
+											active={index + 1 === currentPage}
+											onClick={() => handlePageChange(index + 1)}>
+											{index + 1}
+										</Pagination.Item>
+									))}
+									<Pagination.Next
+										disabled={currentPage === totalPages}
+										onClick={() => handlePageChange(currentPage + 1)}
+									/>
+								</Pagination>
 							</div>
 						)}
 					</Col>

@@ -44,7 +44,7 @@ export default function ProductPage({ product, products }) {
 	const userId = user?._id;
 
 	const cartItems = useSelector((state) => state.cart.items);
-
+	console.log('userId', userId);
 	if (!product) return <p>Product not found</p>;
 
 	const add = (product) => {
