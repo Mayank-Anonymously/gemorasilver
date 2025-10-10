@@ -4,11 +4,7 @@ import React from 'react';
 import { Offcanvas, Button, Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import FiltersSidebar from '@/component/Filterr/Sidebar';
-import {
-	decrementQty,
-	incrementQty,
-	removeFromCart,
-} from '@/component/redux/slices/cartSlice';
+import { removeFromCart } from '@/component/redux/slices/cartSlice';
 
 const FilterOffCanvas = ({
 	show,
@@ -24,6 +20,7 @@ const FilterOffCanvas = ({
 	setSelectedStoneColors,
 	selectedStyles,
 	setSelectedStyles,
+	handleApplyFilter,
 }) => {
 	const dispatch = useDispatch();
 	const cartItems = useSelector((state) => state.cart.items);
@@ -33,10 +30,6 @@ const FilterOffCanvas = ({
 		0
 	);
 	const total = subtotal;
-
-	const handleRemove = (id) => {
-		dispatch(removeFromCart(id));
-	};
 
 	return (
 		<Offcanvas
@@ -62,6 +55,7 @@ const FilterOffCanvas = ({
 					setSelectedStoneColors={setSelectedStoneColors}
 					selectedStyles={selectedStyles}
 					setSelectedStyles={setSelectedStyles}
+					handleApplyFilter={handleApplyFilter}
 				/>
 			</Offcanvas.Body>
 		</Offcanvas>

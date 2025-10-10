@@ -226,6 +226,7 @@ const AllProduct = ({ products, filterproduct }) => {
 					setSelectedStoneColors={setSelectedStoneColors}
 					selectedStyles={selectedStyles}
 					setSelectedStyles={setSelectedStyles}
+					handleApplyFilter={handleApplyFilter}
 				/>
 			)}
 		</Screen>
