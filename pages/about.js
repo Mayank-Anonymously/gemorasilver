@@ -36,12 +36,12 @@ const about = () => {
 				<h1>Meet Our Founders</h1>
 				<h4>The Story Begins with Friendship</h4>
 				<p>
-					Muskan Garg and Akansha Bhardwaj were best friends long before they
+					Muskan Garg and Akanksha Bhardwaj were best friends long before they
 					became business partners. With a shared passion for meaningful design
 					and a vision to empower women, they co-founded Luniva—a jewellery
 					brand that blends elegance with intention. Muskan brings thoughtful
 					leadership and a structured approach to the brand’s growth, while
-					Akansha leads with creativity and a deep understanding of what
+					Akanksha leads with creativity and a deep understanding of what
 					resonates with modern women. Together,
 				</p>
 				<p>
