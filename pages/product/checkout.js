@@ -55,7 +55,9 @@ const CheckoutPage = () => {
 
 	return (
 		<Screen>
-			<div className='container py-4'>
+			<div
+				className='container py-4 '
+				style={{ marginTop: '90px' }}>
 				<h4 className='mb-4'>Shopping Cart</h4>
 				<Row>
 					{/* Cart Items */}
@@ -66,78 +68,73 @@ const CheckoutPage = () => {
 							cartItems.map((item) => {
 								return (
 									<Card
-										className='mb-2'
+										className='mb-2 checkout-mobile-design-card'
 										key={item.id}>
-										<Card.Body className='d-flex justify-content-between align-items-center py-2'>
+										<Card.Body className='d-flex justify-content-between align-items-center'>
 											{/* Image + Details */}
-											<div className='d-flex align-items-center gap-2'>
-												<img
-													src={`${HOST}resources/${item.image}`} // add image in your data
-													alt={item.title}
-													style={{
-														width: '50px',
-														height: '50px',
-														objectFit: 'cover',
-														borderRadius: '4px',
-													}}
-												/>
-												<div>
-													<h6 className='mb-1'>{item.title}</h6>
-													<small className='text-muted'>
-														₹{item.priceSale.toFixed(2)}
-													</small>
+											<div className='d-flex align-items-center checkout-mobile-design gap-2'>
+												<div className=''>
+													<img
+														src={`${HOST}resources/${item.image}`} // add image in your data
+														alt={item.title}
+														style={{
+															width: '50px',
+															height: '50px',
+															objectFit: 'cover',
+															borderRadius: '4px',
+														}}
+													/>
+												</div>
+
+												<div className='checkout-mobile-design-details'>
+													<div>
+														<div>
+															<h6 className='mb-1'>{item.title}</h6>
+															<small className='text-muted'>
+																₹{item.priceSale.toFixed(2)}
+															</small>
+														</div>
+													</div>
+
+													{/* Quantity Controls */}
+													<div className='d-flex align-items-center gap-1'>
+														<Button
+															variant='bg-none'
+															size='sm'
+															onClick={() => dispatch(decrementQty(item.id))}>
+															-
+														</Button>
+														<small>{item.quantity}</small>
+														<Button
+															variant='bg-none'
+															size='sm'
+															onClick={() => dispatch(incrementQty(item.id))}>
+															+
+														</Button>
+													</div>
+													<div className='checkout-mobile-design-buttons'>
+														{/* Total */}
+														<small className='fw-bold'>
+															₹{(item.priceSale * item.quantity).toFixed(2)}
+														</small>
+														<div>
+															{/* Remove */}
+															<Button
+																style={{ background: '#4c1d1d' }}
+																size='sm'
+																onClick={() =>
+																	dispatch(removeFromCart(item.id))
+																}>
+																<FaTrashAlt />
+															</Button>
+														</div>
+													</div>
 												</div>
 											</div>
-
-											{/* Quantity Controls */}
-											<div className='d-flex align-items-center gap-1'>
-												<Button
-													variant='bg-none'
-													size='sm'
-													onClick={() => dispatch(decrementQty(item.id))}>
-													-
-												</Button>
-												<small>{item.quantity}</small>
-												<Button
-													variant='bg-none'
-													size='sm'
-													onClick={() => dispatch(incrementQty(item.id))}>
-													+
-												</Button>
-											</div>
-
-											{/* Total */}
-											<small className='fw-bold'>
-												₹{(item.priceSale * item.quantity).toFixed(2)}
-											</small>
-
-											{/* Remove */}
-											<Button
-												style={{ background: '#4c1d1d' }}
-												size='sm'
-												onClick={() => dispatch(removeFromCart(item.id))}>
-												<FaTrashAlt />
-											</Button>
 										</Card.Body>
 									</Card>
 								);
 							})
-						)}
-						{cartItems.length > 0 && (
-							<div className='d-flex justify-content-between mt-2'>
-								{/* <Button
-									variant='outline-danger'
-									size='sm'
-									onClick={dispatch(clearCart())}>
-									Clear Cart
-								</Button> */}
-
-								{/* <Button
-									variant='outline-primary'
-									size='sm'>
-									Continue Shopping
-								</Button> */}
-							</div>
 						)}
 					</Col>
 

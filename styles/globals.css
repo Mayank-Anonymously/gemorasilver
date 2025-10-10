@@ -987,6 +987,18 @@ a {
 	.promo-content {
 		margin-bottom: 50px;
 	}
+	.checkout-mobile-design-details {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+	.checkout-mobile-design-buttons {
+		display: flex;
+		justify-content: space-between;
+	}
+	.checkout-mobile-design-card {
+		border-radius: 20px !important;
+	}
 }
 
 .privacy-text {
