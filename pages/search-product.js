@@ -6,6 +6,7 @@ import debounce from 'lodash.debounce';
 import { HOST } from '@/component/apibaseurl';
 import Screen from '@/component/common/Screen';
 import { Container } from 'react-bootstrap';
+import Link from 'next/link';
 
 const SearchOverlay = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -67,18 +68,22 @@ const SearchOverlay = () => {
 							) : results.length ? (
 								results.map((item) => {
 									return (
-										<div
-											key={item._id}
-											className='search-item'>
-											<img
-												src={`${HOST}resources/${item.image}`}
-												alt={item.title}
-											/>
-											<div>
-												<h4>{item.title}</h4>
-												<p>{item.category}</p>
+										<Link
+											href={`/product/${item._id}`}
+											className='text-decoration-none text-white'>
+											<div
+												key={item._id}
+												className='search-item'>
+												<img
+													src={`${HOST}resources/${item.image}`}
+													alt={item.title}
+												/>
+												<div>
+													<h6>{item.title}</h6>
+													<p>{item.categoryName}</p>
+												</div>
 											</div>
-										</div>
+										</Link>
 									);
 								})
 							) : (

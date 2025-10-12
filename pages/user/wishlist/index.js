@@ -11,6 +11,7 @@ import Screen from '@/component/common/Screen';
 import { HOST } from '@/component/apibaseurl';
 import Link from 'next/link';
 import { addToCartApi } from '@/component/redux/thunk/cartThunkApi';
+import { FaTrashAlt } from 'react-icons/fa';
 
 const Wishlist = () => {
 	const wishlistData = useSelector((state) => state.wishlist.wishlistitems);
@@ -111,7 +112,7 @@ const Wishlist = () => {
 															color: '#fff',
 															borderRadius: '8px',
 														}}>
-														Add
+														+
 													</Button>
 													<Button
 														variant='outline'
@@ -127,7 +128,7 @@ const Wishlist = () => {
 															color: '#fff',
 															borderRadius: '8px',
 														}}>
-														Remove
+														<FaTrashAlt />
 													</Button>
 												</div>
 											</div>

@@ -64,7 +64,7 @@ export default function SocialMediaSection() {
 					</a>
 
 					<a
-						href='https://www.linkedin.com/'
+						href='https://www.linkedin.com/company/luniva-jewels/'
 						target='_blank'
 						rel='noopener noreferrer'
 						className='d-flex flex-column align-items-center text-decoration-none'>
