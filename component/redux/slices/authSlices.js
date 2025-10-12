@@ -63,6 +63,7 @@ export const verifyOtp = createAsyncThunk(
 // Logout User
 export const logoutUser = createAsyncThunk('auth/logoutUser', async () => {
 	localStorage.removeItem('token'); // Clear token
+
 	return null;
 });
 
@@ -91,7 +92,6 @@ const authSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			// Register
 			.addCase(registerUser.pending, (state) => {
 				state.loading = true;
 				state.error = null;

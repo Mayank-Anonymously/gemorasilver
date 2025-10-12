@@ -34,7 +34,7 @@ const SearchOverlay = () => {
 
 	useEffect(() => {
 		fetchResults(query);
-		// cancel debounce on unmount
+
 		return () => fetchResults.cancel();
 	}, [query]);
 

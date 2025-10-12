@@ -1,13 +1,31 @@
 import Screen from '@/component/common/Screen';
-import React from 'react';
-import { Container, Table, Badge } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Container, Table, Badge, Spinner } from 'react-bootstrap';
+import axios from 'axios';
+import { HOST } from '@/component/apibaseurl';
+import { useSelector } from 'react-redux';
 
 const MyOrders = () => {
-	const orders = [
-		{ id: 'ORD12345', date: '2025-09-21', total: '$120', status: 'Delivered' },
-		{ id: 'ORD12346', date: '2025-10-02', total: '$90', status: 'In Transit' },
-		{ id: 'ORD12347', date: '2025-10-08', total: '$60', status: 'Pending' },
-	];
+	const [orders, setOrders] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const { user } = useSelector((state) => state.auth);
+	// Replace this with actual user ID logic
+	const userId = user?._id;
+
+	useEffect(() => {
+		const fetchOrders = async () => {
+			try {
+				const res = await axios.get(`${HOST}order/by-user/${userId}`);
+				setOrders(res.data.orders); // Expecting array of orders
+			} catch (err) {
+				console.error('Failed to fetch orders:', err);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchOrders();
+	}, [userId]);
 
 	const getStatusColor = (status) => {
 		switch (status) {
@@ -15,8 +33,10 @@ const MyOrders = () => {
 				return 'success';
 			case 'In Transit':
 				return 'info';
-			default:
+			case 'Pending':
 				return 'warning';
+			default:
+				return 'secondary';
 		}
 	};
 
@@ -29,34 +49,51 @@ const MyOrders = () => {
 					🛒 My Orders
 				</h3>
 
-				<Table
-					bordered
-					hover
-					responsive
-					className='shadow-sm'>
-					<thead style={{ backgroundColor: '#800000', color: 'white' }}>
-						<tr>
-							<th>Order ID</th>
-							<th>Date</th>
-							<th>Total</th>
-							<th>Status</th>
-						</tr>
-					</thead>
-					<tbody>
-						{orders.map((order) => (
-							<tr key={order.id}>
-								<td>{order.id}</td>
-								<td>{order.date}</td>
-								<td>{order.total}</td>
-								<td>
-									<Badge bg={getStatusColor(order.status)}>
-										{order.status}
-									</Badge>
-								</td>
+				{loading ? (
+					<div className='text-center'>
+						<Spinner
+							animation='border'
+							variant='primary'
+						/>
+					</div>
+				) : orders.length === 0 ? (
+					<p className='text-center'>You haven't placed any orders yet.</p>
+				) : (
+					<Table
+						bordered
+						hover
+						responsive
+						className='shadow-sm'>
+						<thead style={{ backgroundColor: '#800000', color: 'white' }}>
+							<tr>
+								<th>Order ID</th>
+								<th>Date</th>
+								<th>Total</th>
+								<th>Status</th>
 							</tr>
-						))}
-					</tbody>
-				</Table>
+						</thead>
+						<tbody>
+							{orders.map((order) => (
+								<tr key={order._id}>
+									<td>{order.orderId}</td>
+									<td>
+										{new Date(order.createdAt).toLocaleDateString('en-IN', {
+											day: '2-digit',
+											month: 'short',
+											year: 'numeric',
+										})}
+									</td>
+									<td>₹{order.total}</td>
+									<td>
+										<Badge bg={getStatusColor(order.status)}>
+											{order.status}
+										</Badge>
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</Table>
+				)}
 			</Container>
 		</Screen>
 	);

@@ -2,12 +2,16 @@ import { Offcanvas } from 'react-bootstrap';
 import { Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from 'next/link';
-import { useDispatch } from 'react-redux';
-import { logoutUser } from '../redux/slices/authSlices';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearAuthState, logoutUser } from '../redux/slices/authSlices';
+import { useRouter } from 'next/navigation';
 
 function MobileMenu({ show, handleClose }) {
 	const dispatch = useDispatch();
+	const router = useRouter();
+	const { user } = useSelector((state) => state.auth);
 
+	const userId = user?._id;
 	const categories = [
 		{
 			name: 'Bracelets',
@@ -107,9 +111,33 @@ function MobileMenu({ show, handleClose }) {
 			link: '#',
 		},
 	];
+	const mobileMenuLoggedOutOptions = [
+		{
+			id: 3,
+			name: 'Contact Us',
+			link: '/contact-us',
+		},
+		{
+			id: 3,
+			name: 'About Us',
+			link: '/about',
+		},
+
+		{
+			id: 3,
+			name: 'Login',
+			link: '#',
+		},
+	];
 
 	const handleLogout = () => {
+		dispatch(clearAuthState());
 		dispatch(logoutUser());
+		handleClose();
+	};
+
+	const handleLogin = () => {
+		router.push('/auth/login');
 	};
 	return (
 		<Offcanvas
@@ -146,21 +174,39 @@ function MobileMenu({ show, handleClose }) {
 					</Accordion.Item>
 				</Accordion>
 
-				<ul className='mobile-menu-category list-unstyled m-0 p-0'>
-					{mobileMenuLoggedInOptions.map((menu, idx) => (
-						<li
-							key={idx}
-							className='mobile-menu-category-item'>
-							<Link
-								onClick={() => menu.name === 'Logout' && handleLogout()}
-								href={menu.link}
-								className='text-decoration-none'
-								style={{ color: '#6a2a42' }}>
-								{menu.name}
-							</Link>
-						</li>
-					))}
-				</ul>
+				{userId ? (
+					<ul className='mobile-menu-category list-unstyled m-0 p-0'>
+						{mobileMenuLoggedInOptions.map((menu, idx) => (
+							<li
+								key={idx}
+								className='mobile-menu-category-item'>
+								<Link
+									onClick={() => menu.name === 'Logout' && handleLogout()}
+									href={menu.link}
+									className='text-decoration-none'
+									style={{ color: '#6a2a42' }}>
+									{menu.name}
+								</Link>
+							</li>
+						))}
+					</ul>
+				) : (
+					<ul className='mobile-menu-category list-unstyled m-0 p-0'>
+						{mobileMenuLoggedOutOptions.map((menu, idx) => (
+							<li
+								key={idx}
+								className='mobile-menu-category-item'>
+								<Link
+									onClick={() => menu.name === 'Login' && handleLogin()}
+									href={menu.link}
+									className='text-decoration-none'
+									style={{ color: '#6a2a42' }}>
+									{menu.name}
+								</Link>
+							</li>
+						))}
+					</ul>
+				)}
 			</Offcanvas.Body>
 		</Offcanvas>
 	);
