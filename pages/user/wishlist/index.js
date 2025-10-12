@@ -103,7 +103,7 @@ const Wishlist = () => {
 														</small>
 													)}
 												</div>
-												<div className='d-flex justify-content-between align-items-center mt-3'>
+												<div className='d-flex w-100 justify-content-around  mt-3'>
 													<Button
 														variant='outline'
 														onClick={() => add(product)}
