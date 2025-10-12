@@ -30,10 +30,10 @@ export default function Home({ products }) {
 				<div className='container'>
 					<div className='row justify-content-center'>
 						<div className='col-md-8'>
-							<a
-								href='/search-product'
-								className='text-decoration-none text-black'>
-								<form className='d-flex search-form overflow-hidden'>
+							<form className='search-form overflow-hidden'>
+								<a
+									href='/search-product'
+									className='text-decoration-none text-black d-flex'>
 									<button className='btn'>
 										<CiSearch size={25} />
 									</button>
@@ -42,10 +42,10 @@ export default function Home({ products }) {
 										className='form-control form-control-lg border-0'
 										placeholder='Search products'
 										aria-label='Search'
-										disabled
+										readOnly
 									/>
-								</form>
-							</a>
+								</a>
+							</form>
 						</div>
 					</div>
 				</div>

@@ -5,6 +5,7 @@ import axios from 'axios';
 import debounce from 'lodash.debounce';
 import { HOST } from '@/component/apibaseurl';
 import Screen from '@/component/common/Screen';
+import { Container } from 'react-bootstrap';
 
 const SearchOverlay = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -18,11 +19,10 @@ const SearchOverlay = () => {
 			setResults([]);
 			return;
 		}
-
 		setLoading(true);
 		try {
 			const { data } = await axios.get(
-				`${HOST}/product/auto-complete/${searchTerm}`
+				`${HOST}product/auto-complete/${searchTerm}`
 			);
 			setResults(data);
 		} catch (err) {
@@ -31,16 +31,10 @@ const SearchOverlay = () => {
 			setLoading(false);
 		}
 	}, 500);
-
-	useEffect(() => {
-		fetchResults(query);
-
-		return () => fetchResults.cancel();
-	}, [query]);
-
+	console.log('data::', results);
 	return (
 		<Screen>
-			<Container className='bg-white'>
+			<Container className='bg-white mt-5'>
 				<div
 					className='search-bar'
 					onClick={() => setIsOpen(true)}>
@@ -60,8 +54,7 @@ const SearchOverlay = () => {
 								type='text'
 								autoFocus
 								placeholder='Type to search...'
-								value={query}
-								onChange={(e) => setQuery(e.target.value)}
+								onChange={(e) => fetchResults(e.target.value)}
 							/>
 							<button onClick={() => setIsOpen(false)}>
 								<FaTimes />
@@ -72,20 +65,22 @@ const SearchOverlay = () => {
 							{loading ? (
 								<p>Loading...</p>
 							) : results.length ? (
-								results.map((item) => (
-									<div
-										key={item._id}
-										className='search-item'>
-										<img
-											src={item.image[0]}
-											alt={item.title}
-										/>
-										<div>
-											<h4>{item.title}</h4>
-											<p>{item.category}</p>
+								results.map((item) => {
+									return (
+										<div
+											key={item._id}
+											className='search-item'>
+											<img
+												src={`${HOST}resources/${item.image}`}
+												alt={item.title}
+											/>
+											<div>
+												<h4>{item.title}</h4>
+												<p>{item.category}</p>
+											</div>
 										</div>
-									</div>
-								))
+									);
+								})
 							) : (
 								<p>No results found.</p>
 							)}
