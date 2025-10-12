@@ -57,7 +57,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 			selectedStoneColors.length === 0 || selectedStoneColors.includes(p.color);
 
 		const styleMatch =
-			selectedStyles.length === 0 || selectedStyles.includes(p.style);
+			selectedStyles.length === 0 || selectedStyles.includes(p.styleOne);
 
 		return categoryMatch && priceMatch && colorMatch && styleMatch;
 	});

@@ -21,6 +21,7 @@ const FilterOffCanvas = ({
 	selectedStyles,
 	setSelectedStyles,
 	handleApplyFilter,
+	handleResetFilter,
 }) => {
 	const dispatch = useDispatch();
 	const cartItems = useSelector((state) => state.cart.items);
@@ -36,7 +37,7 @@ const FilterOffCanvas = ({
 			show={show}
 			onHide={handleClose}
 			className='listingcard'
-			scroll={true} // ✅ allow body scroll inside Offcanvas
+			scroll={true}
 			backdrop={true}>
 			<Offcanvas.Header closeButton>
 				<Offcanvas.Title>Apply Filters</Offcanvas.Title>
@@ -56,6 +57,7 @@ const FilterOffCanvas = ({
 					selectedStyles={selectedStyles}
 					setSelectedStyles={setSelectedStyles}
 					handleApplyFilter={handleApplyFilter}
+					handleResetFilter={handleResetFilter}
 				/>
 			</Offcanvas.Body>
 		</Offcanvas>

@@ -17,6 +17,7 @@ const FiltersResponsive = ({
 	selectedStyles,
 	handleApplyFilter,
 	setSelectedStyles,
+	handleResetFilter,
 }) => {
 	// Reusable Checkbox Group
 	const CheckboxGroup = ({ title, items, selected, onChange }) => (
@@ -64,7 +65,11 @@ const FiltersResponsive = ({
 					Apply
 				</button>
 
-				<button className='btn reset-btn'>Reset</button>
+				<button
+					className='btn reset-btn'
+					conClick={handleResetFilter}>
+					Reset
+				</button>
 			</div>
 			<div
 				className='d-none d-lg-block p-3 border rounded'
@@ -85,13 +90,7 @@ const FiltersResponsive = ({
 
 				<CheckboxGroup
 					title='Style'
-					items={[
-						'Classic',
-						'Cocktail',
-						'Traditional',
-						'Party wear',
-						'Office wear',
-					]}
+					items={['Cocktail design', 'Party collection', 'Office wear']}
 					selected={selectedStyles}
 					onChange={(val) => toggleItem(val, selectedStyles, setSelectedStyles)}
 				/>
@@ -116,13 +115,7 @@ const FiltersResponsive = ({
 
 				<CheckboxGroup
 					title='Style'
-					items={[
-						'Classic',
-						'Cocktail',
-						'Traditional',
-						'Party wear',
-						'Office wear',
-					]}
+					items={['Cocktail design', 'Party collection', 'Office collection']}
 					selected={selectedStyles}
 					onChange={(val) => toggleItem(val, selectedStyles, setSelectedStyles)}
 				/>

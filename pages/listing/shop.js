@@ -69,13 +69,35 @@ const AllProduct = ({ products, filterproduct }) => {
 		setShow(false);
 		setFilteredProducts(filteredProducts);
 	};
-	console.log(filteredProducts);
+
+	const handleResetFilter = () => {
+		const filteredProducts = products.filter((p) => {
+			const categoryMatch =
+				activeCategory === 'All' || p.categoryName === activeCategory;
+			const priceMatch =
+				(!priceRange.from || p.priceSale >= priceRange.from) &&
+				(!priceRange.to || p.priceSale <= priceRange.to);
+			const colorMatch =
+				selectedStoneColors.length === 0 ||
+				selectedStoneColors.includes(p.color);
+			const styleMatch =
+				selectedStyles.length === 0 || selectedStyles.includes(p.styleOne);
+			const styleMatchTwo =
+				selectedStyles.length === 0 || selectedStyles.includes(p.styleTwo);
+			return (
+				categoryMatch && priceMatch && colorMatch && styleMatch && styleMatchTwo
+			);
+		});
+		setShow(false);
+		setFilteredProducts(filteredProducts);
+	};
+
 	const final = filteredProducts.length > 0 ? filteredProducts : products;
 
 	// Pagination logic
 	const indexOfLastProduct = currentPage * productsPerPage;
 	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-	
+
 	const currentProducts = final.slice(indexOfFirstProduct, indexOfLastProduct);
 
 	const totalPages = Math.ceil(final.length / productsPerPage);
@@ -106,6 +128,7 @@ const AllProduct = ({ products, filterproduct }) => {
 							selectedStyles={selectedStyles}
 							setSelectedStyles={setSelectedStyles}
 							handleApplyFilter={handleApplyFilter}
+							handleResetFilter={handleResetFilter}
 						/>
 					</Col>
 
@@ -228,6 +251,7 @@ const AllProduct = ({ products, filterproduct }) => {
 					selectedStyles={selectedStyles}
 					setSelectedStyles={setSelectedStyles}
 					handleApplyFilter={handleApplyFilter}
+					handleResetFilter={handleResetFilter}
 				/>
 			)}
 		</Screen>

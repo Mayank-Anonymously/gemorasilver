@@ -33,7 +33,7 @@ const Header = () => {
 					className='desktop'>
 					<div className='laptop-menu'>
 						<Nav.Link
-							href='/'
+							href='#'
 							className='nav-animate'>
 							<BsFilterLeft
 								size={40}
