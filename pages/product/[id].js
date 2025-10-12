@@ -224,12 +224,16 @@ export async function getServerSideProps(context) {
 
 	try {
 		const res = await axios.get(`${HOST}product/${id}/getProductById`);
+		const catname = res.data.response.categoryName;
 		const resss = await axios.get(`${HOST}product/getAllProducts`);
+		const filtertstyle = resss.data.response.filter(
+			(item) => item.categoryName == catname
+		);
 
 		return {
 			props: {
 				product: res.data.response || null, // adjust based on your API response
-				products: resss.data.response || null, // adjust based on your API response
+				products: filtertstyle || null, // adjust based on your API response
 			},
 		};
 	} catch (error) {

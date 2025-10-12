@@ -35,6 +35,14 @@ const Header = () => {
 						<Nav.Link
 							href='/'
 							className='nav-animate'>
+							<BsFilterLeft
+								size={40}
+								onClick={() => setShowSideMenu(true)}
+							/>
+						</Nav.Link>
+						<Nav.Link
+							href='/'
+							className='nav-animate'>
 							Home
 						</Nav.Link>
 						<Nav.Link
@@ -59,7 +67,7 @@ const Header = () => {
 					<div className='laptop-menu'>
 						<Navbar.Brand>
 							<Link
-								href=''
+								href='/search-product'
 								className='text-decoration-none mx-2'>
 								<CiSearch
 									size={25}

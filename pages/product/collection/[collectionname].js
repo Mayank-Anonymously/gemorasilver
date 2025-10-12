@@ -182,7 +182,7 @@ const AllProduct = ({ products, filterproduct }) => {
 
 						{/* Pagination Controls */}
 						{totalPages > 1 && (
-							<div className='d-flex justify-content-center mt-4'>
+							<div className='d-flex justify-content-center mt-4 custom-pagination'>
 								<Pagination>
 									<Pagination.Prev
 										disabled={currentPage === 1}
