@@ -223,7 +223,7 @@ export async function getServerSideProps(context) {
 		if (Array.isArray(res.data.response)) {
 			// Normalize category name to match URL param (slug style)
 			const filterproduct = res.data.response.filter(
-				(p) => p.categoryName.toLowerCase().replaceAll(' ', '-') === name
+				(p) => p.categoryName.toLowerCase().replaceAll(' ', '-') == name
 			);
 
 			return {
