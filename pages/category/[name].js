@@ -13,7 +13,7 @@ import FiltersResponsive from '@/component/Filterr/Sidebar';
 import FilterOffCanvas from '@/component/Filterr/Offcanvasfilter';
 import FilterSortSection from '@/component/common/FilterIcon';
 
-const ProductByCategory = ({ products, filterproduct }) => {
+const ProductByCategory = ({ products }) => {
 	const categories = ['All', ...new Set(products.map((p) => p.categoryName))];
 	const { user, loggedIn } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
@@ -76,11 +76,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 		return sorted;
 	};
 	const baseProducts =
-		filteredProducts.length > 0
-			? filteredProducts
-			: filterproduct.length > 0
-			? filterproduct
-			: products;
+		filteredProducts.length > 0 ? filteredProducts : products;
 
 	const final = sortProducts(baseProducts);
 
@@ -235,12 +231,12 @@ export async function getServerSideProps(context) {
 				(p) =>
 					p.categoryName.toLowerCase().replaceAll(' ', '-') == structuredName
 			);
+			console.log('filterproduct:', filterproduct);
 			// Normalize category name to match URL param (slug style)
 
 			return {
 				props: {
-					products: res.data.response || [],
-					filterproduct,
+					products: filterproduct,
 				},
 			};
 		}
