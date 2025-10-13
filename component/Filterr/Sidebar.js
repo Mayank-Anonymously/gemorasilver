@@ -91,7 +91,11 @@ const FiltersResponsive = ({
 
 				<CheckboxGroup
 					title='Style'
-					items={['Cocktail design', 'Party collection', 'Office wear']}
+					items={[
+						'Cocktail designs',
+						'Party collection',
+						'Working professionals',
+					]}
 					selected={selectedStyles}
 					onChange={(val) => toggleItem(val, selectedStyles, setSelectedStyles)}
 				/>
@@ -116,7 +120,11 @@ const FiltersResponsive = ({
 
 				<CheckboxGroup
 					title='Style'
-					items={['Cocktail design', 'Party collection', 'Office collection']}
+					items={[
+						'Cocktail designs',
+						'Party collection',
+						'Working professionals',
+					]}
 					selected={selectedStyles}
 					onChange={(val) => toggleItem(val, selectedStyles, setSelectedStyles)}
 				/>

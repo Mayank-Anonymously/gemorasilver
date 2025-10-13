@@ -44,9 +44,9 @@ const ProductByCategory = ({ products, filterproduct }) => {
 				selectedStoneColors.length === 0 ||
 				selectedStoneColors.includes(p.color);
 			const styleMatch =
-				selectedStyles.length === 0 || selectedStyles.includes(p.styleOne);
+				selectedStyles.length == 0 || selectedStyles.includes(p.styleOne);
 			const styleMatchTwo =
-				selectedStyles.length === 0 || selectedStyles.includes(p.styleTwo);
+				selectedStyles.length == 0 || selectedStyles.includes(p.styleTwo);
 
 			return (
 				categoryMatch && priceMatch && colorMatch && styleMatch && styleMatchTwo
@@ -63,7 +63,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 		setSelectedStoneColors([]);
 		setSelectedStyles([]);
 		setShow(false);
-		setFilteredProducts(filterproduct);
+		setFilteredProducts([]);
 	};
 
 	// Sorting function
@@ -74,13 +74,14 @@ const ProductByCategory = ({ products, filterproduct }) => {
 		return sorted;
 	};
 	const baseProducts =
-		filterproduct?.length > 0
-			? filterproduct
-			: filteredProducts?.length > 0
+		filteredProducts.length > 0
 			? filteredProducts
+			: filterproduct.length > 0
+			? filterproduct
 			: products;
 
 	const final = sortProducts(baseProducts);
+
 	return (
 		<Screen>
 			<Container className='py-5'>
