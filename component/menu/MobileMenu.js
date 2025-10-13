@@ -16,7 +16,7 @@ function MobileMenu({ show, handleClose }) {
 		{
 			name: 'Bracelets',
 			link: 'bracelet',
-			count: 28,
+			count: 23,
 			description: 'Explore our handcrafted bracelets made with love.',
 			images: ['/assets/product/bracelet.png', '/assets/product/bracelet.png'],
 		},
@@ -40,8 +40,8 @@ function MobileMenu({ show, handleClose }) {
 		},
 		{
 			name: 'Pendants',
-			link: 'pendant',
-			count: 14,
+			link: 'pendent',
+			count: 22,
 			description: 'Elegant pendants for every occasion.',
 			images: ['/assets/category/pendant.png', '/assets/category/pendant.png'],
 		},
@@ -177,33 +177,33 @@ function MobileMenu({ show, handleClose }) {
 				{userId ? (
 					<ul className='mobile-menu-category list-unstyled m-0 p-0'>
 						{mobileMenuLoggedInOptions.map((menu, idx) => (
-							<li
-								key={idx}
-								className='mobile-menu-category-item'>
-								<Link
-									onClick={() => menu.name === 'Logout' && handleLogout()}
-									href={menu.link}
-									className='text-decoration-none'
-									style={{ color: '#6a2a42' }}>
+							<Link
+								onClick={() => menu.name === 'Logout' && handleLogout()}
+								href={menu.link}
+								className='text-decoration-none'
+								style={{ color: '#6a2a42' }}>
+								<li
+									key={idx}
+									className='mobile-menu-category-item'>
 									{menu.name}
-								</Link>
-							</li>
+								</li>
+							</Link>
 						))}
 					</ul>
 				) : (
 					<ul className='mobile-menu-category list-unstyled m-0 p-0'>
 						{mobileMenuLoggedOutOptions.map((menu, idx) => (
-							<li
-								key={idx}
-								className='mobile-menu-category-item'>
-								<Link
-									onClick={() => menu.name === 'Login' && handleLogin()}
-									href={menu.link}
-									className='text-decoration-none'
-									style={{ color: '#6a2a42' }}>
+							<Link
+								onClick={() => menu.name === 'Login' && handleLogin()}
+								href={menu.link}
+								className='text-decoration-none'
+								style={{ color: '#6a2a42' }}>
+								<li
+									key={idx}
+									className='mobile-menu-category-item'>
 									{menu.name}
-								</Link>
-							</li>
+								</li>
+							</Link>
 						))}
 					</ul>
 				)}

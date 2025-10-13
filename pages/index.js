@@ -55,6 +55,7 @@ export default function Home({ products }) {
 				<CategorySection />
 			</section>
 			<FloatingWhatsAppButton />
+
 			<section>
 				<NewCollection
 					products={products}

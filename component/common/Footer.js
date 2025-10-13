@@ -92,7 +92,7 @@ const Footer = () => {
 
 						<p className='text-white'>
 							<FaPhone className='me-2' />
-							+91 70557 01906
+							+91 70557 01906	
 							<br />
 							<FaPhone className='me-2' />
 							+91 89232 50822

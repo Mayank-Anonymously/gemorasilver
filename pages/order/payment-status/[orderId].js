@@ -1,15 +1,39 @@
 import { HOST } from '@/component/apibaseurl';
 import { emptyCart } from '@/component/redux/thunk/cartThunkApi';
+import axios from 'axios';
 import React, { useEffect } from 'react';
 import { Container, Card, Alert, Spinner } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
-const PaymentStatusPage = ({ status, orderId, message, paymentMethod }) => {
+const PaymentStatusPage = ({
+	status,
+	orderId,
+	message,
+	paymentMethod,
+	order,
+}) => {
 	const { user } = useSelector((state) => state.auth);
 	const userId = user._id;
+
+	const handleInvoicecall = async () => {
+		try {
+			const response = await axios.post(`${HOST}payment/send-invoice`, {
+				user,
+				order,
+			});
+
+			return response.data;
+		} catch (error) {
+			alert(error.response?.data || error.message);
+		}
+	};
 	useEffect(() => {
+		if (paymentMethod !== 'COD' && status === 'COMPLETED') {
+			handleInvoicecall();
+		}
 		emptyCart(userId);
 	}, []);
+
 	return (
 		<Container className='d-flex flex-column align-items-center justify-content-center min-vh-100'>
 			<Card
@@ -109,6 +133,7 @@ export async function getServerSideProps(context) {
 
 		return {
 			props: {
+				order,
 				status,
 				orderId,
 				message,
