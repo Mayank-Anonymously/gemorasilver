@@ -34,6 +34,8 @@ const AllProduct = ({ products, filterproduct }) => {
 	const dispatch = useDispatch();
 	const userId = user?._id;
 	// Filter states
+	const [isAscending, setIsAscending] = useState(true); // Default: ascending
+
 	const [activeCategory, setActiveCategory] = useState('All');
 	const [selectedCategories, setSelectedCategories] = useState([]);
 	const [priceRange, setPriceRange] = useState({ from: 0, to: 160000 });
@@ -69,15 +71,20 @@ const AllProduct = ({ products, filterproduct }) => {
 		setFilteredProducts(filteredProducts);
 	};
 
-	const handleResetFilter = () => {
-		setActiveCategory('All');
-		setPriceRange({ from: 0, to: 160000 });
-		setSelectedStoneColors([]);
-		setSelectedStyles([]);
-		setShow(false);
-		setFilteredProducts(filteredProducts);
+	const sortProducts = (productsToSort) => {
+		const sorted = [...productsToSort].sort((a, b) =>
+			isAscending ? a.priceSale - b.priceSale : b.priceSale - a.priceSale
+		);
+		return sorted;
 	};
-	const final = filteredProducts;
+	const baseProducts =
+		filterproduct?.length > 0
+			? filterproduct
+			: filteredProducts?.length > 0
+			? filteredProducts
+			: products;
+
+	const final = sortProducts(baseProducts);
 
 	// Pagination logic
 	const indexOfLastProduct = currentPage * productsPerPage;
@@ -100,6 +107,7 @@ const AllProduct = ({ products, filterproduct }) => {
 						md={3}
 						xs={12}
 						sm={4}>
+						<h5>Showing Results : {final.length}</h5>
 						<FiltersResponsive
 							categories={categories}
 							selectedCategories={selectedCategories}
@@ -113,7 +121,7 @@ const AllProduct = ({ products, filterproduct }) => {
 							selectedStyles={selectedStyles}
 							setSelectedStyles={setSelectedStyles}
 							handleApplyFilter={handleApplyFilter}
-							handleResetFilter={handleResetFilter}
+							// handleResetFilter={handleResetFilter}
 						/>
 					</Col>
 
@@ -237,7 +245,7 @@ const AllProduct = ({ products, filterproduct }) => {
 					selectedStyles={selectedStyles}
 					setSelectedStyles={setSelectedStyles}
 					handleApplyFilter={handleApplyFilter}
-					handleResetFilter={handleResetFilter}
+					// handleResetFilter={handleResetsFilter}
 				/>
 			)}
 		</Screen>
