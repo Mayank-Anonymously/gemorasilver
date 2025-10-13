@@ -41,27 +41,39 @@ const ProductByCategory = ({ products, filterproduct }) => {
 	const [priceRange, setPriceRange] = useState({ from: 0, to: 160000 });
 	const [selectedStoneColors, setSelectedStoneColors] = useState([]);
 	const [selectedStyles, setSelectedStyles] = useState([]);
+	const [filteredProducts, setFilteredProducts] = useState([]);
 
 	const [show, setShow] = useState(false);
 
-	// Filter products based on all filters
-	const filteredProducts = products.filter((p) => {
-		const categoryMatch =
-			activeCategory === 'All' || p.categoryName === activeCategory;
-
-		const priceMatch =
-			(!priceRange.from || p.priceSale >= priceRange.from) &&
-			(!priceRange.to || p.priceSale <= priceRange.to);
-
-		const colorMatch =
-			selectedStoneColors.length === 0 || selectedStoneColors.includes(p.color);
-
-		const styleMatch =
-			selectedStyles.length === 0 || selectedStyles.includes(p.style);
-
-		return categoryMatch && priceMatch && colorMatch && styleMatch;
-	});
-
+	const handleApplyFilter = () => {
+		const filteredProducts = products.filter((p) => {
+			const categoryMatch =
+				activeCategory === 'All' || p.categoryName === activeCategory;
+			const priceMatch =
+				(!priceRange.from || p.priceSale >= priceRange.from) &&
+				(!priceRange.to || p.priceSale <= priceRange.to);
+			const colorMatch =
+				selectedStoneColors.length === 0 ||
+				selectedStoneColors.includes(p.color);
+			const styleMatch =
+				selectedStyles.length === 0 || selectedStyles.includes(p.styleOne);
+			const styleMatchTwo =
+				selectedStyles.length === 0 || selectedStyles.includes(p.styleTwo);
+			return (
+				categoryMatch && priceMatch && colorMatch && styleMatch && styleMatchTwo
+			);
+		});
+		setShow(false);
+		setFilteredProducts(filteredProducts);
+	};
+	const handleResetFilter = () => {
+		setActiveCategory('All');
+		setPriceRange({ from: 0, to: 160000 });
+		setSelectedStoneColors([]);
+		setSelectedStyles([]);
+		setShow(false);
+		setFilteredProducts(filteredProducts);
+	};
 	const final = filterproduct?.length > 0 ? filterproduct : filteredProducts;
 
 	return (
@@ -85,6 +97,8 @@ const ProductByCategory = ({ products, filterproduct }) => {
 							setSelectedStoneColors={setSelectedStoneColors}
 							selectedStyles={selectedStyles}
 							setSelectedStyles={setSelectedStyles}
+							handleResetFilter={handleResetFilter}
+							handleApplyFilter={handleApplyFilter}
 						/>
 					</Col>
 
@@ -180,6 +194,8 @@ const ProductByCategory = ({ products, filterproduct }) => {
 					setSelectedStoneColors={setSelectedStoneColors}
 					selectedStyles={selectedStyles}
 					setSelectedStyles={setSelectedStyles}
+					handleResetFilter={handleResetFilter}
+					handleApplyFilter={handleApplyFilter}
 				/>
 			)}
 		</Screen>

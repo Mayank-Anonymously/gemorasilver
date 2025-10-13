@@ -71,23 +71,10 @@ const AllProduct = ({ products, filterproduct }) => {
 	};
 
 	const handleResetFilter = () => {
-		const filteredProducts = products.filter((p) => {
-			const categoryMatch =
-				activeCategory === 'All' || p.categoryName === activeCategory;
-			const priceMatch =
-				(!priceRange.from || p.priceSale >= priceRange.from) &&
-				(!priceRange.to || p.priceSale <= priceRange.to);
-			const colorMatch =
-				selectedStoneColors.length === 0 ||
-				selectedStoneColors.includes(p.color);
-			const styleMatch =
-				selectedStyles.length === 0 || selectedStyles.includes(p.styleOne);
-			const styleMatchTwo =
-				selectedStyles.length === 0 || selectedStyles.includes(p.styleTwo);
-			return (
-				categoryMatch && priceMatch && colorMatch && styleMatch && styleMatchTwo
-			);
-		});
+		setActiveCategory('All');
+		setPriceRange({ from: 0, to: 160000 });
+		setSelectedStoneColors([]);
+		setSelectedStyles([]);
 		setShow(false);
 		setFilteredProducts(filteredProducts);
 	};

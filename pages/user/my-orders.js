@@ -29,7 +29,9 @@ const MyOrders = () => {
 
 	const getStatusColor = (status) => {
 		switch (status) {
-			case 'Delivered':
+			case 'Completed':
+				return 'success';
+			case 'Ordered':
 				return 'success';
 			case 'In Transit':
 				return 'info';
@@ -69,28 +71,37 @@ const MyOrders = () => {
 								<th>Order ID</th>
 								<th>Date</th>
 								<th>Total</th>
-								<th>Status</th>
+								<th>Payment Status</th>
+								<th>Payment Status</th>
 							</tr>
 						</thead>
 						<tbody>
-							{orders.map((order) => (
-								<tr key={order._id}>
-									<td>{order.orderId}</td>
-									<td>
-										{new Date(order.createdAt).toLocaleDateString('en-IN', {
-											day: '2-digit',
-											month: 'short',
-											year: 'numeric',
-										})}
-									</td>
-									<td>₹{order.total}</td>
-									<td>
-										<Badge bg={getStatusColor(order.status)}>
-											{order.status}
-										</Badge>
-									</td>
-								</tr>
-							))}
+							{orders.map((order) => {
+								order.placed = 'Ordered';
+								return (
+									<tr key={order._id}>
+										<td>{order.orderId}</td>
+										<td>
+											{new Date(order.createdAt).toLocaleDateString('en-IN', {
+												day: '2-digit',
+												month: 'short',
+												year: 'numeric',
+											})}
+										</td>
+										<td>₹{order.total}</td>
+										<td>
+											<Badge bg={getStatusColor(order.status)}>
+												{'Ordered'}
+											</Badge>
+										</td>
+										<td>
+											<Badge bg={getStatusColor(order.status)}>
+												{order.status}
+											</Badge>
+										</td>
+									</tr>
+								);
+							})}
 						</tbody>
 					</Table>
 				)}

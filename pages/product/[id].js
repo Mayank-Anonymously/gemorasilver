@@ -19,7 +19,7 @@ import NewColllection from '@/component/home/NewCollection';
 import FooterInfo from '@/component/common/FooterInfo';
 import { IoIosStar } from 'react-icons/io';
 import ShareButton from '@/component/Share/shareButton';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SizeChartModal from '@/component/Size/Sizechart';
 import ReviewSection from '@/component/ReviewSection';
 import { addTowishlistApi } from '@/component/redux/thunk/wishlistThunkApi';
@@ -55,6 +55,7 @@ export default function ProductPage({ product, products }) {
 			addToCartApi(userId, product, dispatch);
 		}
 	};
+
 	return (
 		<Screen>
 			<div className='container mt-5'>

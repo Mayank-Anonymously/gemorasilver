@@ -40,27 +40,45 @@ const AllProduct = ({ products, filterproduct }) => {
 	const [selectedStoneColors, setSelectedStoneColors] = useState([]);
 	const [selectedStyles, setSelectedStyles] = useState([]);
 	const [show, setShow] = useState(false);
+	const [filteredProducts, setFilteredProducts] = useState([]);
 
 	// Pagination states
 	const [currentPage, setCurrentPage] = useState(1);
 	const productsPerPage = 12; // Number of products per page
 
 	// Filtering
-	const filteredProducts = products.filter((p) => {
-		const categoryMatch =
-			activeCategory === 'All' || p.categoryName === activeCategory;
-		const priceMatch =
-			(!priceRange.from || p.priceSale >= priceRange.from) &&
-			(!priceRange.to || p.priceSale <= priceRange.to);
-		const colorMatch =
-			selectedStoneColors.length === 0 || selectedStoneColors.includes(p.color);
-		const styleMatch =
-			selectedStyles.length === 0 || selectedStyles.includes(p.style);
-		return categoryMatch && priceMatch && colorMatch && styleMatch;
-	});
+	const handleApplyFilter = () => {
+		const filteredProducts = products.filter((p) => {
+			const categoryMatch =
+				activeCategory === 'All' || p.categoryName === activeCategory;
+			const priceMatch =
+				(!priceRange.from || p.priceSale >= priceRange.from) &&
+				(!priceRange.to || p.priceSale <= priceRange.to);
+			const colorMatch =
+				selectedStoneColors.length === 0 ||
+				selectedStoneColors.includes(p.color);
+			const styleMatch =
+				selectedStyles.length === 0 || selectedStyles.includes(p.styleOne);
+			const styleMatchTwo =
+				selectedStyles.length === 0 || selectedStyles.includes(p.styleTwo);
+			return (
+				categoryMatch && priceMatch && colorMatch && styleMatch && styleMatchTwo
+			);
+		});
+		setShow(false);
+		setFilteredProducts(filteredProducts);
+	};
 
+	const handleResetFilter = () => {
+		setActiveCategory('All');
+		setPriceRange({ from: 0, to: 160000 });
+		setSelectedStoneColors([]);
+		setSelectedStyles([]);
+		setShow(false);
+		setFilteredProducts(filteredProducts);
+	};
 	const final = filteredProducts;
-	console.log(filteredProducts.length);
+
 	// Pagination logic
 	const indexOfLastProduct = currentPage * productsPerPage;
 	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -73,13 +91,6 @@ const AllProduct = ({ products, filterproduct }) => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
 
-	console.log({
-		currentPage,
-		indexOfFirstProduct,
-		indexOfLastProduct,
-		totalProducts: final.length,
-		currentProducts: currentProducts.length,
-	});
 	return (
 		<Screen>
 			<Container className='py-5'>
@@ -101,6 +112,8 @@ const AllProduct = ({ products, filterproduct }) => {
 							setSelectedStoneColors={setSelectedStoneColors}
 							selectedStyles={selectedStyles}
 							setSelectedStyles={setSelectedStyles}
+							handleApplyFilter={handleApplyFilter}
+							handleResetFilter={handleResetFilter}
 						/>
 					</Col>
 
@@ -213,8 +226,18 @@ const AllProduct = ({ products, filterproduct }) => {
 					show={show}
 					handleClose={() => setShow(false)}
 					categories={categories}
+					selectedCategories={selectedCategories}
+					setSelectedCategories={setSelectedCategories}
 					priceRange={priceRange}
 					setPriceRange={setPriceRange}
+					activeCategory={activeCategory}
+					setActiveCategory={setActiveCategory}
+					selectedStoneColors={selectedStoneColors}
+					setSelectedStoneColors={setSelectedStoneColors}
+					selectedStyles={selectedStyles}
+					setSelectedStyles={setSelectedStyles}
+					handleApplyFilter={handleApplyFilter}
+					handleResetFilter={handleResetFilter}
 				/>
 			)}
 		</Screen>

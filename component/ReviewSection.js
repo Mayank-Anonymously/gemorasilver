@@ -8,7 +8,7 @@ export default function ReviewSection() {
 			rating: 5,
 			comment:
 				'Absolutely loved the jewelry! The quality is amazing and delivery was super fast.',
-			date: 'September 15, 2025',
+			date: 'October 7th, 2025',
 		},
 		{
 			id: 2,
@@ -16,7 +16,7 @@ export default function ReviewSection() {
 			rating: 4,
 			comment:
 				'Beautiful designs. The packaging was elegant too. Slight delay in delivery, but worth it.',
-			date: 'September 20, 2025',
+			date: 'October 10th, 2025',
 		},
 		{
 			id: 3,
@@ -24,7 +24,7 @@ export default function ReviewSection() {
 			rating: 5,
 			comment:
 				'Great customer service and the ring fits perfectly. Highly recommend!',
-			date: 'October 2, 2025',
+			date: 'October 12th, 2025',
 		},
 	];
 
