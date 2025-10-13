@@ -223,10 +223,13 @@ export async function getServerSideProps(context) {
 		const res = await axios.get(`${HOST}product/getAllProducts`);
 
 		if (Array.isArray(res.data.response)) {
+			const structuredName = name.replaceAll(' ', '-');
 			// Normalize category name to match URL param (slug style)
 			const filterproduct = res.data.response.filter(
-				(p) => p.categoryName.toLowerCase().replaceAll(' ', '-') == name
+				(p) =>
+					p.categoryName.toLowerCase().replaceAll(' ', '-') == structuredName
 			);
+			// Normalize category name to match URL param (slug style)
 
 			return {
 				props: {
