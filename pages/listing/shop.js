@@ -82,13 +82,14 @@ const AllProduct = ({ products, filterproduct }) => {
 			: products;
 
 	const final = sortProducts(baseProducts);
+
 	const handleResetFilter = () => {
 		setActiveCategory('All');
 		setPriceRange({ from: 0, to: 160000 });
 		setSelectedStoneColors([]);
-		setSelectedStyles([]);
+		setSelectedStyles('');
 		setShow(false);
-		setFilteredProducts(filteredProducts);
+		setFilteredProducts([]);
 	};
 
 	// Pagination logic
