@@ -37,16 +37,17 @@ const ProductByCategory = ({ products, filterproduct }) => {
 		const filtered = products.filter((p) => {
 			const categoryMatch =
 				activeCategory === 'All' || p.categoryName === activeCategory;
+
 			const priceMatch =
 				(!priceRange.from || p.priceSale >= priceRange.from) &&
 				(!priceRange.to || p.priceSale <= priceRange.to);
+
 			const colorMatch =
 				selectedStoneColors.length === 0 ||
 				selectedStoneColors.includes(p.color);
-			const styleMatch =
-				selectedStyles.length == 0 || selectedStyles.includes(p.styleOne);
-			const styleMatchTwo =
-				selectedStyles.length == 0 || selectedStyles.includes(p.styleTwo);
+
+			const styleMatch = p.styleOne == p.styleOne;
+			const styleMatchTwo = p.styleTwo == p.styleTwo;
 
 			return (
 				categoryMatch && priceMatch && colorMatch && styleMatch && styleMatchTwo

@@ -41,9 +41,7 @@ const FiltersResponsive = ({
 
 	// Toggle helper
 	const toggleItem = (item, selected, setSelected) => {
-		setSelected((prev) =>
-			prev.includes(item) ? prev.filter((x) => x !== item) : [...prev, item]
-		);
+		setSelected(item);
 	};
 
 	// Handle product type selection
