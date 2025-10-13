@@ -36,51 +36,41 @@ const ProductByCategory = ({ products }) => {
 	const handleApplyFilter = () => {
 		setLoading(true);
 
-		let filteredArray = [];
-
 		// Start with the full products array
 		let filtered = [...products];
 
 		// 1️⃣ Filter by category
 		if (activeCategory !== 'All') {
-			filteredArray.push(
-				...filtered.filter((p) => p.categoryName === activeCategory)
-			);
+			filtered = filtered.filter((p) => p.categoryName === activeCategory);
 		}
 
 		// 2️⃣ Filter by price
 		if (priceRange.from || priceRange.to) {
-			filteredArray.push(
-				...filtered.filter(
-					(p) =>
-						(!priceRange.from || p.priceSale >= priceRange.from) &&
-						(!priceRange.to || p.priceSale <= priceRange.to)
-				)
+			filtered = filtered.filter(
+				(p) =>
+					(!priceRange.from || p.priceSale >= priceRange.from) &&
+					(!priceRange.to || p.priceSale <= priceRange.to)
 			);
 		}
 
 		// 3️⃣ Filter by color
 		if (selectedStoneColors.length > 0) {
-			filteredArray.push(
-				...filtered.filter((p) => selectedStoneColors.includes(p.color))
-			);
+			filtered = filtered.filter((p) => selectedStoneColors.includes(p.color));
 		}
 
 		// 4️⃣ Filter by style
 		if (selectedStyles) {
 			const normalizedStyle = selectedStyles.toLowerCase().replaceAll(' ', '-');
-			filteredArray.push(
-				...filtered.filter((p) => {
-					const styleMatchOne =
-						normalizedStyle === p.styleOne && normalizedStyle !== p.styleTwo;
-					const styleMatchTwo =
-						normalizedStyle === p.styleTwo && normalizedStyle !== p.styleOne;
-					return styleMatchOne || styleMatchTwo;
-				})
-			);
+			filtered = filtered.filter((p) => {
+				const styleMatchOne =
+					normalizedStyle === p.styleOne && normalizedStyle !== p.styleTwo;
+				const styleMatchTwo =
+					normalizedStyle === p.styleTwo && normalizedStyle !== p.styleOne;
+				return styleMatchOne || styleMatchTwo;
+			});
 		}
-		console.log('filteredArray:', filteredArray);
-		setFilteredProducts(filteredArray);
+
+		setFilteredProducts(filtered);
 		setShow(false);
 		setLoading(false);
 	};
