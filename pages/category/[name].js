@@ -35,29 +35,54 @@ const ProductByCategory = ({ products }) => {
 	// Filtering function
 	const handleApplyFilter = () => {
 		setLoading(true);
-		const filtered = products.filter((p) => {
-			const categoryMatch =
-				activeCategory === 'All' || p.categoryName === activeCategory;
 
-			const priceMatch =
-				(!priceRange.from || p.priceSale >= priceRange.from) &&
-				(!priceRange.to || p.priceSale <= priceRange.to);
+		let filteredArray = [];
 
-			const colorMatch =
-				selectedStoneColors.length === 0 ||
-				selectedStoneColors.includes(p.color);
+		// Start with the full products array
+		let filtered = [...products];
 
-			const styleMatch =
-				selectedStyles.toLowerCase().replaceAll(' ', '-') == p.styleOne ||
-				selectedStyles.toLowerCase().replaceAll(' ', '-') == p.styleTwo;
+		// 1️⃣ Filter by category
+		if (activeCategory !== 'All') {
+			filteredArray.push(
+				...filtered.filter((p) => p.categoryName === activeCategory)
+			);
+		}
 
-			setLoading(false);
+		// 2️⃣ Filter by price
+		if (priceRange.from || priceRange.to) {
+			filteredArray.push(
+				...filtered.filter(
+					(p) =>
+						(!priceRange.from || p.priceSale >= priceRange.from) &&
+						(!priceRange.to || p.priceSale <= priceRange.to)
+				)
+			);
+		}
 
-			return categoryMatch && priceMatch && colorMatch && styleMatch;
-		});
+		// 3️⃣ Filter by color
+		if (selectedStoneColors.length > 0) {
+			filteredArray.push(
+				...filtered.filter((p) => selectedStoneColors.includes(p.color))
+			);
+		}
 
+		// 4️⃣ Filter by style
+		if (selectedStyles) {
+			const normalizedStyle = selectedStyles.toLowerCase().replaceAll(' ', '-');
+			filteredArray.push(
+				...filtered.filter((p) => {
+					const styleMatchOne =
+						normalizedStyle === p.styleOne && normalizedStyle !== p.styleTwo;
+					const styleMatchTwo =
+						normalizedStyle === p.styleTwo && normalizedStyle !== p.styleOne;
+					return styleMatchOne || styleMatchTwo;
+				})
+			);
+		}
+		console.log('filteredArray:', filteredArray);
+		setFilteredProducts(filteredArray);
 		setShow(false);
-		setFilteredProducts(filtered);
+		setLoading(false);
 	};
 
 	const handleResetFilter = () => {
