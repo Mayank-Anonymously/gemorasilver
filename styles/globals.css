@@ -1123,12 +1123,13 @@ a {
 	height: 500px;
 	border: 1px solid #ddd;
 	background-repeat: no-repeat;
-	background-size: 200%; /* zoom level */
+	background-size: 200%;
 	border-radius: 10px;
 	transition: opacity 0.2s ease;
 	position: absolute;
-	right: 20%;
+	left: 50%;
 	z-index: 99999;
+	top: 22%;
 }
 
 .apple-btn {

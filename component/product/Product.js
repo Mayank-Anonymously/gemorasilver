@@ -35,18 +35,25 @@ const ProductImagesGallery = ({ images = [] }) => {
 			});
 
 			// Enable pinch zooming
-			imageRef.current.parentElement.addEventListener('wheel', panzoom.zoomWithWheel);
+			imageRef.current.parentElement.addEventListener(
+				'wheel',
+				panzoom.zoomWithWheel
+			);
 			panzoomInstance.current = panzoom;
 
 			return () => {
-				imageRef.current?.parentElement.removeEventListener('wheel', panzoom.zoomWithWheel);
+				imageRef.current?.parentElement.removeEventListener(
+					'wheel',
+					panzoom.zoomWithWheel
+				);
 				panzoom.destroy();
 			};
 		}
 	}, [isMobile, mainImage]);
 
 	const handleMouseMove = (e) => {
-		const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+		const { left, top, width, height } =
+			e.currentTarget.getBoundingClientRect();
 		const x = ((e.pageX - left) / width) * 100;
 		const y = ((e.pageY - top) / height) * 100;
 		setBackgroundPosition(`${x}% ${y}%`);
@@ -91,17 +98,6 @@ const ProductImagesGallery = ({ images = [] }) => {
 							className='gallery-img rounded-lg'
 							style={{ objectFit: 'cover' }}
 						/>
-
-						{zoomVisible && (
-							<div
-								className='zoom-box absolute top-0 left-[105%] w-[400px] h-[400px] border border-gray-300 shadow-lg rounded-lg bg-no-repeat bg-cover'
-								style={{
-									backgroundImage: `url(${mainImage})`,
-									backgroundPosition,
-									backgroundSize: '200%',
-								}}
-							/>
-						)}
 					</div>
 				)}
 
@@ -111,7 +107,9 @@ const ProductImagesGallery = ({ images = [] }) => {
 						<div
 							key={index}
 							className={`thumbnail border-2 rounded-md p-1 cursor-pointer transition-all ${
-								mainImage === img ? 'border-[#800000] scale-105' : 'border-gray-300'
+								mainImage === img
+									? 'border-[#800000] scale-105'
+									: 'border-gray-300'
 							}`}
 							onClick={() => setMainImage(img)}>
 							<img
@@ -124,6 +122,16 @@ const ProductImagesGallery = ({ images = [] }) => {
 						</div>
 					))}
 				</div>
+				{zoomVisible && (
+					<div
+						className='zoom-box absolute  shadow-lg rounded-lg bg-no-repeat bg-cover'
+						style={{
+							backgroundImage: `url(${mainImage})`,
+							backgroundPosition,
+							backgroundSize: '200%',
+						}}
+					/>
+				)}
 			</div>
 		</div>
 	);
