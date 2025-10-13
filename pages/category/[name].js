@@ -28,7 +28,7 @@ const ProductByCategory = ({ products }) => {
 	const [selectedCategories, setSelectedCategories] = useState([]);
 	const [priceRange, setPriceRange] = useState({ from: 0, to: 160000 });
 	const [selectedStoneColors, setSelectedStoneColors] = useState([]);
-	const [selectedStyles, setSelectedStyles] = useState([]);
+	const [selectedStyles, setSelectedStyles] = useState('');
 	const [filteredProducts, setFilteredProducts] = useState([]);
 	const [show, setShow] = useState(false);
 
@@ -47,12 +47,13 @@ const ProductByCategory = ({ products }) => {
 				selectedStoneColors.length === 0 ||
 				selectedStoneColors.includes(p.color);
 
-			const styleMatch = p.styleOne == p.styleOne;
-			const styleMatchTwo = p.styleTwo == p.styleTwo;
+			const styleMatch =
+				selectedStyles.toLowerCase().replaceAll(' ', '-') == p.styleOne ||
+				selectedStyles.toLowerCase().replaceAll(' ', '-') == p.styleTwo;
+
 			setLoading(false);
-			return (
-				categoryMatch && priceMatch && colorMatch && styleMatch && styleMatchTwo
-			);
+
+			return categoryMatch && priceMatch && colorMatch && styleMatch;
 		});
 
 		setShow(false);

@@ -59,12 +59,10 @@ const AllProduct = ({ products, filterproduct }) => {
 				selectedStoneColors.length === 0 ||
 				selectedStoneColors.includes(p.color);
 			const styleMatch =
-				selectedStyles.length === 0 || selectedStyles.includes(p.styleOne);
-			const styleMatchTwo =
-				selectedStyles.length === 0 || selectedStyles.includes(p.styleTwo);
-			return (
-				categoryMatch && priceMatch && colorMatch && styleMatch && styleMatchTwo
-			);
+				selectedStyles.toLowerCase().replaceAll(' ', '-') == p.styleOne ||
+				selectedStyles.toLowerCase().replaceAll(' ', '-') == p.styleTwo;
+
+			return categoryMatch && priceMatch && colorMatch && styleMatch;
 		});
 		setShow(false);
 		setFilteredProducts(filteredProducts);
