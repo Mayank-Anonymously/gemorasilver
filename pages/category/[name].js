@@ -1,32 +1,17 @@
 // pages/ProductByCategory.js
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Form, Button, Card, Nav } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import Screen from '@/component/common/Screen';
 import Link from 'next/link';
 import { IoIosStar } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '@/component/redux/slices/cartSlice';
-import FiltersSidebar from '@/component/Filterr/Sidebar';
-import FilterOffCanvas from '@/component/Filterr/Offcanvasfilter';
-import { FaFilter } from 'react-icons/fa';
 import { addToCartApi } from '@/component/redux/thunk/cartThunkApi';
 import axios from 'axios';
 import { HOST } from '@/component/apibaseurl';
 import { useRouter } from 'next/navigation';
 import FiltersResponsive from '@/component/Filterr/Sidebar';
+import FilterOffCanvas from '@/component/Filterr/Offcanvasfilter';
 import FilterSortSection from '@/component/common/FilterIcon';
-
-function useIsMobile(breakpoint = 568) {
-	const [isMobile, setIsMobile] = useState(false);
-	useEffect(() => {
-		const update = () => setIsMobile(window.innerWidth < breakpoint);
-		update();
-		window.addEventListener('resize', update);
-		return () => window.removeEventListener('resize', update);
-	}, [breakpoint]);
-
-	return isMobile;
-}
 
 const ProductByCategory = ({ products, filterproduct }) => {
 	const categories = ['All', ...new Set(products.map((p) => p.categoryName))];
@@ -35,18 +20,21 @@ const ProductByCategory = ({ products, filterproduct }) => {
 	const router = useRouter();
 	const userId = user?._id;
 
-	// Filter states (lifted to parent)
+	// Filter states
+
+	const [isAscending, setIsAscending] = useState(true); // Default: ascending
+
 	const [activeCategory, setActiveCategory] = useState('All');
 	const [selectedCategories, setSelectedCategories] = useState([]);
 	const [priceRange, setPriceRange] = useState({ from: 0, to: 160000 });
 	const [selectedStoneColors, setSelectedStoneColors] = useState([]);
 	const [selectedStyles, setSelectedStyles] = useState([]);
 	const [filteredProducts, setFilteredProducts] = useState([]);
-
 	const [show, setShow] = useState(false);
 
+	// Filtering function
 	const handleApplyFilter = () => {
-		const filteredProducts = products.filter((p) => {
+		const filtered = products.filter((p) => {
 			const categoryMatch =
 				activeCategory === 'All' || p.categoryName === activeCategory;
 			const priceMatch =
@@ -59,23 +47,40 @@ const ProductByCategory = ({ products, filterproduct }) => {
 				selectedStyles.length === 0 || selectedStyles.includes(p.styleOne);
 			const styleMatchTwo =
 				selectedStyles.length === 0 || selectedStyles.includes(p.styleTwo);
+
 			return (
 				categoryMatch && priceMatch && colorMatch && styleMatch && styleMatchTwo
 			);
 		});
+
 		setShow(false);
-		setFilteredProducts(filteredProducts);
+		setFilteredProducts(filtered);
 	};
+
 	const handleResetFilter = () => {
 		setActiveCategory('All');
 		setPriceRange({ from: 0, to: 160000 });
 		setSelectedStoneColors([]);
 		setSelectedStyles([]);
 		setShow(false);
-		setFilteredProducts(filteredProducts);
+		setFilteredProducts(filterproduct);
 	};
-	const final = filterproduct?.length > 0 ? filterproduct : filteredProducts;
 
+	// Sorting function
+	const sortProducts = (productsToSort) => {
+		const sorted = [...productsToSort].sort((a, b) =>
+			isAscending ? a.priceSale - b.priceSale : b.priceSale - a.priceSale
+		);
+		return sorted;
+	};
+	const baseProducts =
+		filterproduct?.length > 0
+			? filterproduct
+			: filteredProducts?.length > 0
+			? filteredProducts
+			: products;
+
+	const final = sortProducts(baseProducts);
 	return (
 		<Screen>
 			<Container className='py-5'>
@@ -86,7 +91,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 						xs={12}
 						sm={4}>
 						<FiltersResponsive
-							categories={[]}
+							categories={categories}
 							selectedCategories={selectedCategories}
 							setSelectedCategories={setSelectedCategories}
 							priceRange={priceRange}
@@ -123,6 +128,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 												justifyContent: 'space-between',
 												alignItems: 'center',
 												flexDirection: 'column',
+												cursor: 'pointer',
 											}}>
 											<img
 												src={`${HOST}resources/${p.image}`}
@@ -178,7 +184,12 @@ const ProductByCategory = ({ products, filterproduct }) => {
 					</Col>
 				</Row>
 			</Container>
-			<FilterSortSection setShow={setShow} />
+
+			<FilterSortSection
+				setShow={setShow}
+				onClickSort={() => setIsAscending((prev) => !prev)}
+			/>
+
 			{show && (
 				<FilterOffCanvas
 					show={show}
@@ -210,19 +221,15 @@ export async function getServerSideProps(context) {
 		const res = await axios.get(`${HOST}product/getAllProducts`);
 
 		if (Array.isArray(res.data.response)) {
-			// Normalize both categoryName and query to match
+			// Normalize category name to match URL param (slug style)
 			const filterproduct = res.data.response.filter(
-				(p) => p.categoryName.toLowerCase().replaceAll(' ', '-') == name
+				(p) => p.categoryName.toLowerCase().replaceAll(' ', '-') === name
 			);
 
-			//  var filtercat = filterproduct.filter
-			//  var filtercat = filterproduct.filter
-
-			// var filtercat = filterproduct.filter((item) => item === name);
 			return {
 				props: {
 					products: res.data.response || [],
-					filterproduct: filterproduct,
+					filterproduct,
 				},
 			};
 		}

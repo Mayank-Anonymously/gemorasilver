@@ -1,6 +1,7 @@
 // components/SearchOverlay.js
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaTimes } from 'react-icons/fa';
+
 import axios from 'axios';
 import debounce from 'lodash.debounce';
 import { HOST } from '@/component/apibaseurl';
@@ -32,7 +33,7 @@ const SearchOverlay = () => {
 			setLoading(false);
 		}
 	}, 500);
-	console.log('data::', results);
+	console.log('data::', query);
 	return (
 		<Screen>
 			<Container className='bg-white mt-5'>
@@ -55,10 +56,17 @@ const SearchOverlay = () => {
 								type='text'
 								autoFocus
 								placeholder='Type to search...'
-								onChange={(e) => fetchResults(e.target.value)}
+								onChange={(e) => {
+									fetchResults(e.target.value);
+									setQuery(e.target.value);
+								}}
 							/>
-							<button onClick={() => setIsOpen(false)}>
-								<FaTimes />
+							<button
+								onClick={() => {
+									window.location.href = `/category/${query}`;
+									setIsOpen(false);
+								}}>
+								<FaSearch />
 							</button>
 						</div>
 

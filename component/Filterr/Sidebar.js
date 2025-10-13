@@ -18,6 +18,7 @@ const FiltersResponsive = ({
 	handleApplyFilter,
 	setSelectedStyles,
 	handleResetFilter,
+	onClickSort,
 }) => {
 	// Reusable Checkbox Group
 	const CheckboxGroup = ({ title, items, selected, onChange }) => (

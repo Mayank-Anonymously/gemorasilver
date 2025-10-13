@@ -34,7 +34,7 @@ const AllProduct = ({ products, filterproduct }) => {
 	const dispatch = useDispatch();
 	const userId = user?._id;
 	const [filteredProducts, setFilteredProducts] = useState([]);
-
+	const [isAscending, setIsAscending] = useState(true); // Default: ascending
 	// Filter states
 	const [activeCategory, setActiveCategory] = useState('All');
 	const [selectedCategories, setSelectedCategories] = useState([]);
@@ -70,6 +70,20 @@ const AllProduct = ({ products, filterproduct }) => {
 		setFilteredProducts(filteredProducts);
 	};
 
+	const sortProducts = (productsToSort) => {
+		const sorted = [...productsToSort].sort((a, b) =>
+			isAscending ? a.priceSale - b.priceSale : b.priceSale - a.priceSale
+		);
+		return sorted;
+	};
+	const baseProducts =
+		filterproduct?.length > 0
+			? filterproduct
+			: filteredProducts?.length > 0
+			? filteredProducts
+			: products;
+
+	const final = sortProducts(baseProducts);
 	const handleResetFilter = () => {
 		setActiveCategory('All');
 		setPriceRange({ from: 0, to: 160000 });
@@ -78,8 +92,6 @@ const AllProduct = ({ products, filterproduct }) => {
 		setShow(false);
 		setFilteredProducts(filteredProducts);
 	};
-
-	const final = filteredProducts.length > 0 ? filteredProducts : products;
 
 	// Pagination logic
 	const indexOfLastProduct = currentPage * productsPerPage;
@@ -93,6 +105,7 @@ const AllProduct = ({ products, filterproduct }) => {
 		setCurrentPage(pageNumber);
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
+
 	return (
 		<Screen>
 			<Container className='py-5'>
@@ -121,8 +134,8 @@ const AllProduct = ({ products, filterproduct }) => {
 
 					<Col>
 						<Row>
-							{final.length > 0 ? (
-								final.map((p, index) => (
+							{currentProducts.length > 0 ? (
+								currentProducts.map((p, index) => (
 									<Col
 										key={index}
 										xs={6}
@@ -221,7 +234,10 @@ const AllProduct = ({ products, filterproduct }) => {
 					</Col>
 				</Row>
 			</Container>
-			<FilterSortSection setShow={setShow} />
+			<FilterSortSection
+				setShow={setShow}
+				onClickSort={() => setIsAscending((prev) => !prev)}
+			/>
 			{show && (
 				<FilterOffCanvas
 					show={show}
