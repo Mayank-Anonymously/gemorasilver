@@ -107,6 +107,11 @@ function MobileMenu({ show, handleClose }) {
 		},
 		{
 			id: 3,
+			name: 'Free Gift',
+			link: '/user/loyalty-page',
+		},
+		{
+			id: 3,
 			name: 'Logout',
 			link: '#',
 		},
@@ -158,16 +163,16 @@ function MobileMenu({ show, handleClose }) {
 						<Accordion.Body>
 							<ul className='list-unstyled m-0 p-0'>
 								{categories.map((category, idx) => (
-									<li
-										key={idx}
-										className='mobile-menu-category-item'>
-										<Link
-											href={`/category/${category.link}`}
-											className='text-decoration-none'
-											style={{ color: '#6a2a42' }}>
+									<Link
+										href={`/category/${category.link}`}
+										className='text-decoration-none'
+										style={{ color: '#6a2a42' }}>
+										<li
+											key={idx}
+											className='mobile-menu-category-item'>
 											{category.name}
-										</Link>
-									</li>
+										</li>
+									</Link>
 								))}
 							</ul>
 						</Accordion.Body>

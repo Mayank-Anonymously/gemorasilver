@@ -27,9 +27,22 @@ const PaymentStatusPage = ({
 			alert(error.response?.data || error.message);
 		}
 	};
+
+	const handleFreeGiftCountCall = async () => {
+		axios
+			.post(`${HOST}loyality/${userId}/increment`)
+			.then((res) => {
+				setPurchaseCount(res.data.purchase_count);
+				setRemaining(res.data.remaining);
+				setEligible(res.data.eligible);
+			})
+			.catch((err) => console.error(err));
+	};
+
 	useEffect(() => {
 		if (paymentMethod !== 'COD' && status === 'COMPLETED') {
 			handleInvoicecall();
+			handleFreeGiftCountCall();
 		}
 		emptyCart(userId);
 	}, []);
