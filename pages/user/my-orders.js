@@ -13,6 +13,7 @@ import axios from 'axios';
 import { HOST } from '@/component/apibaseurl';
 import { useSelector } from 'react-redux';
 import Screen from '@/component/common/Screen';
+import Link from 'next/link';
 
 const MyOrders = () => {
 	const [orders, setOrders] = useState([]);
@@ -119,32 +120,34 @@ const MyOrders = () => {
 												<Accordion.Body>
 													{order.items && order.items.length > 0 ? (
 														order.items.map((item, idx) => (
-															<div
-																key={idx}
-																className='mb-3 border-bottom pb-2'>
-																<div className='d-flex'>
-																	<img
-																		src={`${HOST}resources/${item.image}`}
-																		alt={item.title}
-																		width={60}
-																		height={60}
-																		style={{
-																			objectFit: 'cover',
-																			borderRadius: 5,
-																			marginRight: 10,
-																		}}
-																	/>
-																	<div>
-																		<h6 className='mb-1'>{item.title}</h6>
-																		<p className='mb-0 text-muted'>
-																			Quantity: {item.quantity}
-																		</p>
-																		<p className='mb-0 text-muted'>
-																			Price: ₹{item.price}
-																		</p>
+															<Link href={`/product/${item._id}`}>
+																<div
+																	key={idx}
+																	className='mb-3 border-bottom pb-2'>
+																	<div className='d-flex'>
+																		<img
+																			src={`${HOST}resources/${item.image}`}
+																			alt={item.title}
+																			width={60}
+																			height={60}
+																			style={{
+																				objectFit: 'cover',
+																				borderRadius: 5,
+																				marginRight: 10,
+																			}}
+																		/>
+																		<div>
+																			<h6 className='mb-1'>{item.title}</h6>
+																			<p className='mb-0 text-muted'>
+																				Quantity: {item.quantity}
+																			</p>
+																			<p className='mb-0 text-muted'>
+																				Price: ₹{item.price}
+																			</p>
+																		</div>
 																	</div>
 																</div>
-															</div>
+															</Link>
 														))
 													) : (
 														<p className='text-muted'>No items found.</p>

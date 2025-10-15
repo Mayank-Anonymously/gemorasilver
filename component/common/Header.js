@@ -160,7 +160,8 @@ const Header = () => {
 							Contact Us
 						</Nav.Link>
 						<Nav.Link
-							href='/track-my-order'
+							href='https://www.delhivery.com/tracking'
+							target='_blank'
 							className='nav-animate'>
 							Track My Order
 						</Nav.Link>

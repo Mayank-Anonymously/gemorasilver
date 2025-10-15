@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { addToCart, getcart } from '../slices/cartSlice';
 import { HOST } from '@/component/apibaseurl';
+import { toast } from 'react-toastify';
 
 export const addToCartApi = async (userId, product, dispatch) => {
 	try {
@@ -19,7 +20,9 @@ export const addToCartApi = async (userId, product, dispatch) => {
 			inStock: product.inStock,
 			_id: product._id,
 		});
+		toast.success('Added to Cart!');
 		dispatch(addToCart(response.data.response));
+
 		return response.data;
 	} catch (error) {
 		console.error(
