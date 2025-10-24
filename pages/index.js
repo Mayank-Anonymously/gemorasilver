@@ -16,9 +16,12 @@ import { HOST } from '@/component/apibaseurl';
 import { useRouter } from 'next/navigation';
 import SocialMediaSection from './SocialMediahandle';
 import FloatingWhatsAppButton from '@/component/common/FloatingButton';
+import { ClientPageRoot } from 'next/dist/client/components/client-page';
 
-export default function Home({ products }) {
+export default function Home({ products, categoryCounts }) {
 	const router = useRouter();
+	console.log('ca`tegories:', categoryCounts);
+
 	return (
 		<Screen>
 			<section>
@@ -52,7 +55,7 @@ export default function Home({ products }) {
 			</section>
 
 			<section id='category-section'>
-				<CategorySection />
+				<CategorySection categoryCounts={categoryCounts} />
 			</section>
 			<FloatingWhatsAppButton />
 
@@ -99,20 +102,65 @@ export default function Home({ products }) {
 }
 export async function getServerSideProps() {
 	try {
-		const res = await axios.get(`${HOST}product/getAllProducts`);
-		const filtertstyle = res.data.response.filter(
-			(item) => item.styleOne == 'sugessted-by-founders'
+		const [productRes, categoryRes] = await Promise.all([
+			axios.get(`${HOST}product/getAllProducts`),
+			axios.get(`${HOST}getAllCategories`),
+		]);
+
+		const products = productRes.data.response || [];
+		const categories = categoryRes.data.response || [];
+
+		// Filter suggested products
+		const filteredStyle = products.filter(
+			(item) => item.styleOne === 'sugessted-by-founders'
 		);
+
+		// Define the category groups you want counts for
+		const categoryGroups = [
+			'BRACELET',
+			'NECKLACE SET',
+			'JEWELLERY SET',
+			'TOE RING',
+			'EARRINGS',
+			'ANKLET',
+			'PENDANT',
+			'RINGS',
+		];
+
+		// Build the counts dynamically
+		const categoryCounts = {};
+		for (const name of categoryGroups) {
+			categoryCounts[name.replace(/\s+/g, '_').toUpperCase()] = products.filter(
+				(item) => item.categoryName?.toUpperCase() === name
+			).length;
+		}
+
+		// Example result:
+		// {
+		//   BRACELET: 5,
+		//   NECKLACE_SET: 8,
+		//   JEWELLERY_SET: 4,
+		//   TOE_RING: 2,
+		//   EARRINGS: 10,
+		//   ANKLET: 3,
+		//   PENDANT: 6,
+		//   RINGS: 7
+		// }
+
 		return {
 			props: {
-				products: filtertstyle || [], // adjust according to your API response
+				products: filteredStyle,
+				categories,
+				categoryCounts, // ✅ add these counts to props
 			},
 		};
 	} catch (error) {
-		console.error('Error fetching products:', error.message);
+		console.error('Error fetching data:', error.message);
 		return {
 			props: {
 				products: [],
+				categories: [],
+				categoryCounts: {},
 			},
 		};
 	}

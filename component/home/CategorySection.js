@@ -3,75 +3,6 @@ import { useState } from 'react';
 import { Collapse } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from 'react';
-const categories = [
-	{
-		name: 'Bracelets',
-		link: 'bracelet',
-		count: 23,
-		description: 'Explore our handcrafted bracelets made with love.',
-		images: ['/assets/product/bracelet.png', '/assets/product/bracelet.png'],
-	},
-
-	{
-		name: 'Rings',
-		link: 'rings',
-		count: 48,
-		description: 'Explore our beautiful rings collection.',
-		images: ['/assets/category/rings.png', '/assets/category/rings.png'],
-	},
-	{
-		name: 'Earrings',
-		link: 'earrings',
-		count: 18,
-		description: 'Find earrings to match every style.',
-		images: ['/assets/category/earrings.png', '/assets/category/earrings.png'],
-	},
-	{
-		name: 'Pendants',
-		link: 'pendent',
-		count: 22,
-		description: 'Elegant pendants for every occasion.',
-		images: ['/assets/category/pendant.png', '/assets/category/pendant.png'],
-	},
-
-	{
-		name: 'Jewellery Set',
-		link: 'jewellery-set',
-		count: 13,
-		description: 'Beautiful matching sets of pendants and earrings.',
-		images: [
-			'/assets/category/jewellery-set.png',
-			'/assets/category/jewellery-set.png',
-		],
-	},
-	{
-		name: 'Necklace Set',
-		link: 'necklace-set',
-		count: 13,
-		description: 'Beautiful matching sets of pendants and earrings.',
-		images: [
-			'/assets/category/necklace-set.png',
-			'/assets/category/necklace-set.png',
-		],
-	},
-	{
-		name: 'Toe Rings',
-		link: 'toe-ring',
-		count: 13,
-		description: 'Stylish toe rings for every occasion.',
-		images: [
-			'/assets/category/toe-rings.png',
-			'/assets/category/toe-rings.png',
-		],
-	},
-	{
-		name: 'Anklets',
-		link: 'anklet',
-		count: 3,
-		description: 'Stylish toe rings for every occasion.',
-		images: ['/assets/category/anklet.png', '/assets/category/anklet.png'],
-	},
-];
 
 function useIsMobile(breakpoint = 768) {
 	const [isMobile, setIsMobile] = useState(false);
@@ -85,9 +16,83 @@ function useIsMobile(breakpoint = 768) {
 
 	return isMobile;
 }
-export default function Categories() {
+export default function Categories({ categoryCounts }) {
+	const categories = [
+		{
+			name: 'Bracelets',
+			link: 'bracelet',
+			count: categoryCounts.BRACELET,
+			description: 'Explore our handcrafted bracelets made with love.',
+			images: ['/assets/product/bracelet.png', '/assets/product/bracelet.png'],
+		},
+
+		{
+			name: 'Rings',
+			link: 'rings',
+			count: categoryCounts.RINGS,
+			description: 'Explore our beautiful rings collection.',
+			images: ['/assets/category/rings.png', '/assets/category/rings.png'],
+		},
+		{
+			name: 'Earrings',
+			link: 'earrings',
+			count: categoryCounts.EARRINGS,
+			description: 'Find earrings to match every style.',
+			images: [
+				'/assets/category/earrings.png',
+				'/assets/category/earrings.png',
+			],
+		},
+		{
+			name: 'Pendants',
+			link: 'pendent',
+			count: categoryCounts.PENDANT,
+			description: 'Elegant pendants for every occasion.',
+			images: ['/assets/category/pendant.png', '/assets/category/pendant.png'],
+		},
+
+		{
+			name: 'Jewellery Set',
+			link: 'jewellery-set',
+			count: categoryCounts.JEWELLERY_SET,
+			description: 'Beautiful matching sets of pendants and earrings.',
+			images: [
+				'/assets/category/jewellery-set.png',
+				'/assets/category/jewellery-set.png',
+			],
+		},
+		{
+			name: 'Necklace Set',
+			link: 'necklace-set',
+			count: categoryCounts.NECKLACE_SET,
+			description: 'Beautiful matching sets of pendants and earrings.',
+			images: [
+				'/assets/category/necklace-set.png',
+				'/assets/category/necklace-set.png',
+			],
+		},
+		{
+			name: 'Toe Rings',
+			link: 'toe-ring',
+			count: categoryCounts.TOE_RING,
+			description: 'Stylish toe rings for every occasion.',
+			images: [
+				'/assets/category/toe-rings.png',
+				'/assets/category/toe-rings.png',
+			],
+		},
+		{
+			name: 'Anklets',
+			link: 'anklet',
+			count: categoryCounts.ANKLET,
+			description: 'Stylish toe rings for every occasion.',
+			images: ['/assets/category/anklet.png', '/assets/category/anklet.png'],
+		},
+	];
+
 	const [active, setActive] = useState('Rings');
 	const isMobile = useIsMobile();
+
 	return (
 		<div className='container py-5 category-section'>
 			<p className='text-center text-muted text-uppercase mb-5'>Categories</p>

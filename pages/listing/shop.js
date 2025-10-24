@@ -247,14 +247,45 @@ const AllProduct = ({ products, filterproduct }) => {
 										disabled={currentPage === 1}
 										onClick={() => handlePageChange(currentPage - 1)}
 									/>
-									{[...Array(totalPages)].map((_, index) => (
+
+									{/* Show first page */}
+									<Pagination.Item
+										active={currentPage === 1}
+										onClick={() => handlePageChange(1)}>
+										1
+									</Pagination.Item>
+
+									{/* Dots if we’re past page 3 */}
+									{currentPage > 3 && <Pagination.Ellipsis disabled />}
+
+									{/* Middle pages (current - 1, current, current + 1) */}
+									{[currentPage - 1, currentPage, currentPage + 1]
+										.filter(
+											(page) => page > 1 && page < totalPages // only valid pages
+										)
+										.map((page) => (
+											<Pagination.Item
+												key={page}
+												active={page === currentPage}
+												onClick={() => handlePageChange(page)}>
+												{page}
+											</Pagination.Item>
+										))}
+
+									{/* Dots before last page */}
+									{currentPage < totalPages - 2 && (
+										<Pagination.Ellipsis disabled />
+									)}
+
+									{/* Last page */}
+									{totalPages > 1 && (
 										<Pagination.Item
-											key={index + 1}
-											active={index + 1 === currentPage}
-											onClick={() => handlePageChange(index + 1)}>
-											{index + 1}
+											active={currentPage === totalPages}
+											onClick={() => handlePageChange(totalPages)}>
+											{totalPages}
 										</Pagination.Item>
-									))}
+									)}
+
 									<Pagination.Next
 										disabled={currentPage === totalPages}
 										onClick={() => handlePageChange(currentPage + 1)}
