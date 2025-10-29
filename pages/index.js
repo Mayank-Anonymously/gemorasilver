@@ -17,6 +17,7 @@ import { useRouter } from 'next/navigation';
 import SocialMediaSection from './SocialMediahandle';
 import FloatingWhatsAppButton from '@/component/common/FloatingButton';
 import { ClientPageRoot } from 'next/dist/client/components/client-page';
+import { useSelector } from 'react-redux';
 
 export default function Home({ products, categoryCounts }) {
 	const router = useRouter();

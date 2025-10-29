@@ -11,10 +11,12 @@ const PaymentStatusPage = ({
 	message,
 	paymentMethod,
 	order,
+	address,
 }) => {
 	const { user } = useSelector((state) => state.auth);
 	const userId = user?._id;
-
+	console.log(user);
+	console.log(address);
 	const handleInvoicecall = async () => {
 		try {
 			const response = await axios.post(`${HOST}payment/send-invoice`, {
@@ -37,10 +39,32 @@ const PaymentStatusPage = ({
 			.catch((err) => console.error(err));
 	};
 
+	const saveAddressApi = async () => {
+		console.log(address);
+		const response = await axios.post(
+			`${HOST}address/save`,
+			{
+				userId: userId, // optional: include if backend expects it
+				street: address.street,
+				city: address.city,
+				state: address.state,
+				zip: address.zip,
+				country: 'INDIA',
+			},
+			{
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+				},
+			}
+		);
+		return response.data;
+	};
 	useEffect(() => {
 		if (paymentMethod !== 'COD' && status === 'COMPLETED') {
 			handleInvoicecall();
 			handleFreeGiftCountCall();
+			saveAddressApi();
 		}
 		emptyCart(userId);
 	}, []);
@@ -149,6 +173,7 @@ export async function getServerSideProps(context) {
 				orderId,
 				message,
 				paymentMethod: order.paymentMethod,
+				address: order.shippingAddress,
 			},
 		};
 	} catch (err) {
@@ -159,6 +184,7 @@ export async function getServerSideProps(context) {
 				orderId,
 				message: 'Unable to fetch payment status. Please try again.',
 				paymentMethod: null,
+				address: order.shippingAddress,
 			},
 		};
 	}
