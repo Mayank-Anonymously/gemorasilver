@@ -63,6 +63,22 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 			setShippingAddress((prev) => ({ ...prev, [name]: value }));
 		}
 	};
+	const saveAddressApi = async (data) => {
+		try {
+			setLoading(true);
+			const response = await axios.post(`${HOST}address/save`, data, {
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+				},
+			});
+			return response.data;
+		} catch (error) {
+			console.error('Error saving address:', error.message);
+		} finally {
+			setLoading(false);
+		}
+	};
 
 	const handlePlaceOrder = async () => {
 		if (!shippingAddress.name || !shippingAddress.street) {
@@ -71,6 +87,7 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 		}
 		const cartTotal = grandTotal.toFixed(2);
 		const userId = user?._id;
+		const saved = await saveAddressApi(shippingAddress);
 		dispatch(
 			placeOrder({
 				userId,
@@ -83,10 +100,7 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 		);
 	};
 
-	const subtotal = cartItems.reduce(
-		(acc, item) => acc + item.priceSale * item.quantity,
-		0
-	);
+	const subtotal = cartItems.reduce((acc, item) => acc + item.priceSale, 0);
 	const grandTotal = subtotal;
 
 	return (

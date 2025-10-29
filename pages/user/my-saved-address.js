@@ -22,22 +22,22 @@ const MyAddress = () => {
 	});
 
 	// ✅ Save Address API Call
-	const saveAddressApi = async (data) => {
-		try {
-			setLoading(true);
-			const response = await axios.post(`${HOST}address/save`, data, {
-				headers: {
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
-				},
-			});
-			return response.data;
-		} catch (error) {
-			console.error('Error saving address:', error.message);
-		} finally {
-			setLoading(false);
-		}
-	};
+		const saveAddressApi = async (data) => {
+			try {
+				setLoading(true);
+				const response = await axios.post(`${HOST}address/save`, data, {
+					headers: {
+						Accept: 'application/json',
+						'Content-Type': 'application/json',
+					},
+				});
+				return response.data;
+			} catch (error) {
+				console.error('Error saving address:', error.message);
+			} finally {
+				setLoading(false);
+			}
+		};
 
 	// ✅ Add new address handler
 	const handleAddAddress = async () => {
