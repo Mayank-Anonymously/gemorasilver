@@ -13,6 +13,8 @@ import Link from 'next/link';
 import { addToCartApi } from '@/component/redux/thunk/cartThunkApi';
 import { FaTrashAlt } from 'react-icons/fa';
 
+import { CiShoppingCart } from 'react-icons/ci';
+
 const Wishlist = () => {
 	const wishlistData = useSelector((state) => state.wishlist.wishlistitems);
 	const { user, loggedIn } = useSelector((state) => state.auth);
@@ -112,7 +114,7 @@ const Wishlist = () => {
 															color: '#fff',
 															borderRadius: '8px',
 														}}>
-														+
+														<CiShoppingCart />
 													</Button>
 													<Button
 														variant='outline'
