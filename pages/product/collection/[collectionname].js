@@ -129,13 +129,25 @@ const AllProduct = ({ products, filterproduct }) => {
 		setCurrentPage(pageNumber);
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
+
 	const handleResetFilter = () => {
+		if (
+			activeCategory === 'All' &&
+			priceRange.from === 0 &&
+			priceRange.to === 160000 &&
+			selectedStoneColors.length === 0 &&
+			selectedStyles.length === 0
+		) {
+			return; // nothing to reset
+		}
+
 		setActiveCategory('All');
 		setPriceRange({ from: 0, to: 160000 });
 		setSelectedStoneColors([]);
 		setSelectedStyles('');
 		setShow(false);
-		setFilteredProducts([]);
+		setFilteredProducts(products);
+		setCurrentPage(1);
 	};
 
 	return (
@@ -342,7 +354,7 @@ export async function getServerSideProps(context) {
 		);
 
 		const combined = [...filtertstyle, ...filtertstyleTwo];
-		console.log('combined:', combined);
+
 		return {
 			props: {
 				products: combined,

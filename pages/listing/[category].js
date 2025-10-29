@@ -91,6 +91,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 				})
 			);
 		}
+		
 		console.log('filteredArray:', filteredArray);
 
 		setFilteredProducts(filteredArray);
@@ -124,6 +125,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 		setCurrentPage(pageNumber);
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
+
 	const handleResetFilter = () => {
 		setActiveCategory('All');
 		setPriceRange({ from: 0, to: 160000 });
@@ -133,6 +135,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 		setFilteredProducts([]);
 	};
 
+	
 
 	return (
 		<Screen>

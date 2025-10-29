@@ -13,7 +13,7 @@ const PaymentStatusPage = ({
 	order,
 }) => {
 	const { user } = useSelector((state) => state.auth);
-	const userId = user._id;
+	const userId = user?._id;
 
 	const handleInvoicecall = async () => {
 		try {
@@ -23,9 +23,7 @@ const PaymentStatusPage = ({
 			});
 
 			return response.data;
-		} catch (error) {
-			alert(error.response?.data || error.message);
-		}
+		} catch (error) {}
 	};
 
 	const handleFreeGiftCountCall = async () => {

@@ -87,7 +87,7 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 		}
 		const cartTotal = grandTotal.toFixed(2);
 		const userId = user?._id;
-		const saved = await saveAddressApi(shippingAddress);
+
 		dispatch(
 			placeOrder({
 				userId,
