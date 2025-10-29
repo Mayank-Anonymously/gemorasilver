@@ -38,32 +38,101 @@ const ProductByCategory = ({ products, filterproduct }) => {
 	// Filter states (lifted to parent)
 	const [activeCategory, setActiveCategory] = useState('All');
 	const [selectedCategories, setSelectedCategories] = useState([]);
-	const [priceRange, setPriceRange] = useState({ from: 0, to: 5000 });
+	const [priceRange, setPriceRange] = useState({ from: 0, to: 160000 });
 	const [selectedStoneColors, setSelectedStoneColors] = useState([]);
 	const [selectedStyles, setSelectedStyles] = useState([]);
-
 	const [show, setShow] = useState(false);
+	const [filteredProducts, setFilteredProducts] = useState([]);
 
-	// Filter products based on all filters
-	const filteredProducts = products.filter((p) => {
-		const categoryMatch =
-			activeCategory === 'All' || p.categoryName === activeCategory;
+	const handleApplyFilter = () => {
+		setLoading(true);
 
-		const priceMatch =
-			(!priceRange.from || p.priceSale >= priceRange.from) &&
-			(!priceRange.to || p.priceSale <= priceRange.to);
+		let filteredArray = [];
 
-		const colorMatch =
-			selectedStoneColors.length === 0 || selectedStoneColors.includes(p.color);
+		// Start with the full products array
+		let filtered = [...products];
 
-		const styleMatch =
-			selectedStyles.length === 0 || selectedStyles.includes(p.styleOne);
+		// 1️⃣ Filter by category
+		if (activeCategory !== 'All') {
+			filteredArray.push(
+				...filtered.filter((p) => p.categoryName === activeCategory)
+			);
+		}
 
-		return categoryMatch && priceMatch && colorMatch && styleMatch;
-	});
+		// 2️⃣ Filter by price
+		if (priceRange.from || priceRange.to) {
+			filteredArray.push(
+				...filtered.filter(
+					(p) =>
+						(!priceRange.from || p.priceSale >= priceRange.from) &&
+						(!priceRange.to || p.priceSale <= priceRange.to)
+				)
+			);
+		}
 
-	const final = filteredProducts;
-	// const final = filterproduct?.length > 0 ? filterproduct : filteredProducts;
+		// 3️⃣ Filter by color
+		if (selectedStoneColors.length > 0) {
+			filteredArray.push(
+				...filtered.filter((p) => selectedStoneColors.includes(p.color))
+			);
+		}
+
+		// 4️⃣ Filter by style
+		if (selectedStyles) {
+			const normalizedStyle = selectedStyles.toLowerCase().replaceAll(' ', '-');
+			filteredArray.push(
+				...filtered.filter((p) => {
+					const styleMatchOne =
+						normalizedStyle === p.styleOne && normalizedStyle !== p.styleTwo;
+					const styleMatchTwo =
+						normalizedStyle === p.styleTwo && normalizedStyle !== p.styleOne;
+					return styleMatchOne || styleMatchTwo;
+				})
+			);
+		}
+		console.log('filteredArray:', filteredArray);
+		setFilteredProducts(filteredArray);
+		setShow(false);
+		setLoading(false);
+	};
+
+	const sortProducts = (productsToSort) => {
+		const sorted = [...productsToSort].sort((a, b) =>
+			isAscending ? a.priceSale - b.priceSale : b.priceSale - a.priceSale
+		);
+		return sorted;
+	};
+	const baseProducts =
+		filterproduct?.length > 0
+			? filterproduct
+			: filteredProducts?.length > 0
+			? filteredProducts
+			: products;
+
+	const final = sortProducts(baseProducts);
+
+	// Pagination logic
+	const indexOfLastProduct = currentPage * productsPerPage;
+	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+	const currentProducts = final.slice(indexOfFirstProduct, indexOfLastProduct);
+
+	const totalPages = Math.ceil(final.length / productsPerPage);
+
+	const handlePageChange = (pageNumber) => {
+		setCurrentPage(pageNumber);
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	};
+	const handleResetFilter = () => {
+		setActiveCategory('All');
+		setPriceRange({ from: 0, to: 160000 });
+		setSelectedStoneColors([]);
+		setSelectedStyles('');
+		setShow(false);
+		setFilteredProducts([]);
+	};
+
+	console.log('currentProducts:', currentProducts);
+
 	return (
 		<Screen>
 			<Container className='py-5'>
@@ -84,13 +153,15 @@ const ProductByCategory = ({ products, filterproduct }) => {
 							setSelectedStoneColors={setSelectedStoneColors}
 							selectedStyles={selectedStyles}
 							setSelectedStyles={setSelectedStyles}
+							handleApplyFilter={handleApplyFilter}
+							handleResetFilter={handleResetFilter}
 						/>
 					</Col>
 
 					<Col>
 						<Row>
-							{final.length > 0 ? (
-								final.map((p, index) => (
+							{currentProducts.length > 0 ? (
+								currentProducts.map((p, index) => (
 									<Col
 										key={index}
 										xs={6}
