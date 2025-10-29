@@ -12,7 +12,7 @@ const Loyalty = ({}) => {
 	const userId = user?._id;
 	useEffect(() => {
 		axios
-			.get(`${HOST}loyality/${userId} `)
+			.get(`${HOST}loyalty/${userId} `)
 			.then((res) => {
 				setPurchaseCount(res.data.purchaseCount);
 				setRemaining(res.data.remaining);

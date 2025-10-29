@@ -137,7 +137,7 @@ function MobileMenu({ show, handleClose }) {
 
 	const handleLogout = () => {
 		dispatch(clearAuthState());
-		
+
 		handleClose();
 	};
 

@@ -30,7 +30,7 @@ const PaymentStatusPage = ({
 
 	const handleFreeGiftCountCall = async () => {
 		axios
-			.post(`${HOST}loyality/${userId}/increment`)
+			.post(`${HOST}loyalty/${userId}/increment`)
 			.then((res) => {
 				setPurchaseCount(res.data.purchase_count);
 				setRemaining(res.data.remaining);
@@ -40,7 +40,6 @@ const PaymentStatusPage = ({
 	};
 
 	const saveAddressApi = async () => {
-		console.log(address);
 		const response = await axios.post(
 			`${HOST}address/save`,
 			{

@@ -21,8 +21,7 @@ import { useSelector } from 'react-redux';
 
 export default function Home({ products, categoryCounts }) {
 	const router = useRouter();
-	console.log('ca`tegories:', categoryCounts);
-
+	
 	return (
 		<Screen>
 			<section>
