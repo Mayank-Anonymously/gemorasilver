@@ -85,6 +85,7 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 			alert('Please fill shipping address completely.');
 			return;
 		}
+		saveAddressApi(shippingAddress);
 		const cartTotal = grandTotal.toFixed(2);
 		const userId = user?._id;
 
