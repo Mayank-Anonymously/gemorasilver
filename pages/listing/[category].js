@@ -36,6 +36,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 	const userId = user?._id;
 
 	// Filter states (lifted to parent)
+	const [isAscending, setIsAscending] = useState(true); // Default: ascending
 	const [activeCategory, setActiveCategory] = useState('All');
 	const [selectedCategories, setSelectedCategories] = useState([]);
 	const [priceRange, setPriceRange] = useState({ from: 0, to: 160000 });
@@ -91,6 +92,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 			);
 		}
 		console.log('filteredArray:', filteredArray);
+
 		setFilteredProducts(filteredArray);
 		setShow(false);
 		setLoading(false);
@@ -131,7 +133,6 @@ const ProductByCategory = ({ products, filterproduct }) => {
 		setFilteredProducts([]);
 	};
 
-	console.log('currentProducts:', currentProducts);
 
 	return (
 		<Screen>
@@ -234,7 +235,10 @@ const ProductByCategory = ({ products, filterproduct }) => {
 					</Col>
 				</Row>
 			</Container>
-			<FilterSortSection setShow={setShow} />
+			<FilterSortSection
+				setShow={setShow}
+				onClickSort={() => setIsAscending((prev) => !prev)}
+			/>
 			{show && (
 				<FilterOffCanvas
 					show={show}

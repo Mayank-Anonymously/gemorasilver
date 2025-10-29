@@ -33,9 +33,9 @@ const AllProduct = ({ products, filterproduct }) => {
 	const router = useRouter();
 	const dispatch = useDispatch();
 	const userId = user?._id;
+
 	// Filter states
 	const [isAscending, setIsAscending] = useState(true); // Default: ascending
-
 	const [activeCategory, setActiveCategory] = useState('All');
 	const [selectedCategories, setSelectedCategories] = useState([]);
 	const [priceRange, setPriceRange] = useState({ from: 0, to: 160000 });
@@ -43,6 +43,7 @@ const AllProduct = ({ products, filterproduct }) => {
 	const [selectedStyles, setSelectedStyles] = useState([]);
 	const [show, setShow] = useState(false);
 	const [filteredProducts, setFilteredProducts] = useState([]);
+	const [isLoading, setLoading] = useState(false);
 
 	// Pagination states
 	const [currentPage, setCurrentPage] = useState(1);
@@ -107,6 +108,7 @@ const AllProduct = ({ products, filterproduct }) => {
 		);
 		return sorted;
 	};
+
 	const baseProducts =
 		filterproduct?.length > 0
 			? filterproduct
@@ -296,7 +298,10 @@ const AllProduct = ({ products, filterproduct }) => {
 					</Col>
 				</Row>
 			</Container>
-			<FilterSortSection setShow={setShow} />
+			<FilterSortSection
+				setShow={setShow}
+				onClickSort={() => setIsAscending((prev) => !prev)}
+			/>
 
 			{show && (
 				<FilterOffCanvas
