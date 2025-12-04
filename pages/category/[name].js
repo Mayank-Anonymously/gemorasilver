@@ -150,7 +150,7 @@ const ProductByCategory = ({ products }) => {
 													cursor: 'pointer',
 												}}>
 												<img
-													src={`${HOST}resources/${p.image}`}
+													src={`${HOST}resources/${p.images[0]}`}
 													alt={p.title}
 													className='img-fluid'
 												/>

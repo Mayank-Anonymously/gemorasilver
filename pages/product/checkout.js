@@ -75,7 +75,7 @@ const CheckoutPage = () => {
 											<div className='d-flex align-items-center checkout-mobile-design gap-2'>
 												<div className=''>
 													<img
-														src={`${HOST}resources/${item.image}`} // add image in your data
+														src={`${HOST}resources/${item.images[0]}`} // add image in your data
 														alt={item.title}
 														style={{
 															width: '50px',

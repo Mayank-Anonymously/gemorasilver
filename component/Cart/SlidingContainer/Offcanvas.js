@@ -56,7 +56,7 @@ const CartOffcanvas = ({ show, handleClose }) => {
 								key={idx}
 								className='d-flex align-items-center mb-3 border-bottom pb-2'>
 								<Image
-									src={`${HOST}resources/${item.image}`}
+									src={`${HOST}resources/${item.images[0]}`}
 									rounded
 									width={60}
 									height={60}

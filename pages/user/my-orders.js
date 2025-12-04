@@ -126,7 +126,7 @@ const MyOrders = () => {
 																	className='mb-3 border-bottom pb-2'>
 																	<div className='d-flex'>
 																		<img
-																			src={`${HOST}resources/${item.image}`}
+																			src={`${HOST}resources/${item.images[0]}`}
 																			alt={item.title}
 																			width={60}
 																			height={60}

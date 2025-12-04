@@ -12,7 +12,7 @@ const NewColllection = ({ products, heading }) => {
 	const handleSeeMore = () => {
 		setVisibleCount((prev) => prev + 10); // load 10 more each click
 	};
-
+	console.log(products);
 	return (
 		<div className='home-category'>
 			<div className='opening-heading'>{heading}</div>
@@ -40,7 +40,7 @@ const NewColllection = ({ products, heading }) => {
 										flexDirection: 'column',
 									}}>
 									<img
-										src={`${HOST}resources/${p.image}`}
+										src={`${HOST}resources/${p.images[0]}`}
 										alt={p.title}
 										className='img-fluid'
 									/>

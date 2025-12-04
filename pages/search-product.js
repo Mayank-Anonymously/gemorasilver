@@ -83,7 +83,7 @@ const SearchOverlay = () => {
 												key={item._id}
 												className='search-item'>
 												<img
-													src={`${HOST}resources/${item.image}`}
+													src={`${HOST}resources/${item.images[0]}`}
 													alt={item.title}
 												/>
 												<div>

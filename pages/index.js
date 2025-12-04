@@ -21,7 +21,7 @@ import { useSelector } from 'react-redux';
 
 export default function Home({ products, categoryCounts }) {
 	const router = useRouter();
-	
+
 	return (
 		<Screen>
 			<section>
@@ -123,7 +123,7 @@ export async function getServerSideProps() {
 			'TOE RING',
 			'EARRINGS',
 			'ANKLET',
-			'PENDANT',
+			'PENDENT',
 			'RINGS',
 		];
 

@@ -91,7 +91,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 				})
 			);
 		}
-		
+
 		console.log('filteredArray:', filteredArray);
 
 		setFilteredProducts(filteredArray);
@@ -134,8 +134,6 @@ const ProductByCategory = ({ products, filterproduct }) => {
 		setShow(false);
 		setFilteredProducts([]);
 	};
-
-	
 
 	return (
 		<Screen>
@@ -185,7 +183,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 												flexDirection: 'column',
 											}}>
 											<img
-												src={`${HOST}resources/${p.image}`}
+												src={`${HOST}resources/${p.images[0]}`}
 												alt={p.title}
 												className='img-fluid'
 											/>
