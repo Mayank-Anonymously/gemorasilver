@@ -81,7 +81,7 @@ export default function ProductPage({ product, products }) {
 					<Col md={6}>
 						<ProductImagesGallery
 							useIsMobile={useIsMobile}
-							images={[`${HOST}resources/${product.image}`]}
+							images={product.images}
 						/>
 						<div className='size-scale mt-3 d-flex justify-content-end align-items-end'>
 							{product.categoryName === 'RINGS' && (

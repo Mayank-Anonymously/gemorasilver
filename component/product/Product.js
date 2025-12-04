@@ -2,8 +2,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Panzoom from '@panzoom/panzoom';
 import 'react-medium-image-zoom/dist/styles.css';
+import { HOST } from '../apibaseurl';
 
-const ProductImagesGallery = ({ images = [] }) => {
+const ProductImagesGallery = ({ images }) => {
 	const [mainImage, setMainImage] = useState(images[0]);
 	const [zoomVisible, setZoomVisible] = useState(false);
 	const [backgroundPosition, setBackgroundPosition] = useState('center');
@@ -59,6 +60,8 @@ const ProductImagesGallery = ({ images = [] }) => {
 		setBackgroundPosition(`${x}% ${y}%`);
 	};
 
+	console.log(mainImage);
+
 	return (
 		<div className='gallery-container flex flex-col md:flex-row gap-4 items-center justify-center'>
 			<div className='gallery-left relative'>
@@ -70,7 +73,7 @@ const ProductImagesGallery = ({ images = [] }) => {
 						style={{ touchAction: 'none' }}>
 						<img
 							ref={imageRef}
-							src={mainImage}
+							src={`${HOST}resources/${mainImage}`}
 							alt='Product'
 							className='gallery-img rounded-lg'
 							style={{
@@ -91,7 +94,7 @@ const ProductImagesGallery = ({ images = [] }) => {
 						onMouseMove={handleMouseMove}
 						style={{ position: 'relative' }}>
 						<img
-							src={mainImage}
+							src={`${HOST}resources/${mainImage}`}
 							alt='Product'
 							width={500}
 							height={500}
@@ -113,7 +116,7 @@ const ProductImagesGallery = ({ images = [] }) => {
 							}`}
 							onClick={() => setMainImage(img)}>
 							<img
-								src={img}
+								src={`${HOST}resources/${img}`}
 								alt={`thumb-${index}`}
 								width={70}
 								height={70}
@@ -126,7 +129,7 @@ const ProductImagesGallery = ({ images = [] }) => {
 					<div
 						className='zoom-box absolute  shadow-lg rounded-lg bg-no-repeat bg-cover'
 						style={{
-							backgroundImage: `url(${mainImage})`,
+							backgroundImage: `url(${HOST}resources/${mainImage})`,
 							backgroundPosition,
 							backgroundSize: '200%',
 						}}
