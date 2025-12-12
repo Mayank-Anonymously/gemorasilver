@@ -106,7 +106,7 @@ const Header = () => {
 							Contact Us
 						</Nav.Link>
 						<Nav.Link
-							href='https://www.delhivery.com/tracking'
+							href='https://www.dtdc.com/track-your-shipment/'
 							className='nav-animate'>
 							Track My Order
 						</Nav.Link>
@@ -137,7 +137,7 @@ const Header = () => {
 							/>
 						</Link>
 						<Link
-							className='text-decoration-none  mx-2'
+							className='text-decoration-none mx-2'
 							href='/user/wishlist'>
 							<FaHeart color='#4c1d1d' />
 						</Link>
@@ -160,7 +160,7 @@ const Header = () => {
 							Contact Us
 						</Nav.Link>
 						<Nav.Link
-							href='https://www.delhivery.com/tracking'
+							href='https://www.dtdc.com/track-your-shipment/'
 							target='_blank'
 							className='nav-animate'>
 							Track My Order
