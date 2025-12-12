@@ -60,8 +60,6 @@ const ProductImagesGallery = ({ images }) => {
 		setBackgroundPosition(`${x}% ${y}%`);
 	};
 
-	console.log(mainImage);
-
 	return (
 		<div className='gallery-container flex flex-col md:flex-row gap-4 items-center justify-center'>
 			<div className='gallery-left relative'>

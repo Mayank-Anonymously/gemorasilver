@@ -12,7 +12,7 @@ export const addToCartApi = async (userId, product, dispatch) => {
 			description: product.description,
 			price: product.price,
 			priceSale: product.priceSale,
-			image: product.image,
+			image: product.images,
 			categoryId: product.categoryId,
 			categoryName: product.categoryName,
 			productSku: product.productSku,
