@@ -1309,3 +1309,36 @@ a {
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
 }
 
+.product-image-wrapper {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	border: none;
+}
+
+.product-image {
+	width: 100%;
+	border: none;
+
+	height: 300px;
+	transition: opacity 0.3s ease-in-out;
+}
+
+.main-image {
+	display: block;
+}
+
+.hover-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+}
+
+.product-card:hover .hover-image {
+	opacity: 1;
+}
+
+.product-card:hover .main-image {
+	opacity: 0;
+}

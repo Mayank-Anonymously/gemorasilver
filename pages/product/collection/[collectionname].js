@@ -201,11 +201,21 @@ const AllProduct = ({ products, filterproduct }) => {
 													alignItems: 'center',
 													flexDirection: 'column',
 												}}>
-												<img
-													src={`${HOST}resources/${p.images[0]}`}
-													alt={p.title}
-													className='img-fluid'
-												/>
+												<div className='product-image-wrapper'>
+													<img
+														src={`${HOST}resources/${p.images[0]}`}
+														alt={p.title}
+														className='product-image main-image'
+													/>
+
+													{p.images[2] && (
+														<img
+															src={`${HOST}resources/${p.images[2]}`}
+															alt={p.title}
+															className='product-image hover-image'
+														/>
+													)}
+												</div>
 												<div className='w-100'>
 													<div className='d-flex align-items-between justify-content-start mt-3 review'>
 														<span className='fw-bold me-1'>5.0</span>
