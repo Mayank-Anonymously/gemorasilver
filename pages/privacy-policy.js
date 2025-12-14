@@ -3,14 +3,12 @@ import BreadHomeBanner from '@/component/home/homebanner';
 import React from 'react';
 
 const privacy = () => {
-	const router = useRouter();
-
 	return (
 		<Screen
 			title='Privacy Policy | Luniva Jewels'
 			description={`Read the privacy policy of Luniva Jewels to understand how we protect your personal information and data.
 `}
-			canonical={router.asPath}>
+			canonical={'https://www.lunivajewels.com/privacy-policy'}>
 			<div
 				className='privacy-text'
 				style={{ background: '#fff4f4', padding: 44, marginTop: 50 }}
