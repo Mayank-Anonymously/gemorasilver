@@ -21,7 +21,7 @@ const journalData = [
 		title: 'Cocktail design',
 		author: '-By Luniva',
 		date: '',
-		image: '/assets/journal/journal.png',
+		image: '/assets/journal/journal.webp',
 	},
 	{
 		id: 3,
@@ -30,7 +30,7 @@ const journalData = [
 		title: 'Working professions',
 		author: '-By Luniva',
 		date: '',
-		image: '/assets/journal/journal.png',
+		image: '/assets/journal/journal.webp',
 	},
 	{
 		id: 4,
@@ -39,7 +39,7 @@ const journalData = [
 		title: 'Party collection',
 		author: '-By Luniva',
 		date: '',
-		image: '/assets/journal/journal.png',
+		image: '/assets/journal/journal.webp',
 	},
 ];
 

@@ -188,7 +188,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 												className='img-fluid'
 												loader={
 													<img
-														src='/assets/placeholder.png'
+														src='/assets/placeholder.webp'
 														alt='loading'
 														className='img-fluid'
 													/>

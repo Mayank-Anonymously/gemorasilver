@@ -210,7 +210,7 @@ const AllProduct = ({ products, filterproduct }) => {
 														loader={<Skeleton className='image-skeleton' />}
 														unloader={
 															<img
-																src='/assets/placeholder.png'
+																src='/assets/placeholder.webp'
 																alt='fallback'
 																className='product-image main-image'
 															/>

@@ -100,14 +100,14 @@ a {
 }
 
 .promo-left {
-	background: url('/assets/category/jewellery-online.png') no-repeat center
+	background: url('/assets/category/jewellery-online.webp') no-repeat center
 		center;
 	background-size: cover;
 	min-height: 500px;
 }
 
 .promo-right {
-	background: url('/assets/category/ring-online.png') no-repeat center center;
+	background: url('/assets/category/ring-online.webp') no-repeat center center;
 	background-size: cover;
 	min-height: 500px;
 }
