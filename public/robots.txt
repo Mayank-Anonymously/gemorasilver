@@ -9,4 +9,4 @@ Disallow: /register
 Disallow: /admin
 Disallow: /api
 
-Sitemap: https://lunivajewels.com/sitemap.xml
+
