@@ -18,6 +18,19 @@ export default function Document() {
 				/>
 			</Head>
 			<body>
+				<Head>
+					{/* <!-- Google tag (gtag.js) --> */}
+					<script
+						async
+						src='https://www.googletagmanager.com/gtag/js?id=G-B20Y5V1TDS'></script>
+					<script>
+						{`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B20Y5V1TDS');`}
+					</script>
+				</Head>
 				<Main />
 				<NextScript />
 			</body>
