@@ -23,7 +23,10 @@ export default function Categories({ categoryCounts }) {
 			link: 'bracelet',
 			count: categoryCounts.BRACELET,
 			description: 'Explore our handcrafted bracelets made with love.',
-			images: ['/assets/product/bracelet.png', '/assets/product/bracelet.png'],
+			images: [
+				'/assets/product/bracelet.webp',
+				'/assets/product/bracelet.webp',
+			],
 		},
 
 		{
@@ -31,7 +34,7 @@ export default function Categories({ categoryCounts }) {
 			link: 'rings',
 			count: categoryCounts.RINGS,
 			description: 'Explore our beautiful rings collection.',
-			images: ['/assets/category/rings.png', '/assets/category/rings.png'],
+			images: ['/assets/category/rings.webp', '/assets/category/rings.webp'],
 		},
 		{
 			name: 'Earrings',
@@ -39,8 +42,8 @@ export default function Categories({ categoryCounts }) {
 			count: categoryCounts.EARRINGS,
 			description: 'Find earrings to match every style.',
 			images: [
-				'/assets/category/earrings.png',
-				'/assets/category/earrings.png',
+				'/assets/category/earrings.webp',
+				'/assets/category/earrings.webp',
 			],
 		},
 		{
@@ -48,7 +51,10 @@ export default function Categories({ categoryCounts }) {
 			link: 'pendent',
 			count: categoryCounts.PENDANT,
 			description: 'Elegant pendants for every occasion.',
-			images: ['/assets/category/pendant.png', '/assets/category/pendant.png'],
+			images: [
+				'/assets/category/pendant.webp',
+				'/assets/category/pendant.webp',
+			],
 		},
 
 		{
@@ -57,8 +63,8 @@ export default function Categories({ categoryCounts }) {
 			count: categoryCounts.JEWELLERY_SET,
 			description: 'Beautiful matching sets of pendants and earrings.',
 			images: [
-				'/assets/category/jewellery-set.png',
-				'/assets/category/jewellery-set.png',
+				'/assets/category/jewellery-set.webp',
+				'/assets/category/jewellery-set.webp',
 			],
 		},
 		{
@@ -67,8 +73,8 @@ export default function Categories({ categoryCounts }) {
 			count: categoryCounts.NECKLACE_SET,
 			description: 'Beautiful matching sets of pendants and earrings.',
 			images: [
-				'/assets/category/necklace-set.png',
-				'/assets/category/necklace-set.png',
+				'/assets/category/necklace-set.webp',
+				'/assets/category/necklace-set.webp',
 			],
 		},
 		{
@@ -77,8 +83,8 @@ export default function Categories({ categoryCounts }) {
 			count: categoryCounts.TOE_RING,
 			description: 'Stylish toe rings for every occasion.',
 			images: [
-				'/assets/category/toe-rings.png',
-				'/assets/category/toe-rings.png',
+				'/assets/category/toe-rings.webp',
+				'/assets/category/toe-rings.webp',
 			],
 		},
 		{
@@ -86,7 +92,7 @@ export default function Categories({ categoryCounts }) {
 			link: 'anklet',
 			count: categoryCounts.ANKLET,
 			description: 'Stylish toe rings for every occasion.',
-			images: ['/assets/category/anklet.png', '/assets/category/anklet.png'],
+			images: ['/assets/category/anklet.webp', '/assets/category/anklet.webp'],
 		},
 	];
 
