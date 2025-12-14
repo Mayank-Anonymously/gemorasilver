@@ -163,7 +163,7 @@ function MobileMenu({ show, handleClose }) {
 						<Accordion.Body>
 							<ul className='list-unstyled m-0 p-0'>
 								{categories.map((category, idx) => (
-									<Link
+									<a
 										href={`/category/${category.link}`}
 										className='text-decoration-none'
 										style={{ color: '#6a2a42' }}>
@@ -172,7 +172,7 @@ function MobileMenu({ show, handleClose }) {
 											className='mobile-menu-category-item'>
 											{category.name}
 										</li>
-									</Link>
+									</a>
 								))}
 							</ul>
 						</Accordion.Body>
