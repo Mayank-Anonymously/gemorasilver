@@ -263,7 +263,7 @@ const ProductByCategory = ({ products, filterproduct }) => {
 export default ProductByCategory;
 
 export async function getServerSideProps(context) {
-	const { name } = context.query;
+	const { category } = context.query;
 
 	try {
 		const res = await axios.get(`${HOST}product/getAllProducts`);

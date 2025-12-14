@@ -12,7 +12,7 @@ import { FaFilter } from 'react-icons/fa';
 import { addToCartApi } from '@/component/redux/thunk/cartThunkApi';
 import axios from 'axios';
 import { HOST } from '@/component/apibaseurl';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import FiltersResponsive from '@/component/Filterr/Sidebar';
 import FilterSortSection from '@/component/common/FilterIcon';
 
@@ -138,7 +138,10 @@ const AllProduct = ({ products, filterproduct }) => {
 	};
 
 	return (
-		<Screen>
+		<Screen
+			title={`Shop Cherished Online at Best Price | Luniva Jewels`}
+			description={`Browse the latest products online at Luniva Jewels. Premium quality, competitive pricing, and fast delivery.`}
+			canonical={router.asPath}>
 			<Container className='py-5'>
 				<Row>
 					<Col

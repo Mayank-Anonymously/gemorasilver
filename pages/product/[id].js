@@ -57,8 +57,8 @@ export default function ProductPage({ product, products }) {
 
 	return (
 		<Screen
-			title={product.title}
-			description={product.description}
+			title={`Buy ${product.title} Online at Best Price | Luniva Jewels`}
+			description={`Buy ${product.description} online at the best price from Luniva Jewels. Secure payments, fast delivery, and easy returns available.`}
 			canonical={router.asPath}>
 			<div className='container mt-5'>
 				<div>

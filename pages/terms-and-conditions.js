@@ -1,10 +1,15 @@
 import Screen from '@/component/common/Screen';
 import BreadHomeBanner from '@/component/home/homebanner';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 const terms = () => {
+	const router = useRouter();
 	return (
-		<Screen>
+		<Screen
+			title='Terms & Conditions | Luniva Jewels'
+			description={`Review the terms and conditions governing the use of Luniva Jewels services and website.`}
+			canonical={router.asPath}>
 			<div
 				className='mt-5'
 				style={{ background: '#fff4f4', padding: 44, marginTop: 50 }}

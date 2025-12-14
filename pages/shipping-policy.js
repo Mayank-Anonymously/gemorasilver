@@ -14,13 +14,16 @@ import {
 import { MdAccessTime } from 'react-icons/md';
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import { useRouter } from 'next/router';
 
-const html = `
-  
-`;
 const Shipping = () => {
+	const router = useRouter();
 	return (
-		<Screen>
+		<Screen
+			title='Shipping Policy | Delivery Timelines & Charges –  Luniva Jewels'
+			description={`View the shipping policy of Luniva Jewels. Get details on delivery timelines, shipping charges, and order processing information.
+`}
+			canonical={router.asPath}>
 			<Container
 				fluid
 				className='mt-5'

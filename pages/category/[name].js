@@ -16,7 +16,7 @@ import { Img } from 'react-image';
 
 import 'react-loading-skeleton/dist/skeleton.css';
 
-const ProductByCategory = ({ products }) => {
+const ProductByCategory = ({ products, name }) => {
 	const categories = ['All', ...new Set(products.map((p) => p.categoryName))];
 	const { user, loggedIn } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
@@ -100,7 +100,12 @@ const ProductByCategory = ({ products }) => {
 	const final = sortProducts(baseProducts);
 
 	return (
-		<Screen>
+		<Screen
+			title={`Shop ${name} Online | Best Prices – Luniva Jewels
+`}
+			description={`Browse the latest ${name} products online at Luniva Jewels. Premium quality, competitive pricing, and fast delivery.
+`}
+			canonical={router.asPath}>
 			<Container className='py-5'>
 				<Row>
 					<Col
@@ -262,6 +267,7 @@ export async function getServerSideProps(context) {
 			return {
 				props: {
 					products: filterproduct,
+					name: name,
 				},
 			};
 		}
@@ -270,6 +276,7 @@ export async function getServerSideProps(context) {
 			props: {
 				products: [],
 				filterproduct: [],
+				name: name,
 			},
 		};
 	} catch (error) {

@@ -2,11 +2,16 @@
 'use client';
 
 import Screen from '@/component/common/Screen';
+import { useRouter } from 'next/router';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 
 export default function ContactUs() {
+	const router = useRouter();
 	return (
-		<Screen>
+		<Screen
+			title='Contact Us | Customer Support & Help Center'
+			description={`Need help? Contact Luniva Jewels for product inquiries, order support, and customer assistance. We’re here to help you.`}
+			canonical={router.asPath}>
 			<section
 				className='py-5 mt-5'
 				style={{ background: '#fff4f4', padding: 44, marginTop: 50 }}>

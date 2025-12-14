@@ -1,5 +1,6 @@
 import Screen from '@/component/common/Screen';
 import BreadHomeBanner from '@/component/home/homebanner';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { Container } from 'react-bootstrap';
 
@@ -36,8 +37,13 @@ const html = `<p>At <strong>Luniva </strong>, we value your experience and striv
 </ul>
 `;
 const Refund = () => {
+	const router = useRouter();
 	return (
-		<Screen>
+		<Screen
+			title='Refund & Return Policy | Easy Returns - Luniva Jewels'
+			description={`Read the refund and return policy of  Luniva Jewels. Learn about eligibility, refund timelines, and easy return procedures.
+`}
+			canonical={router.asPath}>
 			<Container>
 				<h1 className='mt-5'>Return and Refund</h1>
 				<div
