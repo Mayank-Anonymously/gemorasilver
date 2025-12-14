@@ -5,13 +5,12 @@ import Head from 'next/head';
 import { FaHeart } from 'react-icons/fa';
 import { PiRulerBold } from 'react-icons/pi';
 import {
-	addToCart,
 	buyNow,
 	decrementQty,
 	incrementQty,
 } from '@/component/redux/slices/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { addToCartApi } from '@/component/redux/thunk/cartThunkApi';
 import { HOST } from '@/component/apibaseurl';
 import axios from 'axios';
@@ -44,7 +43,7 @@ export default function ProductPage({ product, products }) {
 	const userId = user?._id;
 
 	const cartItems = useSelector((state) => state.cart.items);
-	console.log('userId', userId);
+
 	if (!product) return <p>Product not found</p>;
 
 	const add = (product) => {
@@ -57,16 +56,11 @@ export default function ProductPage({ product, products }) {
 	};
 
 	return (
-		<Screen>
+		<Screen
+			title={product.title}
+			description={product.description}
+			canonical={router.asPath}>
 			<div className='container mt-5'>
-				<Head>
-					<title>{product.title}</title>
-					<meta
-						name='description'
-						content={product.description}
-					/>
-				</Head>
-
 				<div>
 					<a
 						href='/'
