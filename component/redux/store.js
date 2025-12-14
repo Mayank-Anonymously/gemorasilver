@@ -1,14 +1,15 @@
 // store/store.js
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { createWrapper } from 'next-redux-wrapper';
 import counterReducer from './slices/counterSlice';
 import cartReducer from './slices/cartSlice';
 import authReducer from './slices/authSlices';
 import wishlistReducer from './slices/wishlistSlice';
 
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage
+import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 
-// Combine all slices
+// 1️⃣ Combine reducers
 const rootReducer = combineReducers({
 	counter: counterReducer,
 	cart: cartReducer,
@@ -16,22 +17,37 @@ const rootReducer = combineReducers({
 	wishlist: wishlistReducer,
 });
 
-// Redux Persist config
+// 2️⃣ Persist config (CLIENT ONLY)
 const persistConfig = {
 	key: 'root',
 	storage,
+	whitelist: ['cart', 'auth', 'wishlist'], // ❗persist only needed reducers
 };
 
-// Create a persisted reducer
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+// 3️⃣ Create reducer based on environment
+const createReducer = () => {
+	if (typeof window === 'undefined') {
+		// ✅ SERVER: no persist
+		return rootReducer;
+	}
+	// ✅ CLIENT: persist enabled
+	return persistReducer(persistConfig, rootReducer);
+};
 
-// ✅ Correct middleware setup
-export const store = configureStore({
-	reducer: persistedReducer,
-	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware({
-			serializableCheck: false,
-		}),
-});
+// 4️⃣ Make store (SSR SAFE)
+const makeStore = () =>
+	configureStore({
+		reducer: createReducer(),
+		middleware: (getDefaultMiddleware) =>
+			getDefaultMiddleware({
+				serializableCheck: false,
+			}),
+		devTools: process.env.NODE_ENV !== 'production',
+	});
 
-export const persistor = persistStore(store);
+// 5️⃣ Export wrapper
+export const wrapper = createWrapper(makeStore);
+
+// 6️⃣ Persistor (CLIENT ONLY)
+export const getPersistor = (store) =>
+	typeof window !== 'undefined' ? persistStore(store) : null;

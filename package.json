@@ -16,6 +16,7 @@
     "bootstrap": "^5.3.7",
     "framer-motion": "^12.23.19",
     "next": "^16.0.10",
+    "next-redux-wrapper": "^8.1.0",
     "pg-sdk-node": "^2.0.2",
     "react": "19.1.0",
     "react-bootstrap": "^2.10.10",
