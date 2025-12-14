@@ -47,7 +47,7 @@ export default function ChupiJournal() {
 	const [activeId, setActiveId] = useState(4); // default expanded card
 	const activeItem = journalData.find((item) => item.id === activeId);
 	const [showSizeChart, setShowSizeChart] = useState(false);
-	console.log('showSizeChart::', showSizeChart);
+
 	return (
 		<div className='container py-5'>
 			<h2 className='text-center mb-5'>

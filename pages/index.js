@@ -1,29 +1,26 @@
-import FooterInfo from '@/component/common/FooterInfo';
 import Screen from '@/component/common/Screen';
 import CategorySection from '@/component/home/CategorySection';
 import { CiSearch } from 'react-icons/ci';
-import CurationSection from '@/component/home/CurationSection';
-import FeaturedProductSection from '@/component/home/FeaturedProduct';
 import BreadHomeBanner from '@/component/home/homebanner';
 import PromoBannerSection from '@/component/home/PromoBannerSection';
-import Testimonials from '@/component/home/testimonials';
-import TrendingProductSection from '@/component/home/TrendingProduct';
 import PreciouslyCrafted from '@/component/home/HandmadeCollection';
 import NewCollection from '@/component/home/NewCollection';
 import TestimonialCarousel from '@/component/home/FoundersSection';
 import axios from 'axios';
 import { HOST } from '@/component/apibaseurl';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import SocialMediaSection from './SocialMediahandle';
 import FloatingWhatsAppButton from '@/component/common/FloatingButton';
-import { ClientPageRoot } from 'next/dist/client/components/client-page';
-import { useSelector } from 'react-redux';
 
 export default function Home({ products, categoryCounts }) {
 	const router = useRouter();
 
 	return (
-		<Screen>
+		<Screen
+			title='Luniva Jewels | Timeless Luxury Jewelry Crafted to Shine'
+			description={`Discover Luniva Jewels – exquisite gold, diamond & gemstone jewelry designed for elegance, crafted for a lifetime. Shop luxury you’ll cherish forever.
+`}
+			canonical={router.asPath}>
 			<section>
 				<BreadHomeBanner />
 			</section>
