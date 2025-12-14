@@ -25,10 +25,16 @@ import { addTowishlistApi } from '@/component/redux/thunk/wishlistThunkApi';
 
 function useIsMobile(breakpoint = 568) {
 	const [isMobile, setIsMobile] = useState(false);
+
 	useEffect(() => {
+		// ✅ Guard for SSR
+		if (typeof window === 'undefined') return;
+
 		const update = () => setIsMobile(window.innerWidth < breakpoint);
+
 		update();
 		window.addEventListener('resize', update);
+
 		return () => window.removeEventListener('resize', update);
 	}, [breakpoint]);
 
@@ -126,7 +132,7 @@ export default function ProductPage({ product, products }) {
 								<ShareButton
 									title='Awesome Article'
 									text='Check out this article I found!'
-									url={window.location.href}
+									// url={window.location.href}
 								/>
 							</div>
 						</div>

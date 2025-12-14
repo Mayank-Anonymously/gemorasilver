@@ -48,19 +48,19 @@ function MyApp({ Component, pageProps }) {
 
 	// ✅ CLIENT: persist enabled
 	return (
-		<PersistGate
-			loading={null}
-			persistor={persistor}>
-			<AppContent
-				Component={Component}
-				pageProps={pageProps}
-			/>
+		<>
+			<PersistGate persistor={persistor}>
+				<AppContent
+					Component={Component}
+					pageProps={pageProps}
+				/>
+			</PersistGate>
 			<ToastContainer
 				position='top-right'
 				theme='dark'
 				autoClose={3000}
-			/> 
-		</PersistGate>
+			/>
+		</>
 	);
 }
 
