@@ -1,18 +1,16 @@
 import FooterInfo from '@/component/common/FooterInfo';
 import Screen from '@/component/common/Screen';
 import BreadHomeBanner from '@/component/home/homebanner';
-import { useRouter } from 'next/router';
+
 import React from 'react';
 import { Container } from 'react-bootstrap';
 
 const about = () => {
-	const router = useRouter();
-
 	return (
 		<Screen
 			title='About Us | Trusted Online Shopping Platform – Luniva Jewels'
-			description={`Learn about Luniva Jewels, a trusted e-commerce platform offering quality products, secure shopping, and customer-focused services.`}
-			canonical={router.asPath}>
+			description='Learn about Luniva Jewels, a trusted e-commerce platform offering quality products, secure shopping, and customer-focused services.'
+			canonical='https://www.lunivajewels.com/about'>
 			<Container style={{ background: '#fff4f4', padding: 44, marginTop: 50 }}>
 				<h1>About Us</h1>
 				<p>
