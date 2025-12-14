@@ -73,18 +73,13 @@ const CheckoutPage = () => {
 										<Card.Body className='d-flex justify-content-between align-items-center'>
 											{/* Image + Details */}
 											<div className='d-flex align-items-center checkout-mobile-design gap-2'>
-												<div className=''>
-													<img
-														src={`${HOST}resources/${item.images[0]}`} // add image in your data
-														alt={item.title}
-														style={{
-															width: '50px',
-															height: '50px',
-															objectFit: 'cover',
-															borderRadius: '4px',
-														}}
-													/>
-												</div>
+												<img
+													src={`${HOST}resources/${item.image[0]}`}
+													rounded
+													width={60}
+													height={60}
+													style={{ objectFit: 'cover' }}
+												/>
 
 												<div className='checkout-mobile-design-details'>
 													<div>
