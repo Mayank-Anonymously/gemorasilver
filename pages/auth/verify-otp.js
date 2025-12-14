@@ -20,7 +20,7 @@ const RegisterScreen = () => {
 
 	const [formData, setFormData] = useState({
 		otp: '',
-		userId: user._id,
+		userId: user?._id,
 	});
 
 	const handleChange = (e) => {
