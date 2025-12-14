@@ -7,17 +7,13 @@ body {
 	max-width: 100vw;
 	overflow-x: hidden;
 	font-family: 'Poppins', sans-serif;
-	background: #f7879a;
-	overflow-y: scroll; /* Keep scrolling functionality */
+	overflow-y: auto; /* Keep scrolling functionality */
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none;
 }
 
 body {
 	color: var(--foreground);
-	font-family: Arial, Helvetica, sans-serif;
-	font-family: 'Poppins', sans-serif;
-	background: #f7879a;
 }
 
 * {
@@ -25,7 +21,6 @@ body {
 	padding: 0;
 
 	margin: 0;
-	font-family: 'Poppins', sans-serif;
 }
 
 a {
