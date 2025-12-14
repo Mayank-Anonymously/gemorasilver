@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import Head from 'next/document';
 
 const Seo = ({ title, description, canonical, image }) => (
 	<Head>
