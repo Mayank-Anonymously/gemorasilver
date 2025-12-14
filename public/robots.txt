@@ -1,6 +1,12 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /auth
+Disallow: /user
+Disallow: /order
+Disallow: /api
+Disallow: /product/checkout
+Disallow: /product/proceed-to-payment
 
 # Host
 Host: https://www.lunivajewels.com

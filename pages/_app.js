@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from '@/component/redux/store';
-import { logoutUser } from '@/component/redux/slices/authSlices';
 import { ToastContainer } from 'react-toastify';
 
 function AppContent({ Component, pageProps }) {
@@ -17,14 +16,7 @@ function AppContent({ Component, pageProps }) {
 		});
 	}, []);
 
-	// 👇 get loggedIn from redux
-	const auth = useSelector((state) => state.auth);
-	const dispatch = useDispatch();
-	const handleLogout = () => {
-		dispatch(logoutUser());
-	};
 	useEffect(() => {
-		// dispatch(logoutUser());
 		const disableZoom = (e) => {
 			if (e.touches.length > 1) e.preventDefault();
 		};
@@ -41,22 +33,20 @@ function AppContent({ Component, pageProps }) {
 
 export default function App({ Component, pageProps }) {
 	return (
-		<>
-			{/* // <Provider store={store}>
-		// 	<PersistGate
-		// 		loading={null}
-		// 		persistor={persistor}> */}
-			<AppContent
-				Component={Component}
-				pageProps={pageProps}
-			/>
-			<ToastContainer
-				position='top-right'
-				theme='dark'
-				autoClose={3000}
-			/>
-			{/* // 	</PersistGate>
-		// </Provider> */}
-		</>
+		<Provider store={store}>
+			<PersistGate
+				loading={null}
+				persistor={persistor}>
+				<AppContent
+					Component={Component}
+					pageProps={pageProps}
+				/>
+				<ToastContainer
+					position='top-right'
+					theme='dark'
+					autoClose={3000}
+				/>
+			</PersistGate>
+		</Provider>
 	);
 }
