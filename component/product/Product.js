@@ -1,17 +1,21 @@
 // component/product/Product.js
 import React, { useState, useEffect, useRef } from 'react';
 import Panzoom from '@panzoom/panzoom';
-import 'react-medium-image-zoom/dist/styles.css';
+import { Img } from 'react-image';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import { HOST } from '../apibaseurl';
 
-const ProductImagesGallery = ({ images }) => {
+const ProductImagesGallery = ({ images = [] }) => {
 	const [mainImage, setMainImage] = useState(images[0]);
 	const [zoomVisible, setZoomVisible] = useState(false);
 	const [backgroundPosition, setBackgroundPosition] = useState('center');
 	const [isMobile, setIsMobile] = useState(false);
+
 	const imageRef = useRef(null);
 	const panzoomInstance = useRef(null);
 
+	/* ---------- Detect Mobile ---------- */
 	useEffect(() => {
 		const handleResize = () => setIsMobile(window.innerWidth <= 568);
 		handleResize();
@@ -19,39 +23,39 @@ const ProductImagesGallery = ({ images }) => {
 		return () => window.removeEventListener('resize', handleResize);
 	}, []);
 
+	/* ---------- Panzoom for Mobile ---------- */
 	useEffect(() => {
-		if (isMobile && imageRef.current) {
-			// Destroy existing Panzoom instance (if any)
-			if (panzoomInstance.current) {
-				panzoomInstance.current.destroy();
-			}
+		if (!isMobile || !imageRef.current) return;
 
-			// Initialize Panzoom
-			const panzoom = Panzoom(imageRef.current, {
-				maxScale: 4,
-				minScale: 1,
-				step: 0.3,
-				pinchSpeed: 1.5,
-				contain: 'outside',
-			});
+		if (panzoomInstance.current) {
+			panzoomInstance.current.destroy();
+		}
 
-			// Enable pinch zooming
-			imageRef.current.parentElement.addEventListener(
+		const panzoom = Panzoom(imageRef.current, {
+			maxScale: 4,
+			minScale: 1,
+			step: 0.3,
+			pinchSpeed: 1.5,
+			contain: 'outside',
+		});
+
+		imageRef.current.parentElement.addEventListener(
+			'wheel',
+			panzoom.zoomWithWheel
+		);
+
+		panzoomInstance.current = panzoom;
+
+		return () => {
+			imageRef.current?.parentElement.removeEventListener(
 				'wheel',
 				panzoom.zoomWithWheel
 			);
-			panzoomInstance.current = panzoom;
-
-			return () => {
-				imageRef.current?.parentElement.removeEventListener(
-					'wheel',
-					panzoom.zoomWithWheel
-				);
-				panzoom.destroy();
-			};
-		}
+			panzoom.destroy();
+		};
 	}, [isMobile, mainImage]);
 
+	/* ---------- Hover Zoom Position ---------- */
 	const handleMouseMove = (e) => {
 		const { left, top, width, height } =
 			e.currentTarget.getBoundingClientRect();
@@ -60,20 +64,31 @@ const ProductImagesGallery = ({ images }) => {
 		setBackgroundPosition(`${x}% ${y}%`);
 	};
 
+	/* ---------- Skeleton Loader ---------- */
+	const ImageLoader = ({ width = '100%', height = 380 }) => (
+		<Skeleton
+			width={width}
+			height={height}
+			borderRadius={12}
+		/>
+	);
+
 	return (
 		<div className='gallery-container flex flex-col md:flex-row gap-4 items-center justify-center'>
 			<div className='gallery-left relative'>
-				{/* ✅ MOBILE: Panzoom */}
+				{/* ================= MAIN IMAGE ================= */}
 				{isMobile ? (
+					/* -------- Mobile: Panzoom -------- */
 					<div
 						data-allow-zoom='true'
 						className='main-image w-full flex justify-center overflow-hidden'
 						style={{ touchAction: 'none' }}>
-						<img
+						<Img
 							ref={imageRef}
 							src={`${HOST}resources/${mainImage}`}
 							alt='Product'
 							className='gallery-img rounded-lg'
+							loader={<ImageLoader height={380} />}
 							style={{
 								width: '100%',
 								maxWidth: 380,
@@ -84,25 +99,27 @@ const ProductImagesGallery = ({ images }) => {
 						/>
 					</div>
 				) : (
-					/* ✅ DESKTOP: Hover Zoom */
+					/* -------- Desktop: Hover Zoom -------- */
 					<div
 						className='main-image relative overflow-hidden'
 						onMouseEnter={() => setZoomVisible(true)}
 						onMouseLeave={() => setZoomVisible(false)}
-						onMouseMove={handleMouseMove}
-						style={{ position: 'relative' }}>
-						<img
+						onMouseMove={handleMouseMove}>
+						<Img
 							src={`${HOST}resources/${mainImage}`}
 							alt='Product'
-							width={500}
-							height={500}
 							className='gallery-img rounded-lg'
-							style={{ objectFit: 'cover' }}
+							loader={<ImageLoader height={500} />}
+							style={{
+								width: 500,
+								height: 500,
+								objectFit: 'cover',
+							}}
 						/>
 					</div>
 				)}
 
-				{/* ✅ Thumbnails */}
+				{/* ================= THUMBNAILS ================= */}
 				<div className='thumbnail-row flex gap-3 mt-4 justify-center flex-wrap'>
 					{images.map((img, index) => (
 						<div
@@ -113,19 +130,27 @@ const ProductImagesGallery = ({ images }) => {
 									: 'border-gray-300'
 							}`}
 							onClick={() => setMainImage(img)}>
-							<img
+							<Img
 								src={`${HOST}resources/${img}`}
 								alt={`thumb-${index}`}
 								width={70}
 								height={70}
 								className='rounded-md object-cover'
+								loader={
+									<Skeleton
+										width={70}
+										height={70}
+									/>
+								}
 							/>
 						</div>
 					))}
 				</div>
-				{zoomVisible && (
+
+				{/* ================= ZOOM BOX ================= */}
+				{zoomVisible && !isMobile && (
 					<div
-						className='zoom-box absolute  shadow-lg rounded-lg bg-no-repeat bg-cover'
+						className='zoom-box absolute shadow-lg rounded-lg bg-no-repeat bg-cover'
 						style={{
 							backgroundImage: `url(${HOST}resources/${mainImage})`,
 							backgroundPosition,

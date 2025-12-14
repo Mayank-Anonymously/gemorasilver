@@ -12,6 +12,9 @@ import { useRouter } from 'next/navigation';
 import FiltersResponsive from '@/component/Filterr/Sidebar';
 import FilterOffCanvas from '@/component/Filterr/Offcanvasfilter';
 import FilterSortSection from '@/component/common/FilterIcon';
+import { Img } from 'react-image';
+
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const ProductByCategory = ({ products }) => {
 	const categories = ['All', ...new Set(products.map((p) => p.categoryName))];
@@ -149,12 +152,18 @@ const ProductByCategory = ({ products }) => {
 													flexDirection: 'column',
 													cursor: 'pointer',
 												}}>
-												<img
+												<Img
 													src={`${HOST}resources/${p.images[0]}`}
 													alt={p.title}
 													className='img-fluid'
+													loader={
+														<img
+															src='/assets/placeholder.png'
+															alt='loading'
+															className='img-fluid'
+														/>
+													}
 												/>
-
 												<div className='w-100'>
 													<div className='d-flex align-items-between justify-content-start mt-3 review'>
 														<span className='fw-bold me-1'>5.0</span>

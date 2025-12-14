@@ -4,7 +4,8 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { IoIosStar } from 'react-icons/io';
 import { HOST } from '../apibaseurl';
 import { useRouter } from 'next/navigation';
-
+import { Img } from 'react-image';
+import Skeleton from 'react-loading-skeleton';
 const NewColllection = ({ products, heading }) => {
 	const router = useRouter();
 	const [visibleCount, setVisibleCount] = useState(6); // initially show 6 products
@@ -12,7 +13,7 @@ const NewColllection = ({ products, heading }) => {
 	const handleSeeMore = () => {
 		setVisibleCount((prev) => prev + 10); // load 10 more each click
 	};
-	console.log(products);
+
 	return (
 		<div className='home-category'>
 			<div className='opening-heading'>{heading}</div>
@@ -40,17 +41,28 @@ const NewColllection = ({ products, heading }) => {
 										flexDirection: 'column',
 									}}>
 									<div className='product-image-wrapper'>
-										<img
+										{/* Main Image */}
+										<Img
 											src={`${HOST}resources/${p.images[0]}`}
 											alt={p.title}
 											className='product-image main-image'
+											loader={<Skeleton className='image-skeleton' />}
+											unloader={
+												<img
+													src='/assets/placeholder.png'
+													alt='fallback'
+													className='product-image main-image'
+												/>
+											}
 										/>
 
+										{/* Hover Image */}
 										{p.images[2] && (
-											<img
+											<Img
 												src={`${HOST}resources/${p.images[2]}`}
 												alt={p.title}
 												className='product-image hover-image'
+												loader={<Skeleton className='image-skeleton' />}
 											/>
 										)}
 									</div>

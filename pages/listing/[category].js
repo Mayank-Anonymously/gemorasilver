@@ -182,10 +182,17 @@ const ProductByCategory = ({ products, filterproduct }) => {
 												alignItems: 'center',
 												flexDirection: 'column',
 											}}>
-											<img
+											<Img
 												src={`${HOST}resources/${p.images[0]}`}
 												alt={p.title}
 												className='img-fluid'
+												loader={
+													<img
+														src='/assets/placeholder.png'
+														alt='loading'
+														className='img-fluid'
+													/>
+												}
 											/>
 
 											<div className='w-100'>

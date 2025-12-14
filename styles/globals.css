@@ -1312,33 +1312,38 @@ a {
 .product-image-wrapper {
 	position: relative;
 	width: 100%;
+	aspect-ratio: 1 / 1;
 	overflow: hidden;
-	border: none;
 }
 
-.product-image {
+.product-image,
+.image-skeleton {
 	width: 100%;
-	border: none;
-
-	height: 300px;
-	transition: opacity 0.3s ease-in-out;
-}
-
-.main-image {
-	display: block;
-}
-
-.hover-image {
+	height: 100%;
+	object-fit: cover;
 	position: absolute;
 	top: 0;
 	left: 0;
-	opacity: 0;
+	transition: opacity 0.4s ease;
 }
 
-.product-card:hover .hover-image {
+/* Main image visible */
+.main-image {
+	opacity: 1;
+	z-index: 1;
+}
+
+/* Hover image hidden */
+.hover-image {
+	opacity: 0;
+	z-index: 2;
+}
+
+/* Hover effect */
+.product-image-wrapper:hover .hover-image {
 	opacity: 1;
 }
 
-.product-card:hover .main-image {
+.product-image-wrapper:hover .main-image {
 	opacity: 0;
 }
