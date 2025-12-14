@@ -27,7 +27,7 @@ const Seo = ({ title, description, canonical, image }) => (
 			property='og:title'
 			content={title}
 		/>
-		<meta
+		<m
 			property='og:description'
 			content={description}
 		/>

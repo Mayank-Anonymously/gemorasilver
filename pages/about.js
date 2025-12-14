@@ -11,8 +11,7 @@ const about = () => {
 	return (
 		<Screen
 			title='About Us | Trusted Online Shopping Platform – Luniva Jewels'
-			description={`Learn about Luniva Jewels, a trusted e-commerce platform offering quality products, secure shopping, and customer-focused services.
-`}
+			description={`Learn about Luniva Jewels, a trusted e-commerce platform offering quality products, secure shopping, and customer-focused services.`}
 			canonical={router.asPath}>
 			<Container style={{ background: '#fff4f4', padding: 44, marginTop: 50 }}>
 				<h1>About Us</h1>
