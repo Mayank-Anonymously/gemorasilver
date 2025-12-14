@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.lunivajewels.com
+
+# Sitemaps
+Sitemap: https://www.lunivajewels.com/sitemap.xml

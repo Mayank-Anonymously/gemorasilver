@@ -9,51 +9,54 @@ import { store, persistor } from '@/component/redux/store';
 import { logoutUser } from '@/component/redux/slices/authSlices';
 import { ToastContainer } from 'react-toastify';
 
-function AppContent({ Component, pageProps }) {
+// function AppContent({ Component, pageProps }) {
+// 	useEffect(() => {
+// 		AOS.init({
+// 			duration: 1000,
+// 			once: true,
+// 		});
+// 	}, []);
+
+// 	// 👇 get loggedIn from redux
+// 	const auth = useSelector((state) => state.auth);
+// 	const dispatch = useDispatch();
+// 	const handleLogout = () => {
+// 		dispatch(logoutUser());
+// 	};
+// 	useEffect(() => {
+// 		// dispatch(logoutUser());
+// 		const disableZoom = (e) => {
+// 			if (e.touches.length > 1) e.preventDefault();
+// 		};
+// 		document.addEventListener('touchmove', disableZoom, { passive: false });
+// 		document.addEventListener('gesturestart', (e) => e.preventDefault());
+// 		return () => {
+// 			document.removeEventListener('touchmove', disableZoom);
+// 			document.removeEventListener('gesturestart', (e) => e.preventDefault());
+// 		};
+// 	}, []);
+
+// 	return <Component {...pageProps} />;
+// }
+
+export default function App({ Component, pageProps }) {
 	useEffect(() => {
 		AOS.init({
 			duration: 1000,
 			once: true,
 		});
 	}, []);
-
-	// 👇 get loggedIn from redux
-	const auth = useSelector((state) => state.auth);
-	const dispatch = useDispatch();
-	const handleLogout = () => {
-		dispatch(logoutUser());
-	};
-	useEffect(() => {
-		// dispatch(logoutUser());
-		const disableZoom = (e) => {
-			if (e.touches.length > 1) e.preventDefault();
-		};
-		document.addEventListener('touchmove', disableZoom, { passive: false });
-		document.addEventListener('gesturestart', (e) => e.preventDefault());
-		return () => {
-			document.removeEventListener('touchmove', disableZoom);
-			document.removeEventListener('gesturestart', (e) => e.preventDefault());
-		};
-	}, []);
-
-	return <Component {...pageProps} />;
-}
-
-export default function App({ Component, pageProps }) {
 	return (
 		<Provider store={store}>
 			<PersistGate
 				loading={null}
 				persistor={persistor}>
-				<AppContent
-					Component={Component}
-					pageProps={pageProps}
-				/>
 				<ToastContainer
 					position='top-right'
 					theme='dark'
 					autoClose={3000}
 				/>
+				<Component {...pageProps} />
 			</PersistGate>
 		</Provider>
 	);
