@@ -1,11 +1,7 @@
 import { HOST } from '@/component/apibaseurl';
-import FooterInfo from '@/component/common/FooterInfo';
 import Screen from '@/component/common/Screen';
 import { FaTrashAlt } from 'react-icons/fa';
-import RelatedProducts from '@/component/home/RelatedProducts';
-import Testimonials from '@/component/home/testimonials';
 import {
-	clearCart,
 	decrementQty,
 	incrementQty,
 	removeFromCart,
@@ -15,195 +11,191 @@ import {
 	updateUserId,
 } from '@/component/redux/slices/orderSlice';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { Button, Card, Form, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 const CheckoutPage = () => {
 	const cartItems = useSelector((state) => state.cart.items);
-
 	const dispatch = useDispatch();
+
 	const [coupon, setCoupon] = useState('');
 	const [discount, setDiscount] = useState(0);
-	const router = useRouter();
 
-	const updateQuantity = (id, amount) => {
-		setCart((prev) =>
-			prev.map((item) =>
-				item.id === id
-					? { ...item, quantity: Math.max(1, item.quantity + amount) }
-					: item
-			)
-		);
-	};
+	// ✅ Subtotal
+	const subtotal = cartItems.reduce(
+		(acc, item) => acc + item.priceSale * item.quantity,
+		0
+	);
 
+	// ✅ Total quantity (IMPORTANT)
+	const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
+	// ✅ Apply coupon logic
 	const applyCoupon = () => {
+		const MIN_ITEMS = 4;
+		const FLAT_DISCOUNT = 500;
+
+		if (totalItems < MIN_ITEMS) {
+			setDiscount(0);
+			alert('Coupon applicable only on purchase of 4 or more items');
+			return;
+		}
+
 		if (coupon === 'NEWYEAR500') {
-			setDiscount(500);
+			setDiscount(FLAT_DISCOUNT);
 		} else {
 			setDiscount(0);
 			alert('Invalid coupon code');
 		}
 	};
 
-	const subtotal = cartItems.reduce(
-		(acc, item) => acc + item.priceSale * item.quantity,
-		0
-	);
-	const grandTotal = subtotal - subtotal * discount;
+	// ✅ Grand total (flat discount)
+	const grandTotal = Math.max(subtotal - discount, 0);
 
 	return (
 		<Screen>
 			<div
-				className='container py-4 '
+				className='container py-4'
 				style={{ marginTop: '90px' }}>
 				<h4 className='mb-4'>Shopping Cart</h4>
+
 				<Row>
-					{/* Cart Items */}
+					{/* CART ITEMS */}
 					<Col md={8}>
 						{cartItems.length === 0 ? (
 							<p className='small'>Your cart is empty.</p>
 						) : (
-							cartItems.map((item) => {
-								return (
-									<Card
-										className='mb-2 checkout-mobile-design-card'
-										key={item.id}>
-										<Card.Body className='d-flex justify-content-between align-items-center'>
-											{/* Image + Details */}
-											<div className='d-flex align-items-center checkout-mobile-design gap-2'>
-												<img
-													src={`${HOST}resources/${item.image[0]}`}
-													rounded
-													width={60}
-													height={60}
-													style={{ objectFit: 'cover' }}
-												/>
+							cartItems.map((item) => (
+								<Card
+									className='mb-2'
+									key={item.id}>
+									<Card.Body className='d-flex justify-content-between align-items-center'>
+										<div className='d-flex gap-3 align-items-center'>
+											<img
+												src={`${HOST}resources/${item.image[0]}`}
+												width={60}
+												height={60}
+												style={{ objectFit: 'cover' }}
+											/>
 
-												<div className='checkout-mobile-design-details'>
-													<div>
-														<div>
-															<h6 className='mb-1'>{item.title}</h6>
-															<small className='text-muted'>
-																₹{item.priceSale.toFixed(2)}
-															</small>
-														</div>
-													</div>
+											<div>
+												<h6 className='mb-1'>{item.title}</h6>
+												<small className='text-muted'>
+													₹{item.priceSale.toFixed(2)}
+												</small>
 
-													{/* Quantity Controls */}
-													<div className='d-flex align-items-center gap-1'>
-														<Button
-															variant='bg-none'
-															size='sm'
-															onClick={() => dispatch(decrementQty(item.id))}>
-															-
-														</Button>
-														<small>{item.quantity}</small>
-														<Button
-															variant='bg-none'
-															size='sm'
-															onClick={() => dispatch(incrementQty(item.id))}>
-															+
-														</Button>
-													</div>
-													<div className='checkout-mobile-design-buttons'>
-														{/* Total */}
-														<small className='fw-bold'>
-															₹{(item.priceSale * item.quantity).toFixed(2)}
-														</small>
-														<div>
-															<Button
-																style={{ background: '#4c1d1d' }}
-																size='sm'
-																onClick={() =>
-																	dispatch(removeFromCart(item.id))
-																}>
-																<FaTrashAlt />
-															</Button>
-														</div>
-													</div>
+												<div className='d-flex align-items-center gap-2 mt-1'>
+													<Button
+														size='sm'
+														variant='light'
+														onClick={() => dispatch(decrementQty(item.id))}>
+														-
+													</Button>
+
+													<span>{item.quantity}</span>
+
+													<Button
+														size='sm'
+														variant='light'
+														onClick={() => dispatch(incrementQty(item.id))}>
+														+
+													</Button>
 												</div>
 											</div>
-										</Card.Body>
-									</Card>
-								);
-							})
+										</div>
+
+										<div className='text-end'>
+											<p className='fw-bold mb-1'>
+												₹{(item.priceSale * item.quantity).toFixed(2)}
+											</p>
+
+											<Button
+												size='sm'
+												style={{ background: '#4c1d1d', border: 'none' }}
+												onClick={() => dispatch(removeFromCart(item.id))}>
+												<FaTrashAlt />
+											</Button>
+										</div>
+									</Card.Body>
+								</Card>
+							))
 						)}
 					</Col>
 
-					{/* Coupon & Summary */}
+					{/* SUMMARY */}
 					<Col md={4}>
 						<Card>
-							<Card.Body className='py-3'>
-								<h6 className='mb-2'>Coupon</h6>
-								<div className='d-flex justify-content-between'>
+							<Card.Body>
+								<h6>Coupon</h6>
+
+								<p className='text-muted'>
+									* Flat ₹500 OFF on purchase of 4 or more items —
+									<span
+										onClick={() => {
+											if (totalItems >= 4) {
+												setCoupon('NEWYEAR500');
+												applyCoupon();
+											}
+										}}
+										style={{
+											color: totalItems >= 4 ? '#0d6efd' : '#999',
+											cursor: totalItems >= 4 ? 'pointer' : 'not-allowed',
+											fontWeight: '600',
+											marginLeft: '4px',
+										}}>
+										Apply
+									</span>
+								</p>
+
+								<div className='d-flex gap-2'>
 									<Form.Control
-										type='text'
-										placeholder='Enter coupon code'
 										value={coupon}
-										onChange={(e) => setCoupon(e.target.value)}
-										style={{ width: '60%' }}
+										disabled
+										placeholder='Enter coupon'
 									/>
 									<Button
-										className='bg-dark '
-										onClick={applyCoupon}
-										style={{ width: '30%', border: 'none', marginLeft: '10' }}>
+										className='bg-dark'
+										disabled={totalItems < 4}
+										onClick={applyCoupon}>
 										Apply
 									</Button>
 								</div>
 
-								<hr className='my-2' />
-								<div className='small'>
-									<p className='d-flex justify-content-between mb-1'>
-										<span>Subtotal:</span>
-										<span>₹{subtotal.toFixed(2)}</span>
-									</p>
-									{discount > 0 && (
-										<p className='d-flex justify-content-between text-success mb-1'>
-											<span>Discount:</span>
-											<span>-{(discount * 100).toFixed(0)}%</span>
-										</p>
-									)}
-									<b className='text-center'>
-										Inclusive All Charges (GST & Shipping)
-									</b>
-									<p className='d-flex justify-content-between fw-bold mb-1'>
-										<span>Grand Total:</span>
-										<span>₹{grandTotal.toFixed(2)}</span>
-									</p>
-								</div>
+								<hr />
 
-								<div className='d-flex gap-2 mt-2'>
-									<Button
-										variant='outline-secondary'
-										className='w-50'
-										size='sm'>
-										Update Cart
-									</Button>
-									<Link
-										href={'/product/proceed-to-payment'}
-										onClick={() => {
-											dispatch(updateUserId(grandTotal.toFixed(2)));
-											dispatch(updateGrandTotal(grandTotal.toFixed(2)));
-										}}
-										style={{
-											background: '#4c1d1d',
-											color: 'white',
-											height: '40px',
-										}}
-										className='btn w-50'
-										size='sm'>
-										Checkout
-									</Link>
-								</div>
+								<p className='d-flex justify-content-between mb-1'>
+									<span>Subtotal</span>
+									<span>₹{subtotal.toFixed(2)}</span>
+								</p>
+
+								{discount > 0 && (
+									<p className='d-flex justify-content-between text-success mb-1'>
+										<span>Discount</span>
+										<span>-₹{discount.toFixed(2)}</span>
+									</p>
+								)}
+
+								<p className='d-flex justify-content-between fw-bold'>
+									<span>Grand Total</span>
+									<span>₹{grandTotal.toFixed(2)}</span>
+								</p>
+
+								<Link
+									href='/product/proceed-to-payment'
+									onClick={() => {
+										dispatch(updateUserId(grandTotal.toFixed(2)));
+										dispatch(updateGrandTotal(grandTotal.toFixed(2)));
+									}}
+									className='btn w-100 mt-2'
+									style={{ background: '#4c1d1d', color: '#fff' }}>
+									Checkout
+								</Link>
 							</Card.Body>
 						</Card>
 					</Col>
 				</Row>
 			</div>
-
-			{/* <Testimonials /> */}
 		</Screen>
 	);
 };
