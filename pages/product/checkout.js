@@ -39,8 +39,8 @@ const CheckoutPage = () => {
 	};
 
 	const applyCoupon = () => {
-		if (coupon === 'DISCOUNT10') {
-			setDiscount(0.1);
+		if (coupon === 'NEWYEAR500') {
+			setDiscount(500);
 		} else {
 			setDiscount(0);
 			alert('Invalid coupon code');
