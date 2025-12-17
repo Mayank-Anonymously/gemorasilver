@@ -15,6 +15,7 @@ import { HOST } from '@/component/apibaseurl';
 import { useRouter } from 'next/navigation';
 import FiltersResponsive from '@/component/Filterr/Sidebar';
 import FilterSortSection from '@/component/common/FilterIcon';
+import Skeleton from 'react-loading-skeleton';
 
 function useIsMobile(breakpoint = 568) {
 	const [isMobile, setIsMobile] = useState(false);
@@ -203,7 +204,7 @@ const AllProduct = ({ products, filterproduct }) => {
 												}}>
 												<div className='product-image-wrapper'>
 													{/* Main Image */}
-													<Img
+													<img
 														src={`${HOST}resources/${p.images[0]}`}
 														alt={p.title}
 														className='product-image main-image'
@@ -219,7 +220,7 @@ const AllProduct = ({ products, filterproduct }) => {
 
 													{/* Hover Image */}
 													{p.images[2] && (
-														<Img
+														<img
 															src={`${HOST}resources/${p.images[2]}`}
 															alt={p.title}
 															className='product-image hover-image'

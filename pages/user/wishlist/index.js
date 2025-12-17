@@ -14,12 +14,16 @@ import { addToCartApi } from '@/component/redux/thunk/cartThunkApi';
 import { FaTrashAlt } from 'react-icons/fa';
 
 import { CiShoppingCart } from 'react-icons/ci';
+import { Img } from 'react-image';
+import Skeleton from 'react-loading-skeleton';
 
 const Wishlist = () => {
 	const wishlistData = useSelector((state) => state.wishlist.wishlistitems);
 	const { user, loggedIn } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
 	// Calculate total from priceSale
+
+	console.log(wishlistData);
 	const total = wishlistData.reduce(
 		(sum, item) => sum + (item.priceSale || 0),
 		0
@@ -67,17 +71,30 @@ const Wishlist = () => {
 											borderRadius: '12px',
 										}}>
 										<div className='position-relative'>
-											<img
-												src={`${HOST}resources/${product.image}`}
+											{/* Main Image */}
+											<Img
+												src={`${HOST}resources/${product.image[0]}`}
 												alt={product.title}
-												width={300}
-												height={300}
-												className='card-img-top p-3'
-												style={{
-													objectFit: 'contain',
-													borderRadius: '12px',
-												}}
+												className='product-image main-image'
+												loader={<Skeleton className='image-skeleton' />}
+												unloader={
+													<img
+														src='/assets/placeholder.webp'
+														alt='fallback'
+														className='product-image main-image'
+													/>
+												}
 											/>
+
+											{/* Hover Image */}
+											{product.image[2] && (
+												<Img
+													src={`${HOST}resources/${product.image[2]}`}
+													alt={product.title}
+													className='product-image hover-image'
+													loader={<Skeleton className='image-skeleton' />}
+												/>
+											)}
 										</div>
 										<Card.Body>
 											<Card.Title

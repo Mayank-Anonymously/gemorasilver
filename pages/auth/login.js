@@ -45,7 +45,7 @@ const LoginScreen = () => {
 						md={7}
 						xs={12}>
 						<img
-							src='/assets/journal/journal.png'
+							src='/assets/journal/journal.webp'
 							className='img-fluid register-poster'
 							style={{
 								height: '100vh',

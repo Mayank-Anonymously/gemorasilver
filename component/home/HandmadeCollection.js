@@ -71,7 +71,7 @@ export default function ChupiJournal() {
 									</div>
 
 									<h5
-										style={{ fontFamily: 'serif;' }}
+										style={{ fontFamily: 'serif' }}
 										className='mt-2 mb-1 journal-title'>
 										{item.title}
 									</h5>
