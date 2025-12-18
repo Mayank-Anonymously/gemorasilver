@@ -25,7 +25,7 @@ import { addTowishlistApi } from '@/component/redux/thunk/wishlistThunkApi';
 
 function useIsMobile(breakpoint = 568) {
 	const [isMobile, setIsMobile] = useState(false);
-
+	const router = useRouter();
 	useEffect(() => {
 		// ✅ Guard for SSR
 		if (typeof window === 'undefined') return;
@@ -132,7 +132,7 @@ export default function ProductPage({ product, products }) {
 								<ShareButton
 									title='Awesome Article'
 									text='Check out this article I found!'
-									// url={window.location.href}
+									url={`https://lunivajewels.com${router.asPath}`}
 								/>
 							</div>
 						</div>
