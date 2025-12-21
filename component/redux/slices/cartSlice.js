@@ -1,5 +1,6 @@
 // store/cartSlice.js
 import { createSlice } from '@reduxjs/toolkit';
+import { updateCart } from '../thunk/cartThunkApi';
 
 const initialState = {
 	items: [],
@@ -23,17 +24,23 @@ export const cartSlice = createSlice({
 			state.items = state.items.filter((item) => item.id !== action.payload);
 		},
 		incrementQty: (state, action) => {
-			const item = state.items.find((i) => i.id === action.payload);
-
-			if (item) item.quantity += 1;
+			console.log(action.payload);
+			const userId = action.payload.userId;
+			const item = state.items.find((i) => i.id === action.payload.id);
+			// updateCart(userId, item);
+			if (item) {
+				item.quantity = parseInt(item.quantity, 10) + 1;
+			}
 		},
 		getcart: (state, action) => {
 			state.items = action.payload;
 		},
 		decrementQty: (state, action) => {
-			const item = state.items.find((i) => i.id === action.payload);
+			const userId = action.payload.userId;
+			const item = state.items.find((i) => i.id === action.payload.id);
 			if (item && item.quantity > 1) {
 				item.quantity -= 1;
+				// updateCart({ userId, quantity: (item.quantity -= 1) });
 			} else {
 				// Optional: remove if quantity becomes 0
 				state.items = state.items.filter((i) => i.id !== action.payload);

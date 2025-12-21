@@ -34,7 +34,9 @@ const CartOffcanvas = ({ show, handleClose }) => {
 	useEffect(() => {
 		fetchCart(userId, dispatch);
 	}, []);
+
 	console.log(cartItems);
+
 	return (
 		<Offcanvas
 			show={show}
@@ -68,13 +70,21 @@ const CartOffcanvas = ({ show, handleClose }) => {
 										<div className='d-flex align-items-center gap-2'>
 											<button
 												className='btn  btn-sm rounded-circle'
-												onClick={() => dispatch(decrementQty(item.id))}>
+												onClick={() => {
+													if (item.quantity == 1) {
+														dispatch(removeFromCart(item.id));
+														removeFromCartApi(item.id, userId);
+													}
+													dispatch(decrementQty(item.id));
+												}}>
 												−
 											</button>
 											<span className='fw-bold'>{item.quantity}</span>
 											<button
 												className='btn  btn-sm rounded-circle'
-												onClick={() => dispatch(incrementQty(item.id))}>
+												onClick={() => {
+													dispatch(incrementQty(item.id));
+												}}>
 												+
 											</button>
 										</div>
@@ -88,7 +98,7 @@ const CartOffcanvas = ({ show, handleClose }) => {
 									className='text-danger p-0 ms-2'
 									onClick={() => {
 										dispatch(removeFromCart(item.id));
-										removeFromCartApi(item.id, user?._id);
+										removeFromCartApi(item.id, userId);
 									}}>
 									<FaTrashAlt size={16} />
 								</Button>

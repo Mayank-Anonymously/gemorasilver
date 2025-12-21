@@ -8,10 +8,15 @@ import {
 	buyNow,
 	decrementQty,
 	incrementQty,
+	removeFromCart,
 } from '@/component/redux/slices/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import { addToCartApi } from '@/component/redux/thunk/cartThunkApi';
+import {
+	addToCartApi,
+	removeFromCartApi,
+	updateCart,
+} from '@/component/redux/thunk/cartThunkApi';
 import { HOST } from '@/component/apibaseurl';
 import axios from 'axios';
 import NewColllection from '@/component/home/NewCollection';
@@ -22,10 +27,13 @@ import { useEffect, useState } from 'react';
 import SizeChartModal from '@/component/Size/Sizechart';
 import ReviewSection from '@/component/ReviewSection';
 import { addTowishlistApi } from '@/component/redux/thunk/wishlistThunkApi';
+import { ClientPageRoot } from 'next/dist/client/components/client-page';
 
 function useIsMobile(breakpoint = 568) {
 	const [isMobile, setIsMobile] = useState(false);
+
 	const router = useRouter();
+
 	useEffect(() => {
 		// ✅ Guard for SSR
 		if (typeof window === 'undefined') return;
@@ -146,13 +154,26 @@ export default function ProductPage({ product, products }) {
 									<div className='d-flex align-items-center gap-2'>
 										<button
 											className='btn btn-lg rounded-circle'
-											onClick={() => dispatch(decrementQty(item.id))}>
+											onClick={() => {
+												if (item.quantity == 1) {
+													dispatch(removeFromCart(item.id));
+													removeFromCartApi(item.id, userId);
+												} else {
+													dispatch(
+														decrementQty({ id: item.id, userId: item.userId })
+													);
+												}
+											}}>
 											−
 										</button>
 										<span className='fw-bold'>{item.quantity}</span>
 										<button
 											className='btn btn-lg rounded-circle'
-											onClick={() => dispatch(incrementQty(item.id))}>
+											onClick={() => {
+												dispatch(
+													incrementQty({ id: item.id, userId: item.userId })
+												);
+											}}>
 											+
 										</button>
 									</div>
@@ -162,7 +183,9 @@ export default function ProductPage({ product, products }) {
 						<div className='product-detail-page-button mt-5'>
 							<Button
 								className='btn add-to-cart'
-								onClick={() => add(product)}>
+								onClick={() => {
+									add(product);
+								}}>
 								Add to Cart
 							</Button>
 

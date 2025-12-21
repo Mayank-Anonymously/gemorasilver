@@ -7,7 +7,7 @@ export const addToCartApi = async (userId, product, dispatch) => {
 	try {
 		const response = await axios.post(`${HOST}cart/addItemsToCart`, {
 			userId,
-			quantity: product.quantity,
+			quantity: product.selQty,
 			title: product.title,
 			description: product.description,
 			price: product.price,
@@ -21,6 +21,7 @@ export const addToCartApi = async (userId, product, dispatch) => {
 			_id: product._id,
 		});
 		toast.success('Added to Cart!');
+
 		dispatch(addToCart(response.data.response));
 
 		return response.data;
@@ -60,6 +61,7 @@ export const emptyCart = async (userId, productId) => {
 // 		throw error;
 // 	}
 // };
+
 export const fetchCart = async (userId, dispatch) => {
 	try {
 		console.log(`${HOST}cart/getAllCartItems/${userId}`);
@@ -85,6 +87,27 @@ export const removeFromCartApi = async (id, userId) => {
 	} catch (error) {
 		console.error(
 			'Error removing from cart:',
+			error.response?.data || error.message
+		);
+		throw error;
+	}
+};
+
+export const updateCart = async (userId, item, dispatch) => {
+	try {
+		const response = await axios.patch(`${HOST}cart/update-cart-qty`, {
+			userId,
+			quantity: item.quantity,
+
+			_id: item._id,
+		});
+
+		// dispatch(addToCart(response.data.response));
+
+		return response.data;
+	} catch (error) {
+		console.error(
+			'Error adding to cart:',
 			error.response?.data || error.message
 		);
 		throw error;
