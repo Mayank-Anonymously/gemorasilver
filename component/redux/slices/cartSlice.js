@@ -27,7 +27,7 @@ export const cartSlice = createSlice({
 			console.log(action.payload);
 			const userId = action.payload.userId;
 			const item = state.items.find((i) => i.id === action.payload.id);
-			// updateCart(userId, item);
+			updateCart(userId, item);
 			if (item) {
 				item.quantity = parseInt(item.quantity, 10) + 1;
 			}
@@ -40,7 +40,7 @@ export const cartSlice = createSlice({
 			const item = state.items.find((i) => i.id === action.payload.id);
 			if (item && item.quantity > 1) {
 				item.quantity -= 1;
-				// updateCart({ userId, quantity: (item.quantity -= 1) });
+				updateCart(userId, item);
 			} else {
 				// Optional: remove if quantity becomes 0
 				state.items = state.items.filter((i) => i.id !== action.payload);

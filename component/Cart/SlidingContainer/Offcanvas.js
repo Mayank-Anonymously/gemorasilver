@@ -29,7 +29,7 @@ const CartOffcanvas = ({ show, handleClose }) => {
 	const handleRemove = (id) => {
 		dispatch(removeFromCart(id));
 	};
-	const userId = user._id;
+	const userId = user?._id;
 
 	useEffect(() => {
 		fetchCart(userId, dispatch);
@@ -57,7 +57,7 @@ const CartOffcanvas = ({ show, handleClose }) => {
 							<div
 								key={idx}
 								className='d-flex align-items-center mb-3 border-bottom pb-2'>
-								<Image
+								<img
 									src={`${HOST}resources/${item.image[0]}`}
 									rounded
 									width={60}
@@ -74,8 +74,11 @@ const CartOffcanvas = ({ show, handleClose }) => {
 													if (item.quantity == 1) {
 														dispatch(removeFromCart(item.id));
 														removeFromCartApi(item.id, userId);
+													} else {
+														dispatch(
+															decrementQty({ id: item.id, userId: item.userId })
+														);
 													}
-													dispatch(decrementQty(item.id));
 												}}>
 												−
 											</button>
@@ -83,7 +86,9 @@ const CartOffcanvas = ({ show, handleClose }) => {
 											<button
 												className='btn  btn-sm rounded-circle'
 												onClick={() => {
-													dispatch(incrementQty(item.id));
+													dispatch(
+														incrementQty({ id: item.id, userId: item.userId })
+													);
 												}}>
 												+
 											</button>

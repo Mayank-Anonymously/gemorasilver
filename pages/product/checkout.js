@@ -14,6 +14,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { Button, Card, Form, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { removeFromCartApi } from '@/component/redux/thunk/cartThunkApi';
 
 const CheckoutPage = () => {
 	const cartItems = useSelector((state) => state.cart.items);
@@ -29,8 +30,8 @@ const CheckoutPage = () => {
 	);
 
 	// ✅ Total quantity (IMPORTANT)
-	const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-
+	const totalItems = cartItems.length;
+	console.log(totalItems);
 	// ✅ Apply coupon logic
 	const applyCoupon = () => {
 		const MIN_ITEMS = 4;
@@ -46,7 +47,6 @@ const CheckoutPage = () => {
 			setDiscount(FLAT_DISCOUNT);
 		} else {
 			setDiscount(0);
-			alert('Invalid coupon code');
 		}
 	};
 
@@ -89,7 +89,13 @@ const CheckoutPage = () => {
 													<Button
 														size='sm'
 														variant='light'
-														onClick={() => dispatch(decrementQty(item.id))}>
+														onClick={() => {
+															if (item.quantity == 1) {
+																dispatch(removeFromCart(item.id));
+																removeFromCartApi(item.id, userId);
+															}
+															dispatch(decrementQty(item.id));
+														}}>
 														-
 													</Button>
 
@@ -98,7 +104,14 @@ const CheckoutPage = () => {
 													<Button
 														size='sm'
 														variant='light'
-														onClick={() => dispatch(incrementQty(item.id))}>
+														onClick={() => {
+															dispatch(
+																incrementQty({
+																	id: item.id,
+																	userId: item.userId,
+																})
+															);
+														}}>
 														+
 													</Button>
 												</div>
@@ -113,7 +126,10 @@ const CheckoutPage = () => {
 											<Button
 												size='sm'
 												style={{ background: '#4c1d1d', border: 'none' }}
-												onClick={() => dispatch(removeFromCart(item.id))}>
+												onClick={() => {
+													dispatch(removeFromCart(item.id));
+													removeFromCartApi(item.id, item.userId);
+												}}>
 												<FaTrashAlt />
 											</Button>
 										</div>

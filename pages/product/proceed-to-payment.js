@@ -17,6 +17,7 @@ import { HOST } from '@/component/apibaseurl';
 
 const CheckoutPage = ({ userId, cartTotal }) => {
 	const cartItems = useSelector((state) => state.cart.items);
+	const orderGrandTotal = useSelector((state) => state.orders.grandTotal);
 	const router = useRouter();
 	const dispatch = useDispatch();
 	const { user } = useSelector((state) => state.auth);
@@ -117,7 +118,6 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 
 	const subtotal = cartItems.reduce((acc, item) => acc + item.priceSale, 0);
 	const grandTotal = subtotal;
-
 	return (
 		<Screen>
 			<Container className='py-4'>
@@ -185,7 +185,7 @@ const CheckoutPage = ({ userId, cartTotal }) => {
 						<Card className='p-3 shadow-sm'>
 							<h5>Order Summary</h5>
 							<p>
-								Total Amount: <strong>₹{grandTotal.toFixed(2)}</strong>
+								Total Amount: <strong>₹{orderGrandTotal}</strong>
 							</p>
 							<Button
 								variant='success'

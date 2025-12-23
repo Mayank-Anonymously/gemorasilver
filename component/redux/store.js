@@ -5,7 +5,7 @@ import counterReducer from './slices/counterSlice';
 import cartReducer from './slices/cartSlice';
 import authReducer from './slices/authSlices';
 import wishlistReducer from './slices/wishlistSlice';
-
+import orderReducer from './slices/orderSlice';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 
@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
 	cart: cartReducer,
 	auth: authReducer,
 	wishlist: wishlistReducer,
+	orders: orderReducer,
 });
 
 // 2️⃣ Persist config (CLIENT ONLY)
