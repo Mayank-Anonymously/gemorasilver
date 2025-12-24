@@ -11,6 +11,7 @@ import { HOST } from '@/component/apibaseurl';
 import { useRouter } from 'next/router';
 import SocialMediaSection from './SocialMediahandle';
 import FloatingWhatsAppButton from '@/component/common/FloatingButton';
+import SaleModal from '@/component/sale/SaleModal';
 
 export default function Home({ products, categoryCounts }) {
 	const router = useRouter();
@@ -21,6 +22,7 @@ export default function Home({ products, categoryCounts }) {
 			description={`Discover Luniva Jewels – exquisite gold, diamond & gemstone jewelry designed for elegance, crafted for a lifetime. Shop luxury you’ll cherish forever.
 `}
 			canonical={router.asPath}>
+			<SaleModal />
 			<section>
 				<BreadHomeBanner />
 			</section>
