@@ -31,11 +31,9 @@ const CartOffcanvas = ({ show, handleClose }) => {
 	};
 	const userId = user?._id;
 
-	useEffect(() => {
-		fetchCart(userId, dispatch);
-	}, []);
-
-	console.log(cartItems);
+	// useEffect(() => {
+	// 	fetchCart(userId, dispatch);
+	// }, []);
 
 	return (
 		<Offcanvas

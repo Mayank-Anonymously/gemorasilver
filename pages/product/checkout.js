@@ -6,13 +6,10 @@ import {
 	incrementQty,
 	removeFromCart,
 } from '@/component/redux/slices/cartSlice';
-import {
-	updateGrandTotal,
-	updateUserId,
-} from '@/component/redux/slices/orderSlice';
+import { updateGrandTotal } from '@/component/redux/slices/orderSlice';
 import Link from 'next/link';
-import React, { useState } from 'react';
-import { Button, Card, Form, Row, Col } from 'react-bootstrap';
+import React from 'react';
+import { Button, Card, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCartApi } from '@/component/redux/thunk/cartThunkApi';
 
@@ -20,38 +17,26 @@ const CheckoutPage = () => {
 	const cartItems = useSelector((state) => state.cart.items);
 	const dispatch = useDispatch();
 
-	const [coupon, setCoupon] = useState('');
-	const [discount, setDiscount] = useState(0);
-
-	// ✅ Subtotal
+	// ✅ SUBTOTAL
 	const subtotal = cartItems.reduce(
 		(acc, item) => acc + item.priceSale * item.quantity,
 		0
 	);
 
-	// ✅ Total quantity (IMPORTANT)
+	// ✅ TOTAL ITEMS COUNT
 	const totalItems = cartItems.length;
-	console.log(totalItems);
-	// ✅ Apply coupon logic
-	const applyCoupon = () => {
-		const MIN_ITEMS = 4;
-		const FLAT_DISCOUNT = 500;
 
-		if (totalItems < MIN_ITEMS) {
-			setDiscount(0);
-			alert('Coupon applicable only on purchase of 4 or more items');
-			return;
-		}
+	// ✅ DISCOUNT LOGIC
+	let discountPercent = 0;
+	if (totalItems === 1) discountPercent = 5;
+	else if (totalItems === 2) discountPercent = 10;
+	else if (totalItems >= 3) discountPercent = 15;
 
-		if (coupon === 'NEWYEAR500') {
-			setDiscount(FLAT_DISCOUNT);
-		} else {
-			setDiscount(0);
-		}
-	};
+	// ✅ DISCOUNT AMOUNT
+	const discountAmount = (subtotal * discountPercent) / 100;
 
-	// ✅ Grand total (flat discount)
-	const grandTotal = Math.max(subtotal - discount, 0);
+	// ✅ GRAND TOTAL
+	const grandTotal = Math.max(subtotal - discountAmount, 0);
 
 	return (
 		<Screen>
@@ -77,6 +62,7 @@ const CheckoutPage = () => {
 												width={60}
 												height={60}
 												style={{ objectFit: 'cover' }}
+												alt={item.title}
 											/>
 
 											<div>
@@ -90,11 +76,12 @@ const CheckoutPage = () => {
 														size='sm'
 														variant='light'
 														onClick={() => {
-															if (item.quantity == 1) {
+															if (item.quantity === 1) {
 																dispatch(removeFromCart(item.id));
-																removeFromCartApi(item.id, userId);
+																removeFromCartApi(item.id, item.userId);
+															} else {
+																dispatch(decrementQty(item.id));
 															}
-															dispatch(decrementQty(item.id));
 														}}>
 														-
 													</Button>
@@ -104,14 +91,14 @@ const CheckoutPage = () => {
 													<Button
 														size='sm'
 														variant='light'
-														onClick={() => {
+														onClick={() =>
 															dispatch(
 																incrementQty({
 																	id: item.id,
 																	userId: item.userId,
 																})
-															);
-														}}>
+															)
+														}>
 														+
 													</Button>
 												</div>
@@ -143,52 +130,15 @@ const CheckoutPage = () => {
 					<Col md={4}>
 						<Card>
 							<Card.Body>
-								<h6>Coupon</h6>
-
-								<p className='text-muted'>
-									* Flat ₹500 OFF on purchase of 4 or more items —
-									<span
-										onClick={() => {
-											if (totalItems >= 4) {
-												setCoupon('NEWYEAR500');
-												applyCoupon();
-											}
-										}}
-										style={{
-											color: totalItems >= 4 ? '#0d6efd' : '#999',
-											cursor: totalItems >= 4 ? 'pointer' : 'not-allowed',
-											fontWeight: '600',
-											marginLeft: '4px',
-										}}>
-										Apply
-									</span>
-								</p>
-
-								<div className='d-flex gap-2'>
-									<Form.Control
-										value={coupon}
-										disabled
-										placeholder='Enter coupon'
-									/>
-									<Button
-										className='bg-dark'
-										disabled={totalItems < 4}
-										onClick={applyCoupon}>
-										Apply
-									</Button>
-								</div>
-
-								<hr />
-
 								<p className='d-flex justify-content-between mb-1'>
 									<span>Subtotal</span>
 									<span>₹{subtotal.toFixed(2)}</span>
 								</p>
 
-								{discount > 0 && (
+								{discountPercent > 0 && (
 									<p className='d-flex justify-content-between text-success mb-1'>
-										<span>Discount</span>
-										<span>-₹{discount.toFixed(2)}</span>
+										<span>Discount ({discountPercent}%)</span>
+										<span>-₹{discountAmount.toFixed(2)}</span>
 									</p>
 								)}
 
@@ -199,10 +149,9 @@ const CheckoutPage = () => {
 
 								<Link
 									href='/product/proceed-to-payment'
-									onClick={() => {
-										dispatch(updateUserId(grandTotal.toFixed(2)));
-										dispatch(updateGrandTotal(grandTotal.toFixed(2)));
-									}}
+									onClick={() =>
+										dispatch(updateGrandTotal(grandTotal.toFixed(2)))
+									}
 									className='btn w-100 mt-2'
 									style={{ background: '#4c1d1d', color: '#fff' }}>
 									Checkout

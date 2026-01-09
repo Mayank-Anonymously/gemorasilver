@@ -21,9 +21,7 @@ export const addToCartApi = async (userId, product, dispatch) => {
 			_id: product._id,
 		});
 		toast.success('Added to Cart!');
-
 		dispatch(addToCart(response.data.response));
-
 		return response.data;
 	} catch (error) {
 		console.error(
@@ -33,6 +31,7 @@ export const addToCartApi = async (userId, product, dispatch) => {
 		throw error;
 	}
 };
+
 export const emptyCart = async (userId, productId) => {
 	try {
 		const response = await axios.get(`${HOST}cart/empty-cart/${userId}`);
@@ -45,6 +44,7 @@ export const emptyCart = async (userId, productId) => {
 		throw error;
 	}
 };
+
 // export const updateCartQuantity = async (userId, productId, actionType) => {
 // 	try {
 // 		const response = await axios.post('/api/cart/update-quantity', {
@@ -64,7 +64,6 @@ export const emptyCart = async (userId, productId) => {
 
 export const fetchCart = async (userId, dispatch) => {
 	try {
-		console.log(`${HOST}cart/getAllCartItems/${userId}`);
 		const response = await axios.get(`${HOST}cart/getAllCartItems/${userId}`);
 		dispatch(getcart(response.data.response));
 		return response.data;
