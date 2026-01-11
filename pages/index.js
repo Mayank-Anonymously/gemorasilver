@@ -22,7 +22,7 @@ export default function Home({ products, categoryCounts }) {
 			description={`Discover Luniva Jewels – exquisite gold, diamond & gemstone jewelry designed for elegance, crafted for a lifetime. Shop luxury you’ll cherish forever.
 `}
 			canonical={router.asPath}>
-			{/* <SaleModal /> */}
+			<SaleModal />
 			<section>
 				<BreadHomeBanner />
 			</section>

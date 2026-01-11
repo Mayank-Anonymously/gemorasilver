@@ -22,9 +22,6 @@ function SaleModal() {
 			centered
 			size='lg'
 			dialogClassName='sale-modal'>
-			<Modal.Header closeButton>
-				<Modal.Title>🎄 Christmas Sale</Modal.Title>
-			</Modal.Header>
 			<a href='/listing/shop'>
 				<Modal.Body className='p-0'>
 					<img

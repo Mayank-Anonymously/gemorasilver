@@ -14,28 +14,42 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCartApi } from '@/component/redux/thunk/cartThunkApi';
 
 const CheckoutPage = () => {
-	const cartItems = useSelector((state) => state.cart.items);
 	const dispatch = useDispatch();
+	const cartItems = useSelector((state) => state.cart.items);
 
-	// ✅ SUBTOTAL
+	/* ==========================
+		SUBTOTAL
+	========================== */
 	const subtotal = cartItems.reduce(
 		(acc, item) => acc + item.priceSale * item.quantity,
 		0
 	);
 
-	// ✅ TOTAL ITEMS COUNT
-	const totalItems = cartItems.length;
-
-	// ✅ DISCOUNT LOGIC
+	/* ==========================
+		DISCOUNT LOGIC
+	========================== */
 	let discountPercent = 0;
-	if (totalItems === 1) discountPercent = 5;
-	else if (totalItems === 2) discountPercent = 10;
-	else if (totalItems >= 3) discountPercent = 15;
 
-	// ✅ DISCOUNT AMOUNT
+	if (cartItems.length === 1) {
+		// 🔹 Single product → quantity based discount
+		const qty = cartItems[0].quantity;
+
+		if (qty === 1) discountPercent = 5;
+		else if (qty === 2) discountPercent = 10;
+		else if (qty >= 3) discountPercent = 15;
+	} else if (cartItems.length > 1) {
+		// 🔹 Multiple products → item count based discount
+		const totalItems = cartItems.length;
+
+		if (totalItems === 1) discountPercent = 5;
+		else if (totalItems === 2) discountPercent = 10;
+		else if (totalItems >= 3) discountPercent = 15;
+	}
+
+	/* ==========================
+		CALCULATIONS
+	========================== */
 	const discountAmount = (subtotal * discountPercent) / 100;
-
-	// ✅ GRAND TOTAL
 	const grandTotal = Math.max(subtotal - discountAmount, 0);
 
 	return (
@@ -46,7 +60,7 @@ const CheckoutPage = () => {
 				<h4 className='mb-4'>Shopping Cart</h4>
 
 				<Row>
-					{/* CART ITEMS */}
+					{/* ================= CART ITEMS ================= */}
 					<Col md={8}>
 						{cartItems.length === 0 ? (
 							<p className='small'>Your cart is empty.</p>
@@ -126,7 +140,7 @@ const CheckoutPage = () => {
 						)}
 					</Col>
 
-					{/* SUMMARY */}
+					{/* ================= SUMMARY ================= */}
 					<Col md={4}>
 						<Card>
 							<Card.Body>
@@ -149,11 +163,11 @@ const CheckoutPage = () => {
 
 								<Link
 									href='/product/proceed-to-payment'
+									className='btn w-100 mt-2'
+									style={{ background: '#4c1d1d', color: '#fff' }}
 									onClick={() =>
 										dispatch(updateGrandTotal(grandTotal.toFixed(2)))
-									}
-									className='btn w-100 mt-2'
-									style={{ background: '#4c1d1d', color: '#fff' }}>
+									}>
 									Checkout
 								</Link>
 							</Card.Body>
