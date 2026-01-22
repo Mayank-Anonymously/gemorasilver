@@ -8,7 +8,7 @@ import {
 } from '@/component/redux/slices/cartSlice';
 import { updateGrandTotal } from '@/component/redux/slices/orderSlice';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Card, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCartApi } from '@/component/redux/thunk/cartThunkApi';
@@ -17,28 +17,29 @@ const CheckoutPage = () => {
 	const dispatch = useDispatch();
 	const cartItems = useSelector((state) => state.cart.items);
 
+	// 🔹 Festival coupon visibility state
+	const [showFestivalDiscount, setShowFestivalDiscount] = useState(false);
+
 	/* ==========================
 		SUBTOTAL
 	========================== */
 	const subtotal = cartItems.reduce(
 		(acc, item) => acc + item.priceSale * item.quantity,
-		0
+		0,
 	);
 
 	/* ==========================
-		DISCOUNT LOGIC
+		EXISTING DISCOUNT LOGIC (UNCHANGED)
 	========================== */
 	let discountPercent = 0;
 
 	if (cartItems.length === 1) {
-		// 🔹 Single product → quantity based discount
 		const qty = cartItems[0].quantity;
 
 		if (qty === 1) discountPercent = 5;
 		else if (qty === 2) discountPercent = 10;
 		else if (qty >= 3) discountPercent = 15;
 	} else if (cartItems.length > 1) {
-		// 🔹 Multiple products → item count based discount
 		const totalItems = cartItems.length;
 
 		if (totalItems === 1) discountPercent = 5;
@@ -47,7 +48,7 @@ const CheckoutPage = () => {
 	}
 
 	/* ==========================
-		CALCULATIONS
+		CALCULATIONS (ALWAYS APPLIED)
 	========================== */
 	const discountAmount = (subtotal * discountPercent) / 100;
 	const grandTotal = Math.max(subtotal - discountAmount, 0);
@@ -62,10 +63,9 @@ const CheckoutPage = () => {
 				<Row>
 					{/* ================= CART ITEMS ================= */}
 					<Col md={8}>
-						{cartItems.length === 0 ? (
+						{cartItems.length === 0 ?
 							<p className='small'>Your cart is empty.</p>
-						) : (
-							cartItems.map((item) => (
+						:	cartItems.map((item) => (
 								<Card
 									className='mb-2'
 									key={item.id}>
@@ -110,7 +110,7 @@ const CheckoutPage = () => {
 																incrementQty({
 																	id: item.id,
 																	userId: item.userId,
-																})
+																}),
 															)
 														}>
 														+
@@ -137,21 +137,30 @@ const CheckoutPage = () => {
 									</Card.Body>
 								</Card>
 							))
-						)}
+						}
 					</Col>
 
 					{/* ================= SUMMARY ================= */}
 					<Col md={4}>
 						<Card>
 							<Card.Body>
+								{/* Festival Coupon */}
+								<Button
+									className='w-100 mb-3'
+									style={{ background: '#4c1d1d', border: 'none' }}
+									onClick={() => setShowFestivalDiscount(true)}>
+									Apply Festival Coupon
+								</Button>
+
 								<p className='d-flex justify-content-between mb-1'>
 									<span>Subtotal</span>
 									<span>₹{subtotal.toFixed(2)}</span>
 								</p>
 
-								{discountPercent > 0 && (
+								{/* Discount visible only after festival coupon */}
+								{showFestivalDiscount && discountPercent > 0 && (
 									<p className='d-flex justify-content-between text-success mb-1'>
-										<span>Discount ({discountPercent}%)</span>
+										<span>Festival Discount ({discountPercent}%)</span>
 										<span>-₹{discountAmount.toFixed(2)}</span>
 									</p>
 								)}
