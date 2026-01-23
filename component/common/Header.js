@@ -188,6 +188,13 @@ const Header = () => {
 					handleClose={() => setShowSideMenu(false)}
 				/>
 			)}
+			{/* 🇮🇳 Republic Day Coupon Bar */}
+			<div className='republic-offer-bar'>
+				<span>
+					🎉 Festive Season Special 🇮🇳 | Use Coupon Code <strong>FESTIVAL</strong>{' '}
+					& Get Exclusive Discounts!
+				</span>
+			</div>
 		</>
 	);
 };

@@ -22,7 +22,7 @@ export default function Home({ products, categoryCounts }) {
 			description={`Discover Luniva Jewels – exquisite gold, diamond & gemstone jewelry designed for elegance, crafted for a lifetime. Shop luxury you’ll cherish forever.
 `}
 			canonical={router.asPath}>
-			<SaleModal />
+			{/* <SaleModal /> */}
 			<section>
 				<BreadHomeBanner />
 			</section>
@@ -111,7 +111,7 @@ export async function getServerSideProps() {
 
 		// Filter suggested products
 		const filteredStyle = products.filter(
-			(item) => item.styleOne === 'sugessted-by-founders'
+			(item) => item.styleOne === 'sugessted-by-founders',
 		);
 
 		// Define the category groups you want counts for
@@ -130,7 +130,7 @@ export async function getServerSideProps() {
 		const categoryCounts = {};
 		for (const name of categoryGroups) {
 			categoryCounts[name.replace(/\s+/g, '_').toUpperCase()] = products.filter(
-				(item) => item.categoryName?.toUpperCase() === name
+				(item) => item.categoryName?.toUpperCase() === name,
 			).length;
 		}
 
