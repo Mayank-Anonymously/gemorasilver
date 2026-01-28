@@ -188,11 +188,10 @@ const Header = () => {
 					handleClose={() => setShowSideMenu(false)}
 				/>
 			)}
-			{/* 🇮🇳 Republic Day Coupon Bar */}
-			<div className='republic-offer-bar'>
+			<div className='valentine-offer-bar romantic'>
 				<span>
-					🎉 Festive Season Special 🇮🇳 | Use Coupon Code <strong>FESTIVAL</strong>{' '}
-					& Get Exclusive Discounts!
+					💖 Valentine’s Special 💖 Buy One & Get One{' '}
+					<span className='free-gift'>FREE GIFT</span>
 				</span>
 			</div>
 		</>

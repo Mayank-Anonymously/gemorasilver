@@ -282,9 +282,7 @@ a {
 }
 
 .gallery-item {
-	transition:
-		transform 0.3s ease,
-		box-shadow 0.3s ease;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
 	cursor: pointer;
 }
 
@@ -407,9 +405,7 @@ a {
 .product-card {
 	border-radius: 10px;
 	overflow: hidden;
-	transition:
-		transform 0.3s ease,
-		box-shadow 0.3s ease;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
@@ -641,9 +637,7 @@ a {
 	padding: 12px 16px;
 	border-bottom: 1px solid #e0e0e0; /* divider */
 	cursor: pointer;
-	transition:
-		background 0.3s ease,
-		color 0.3s ease;
+	transition: background 0.3s ease, color 0.3s ease;
 	font-weight: 500;
 }
 
@@ -700,9 +694,7 @@ a {
 	font-weight: bold;
 	padding: 10px 20px;
 	border-radius: 50px;
-	box-shadow:
-		inset 0 0 10px rgba(0, 0, 0, 0.3),
-		0 4px 6px rgba(0, 0, 0, 0.3);
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3), 0 4px 6px rgba(0, 0, 0, 0.3);
 	cursor: pointer;
 	transition: all 0.3s ease;
 	font-size: 14px;
@@ -1105,9 +1097,7 @@ a {
 	cursor: pointer;
 	border-radius: 8px;
 	overflow: hidden;
-	transition:
-		border-color 0.2s ease,
-		transform 0.2s ease;
+	transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .thumbnail:hover {
@@ -1349,116 +1339,142 @@ a {
 .product-image-wrapper:hover .main-image {
 	opacity: 0;
 }
-
-.republic-offer-bar {
-	width: 100%;
-	padding: 8px 12px;
-	text-align: center;
-	font-size: 14px;
-	font-weight: 500;
-	color: #000;
-	background: linear-gradient(
-		90deg,
-		#ff9933 0%,
-		/* Saffron */ #ffffff 50%,
-		/* White */ #138808 100% /* Green */
-	);
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.republic-offer-bar strong {
-	color: #000080; /* Ashoka Chakra blue */
-	font-weight: 700;
-	letter-spacing: 1px;
-}
-
-@media (max-width: 768px) {
-	.republic-offer-bar {
-		font-size: 12px;
-		padding: 6px 8px;
-	}
-}
-.republic-offer-bar {
+.valentine-offer-bar.romantic {
 	position: relative;
 	overflow: hidden;
 	width: 100%;
-	padding: 8px 12px;
+	padding: 14px 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	text-align: center;
-	font-size: 14px;
+	font-size: 15px;
 	font-weight: 500;
-	color: #000;
-	background: linear-gradient(90deg, #ff9933 0%, #ffffff 50%, #138808 100%);
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	color: #fff;
+
+	background: linear-gradient(
+		120deg,
+		#7b001c,
+		#c9184a,
+		#ff4d6d,
+		#c9184a,
+		#7b001c
+	);
+
+	border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+	box-shadow: inset 0 0 30px rgba(255, 0, 80, 0.35);
 }
 
-/* 🌊 Wave from LEFT → RIGHT */
-.republic-offer-bar::before {
+/* 🌊 Romantic Waves – LEFT → RIGHT */
+.valentine-offer-bar.romantic::before {
 	content: '';
 	position: absolute;
 	top: 0;
 	left: -60%;
 	width: 220%;
 	height: 100%;
-	background: linear-gradient(
-		120deg,
-		rgba(255, 255, 255, 0.35) 0%,
-		rgba(255, 255, 255, 0.15) 50%,
-		rgba(255, 255, 255, 0.35) 100%
+	background: radial-gradient(
+		circle at 30% 50%,
+		rgba(255, 255, 255, 0.35),
+		rgba(255, 255, 255, 0.08),
+		transparent
 	);
-	animation: waveLeftRight 7s linear infinite;
+	animation: romanticWaveLR 9s ease-in-out infinite;
 }
 
-/* 🌊 Wave from RIGHT → LEFT */
-.republic-offer-bar::after {
+/* 🌊 Romantic Waves – RIGHT → LEFT */
+.valentine-offer-bar.romantic::after {
 	content: '';
 	position: absolute;
 	top: 0;
 	right: -60%;
 	width: 220%;
 	height: 100%;
-	background: linear-gradient(
-		240deg,
-		rgba(255, 255, 255, 0.25) 0%,
-		rgba(255, 255, 255, 0.1) 50%,
-		rgba(255, 255, 255, 0.25) 100%
+	background: radial-gradient(
+		circle at 70% 50%,
+		rgba(255, 255, 255, 0.25),
+		rgba(255, 255, 255, 0.05),
+		transparent
 	);
-	animation: waveRightLeft 6s linear infinite;
+	animation: romanticWaveRL 11s ease-in-out infinite;
 }
 
-/* Keep text above waves */
-.republic-offer-bar span {
+/* Text above everything */
+.valentine-offer-bar.romantic span {
 	position: relative;
 	z-index: 2;
+	line-height: 1.4;
+	text-shadow: 0 0 8px rgba(255, 120, 150, 0.7);
 }
 
-.republic-offer-bar strong {
-	color: #000080; /* Ashoka Chakra Blue */
+/* 💝 FREE GIFT badge */
+.valentine-offer-bar .free-gift {
+	background: linear-gradient(135deg, #ffccd5, #fff0f3);
+	color: #7b001c;
+	padding: 3px 10px;
+	border-radius: 999px;
 	font-weight: 700;
-	letter-spacing: 1px;
+	margin: 0 4px;
+	box-shadow: 0 0 10px rgba(255, 200, 220, 0.8);
+	animation: giftPulse 1.6s infinite;
 }
 
-/* 🌊 Animations */
-@keyframes waveLeftRight {
+/* Coupon code */
+.valentine-offer-bar strong {
+	background: rgba(0, 0, 0, 0.3);
+	padding: 4px 10px;
+	border-radius: 14px;
+	font-weight: 700;
+	letter-spacing: 1.2px;
+}
+
+/* 💓 Animations */
+@keyframes romanticWaveLR {
 	0% {
 		transform: translateX(0);
+		opacity: 0.6;
+	}
+	50% {
+		transform: translateX(30%);
+		opacity: 0.8;
 	}
 	100% {
-		transform: translateX(50%);
+		transform: translateX(0);
+		opacity: 0.6;
 	}
 }
 
-@keyframes waveRightLeft {
+@keyframes romanticWaveRL {
 	0% {
 		transform: translateX(0);
+		opacity: 0.4;
+	}
+	50% {
+		transform: translateX(-30%);
+		opacity: 0.7;
 	}
 	100% {
-		transform: translateX(-50%);
+		transform: translateX(0);
+		opacity: 0.4;
 	}
 }
 
+@keyframes giftPulse {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.08);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+/* 📱 Mobile */
 @media (max-width: 768px) {
-	.republic-offer-bar {
-		font-size: 12px;
-		padding: 6px 8px;
+	.valentine-offer-bar.romantic {
+		font-size: 13px;
+		padding: 12px 10px;
 	}
 }
