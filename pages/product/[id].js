@@ -33,7 +33,6 @@ function useIsMobile(breakpoint = 568) {
 	const [isMobile, setIsMobile] = useState(false);
 
 	const router = useRouter();
-
 	useEffect(() => {
 		// ✅ Guard for SSR
 		if (typeof window === 'undefined') return;
@@ -49,7 +48,8 @@ function useIsMobile(breakpoint = 568) {
 	return isMobile;
 }
 
-export default function ProductPage({ product, products }) {
+export default function ProductPage({ product, products, freeGiftProduct }) {
+	console.log('freeGiftProduct:', freeGiftProduct);
 	const dispatch = useDispatch();
 	const router = useRouter();
 	const { user, loggedIn } = useSelector((state) => state.auth);
@@ -65,7 +65,7 @@ export default function ProductPage({ product, products }) {
 			alert('Please login to add product to cart.');
 			router.push('/auth/login');
 		} else {
-			addToCartApi(userId, product, dispatch);
+			addToCartApi(userId, product, dispatch, freeGiftProduct);
 		}
 	};
 
@@ -160,7 +160,7 @@ export default function ProductPage({ product, products }) {
 													removeFromCartApi(item.id, userId);
 												} else {
 													dispatch(
-														decrementQty({ id: item.id, userId: item.userId })
+														decrementQty({ id: item.id, userId: item.userId }),
 													);
 												}
 											}}>
@@ -171,7 +171,7 @@ export default function ProductPage({ product, products }) {
 											className='btn btn-lg rounded-circle'
 											onClick={() => {
 												dispatch(
-													incrementQty({ id: item.id, userId: item.userId })
+													incrementQty({ id: item.id, userId: item.userId }),
 												);
 											}}>
 											+
@@ -251,13 +251,17 @@ export async function getServerSideProps(context) {
 		const catname = res.data.response.categoryName;
 		const resss = await axios.get(`${HOST}product/getAllProducts`);
 		const filtertstyle = resss.data.response.filter(
-			(item) => item.categoryName == catname
+			(item) => item.categoryName == catname,
+		);
+		const freeGiftProduct = resss.data.response.find(
+			(p) => p.FREE_GIFT === true,
 		);
 
 		return {
 			props: {
 				product: res.data.response || null, // adjust based on your API response
 				products: filtertstyle || null, // adjust based on your API response
+				freeGiftProduct: freeGiftProduct,
 			},
 		};
 	} catch (error) {

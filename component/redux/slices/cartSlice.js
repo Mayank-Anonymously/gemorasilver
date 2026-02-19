@@ -12,7 +12,7 @@ export const cartSlice = createSlice({
 	reducers: {
 		addToCart: (state, action) => {
 			const existing = state.items.find(
-				(item) => item.id === action.payload.id
+				(item) => item.id === action.payload.id,
 			);
 			if (existing) {
 				alert('Product is already in the cart!');
@@ -24,10 +24,10 @@ export const cartSlice = createSlice({
 			state.items = state.items.filter((item) => item.id !== action.payload);
 		},
 		incrementQty: (state, action) => {
-			console.log(action.payload);
 			const userId = action.payload.userId;
 			const item = state.items.find((i) => i.id === action.payload.id);
 			updateCart(userId, item);
+
 			if (item) {
 				item.quantity = parseInt(item.quantity, 10) + 1;
 			}

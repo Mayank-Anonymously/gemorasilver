@@ -41,7 +41,7 @@ const ProductImagesGallery = ({ images = [] }) => {
 
 		imageRef.current.parentElement.addEventListener(
 			'wheel',
-			panzoom.zoomWithWheel
+			panzoom.zoomWithWheel,
 		);
 
 		panzoomInstance.current = panzoom;
@@ -49,7 +49,7 @@ const ProductImagesGallery = ({ images = [] }) => {
 		return () => {
 			imageRef.current?.parentElement.removeEventListener(
 				'wheel',
-				panzoom.zoomWithWheel
+				panzoom.zoomWithWheel,
 			);
 			panzoom.destroy();
 		};
@@ -77,7 +77,7 @@ const ProductImagesGallery = ({ images = [] }) => {
 		<div className='gallery-container flex flex-col md:flex-row gap-4 items-center justify-center'>
 			<div className='gallery-left relative'>
 				{/* ================= MAIN IMAGE ================= */}
-				{isMobile ? (
+				{isMobile ?
 					/* -------- Mobile: Panzoom -------- */
 					<div
 						data-allow-zoom='true'
@@ -98,8 +98,7 @@ const ProductImagesGallery = ({ images = [] }) => {
 							}}
 						/>
 					</div>
-				) : (
-					/* -------- Desktop: Hover Zoom -------- */
+				:	/* -------- Desktop: Hover Zoom -------- */
 					<div
 						className='main-image relative overflow-hidden'
 						onMouseEnter={() => setZoomVisible(true)}
@@ -117,7 +116,7 @@ const ProductImagesGallery = ({ images = [] }) => {
 							}}
 						/>
 					</div>
-				)}
+				}
 
 				{/* ================= THUMBNAILS ================= */}
 				<div className='thumbnail-row flex gap-3 mt-4 justify-center flex-wrap'>
@@ -125,9 +124,9 @@ const ProductImagesGallery = ({ images = [] }) => {
 						<div
 							key={index}
 							className={`thumbnail border-2 rounded-md p-1 cursor-pointer transition-all ${
-								mainImage === img
-									? 'border-[#800000] scale-105'
-									: 'border-gray-300'
+								mainImage === img ?
+									'border-[#800000] scale-105'
+								:	'border-gray-300'
 							}`}
 							onClick={() => setMainImage(img)}>
 							<Img

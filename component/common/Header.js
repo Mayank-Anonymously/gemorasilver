@@ -188,12 +188,12 @@ const Header = () => {
 					handleClose={() => setShowSideMenu(false)}
 				/>
 			)}
-			<div className='valentine-offer-bar romantic'>
+			{/* <div className='valentine-offer-bar romantic'>
 				<span>
 					💖 Valentine’s Special 💖 Buy One & Get One{' '}
 					<span className='free-gift'>FREE GIFT</span>
 				</span>
-			</div>
+			</div> */}
 		</>
 	);
 };

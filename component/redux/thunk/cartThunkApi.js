@@ -3,7 +3,13 @@ import { addToCart, getcart } from '../slices/cartSlice';
 import { HOST } from '@/component/apibaseurl';
 import { toast } from 'react-toastify';
 
-export const addToCartApi = async (userId, product, dispatch) => {
+export const addToCartApi = async (
+	userId,
+	product,
+	dispatch,
+	freeGiftProduct,
+) => {
+	console.log(freeGiftProduct);
 	try {
 		const response = await axios.post(`${HOST}cart/addItemsToCart`, {
 			userId,
@@ -20,13 +26,16 @@ export const addToCartApi = async (userId, product, dispatch) => {
 			inStock: product.inStock,
 			_id: product._id,
 		});
+
 		toast.success('Added to Cart!');
 		dispatch(addToCart(response.data.response));
+		// dispatch(addToCart(freeGiftProduct));
+
 		return response.data;
 	} catch (error) {
 		console.error(
 			'Error adding to cart:',
-			error.response?.data || error.message
+			error.response?.data || error.message,
 		);
 		throw error;
 	}
@@ -39,7 +48,7 @@ export const emptyCart = async (userId, productId) => {
 	} catch (error) {
 		console.error(
 			'Error removing from cart:',
-			error.response?.data || error.message
+			error.response?.data || error.message,
 		);
 		throw error;
 	}
@@ -70,7 +79,7 @@ export const fetchCart = async (userId, dispatch) => {
 	} catch (error) {
 		console.error(
 			'Error fetching cart:',
-			error.response?.data || error.message
+			error.response?.data || error.message,
 		);
 		throw error;
 	}
@@ -79,14 +88,14 @@ export const fetchCart = async (userId, dispatch) => {
 export const removeFromCartApi = async (id, userId) => {
 	try {
 		const response = await axios.put(
-			`${HOST}cart/removeItemFromCart/${userId}/${id}`
+			`${HOST}cart/removeItemFromCart/${userId}/${id}`,
 		);
 		console.log('Removed:', response.data);
 		return response.data;
 	} catch (error) {
 		console.error(
 			'Error removing from cart:',
-			error.response?.data || error.message
+			error.response?.data || error.message,
 		);
 		throw error;
 	}
@@ -107,7 +116,7 @@ export const updateCart = async (userId, item, dispatch) => {
 	} catch (error) {
 		console.error(
 			'Error adding to cart:',
-			error.response?.data || error.message
+			error.response?.data || error.message,
 		);
 		throw error;
 	}

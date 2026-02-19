@@ -22,14 +22,14 @@ const CartOffcanvas = ({ show, handleClose }) => {
 	const { user } = useSelector((state) => state.auth);
 	const subtotal = cartItems.reduce(
 		(acc, item) => acc + item.priceSale * (item.quantity || 1),
-		0
+		0,
 	);
 	const total = subtotal;
 
 	const handleRemove = (id) => {
 		dispatch(removeFromCart(id));
 	};
-	const userId = user?._id;
+const userId = user?._id;
 
 	// useEffect(() => {
 	// 	fetchCart(userId, dispatch);
@@ -47,21 +47,13 @@ const CartOffcanvas = ({ show, handleClose }) => {
 			</Offcanvas.Header>
 
 			<Offcanvas.Body>
-				{cartItems.length === 0 ? (
+				{cartItems.length === 0 ?
 					<p>Your cart is empty</p>
-				) : (
-					<>
+				:	<>
 						{cartItems.map((item, idx) => (
 							<div
 								key={idx}
 								className='d-flex align-items-center mb-3 border-bottom pb-2'>
-								<img
-									src={`${HOST}resources/${item.image[0]}`}
-									rounded
-									width={60}
-									height={60}
-									style={{ objectFit: 'cover' }}
-								/>
 								<div className='flex-grow-1 ms-3'>
 									<h6 className='mb-1'>{item.title}</h6>
 									<div className='d-flex justify-content-between align-items-center'>
@@ -74,7 +66,10 @@ const CartOffcanvas = ({ show, handleClose }) => {
 														removeFromCartApi(item.id, userId);
 													} else {
 														dispatch(
-															decrementQty({ id: item.id, userId: item.userId })
+															decrementQty({
+																id: item.id,
+																userId: item.userId,
+															}),
 														);
 													}
 												}}>
@@ -85,7 +80,7 @@ const CartOffcanvas = ({ show, handleClose }) => {
 												className='btn  btn-sm rounded-circle'
 												onClick={() => {
 													dispatch(
-														incrementQty({ id: item.id, userId: item.userId })
+														incrementQty({ id: item.id, userId: item.userId }),
 													);
 												}}>
 												+
@@ -146,7 +141,7 @@ const CartOffcanvas = ({ show, handleClose }) => {
 							</Link>
 						</div>
 					</>
-				)}
+				}
 			</Offcanvas.Body>
 		</Offcanvas>
 	);
